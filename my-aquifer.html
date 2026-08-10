@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Aquifer - Alliance Pilot</title>
+<style>
+:root{
+  --bg:#243442;--panel:#17232d;--card:#2b3e4e;--line:#3d5363;--aqua:#22c7ad;
+  --text:#f5f8fa;--muted:#b8c5ce;--blue:#60a5fa;--amber:#fbbf24;--red:#f87171;
+  --green:#34d399;--shadow:0 12px 28px rgba(0,0,0,.22)
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.45}
+a{color:inherit}
+header{background:#13202a;border-bottom:4px solid var(--aqua);padding:18px 16px;text-align:center}
+header h1{margin:0;font-size:clamp(1.65rem,5vw,2.35rem)}
+header p{margin:5px 0 0;color:var(--aqua);font-weight:700}
+.tracker-nav{background:#304657;padding:10px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;border-bottom:1px solid #16242e}
+.tracker-nav a{font-size:12px;font-weight:700;text-decoration:none;padding:8px 11px;border:1px solid var(--aqua);border-radius:7px;background:#223341}
+.tracker-nav a.active{background:var(--aqua);color:#10232a}
+.pilot-banner{background:#5a4510;color:#fff3c4;text-align:center;padding:8px 14px;font-size:13px;font-weight:700}
+.shell{max-width:1120px;margin:0 auto;padding:22px 16px 56px}
+.topline{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--aqua);font-weight:800;margin:0 0 4px}
+.location h2{font-size:clamp(1.8rem,5vw,2.7rem);margin:0}.location p{margin:4px 0 0;color:var(--muted)}
+.viewbar{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}
+.view-btn,.action-btn{cursor:pointer;border:1px solid var(--line);background:#21323f;color:var(--text);border-radius:999px;padding:10px 15px;font-weight:800}
+.view-btn.active{border-color:var(--aqua);background:var(--aqua);color:#10232a}
+.action-btn{border-radius:8px;padding:9px 12px}.action-btn.primary{background:var(--aqua);border-color:var(--aqua);color:#10232a}.action-btn.ghost{background:transparent}.action-btn.saved,.action-btn.following{background:#153d35;border-color:var(--green);color:#b9f7e0}
+.greeting{margin:22px 0 12px}.greeting h3{font-size:clamp(1.45rem,4vw,2.05rem);margin:0}.greeting p{color:var(--muted);margin:6px 0 0}
+.status-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0 22px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:13px}.stat strong{display:block;font-size:1.5rem}.stat span{font-size:12px;color:var(--muted);font-weight:700}
+.stat.important strong{color:var(--amber)}.stat.checked strong{color:var(--green)}
+.section-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:26px 0 10px}.section-title h3{margin:0;font-size:1.2rem}.section-title button{font-size:12px}
+.changes{display:grid;gap:10px}.change{background:#1c2b36;border-left:4px solid var(--amber);border-radius:9px;padding:14px 16px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}.change.update{border-left-color:var(--blue)}.change small{color:var(--muted)}.change h4{margin:3px 0 4px}.change p{margin:0;color:#dce6ec}.change-actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:12px}.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:17px;box-shadow:var(--shadow);min-height:190px}.card.hero{border-top:3px solid var(--aqua)}.card h4{font-size:1.2rem;margin:5px 0 8px}.card p{margin:7px 0}.big-number{font-size:2rem;font-weight:900;letter-spacing:-.03em}.muted{color:var(--muted)}
+.badges{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.badge{font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-weight:900;border:1px solid #607887;padding:4px 6px;border-radius:5px;color:#dbe6ec}.badge.history{border-color:var(--amber);color:#ffe5a0}.badge.public{border-color:var(--blue);color:#bed9ff}.badge.private{border-color:var(--green);color:#b8f5dd}.badge.context{border-color:#c084fc;color:#e5c7ff}
+.context-note{background:#1f303c;border-radius:8px;padding:10px 11px;color:#d3dee5;font-size:13px}.card-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}
+.map-card{margin-top:14px;background:linear-gradient(145deg,#162832,#274856);border:1px solid #4b6978;border-radius:14px;padding:22px;text-align:center}.map-visual{margin:16px auto;max-width:650px;min-height:170px;border:1px dashed #7c9aa8;border-radius:12px;display:grid;place-items:center;background:radial-gradient(circle at 44% 44%,rgba(34,199,173,.30),transparent 23%),radial-gradient(circle at 58% 59%,rgba(96,165,250,.22),transparent 26%),#172730}.map-visual div{font-weight:800;color:#d7e6ed}.map-card p{color:var(--muted)}
+.footer-note{margin-top:28px;text-align:center;color:var(--muted);font-size:14px}.footer-note strong{color:var(--text)}
+.hidden{display:none!important}
+.modal-backdrop{position:fixed;inset:0;background:rgba(5,12,17,.74);display:grid;place-items:center;padding:18px;z-index:1000}.modal{max-width:600px;width:100%;background:#1b2b36;border:1px solid #536b7a;border-radius:14px;padding:20px;box-shadow:0 25px 70px rgba(0,0,0,.45)}.modal h3{margin-top:0}.modal textarea,.modal input{width:100%;background:#111f28;border:1px solid #536b7a;color:white;border-radius:7px;padding:10px;margin:5px 0 12px}.modal-actions{display:flex;justify-content:flex-end;gap:8px}.history-list{display:grid;gap:8px}.history-item{padding:12px;background:#162630;border:1px solid #3c5260;border-radius:8px}.empty{color:var(--muted);padding:12px 0}
+@media(max-width:760px){.status-strip{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.change{grid-template-columns:1fr}.change-actions{justify-content:flex-start}.tracker-nav{justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap}.tracker-nav a{white-space:nowrap}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Ogallala Aquifer Tracker</h1>
+  <p>MY AQUIFER — Alliance Pilot</p>
+</header>
+<nav class="tracker-nav" aria-label="Tracker navigation">
+  <a href="index.html">Tracker Home</a>
+  <a href="map.html">Interactive Map</a>
+  <a href="timeline-1950.html">1950</a>
+  <a href="timeline-1980.html">1980</a>
+  <a href="present.html">Present 2026</a>
+  <a href="timeline-projection.html">2050</a>
+  <a href="dashboard.html">Dashboard</a>
+  <a class="active" href="my-aquifer.html">My Aquifer</a>
+</nav>
+<div class="pilot-banner">PILOT PROTOTYPE — The buttons work. Some feeds are not live yet and are labeled accordingly.</div>
+
+<main class="shell">
+  <div class="topline">
+    <div class="location">
+      <p class="eyebrow">Your local view of the Ogallala Aquifer</p>
+      <h2>MY AQUIFER</h2>
+      <p>Alliance, Nebraska • 69301</p>
+    </div>
+    <button class="action-btn ghost" id="historyBtn">History <span id="historyCount">0</span></button>
+  </div>
+
+  <div class="viewbar" aria-label="My Views">
+    <button class="view-btn active" data-view="all">All</button>
+    <button class="view-btn" data-view="farmer">Farmer</button>
+    <button class="view-btn" data-view="town">Town Resident</button>
+    <button class="view-btn" data-view="well">Private Well</button>
+  </div>
+
+  <section class="greeting">
+    <h3 id="greetingTitle">Good morning. Here’s what changed around you.</h3>
+    <p id="greetingSubtitle">Same aquifer. Same evidence. Different lens.</p>
+  </section>
+
+  <section class="status-strip" aria-label="Status summary">
+    <div class="stat"><strong>0</strong><span>CRITICAL</span></div>
+    <div class="stat important"><strong>1</strong><span>IMPORTANT</span></div>
+    <div class="stat"><strong>2</strong><span>UPDATES</span></div>
+    <div class="stat checked"><strong>6</strong><span>CHECKED — NO CHANGE</span></div>
+  </section>
+
+  <div class="section-title"><h3>Since Your Last Visit</h3><button class="action-btn ghost" id="restoreBtn">Restore cleared</button></div>
+  <section class="changes" id="changesList">
+    <article class="change" data-change-id="conservation" data-views="all town farmer well">
+      <div>
+        <small>IMPORTANT • OFFICIAL NOTICE</small>
+        <h4>Alliance water-conservation notice</h4>
+        <p>Alliance recently asked residents to conserve water during high-temperature demand. Open the city source for the original notice.</p>
+      </div>
+      <div class="change-actions">
+        <a class="action-btn primary" target="_blank" rel="noopener" href="https://cityofalliance.net/409/Press-Releases">Open Source</a>
+        <button class="action-btn clear-change" data-change-id="conservation">Clear</button>
+      </div>
+    </article>
+    <article class="change update" data-change-id="pilot" data-views="all farmer town well">
+      <div>
+        <small>UPDATE • PILOT</small>
+        <h4>My Aquifer pilot is ready for a test drive</h4>
+        <p>Try the view buttons, Save, Follow, History, original sources, and the existing tracker map.</p>
+      </div>
+      <div class="change-actions"><button class="action-btn clear-change" data-change-id="pilot">Clear</button></div>
+    </article>
+  </section>
+
+  <div class="section-title"><h3 id="cardsHeading">Your Aquifer at a Glance</h3></div>
+  <section class="grid" id="cardGrid">
+
+    <article class="card hero" data-card="aquifer" data-views="all farmer town well" data-order-all="1" data-order-farmer="2" data-order-town="3" data-order-well="3">
+      <p class="eyebrow">Aquifer Water Level</p>
+      <div class="badges"><span class="badge public">Public measurement</span><span class="badge history">Historical</span></div>
+      <h4>Public monitoring well 26N 49W 6CC</h4>
+      <div class="big-number">213.44 ft</div>
+      <p>below land surface</p>
+      <p class="muted">Measured March 20, 2025</p>
+      <p class="context-note">A public monitoring measurement. It is not a measurement beneath your home or field.</p>
+      <div class="card-actions">
+        <a class="action-btn primary" target="_blank" rel="noopener" href="https://www.usgs.gov/apps/ngwmn/provider/USGS/site/421505103051701/">Open Source</a>
+        <button class="action-btn save-btn" data-object="aquifer-monitor">Save</button>
+        <button class="action-btn follow-btn" data-object="aquifer-monitor">Follow</button>
+      </div>
+    </article>
+
+    <article class="card hero" data-card="tap" data-views="all town" data-order-all="3" data-order-town="1">
+      <p class="eyebrow">My Tap</p>
+      <div class="badges"><span class="badge public">Official report</span></div>
+      <h4>Alliance community water</h4>
+      <p>See where Alliance water comes from and open the city’s public water-quality resources.</p>
+      <p class="context-note">Community-system information is not a real-time test from your individual kitchen faucet.</p>
+      <div class="card-actions">
+        <a class="action-btn primary" target="_blank" rel="noopener" href="https://www.cityofalliance.net/252/Water-Quality">Water Quality Source</a>
+        <a class="action-btn" target="_blank" rel="noopener" href="https://www.cityofalliance.net/218/Water-Source-Information">Water Source</a>
+        <button class="action-btn save-btn" data-object="my-tap">Save</button>
+        <button class="action-btn follow-btn" data-object="my-tap">Follow</button>
+      </div>
+    </article>
+
+    <article class="card hero" data-card="irrigation" data-views="all farmer" data-order-all="2" data-order-farmer="1">
+      <p class="eyebrow">Irrigation &amp; Power</p>
+      <div class="badges"><span class="badge context">Pilot feed</span></div>
+      <h4>PREMA load-management context</h4>
+      <p class="big-number" style="font-size:1.4rem">Live connection is next</p>
+      <p class="muted">For this pilot screen, we are testing whether this belongs near the top of the Farmer view before wiring the live status feed.</p>
+      <div class="card-actions">
+        <a class="action-btn primary" target="_blank" rel="noopener" href="https://www.prema.coop/load-management-101">PREMA Source</a>
+        <button class="action-btn save-btn" data-object="prema">Save</button>
+        <button class="action-btn follow-btn" data-object="prema">Follow</button>
+      </div>
+    </article>
+
+    <article class="card" data-card="crop" data-views="all farmer" data-order-all="5" data-order-farmer="3">
+      <p class="eyebrow">Crop Water</p>
+      <div class="badges"><span class="badge public">NRD source</span></div>
+      <h4>Upper Niobrara-White NRD</h4>
+      <p>Crop-water-use reports and local groundwater-management information belong here for the Farmer view.</p>
+      <div class="card-actions">
+        <a class="action-btn primary" target="_blank" rel="noopener" href="https://unwnrd.org/">Open NRD</a>
+        <button class="action-btn save-btn" data-object="nrd">Save</button>
+        <button class="action-btn follow-btn" data-object="nrd">Follow</button>
+      </div>
+    </article>
+
+    <article class="card" data-card="groundwater-quality" data-views="all farmer well" data-order-all="4" data-order-farmer="4" data-order-well="4">
+      <p class="eyebrow">Groundwater Quality Around You</p>
+      <div class="badges"><span class="badge context">Nearby context</span></div>
+      <h4>Public groundwater samples</h4>
+      <p class="big-number" style="font-size:1.35rem">Feed not connected yet</p>
+      <p class="context-note">Nearby groundwater results can provide context. They do not become a measurement of your field or private well.</p>
+      <div class="card-actions"><button class="action-btn follow-btn" data-object="groundwater-quality">Follow</button></div>
+    </article>
+
+    <article class="card hero" data-card="my-well" data-views="all well" data-order-all="6" data-order-well="1">
+      <p class="eyebrow">My Well</p>
+      <div class="badges"><span class="badge private">Private</span></div>
+      <h4>Your private-well record</h4>
+      <p id="wellStatus">No private well details added in this browser.</p>
+      <p class="context-note">Public groundwater intelligence around you. Private well information for you.</p>
+      <div class="card-actions"><button class="action-btn primary" id="addWellBtn">Add My Well</button><button class="action-btn follow-btn" data-object="my-well">Follow</button></div>
+    </article>
+
+    <article class="card" data-card="my-tests" data-views="well" data-order-well="2">
+      <p class="eyebrow">My Water Tests</p>
+      <div class="badges"><span class="badge private">My data</span></div>
+      <h4>No private test added yet</h4>
+      <p>Your own laboratory test is the best evidence for what is in your well.</p>
+      <div class="card-actions"><button class="action-btn primary" id="addTestBtn">Add a Test Note</button><a class="action-btn" target="_blank" rel="noopener" href="https://unwnrd.org/">Local NRD Information</a></div>
+    </article>
+
+    <article class="card" data-card="water-wise" data-views="all town well" data-order-all="7" data-order-town="5" data-order-well="6">
+      <p class="eyebrow">Water-Wise Living</p>
+      <h4>Use less water without giving up a beautiful yard</h4>
+      <p>Native and water-wise landscaping can reduce irrigation demand and create habitat.</p>
+      <p class="muted">Replace maintenance with habitat.</p>
+      <div class="card-actions"><button class="action-btn save-btn" data-object="water-wise">Save</button></div>
+    </article>
+
+  </section>
+
+  <section class="map-card" data-views="all farmer town well">
+    <p class="eyebrow">Your Aquifer Area</p>
+    <h3>Use the tracker map we already know works</h3>
+    <div class="map-visual"><div>Alliance • Monitoring • Communities • Regional Aquifer Context</div></div>
+    <p><strong>Distance is not impact.</strong> The map shows where things are; it does not by itself prove hydrologic effect.</p>
+    <a class="action-btn primary" href="map.html">Open Existing Interactive Map</a>
+  </section>
+
+  <p class="footer-note"><strong>We find it. We connect it. We translate it. We show you what changed.</strong><br>This pilot page stores Save/Follow/Clear choices only in this browser. No account or payment system is connected yet.</p>
+</main>
+
+<div class="modal-backdrop hidden" id="modalBackdrop" role="dialog" aria-modal="true">
+  <div class="modal">
+    <h3 id="modalTitle">Details</h3>
+    <div id="modalBody"></div>
+    <div class="modal-actions"><button class="action-btn" id="modalClose">Close</button></div>
+  </div>
+</div>
+
+<script>
+const state = {
+  view: localStorage.getItem('ma_view') || 'all',
+  saved: JSON.parse(localStorage.getItem('ma_saved') || '[]'),
+  followed: JSON.parse(localStorage.getItem('ma_followed') || '[]'),
+  cleared: JSON.parse(localStorage.getItem('ma_cleared') || '[]'),
+  well: localStorage.getItem('ma_well') || '',
+  test: localStorage.getItem('ma_test') || ''
+};
+const viewNames={all:'All',farmer:'Farmer',town:'Town Resident',well:'Private Well'};
+const titles={all:'Good morning. Here’s what changed around you.',farmer:'Good morning. What matters before the pivots get moving?',town:'Good morning. Here’s what changed around your community water.',well:'Good morning. Here’s what changed around your well area.'};
+const subtitles={all:'Same aquifer. Same evidence. Different lens.',farmer:'Power • Crop water • Aquifer • Groundwater quality • NRD context',town:'My Tap • Water quality • Aquifer supply • Community notices',well:'My Well • My tests • Aquifer context • Nearby groundwater quality'};
+
+function persist(key,val){localStorage.setItem(key,JSON.stringify(val));}
+function setView(view){
+  state.view=view; localStorage.setItem('ma_view',view);
+  document.querySelectorAll('.view-btn').forEach(b=>b.classList.toggle('active',b.dataset.view===view));
+  document.getElementById('greetingTitle').textContent=titles[view];
+  document.getElementById('greetingSubtitle').textContent=subtitles[view];
+  document.getElementById('cardsHeading').textContent=view==='all'?'Your Aquifer at a Glance':`${viewNames[view]} View`;
+  document.querySelectorAll('[data-views]').forEach(el=>{
+    const views=el.dataset.views.split(' ');
+    el.classList.toggle('hidden',!views.includes(view));
+  });
+  const grid=document.getElementById('cardGrid');
+  [...grid.children].sort((a,b)=>Number(a.dataset[`order${cap(view)}`]||a.dataset.orderAll||99)-Number(b.dataset[`order${cap(view)}`]||b.dataset.orderAll||99)).forEach(el=>grid.appendChild(el));
+  renderChanges();
+}
+function cap(v){return v.charAt(0).toUpperCase()+v.slice(1)}
+function renderChanges(){
+  document.querySelectorAll('.change').forEach(el=>{
+    const views=el.dataset.views.split(' ');
+    const hidden=state.cleared.includes(el.dataset.changeId)||!views.includes(state.view);
+    el.classList.toggle('hidden',hidden);
+  });
+  document.getElementById('historyCount').textContent=state.cleared.length;
+}
+function updateButtons(){
+  document.querySelectorAll('.save-btn').forEach(btn=>{const on=state.saved.includes(btn.dataset.object);btn.classList.toggle('saved',on);btn.textContent=on?'Saved':'Save';});
+  document.querySelectorAll('.follow-btn').forEach(btn=>{const on=state.followed.includes(btn.dataset.object);btn.classList.toggle('following',on);btn.textContent=on?'Following':'Follow';});
+}
+function toggleArray(arr,key){const i=arr.indexOf(key);if(i>=0)arr.splice(i,1);else arr.push(key);}
+function showModal(title,html){document.getElementById('modalTitle').textContent=title;document.getElementById('modalBody').innerHTML=html;document.getElementById('modalBackdrop').classList.remove('hidden');}
+function closeModal(){document.getElementById('modalBackdrop').classList.add('hidden');}
+
+document.querySelectorAll('.view-btn').forEach(btn=>btn.addEventListener('click',()=>setView(btn.dataset.view)));
+document.querySelectorAll('.save-btn').forEach(btn=>btn.addEventListener('click',()=>{toggleArray(state.saved,btn.dataset.object);persist('ma_saved',state.saved);updateButtons();}));
+document.querySelectorAll('.follow-btn').forEach(btn=>btn.addEventListener('click',()=>{toggleArray(state.followed,btn.dataset.object);persist('ma_followed',state.followed);updateButtons();if(state.followed.includes(btn.dataset.object))showModal('Follow — Pilot Mode','<p><strong>Follow is working as a prototype choice.</strong></p><p>In the production version, this is where My Aquifer will watch the selected item and surface meaningful changes. Billing and email notifications are not connected on this pilot page.</p>');}));
+document.querySelectorAll('.clear-change').forEach(btn=>btn.addEventListener('click',()=>{if(!state.cleared.includes(btn.dataset.changeId))state.cleared.push(btn.dataset.changeId);persist('ma_cleared',state.cleared);renderChanges();}));
+document.getElementById('restoreBtn').addEventListener('click',()=>{state.cleared=[];persist('ma_cleared',state.cleared);renderChanges();});
+document.getElementById('historyBtn').addEventListener('click',()=>{
+  const names={conservation:'Alliance water-conservation notice',pilot:'My Aquifer pilot ready for test drive'};
+  const body=state.cleared.length?`<div class="history-list">${state.cleared.map(id=>`<div class="history-item"><strong>${names[id]||id}</strong><br><span class="muted">Cleared from home screen — preserved in History.</span></div>`).join('')}</div>`:'<p class="empty">Nothing has been cleared yet. Clear an item from “Since Your Last Visit” and it will appear here.</p>';
+  showModal('Aquifer History',body);
+});
+document.getElementById('addWellBtn').addEventListener('click',()=>showModal('Add My Well — Pilot',`<label>Well nickname</label><input id="wellInput" value="${escapeHtml(state.well)}" placeholder="Home Well"><p class="muted">For this prototype, the nickname is saved only in this browser. We are not collecting a precise address or well location.</p><button class="action-btn primary" onclick="saveWell()">Save</button>`));
+document.getElementById('addTestBtn').addEventListener('click',()=>showModal('Add a Test Note — Pilot',`<label>What would you want to save about a private well test?</label><textarea id="testInput" rows="4" placeholder="Example: nitrate test, sample date, lab...">${escapeHtml(state.test)}</textarea><p class="muted">Prototype only — stored in this browser, not uploaded anywhere.</p><button class="action-btn primary" onclick="saveTest()">Save note</button>`));
+document.getElementById('modalClose').addEventListener('click',closeModal);
+document.getElementById('modalBackdrop').addEventListener('click',e=>{if(e.target.id==='modalBackdrop')closeModal();});
+function saveWell(){state.well=document.getElementById('wellInput').value.trim();localStorage.setItem('ma_well',state.well);document.getElementById('wellStatus').textContent=state.well?`${state.well} — private pilot record saved in this browser.`:'No private well details added in this browser.';closeModal();}
+function saveTest(){state.test=document.getElementById('testInput').value.trim();localStorage.setItem('ma_test',state.test);closeModal();}
+function escapeHtml(s){return String(s||'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
+if(state.well)document.getElementById('wellStatus').textContent=`${state.well} — private pilot record saved in this browser.`;
+updateButtons();setView(state.view);
+</script>
+</body>
+</html>
