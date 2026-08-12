@@ -9,52 +9,90 @@
 - `version-2.0-sacred`
 - `version-3.0-sacred`
 
-## Current state
+Do not merge or promote Version 3.1 to `main` without explicit approval.
 
-Version 3.1 is now in a green branch-tested state.
+## Latest hard checkpoint
+
+The latest frozen recovery branch is:
+
+`checkpoint-v3.1-visual-review-2026-08-12`
+
+The application state frozen for today’s visual review is commit:
+
+`d536d4434b4f63761ed5b8746353dc81fd06201f`
+
+A dedicated handoff note records the exact stopping point:
+
+`V3_1_VISUAL_REVIEW_CHECKPOINT_2026-08-12.md`
+
+## Current Version 3.1 state
+
+Version 3.1 remains branch-tested and green.
 
 Completed work includes:
 
-- high-resolution Version 3.1 hero installed and verified at 1672 × 941 px;
+- high-resolution Version 3.1 hero installed;
 - Tracker navigation separated from Publication · Substack context;
-- live `sources.html` credibility directory with current primary-source links and six public integrity rules;
-- corrected verified Sources poster uploaded and displayed:
-  - `Ogallala_Aquifer_Tracker_Sources_Poster_V3_1_verified.png`
-  - verified browser dimensions 1536 × 1024 px;
-- Version 3.1-specific branch browser QA created and passing.
+- live `sources.html` credibility directory with primary-source links and public integrity rules;
+- corrected verified Sources poster displayed;
+- Version 3.1-specific branch browser QA;
+- StackBlitz human browser-preview route for reviewing 3.1 without changing `main` or GitHub Pages;
+- crisp replacement aquifer overview image uploaded and wired into the “What lies beneath” section.
 
-The live HTML source directory is the controlling factual record; the poster is its visual expression.
+The new aquifer image is:
 
-## Version 3.1 branch QA
+`ChatGPT Image Aug 8, 2026, 12_40_48 PM.png`
 
-Separate QA files now exist so `version-3.1-working` is tested against its own files instead of the deployed `main` site:
+The image swap was committed as:
 
-- `.github/workflows/v3-1-smoke-test.yml`
-- `scripts/v3-1-smoke.mjs`
-- `V3_1_QA_2026-08-12.md`
+`d536d4434b4f63761ed5b8746353dc81fd06201f`
 
-The workflow starts a local static server inside GitHub Actions and runs Playwright Chromium against the checked-out Version 3.1 branch files.
+## Latest branch QA
 
-Latest successful run:
+Latest successful run after the aquifer-image swap:
 
 - Workflow: `V3.1 Branch Browser Smoke Test`
-- Run ID: `31623744643`
-- Tested head commit: `ab580ead30c810b7d6eee09bf439672a2313f839`
-- Result: **55/55 checks passed**
-
-The run verified the high-resolution hero, verified Sources poster, V3.1 navigation, four anchor years, 2035 projection step, autoplay stop at 2050, 28 community markers, Portales/Hereford correction, regional hotspot and infrastructure layers, Groundwater Window framing, keyboard interaction, mobile layouts, Sources integrity rules, and clean relevant console output.
+- Run ID: `31628863392`
+- Tested head: `d536d4434b4f63761ed5b8746353dc81fd06201f`
+- Result: **success**
 
 The older main-only workflow `.github/workflows/v3-smoke-test.yml` remains untouched and continues to serve sacred/main release testing.
+
+## Human visual review — exact stopping point
+
+The Version 3.1 browser preview was opened successfully. The high-resolution front hero was visually confirmed as crystal clear and strong.
+
+Two review items were identified:
+
+1. **Project 247 must be removed from the hero artwork.**
+   - It is baked into the image, not HTML text.
+   - Cleanup is still pending.
+   - Preserve the rest of the hero composition and message.
+
+2. **The lower aquifer overview image appeared blurry in the old preview.**
+   - A crisp replacement was uploaded and wired into `v3.html`.
+   - Automated QA passed after the swap.
+   - Human confirmation of the new image is still pending because the first StackBlitz workspace was showing a stale clone.
+
+A fresh exact-commit StackBlitz import was opened using commit `d536d4434b4f63761ed5b8746353dc81fd06201f`.
+
+At the stopping point it was still displaying:
+
+- Cloning repo from GitHub
+- Mounting environment in StackBlitz
+
+First action on return: let that exact-commit preview finish loading, scroll to **What lies beneath**, and confirm the new image is crisp. Then address the Project 247 hero cleanup.
 
 ## Main checkpoint and audit files
 
 Read these before changing the project:
 
 1. `V3_1_CHECKPOINT_CURRENT.md` — this current recovery pointer
-2. `V3_1_CHECKPOINT_2026-08-12.md` — detailed earlier handoff
-3. `V3_1_QA_2026-08-12.md` — branch QA record and run IDs
-4. `V3_1_SOURCES_AUDIT_2026-08-12.md` — Sources/poster verification trail
-5. `V3_SOURCE_CHECK_2026-08-12.md` — scientific/editorial guardrails inherited from validated V3
+2. `V3_1_VISUAL_REVIEW_CHECKPOINT_2026-08-12.md` — exact visual-review stopping point
+3. `V3_1_QA_2026-08-12.md` — branch QA record
+4. `V3_1_CHECKPOINT_2026-08-12.md` — detailed earlier handoff
+5. `V3_1_SOURCES_AUDIT_2026-08-12.md` — Sources/poster verification trail
+6. `V3_SOURCE_CHECK_2026-08-12.md` — scientific/editorial guardrails inherited from validated V3
 
 ## Scientific/editorial guardrails that remain in force
 
@@ -65,26 +103,14 @@ Read these before changing the project:
 - Infrastructure/data-center locations are context, not attribution or proof of hydrologic impact.
 - Official 28-community presentation includes Portales, NM; Hereford, TX is not a community marker and remains only a 2026 infrastructure/context location.
 - Groundwater Window is educational/illustrative, not a surveyed engineering profile or literal statewide water-table surface.
+- Keep `Publication · Substack` visible. No final Substack destination has been confirmed, so do not invent one.
 
-## Current development boundary
-
-Do not merge or promote Version 3.1 to `main` without explicit approval.
-
-`main`, `version-2.0-sacred`, and `version-3.0-sacred` remain outside normal Version 3.1 editing.
-
-## Recommended next work
-
-With branch-local QA now green, the next Version 3.1 work can be chosen deliberately rather than as emergency repair. Strong candidates are:
-
-- visual review of the new front door and Sources page in a human browser before promotion;
-- confirm/finalize the real Publication · Substack destination;
-- normalize remaining technical debt in the underlying timeline source only if needed;
-- prepare a controlled promotion plan after visual/editorial approval.
-
-## Recovery instruction for a new ChatGPT conversation
+## Recovery instruction
 
 Say:
 
-> Continue the Ogallala Aquifer Tracker Version 3.1 work from `V3_1_CHECKPOINT_CURRENT.md` in repo `Pegasides/Ogallala-Aquifer-Tracker`. Versions 2 and 3 are sacred. Active branch is `version-3.1-working`. Branch-local V3.1 QA passed 55/55; do not merge to main without my approval.
+> Allie, continue from the Ogallala V3.1 visual-review checkpoint from August 12, 2026.
 
-Read this file before making further project changes.
+Then read `V3_1_CHECKPOINT_CURRENT.md` and `V3_1_VISUAL_REVIEW_CHECKPOINT_2026-08-12.md` before making further changes.
+
+Work only on `version-3.1-working`. Versions 2 and 3 are sacred. Do not promote to `main` without explicit approval.
