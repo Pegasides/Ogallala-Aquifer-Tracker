@@ -150,7 +150,7 @@ frame.addEventListener('load',()=>{
       const year=Number((doc.getElementById('currentYearBadge')?.textContent||'').replace(/[^0-9]/g,''));
       const healthNumber=doc.getElementById('healthNumber');
       const value=(healthNumber?.textContent||'').replace(/[^0-9.]/g,'');
-      if(healthNumber&&value)healthNumber.textContent=value;
+      if(healthNumber&&value&&healthNumber.textContent.trim()!==value)healthNumber.textContent=value;
       const panelHeading=doc.querySelector('.health-panel .panel-heading');
       if(panelHeading)panelHeading.textContent='Tracker Working Index';
       const panelYearNote=doc.getElementById('panelYearNote');
