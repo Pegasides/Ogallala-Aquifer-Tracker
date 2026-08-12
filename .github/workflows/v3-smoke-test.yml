@@ -29,7 +29,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: Install Playwright
         run: |
@@ -39,6 +39,16 @@ jobs:
 
       - name: Allow GitHub Pages to settle
         run: sleep 20
+
+      - name: Check deployed V3 routes
+        run: |
+          set -euxo pipefail
+          curl -fsSI https://pegasides.github.io/Ogallala-Aquifer-Tracker/v3.html
+          curl -fsSI https://pegasides.github.io/Ogallala-Aquifer-Tracker/v3-map.html
+          curl -fsSI https://pegasides.github.io/Ogallala-Aquifer-Tracker/groundwater-window.html
+          curl -fsSI https://pegasides.github.io/Ogallala-Aquifer-Tracker/groundwater-window-core.html
+          curl -fsSL https://pegasides.github.io/Ogallala-Aquifer-Tracker/groundwater-window.html | grep -F 'id="groundwaterFrame"'
+          curl -fsSL https://pegasides.github.io/Ogallala-Aquifer-Tracker/groundwater-window-core.html | grep -F 'id="currentYearBadge"'
 
       - name: Run Version 3 browser smoke test
         run: node scripts/v3-smoke.mjs
