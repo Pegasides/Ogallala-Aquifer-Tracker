@@ -16,7 +16,6 @@ html{scroll-behavior:smooth}
 body{margin:0;background:linear-gradient(180deg,#06121b 0%,#0a1d2a 48%,#07131d 100%);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.55}
 a{color:inherit}
 a:focus-visible,.btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
-
 .hero{position:relative;background:#07131d;border-bottom:1px solid rgba(242,198,109,.35)}
 .hero img{display:block;width:100%;height:auto;max-height:82vh;object-fit:contain;background:#07131d}
 .hero-badge{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);z-index:2;background:rgba(3,15,24,.88);border:1px solid rgba(94,234,212,.75);color:#cffff7;border-radius:999px;padding:7px 12px;font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
@@ -29,14 +28,12 @@ a:focus-visible,.btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
 .btn:hover{transform:translateY(-1px)}
 .btn.primary{background:var(--aqua);color:#06262a}
 .btn.secondary{background:#0e2939;border-color:#496476;color:#fff}
-
 .navbar{position:sticky;top:0;z-index:30;background:rgba(4,18,27,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .nav-inner{width:min(1120px,calc(100% - 32px));margin:auto;display:flex;gap:12px;align-items:center;justify-content:space-between;padding:9px 0}
 .brand{text-decoration:none;font-weight:900;font-size:13px;color:#dffcf7;white-space:nowrap}
 .nav-links{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
 .nav-links a{text-decoration:none;color:#e4eef3;border:1px solid #345164;background:#102736;border-radius:8px;padding:8px 10px;font-size:11px;font-weight:800}
-.nav-links a:hover{border-color:var(--aqua)}
-
+.nav-links a:hover,.nav-links a.active{border-color:var(--aqua);background:#123c43;color:#e7fffb}
 .wrap{width:min(1120px,calc(100% - 32px));margin:auto;padding:54px 0}
 .section-kicker{color:var(--aqua);font-size:12px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;margin-bottom:8px}
 .section-title{font-family:Georgia,"Times New Roman",serif;font-size:clamp(2rem,4vw,3.5rem);line-height:1.05;margin:0 0 14px}
@@ -49,7 +46,6 @@ a:focus-visible,.btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
 .bridge-copy h3{font-family:Georgia,"Times New Roman",serif;font-size:2rem;margin:0 0 12px}
 .bridge-copy p{color:var(--muted);margin:0 0 14px}
 .bridge-copy strong{color:#fff}
-
 .timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px}
 .era{position:relative;overflow:hidden;border:1px solid var(--line);background:linear-gradient(160deg,#0d2536,#0a1c29);border-radius:14px;padding:18px;min-height:188px}
 .era::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--accent)}
@@ -57,7 +53,6 @@ a:focus-visible,.btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
 .era .score{font-size:2.45rem;font-weight:900;line-height:1;margin:16px 0 4px;color:var(--accent)}
 .era .label{font-weight:900;margin-bottom:6px}
 .era .mini{font-size:12px;color:var(--muted)}
-
 .connection-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
 .connection{border:1px solid var(--line);border-radius:14px;padding:20px;background:linear-gradient(150deg,#0c2434,#0a1b28)}
 .connection .icon{font-size:1.75rem}
@@ -74,7 +69,6 @@ a:focus-visible,.btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
 .mission blockquote{font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.7rem,4vw,3rem);line-height:1.15;margin:0;color:#fff}
 .mission p{color:#d9c9a7;margin:12px 0 0}
 footer{border-top:1px solid var(--line);color:#9eb3bf;text-align:center;font-size:11px;padding:26px 16px 40px}
-
 @media(max-width:900px){
  .launch-inner{grid-template-columns:1fr}
  .launch-actions{justify-content:flex-start}
@@ -85,24 +79,36 @@ footer{border-top:1px solid var(--line);color:#9eb3bf;text-align:center;font-siz
  .brand{display:block;margin-bottom:6px;font-size:11px}
  .nav-links{display:flex;flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;padding-bottom:2px;scrollbar-width:none}
  .nav-links::-webkit-scrollbar{display:none}
- .nav-links a{flex:0 0 auto}
+ .nav-links a{flex:0 0 auto;min-height:40px;display:inline-flex;align-items:center}
 }
 @media(max-width:560px){
  .hero-badge{bottom:8px;font-size:9px;padding:5px 9px}
+ .launch-inner{width:calc(100% - 24px);padding:18px 0 22px;gap:16px}
+ .launch-copy h1{font-size:1.6rem;line-height:1.12}
+ .launch-copy p{font-size:.94rem;line-height:1.48}
  .timeline{grid-template-columns:1fr}
- .launch-actions .btn{width:100%}
- .wrap{padding:40px 0}
- .visual-note{position:static;border-radius:0;border-left:0;border-right:0;border-bottom:0}
+ .launch-actions .btn{width:100%;min-height:44px}
+ .nav-inner{width:calc(100% - 24px)}
+ .nav-links a{padding:9px 10px}
+ .wrap{width:calc(100% - 24px);padding:34px 0}
+ .section-title{font-size:2rem}
+ .section-copy{font-size:.95rem}
+ .visual-note{position:static;border-radius:0;border-left:0;border-right:0;border-bottom:0;line-height:1.4}
+ .bridge-copy{padding:18px;border-radius:14px}
+ .bridge-copy h3{font-size:1.65rem}
+ .era{min-height:0;padding:16px}
+ .era .score{margin-top:10px}
+ .connection{padding:17px}
+ .destination{min-height:0;padding:18px}
+ .mission{padding:22px 16px}
 }
 </style>
 </head>
 <body id="top">
-
 <section class="hero" aria-label="Ogallala Aquifer Tracker title image">
   <img src="v3-windmill-hero.jpg" alt="Ogallala Aquifer Tracker title over a Nebraska prairie sunset with a traditional windmill">
   <span class="hero-badge">Version 3 Preview</span>
 </section>
-
 <section class="launch" aria-label="Version 3 introduction">
   <div class="launch-inner">
     <div class="launch-copy">
@@ -115,21 +121,17 @@ footer{border-top:1px solid var(--line);color:#9eb3bf;text-align:center;font-siz
     </div>
   </div>
 </section>
-
 <div class="navbar">
   <div class="nav-inner">
     <a class="brand" href="#top">OGALLALA AQUIFER TRACKER · V3</a>
     <div class="nav-links" aria-label="Version 3 navigation">
-      <a href="#beneath">Aquifer</a>
-      <a href="#timeline">Timeline</a>
-      <a href="#connection">Everything Is Connected</a>
+      <a class="active" aria-current="page" href="v3.html">V3 Home</a>
       <a href="v3-map.html">Interactive Timeline</a>
-      <a href="index.html">My Aquifer</a>
       <a href="groundwater-window.html">Groundwater Window</a>
+      <a href="index.html">My Aquifer</a>
     </div>
   </div>
 </div>
-
 <main>
   <section class="wrap" id="beneath">
     <div class="bridge">
@@ -146,56 +148,37 @@ footer{border-top:1px solid var(--line);color:#9eb3bf;text-align:center;font-siz
       </div>
     </div>
   </section>
-
   <section class="wrap" id="timeline">
     <div class="section-kicker">The long view</div>
     <h2 class="section-title">See the story change with time.</h2>
     <p class="section-copy">Version 3 keeps the four anchor years easy to compare. The numbers below are Tracker working indices for communicating change over time—not percentages of the aquifer's remaining water.</p>
-
     <div class="timeline">
-      <article class="era" style="--accent:#4ade80">
-        <div class="year">1950</div><div class="score">100</div><div class="label">Baseline</div>
-        <div class="mini">Northern: Healthy<br>Central: Healthy<br>Southern: Healthy</div>
-      </article>
-      <article class="era" style="--accent:#60a5fa">
-        <div class="year">1980</div><div class="score">85</div><div class="label">Early decline</div>
-        <div class="mini">Northern: Good<br>Central: Declining<br>Southern: Declining</div>
-      </article>
-      <article class="era" style="--accent:#f59e0b">
-        <div class="year">2026</div><div class="score">60</div><div class="label">Present day</div>
-        <div class="mini">Northern: Stable<br>Central: Stressed<br>Southern: Critical</div>
-      </article>
-      <article class="era" style="--accent:#ef4444">
-        <div class="year">2050</div><div class="score">40</div><div class="label">Projection</div>
-        <div class="mini">Northern: Stressed<br>Central: Critical<br>Southern: Severe</div>
-      </article>
+      <article class="era" style="--accent:#4ade80"><div class="year">1950</div><div class="score">100</div><div class="label">Baseline</div><div class="mini">Northern: Healthy<br>Central: Healthy<br>Southern: Healthy</div></article>
+      <article class="era" style="--accent:#60a5fa"><div class="year">1980</div><div class="score">85</div><div class="label">Early decline</div><div class="mini">Northern: Good<br>Central: Declining<br>Southern: Declining</div></article>
+      <article class="era" style="--accent:#f59e0b"><div class="year">2026</div><div class="score">60</div><div class="label">Present day</div><div class="mini">Northern: Stable<br>Central: Stressed<br>Southern: Critical</div></article>
+      <article class="era" style="--accent:#ef4444"><div class="year">2050</div><div class="score">40</div><div class="label">Projection</div><div class="mini">Northern: Stressed<br>Central: Critical<br>Southern: Severe</div></article>
     </div>
   </section>
-
   <section class="wrap" id="connection">
     <div class="section-kicker">Everything is connected</div>
     <h2 class="section-title">Groundwater is not a story about water alone.</h2>
     <p class="section-copy">Version 3 is organized around connections a reader can actually feel: what happens beneath a farm or town, what changes around a community, and what choices above ground influence demand and resilience.</p>
-
     <div class="connection-grid">
       <article class="connection"><div class="icon">💧</div><h3>Water quantity + quality</h3><p>Levels, drawdown, monitoring wells, water quality, and the difference between basin-wide pressure and local conditions.</p></article>
       <article class="connection"><div class="icon">🏘️</div><h3>People + place</h3><p>Farmers, towns, rural homeowners, schools, property, infrastructure, and the local decisions that shape groundwater use.</p></article>
       <article class="connection"><div class="icon">🌾</div><h3>Land + habitat + demand</h3><p>Irrigation, water-wise yards, pollinators, industry, digital infrastructure, and practical ways to reduce unnecessary pressure.</p></article>
     </div>
-
     <div class="destinations">
       <a class="destination" href="v3-map.html"><span class="tag">Start here</span><h3>Interactive Timeline</h3><p>Move from 1950 through 2050. Compare basin conditions, communities, regional &gt;150-ft decline context, and three verified 2026 infrastructure examples shown as context—not attribution.</p><span class="go">Explore the timeline →</span></a>
+      <a class="destination" href="groundwater-window.html"><span class="tag">Below Ground</span><h3>Groundwater Window</h3><p>Use the same four anchor years in an educational Nebraska cross-section. The index is a comparison scale, and the illustrated water table is not a surveyed statewide profile.</p><span class="go">Look beneath the prairie →</span></a>
       <a class="destination" href="index.html"><span class="tag">Personalized</span><h3>My Aquifer</h3><p>The Alliance-centered subscriber experience: local groundwater context, profiles, useful actions, Water-Wise Living, and saved information.</p><span class="go">Open My Aquifer →</span></a>
-      <a class="destination" href="groundwater-window.html"><span class="tag">Below Ground</span><h3>Groundwater Window</h3><p>A subsurface view designed to help people picture the saturated aquifer beneath Nebraska instead of thinking of groundwater as an invisible abstraction.</p><span class="go">Look beneath the prairie →</span></a>
     </div>
-
     <div class="mission">
       <blockquote>“You cannot borrow from tomorrow’s groundwater.”</blockquote>
       <p>Understand it. Use it wisely. Leave something for the people who come next.</p>
     </div>
   </section>
 </main>
-
 <footer>Version 3 preview · The live Version 2 landing page remains unchanged while Version 3 is reviewed.</footer>
 </body>
 </html>
