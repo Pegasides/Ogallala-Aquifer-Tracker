@@ -43,7 +43,7 @@ iframe{display:block;width:100%;height:100%;border:0;background:#243442}
     </div>
   </div>
 </nav>
-<div class="context"><strong>Version 3 timeline:</strong>&nbsp; use the year buttons or slider below. The older map-page header/navigation is hidden here so the experience stays inside Version 3.</div>
+<div class="context"><strong>Version 3 timeline:</strong>&nbsp; begin at the 1950 baseline, then use the year buttons or slider to move through the story.</div>
 <div class="frame-wrap">
   <iframe id="timelineFrame" src="v3-timeline.html" title="Ogallala Aquifer Version 3 interactive timeline"></iframe>
 </div>
@@ -141,6 +141,17 @@ frame.addEventListener('load',()=>{
       hereford.replaceWith(marker);
     };
 
+    const normalizeWorkingIndexDisplay=()=>{
+      const summaryHealth=doc.getElementById('summaryHealth');
+      const value=(summaryHealth?.textContent||'').replace(/[^0-9.]/g,'');
+      if(!value)return;
+      summaryHealth.textContent=value;
+      const overallStatus=doc.getElementById('overallStatus');
+      if(overallStatus)overallStatus.textContent='Tracker working index: '+value;
+      const healthBarLabel=doc.getElementById('healthBarLabel');
+      if(healthBarLabel)healthBarLabel.textContent=healthBarLabel.textContent.replace('%','');
+    };
+
     const applyYearPresentation=()=>{
       const year=Number((doc.getElementById('sliderYear')?.textContent||'').trim());
       const is1950=year===1950;
@@ -151,6 +162,7 @@ frame.addEventListener('load',()=>{
       doc.body.classList.toggle('v3-year-1980',is1980);
       doc.body.classList.toggle('v3-year-2026',is2026);
       doc.body.classList.toggle('v3-projection',isProjection);
+      normalizeWorkingIndexDisplay();
 
       const summaryCards=[...doc.querySelectorAll('.side-stack>.summary-card')];
       const summaryHeading=summaryCards[0]?.querySelector('h3');
@@ -200,6 +212,15 @@ frame.addEventListener('load',()=>{
         if(context)context.textContent='2050 is a Tracker scenario, not a measured future condition: the working index is 40, with the Northern Basin shown Stressed, Central Critical, and Southern Severe. Present-day hotspot and data-center layers stay hidden, and community dots are current locations carried forward only for orientation.';
         if(summary)summary.textContent='28 current locations carried forward — orientation only';
         if(subtitle)subtitle.textContent='2050 projection: Northern Stressed; Central Critical; Southern Severe. Current community locations are muted and no present-day hotspot or data-center layer is projected forward.';
+      }else if(isProjection){
+        const descriptor=doc.getElementById('healthDescriptor');
+        const context=doc.getElementById('yearContext');
+        const summary=doc.getElementById('communitySummary');
+        const subtitle=doc.getElementById('mapSubtitle');
+        if(descriptor)descriptor.textContent=year+' projection-step working index — not percent of water remaining';
+        if(context)context.textContent=year+' is an intermediate Tracker projection step between the 2026 present-day view and the 2050 anchor scenario. Present-day hotspot and data-center layers remain hidden, and community locations are carried forward only for orientation.';
+        if(summary)summary.textContent='28 current locations carried forward — orientation only';
+        if(subtitle)subtitle.textContent=year+' projection step: use this as a bridge between the four anchor years, not as a measured future condition.';
       }
     };
 
@@ -218,6 +239,10 @@ frame.addEventListener('load',()=>{
       const yearObserver=new MutationObserver(applyYearPresentation);
       yearObserver.observe(yearLabel,{childList:true,characterData:true,subtree:true});
     }
+
+    // Enter the Version 3 story at its baseline rather than dropping viewers into the middle.
+    if(typeof win.setTimelineYear==='function')win.setTimelineYear(1950);
+    else doc.querySelector('.year-btn[data-year="1950"]')?.click();
     applyYearPresentation();
   }catch(e){
     console.warn('Version 3 shell could not adjust embedded map chrome or V3 presentation refinements.',e);
