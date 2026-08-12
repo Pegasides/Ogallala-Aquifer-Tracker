@@ -25,8 +25,9 @@ iframe{display:block;width:100%;height:100%;border:0;background:#06131d}
  .brand{display:block;margin-bottom:7px;font-size:11px}
  .links{overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
  .links::-webkit-scrollbar{display:none}
- .links a{flex:0 0 auto}
- .frame-wrap{height:calc(100vh - 116px);min-height:520px}
+ .links a{flex:0 0 auto;min-height:40px;display:inline-flex;align-items:center}
+ .context{font-size:10px;line-height:1.35}
+ .frame-wrap{height:calc(100dvh - 116px);min-height:520px}
 }
 </style>
 </head>
@@ -37,12 +38,12 @@ iframe{display:block;width:100%;height:100%;border:0;background:#06131d}
     <div class="links">
       <a href="v3.html">V3 Home</a>
       <a href="v3-map.html">Interactive Timeline</a>
-      <a href="index.html">My Aquifer</a>
       <a class="active" href="groundwater-window.html">Groundwater Window</a>
+      <a href="index.html">My Aquifer</a>
     </div>
   </div>
 </nav>
-<div class="context"><strong>Groundwater Window:</strong>&nbsp; an educational cross-section tied to the four Version 3 anchor years. The working index is a comparison scale—not percent of water remaining—and the subsurface scene is not a surveyed engineering profile.</div>
+<div class="context"><strong>Groundwater Window:</strong>&nbsp; educational cross-section for the four V3 anchor years. Index = comparison scale; cross-section = illustrative, not surveyed.</div>
 <div class="frame-wrap">
   <iframe id="groundwaterFrame" src="groundwater-window-core.html" title="Ogallala Aquifer Groundwater Window educational cross-section"></iframe>
 </div>
@@ -58,17 +59,37 @@ frame.addEventListener('load',()=>{
       style.id='v3-groundwater-refinements';
       style.textContent=`
         #v3GwIndexCaption{
-          margin:-7px 0 16px;
-          color:#9bb4c2;
-          font-size:11px;
-          font-weight:800;
-          line-height:1.4;
-          text-align:center;
-          text-transform:uppercase;
-          letter-spacing:.04em;
+          margin:-7px 0 16px;color:#9bb4c2;font-size:11px;font-weight:800;
+          line-height:1.4;text-align:center;text-transform:uppercase;letter-spacing:.04em;
         }
-        .health-panel .panel-heading{
-          color:#dffcf7;
+        .health-panel .panel-heading{color:#dffcf7}
+        @media(max-width:650px){
+          .app-shell{padding:8px!important}
+          .topbar{padding:12px!important;gap:10px!important;margin-bottom:10px!important;border-radius:12px!important}
+          .title-group h1{font-size:1.12rem!important;letter-spacing:.06em!important;line-height:1.15!important}
+          .title-group p{font-size:.8rem!important;line-height:1.35!important}
+          .current-year-badge{padding:7px 10px!important;font-size:.78rem!important;min-width:0!important}
+          .dashboard{gap:10px!important}
+          .visualization-panel{min-height:500px!important;border-radius:12px!important}
+          .scene-heading{top:12px!important;left:12px!important;right:12px!important}
+          .scene-heading strong{font-size:.86rem!important;letter-spacing:.04em!important}
+          .scene-heading span{font-size:.72rem!important;line-height:1.35!important;max-width:290px!important}
+          .layer-label{font-size:.63rem!important;padding:4px 6px!important;left:8px!important}
+          .town{font-size:.64rem!important}
+          .water-table::before{font-size:.62rem!important;right:8px!important}
+          .health-panel{padding:14px!important;border-radius:12px!important}
+          .health-score-wrap{width:145px!important;height:145px!important;margin:6px auto 14px!important}
+          .health-score-inner{width:112px!important;height:112px!important}
+          .health-number{font-size:2.2rem!important}
+          .health-word{font-size:.86rem!important}
+          #v3GwIndexCaption{font-size:9px!important;margin:-4px 0 12px!important}
+          .basin-list{gap:7px!important}
+          .health-explanation{font-size:.78rem!important;line-height:1.45!important;margin-top:13px!important;padding:10px!important}
+          .well-instruction{font-size:.75rem!important}
+          .timeline-panel{padding:13px!important;border-radius:12px!important}
+          .year-buttons{gap:7px!important}
+          .year-button{min-height:44px!important;padding:10px 8px!important}
+          .well-card{padding:12px!important;border-radius:12px!important}
         }
       `;
       doc.head.appendChild(style);
@@ -82,12 +103,7 @@ frame.addEventListener('load',()=>{
       scoreWrap.insertAdjacentElement('afterend',caption);
     }
 
-    const yearLabels={
-      1950:'Baseline',
-      1980:'Early decline',
-      2026:'Present day',
-      2050:'Projection'
-    };
+    const yearLabels={1950:'Baseline',1980:'Early decline',2026:'Present day',2050:'Projection'};
     const explanations={
       1950:'1950 is the Tracker predevelopment baseline. The index is 100 for comparison; the cross-section is educational and does not represent a uniform measured aquifer thickness across Nebraska.',
       1980:'1980 is the early-decline comparison point. The index is 85; basin conditions are regional Tracker context rather than a single statewide groundwater measurement.',
@@ -99,19 +115,15 @@ frame.addEventListener('load',()=>{
       const year=Number((doc.getElementById('currentYearBadge')?.textContent||'').replace(/[^0-9]/g,''));
       const healthNumber=doc.getElementById('healthNumber');
       const value=(healthNumber?.textContent||'').replace(/[^0-9.]/g,'');
-      if(healthNumber && value)healthNumber.textContent=value;
-
+      if(healthNumber&&value)healthNumber.textContent=value;
       const panelHeading=doc.querySelector('.health-panel .panel-heading');
       if(panelHeading)panelHeading.textContent='Tracker Working Index';
-
       const panelYearNote=doc.getElementById('panelYearNote');
-      if(panelYearNote && year)panelYearNote.textContent=`Year ${year} · comparison index, not percent water remaining`;
-
+      if(panelYearNote&&year)panelYearNote.textContent=`Year ${year} · comparison index, not percent water remaining`;
       const healthWord=doc.getElementById('healthWord');
-      if(healthWord && yearLabels[year])healthWord.textContent=yearLabels[year];
-
+      if(healthWord&&yearLabels[year])healthWord.textContent=yearLabels[year];
       const explanation=doc.getElementById('healthExplanation');
-      if(explanation && explanations[year])explanation.textContent=explanations[year];
+      if(explanation&&explanations[year])explanation.textContent=explanations[year];
     };
 
     const yearBadge=doc.getElementById('currentYearBadge');
@@ -125,7 +137,6 @@ frame.addEventListener('load',()=>{
       observer.observe(healthNumber,{childList:true,characterData:true,subtree:true});
     }
 
-    // Start the educational cross-section at the same 1950 baseline as the V3 timeline.
     doc.querySelector('.year-button[data-index="0"]')?.click();
     applyV3Language();
   }catch(e){
