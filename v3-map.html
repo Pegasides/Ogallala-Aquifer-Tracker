@@ -60,6 +60,28 @@ frame.addEventListener('load',()=>{
     if(nav)nav.style.display='none';
     doc.documentElement.style.scrollBehavior='smooth';
 
+    // V3-only presentation refinements. Keep the underlying timeline data untouched.
+    if(!doc.getElementById('v3-shell-refinements')){
+      const style=doc.createElement('style');
+      style.id='v3-shell-refinements';
+      style.textContent=`
+        body.v3-year-1950 .community-marker{
+          opacity:.55;
+          width:8px;
+          height:8px;
+          background:#dbeafe!important;
+          border-color:#64748b;
+          box-shadow:0 0 0 1px rgba(255,255,255,.14);
+        }
+        body.v3-year-1950 .community-marker:hover{
+          opacity:1;
+          width:14px;
+          height:14px;
+        }
+      `;
+      doc.head.appendChild(style);
+    }
+
     // Preserve the Tracker's original 28-community set in the V3 experience:
     // Portales, NM is a community marker; Hereford, TX remains a separate 2026 data-center example.
     const normalizeCommunityLayer=()=>{
@@ -84,14 +106,41 @@ frame.addEventListener('load',()=>{
       hereford.replaceWith(marker);
     };
 
+    const applyYearPresentation=()=>{
+      const year=Number((doc.getElementById('sliderYear')?.textContent||'').trim());
+      const is1950=year===1950;
+      doc.body.classList.toggle('v3-year-1950',is1950);
+
+      if(is1950){
+        const descriptor=doc.getElementById('healthDescriptor');
+        const context=doc.getElementById('yearContext');
+        const summary=doc.getElementById('communitySummary');
+        const subtitle=doc.getElementById('mapSubtitle');
+        if(descriptor)descriptor.textContent='Predevelopment baseline working index — not percent of water remaining';
+        if(context)context.textContent='1950 is the Tracker baseline: 100 is a comparison index, not a claim that 100% of the aquifer remains today. All three basin zones are shown Healthy. Community dots are modern reference locations retained only to orient the viewer.';
+        if(summary)summary.textContent='28 modern reference locations — orientation only';
+        if(subtitle)subtitle.textContent='1950 baseline: all three basin zones Healthy; modern community locations are muted and retained only for geographic orientation.';
+      }
+    };
+
     const communityLayer=doc.getElementById('community-layer');
     if(communityLayer){
       normalizeCommunityLayer();
-      const observer=new MutationObserver(normalizeCommunityLayer);
+      const observer=new MutationObserver(()=>{
+        normalizeCommunityLayer();
+        applyYearPresentation();
+      });
       observer.observe(communityLayer,{childList:true});
     }
+
+    const yearLabel=doc.getElementById('sliderYear');
+    if(yearLabel){
+      const yearObserver=new MutationObserver(applyYearPresentation);
+      yearObserver.observe(yearLabel,{childList:true,characterData:true,subtree:true});
+    }
+    applyYearPresentation();
   }catch(e){
-    console.warn('Version 3 shell could not adjust embedded map chrome or community normalization.',e);
+    console.warn('Version 3 shell could not adjust embedded map chrome or V3 presentation refinements.',e);
   }
 });
 </script>
