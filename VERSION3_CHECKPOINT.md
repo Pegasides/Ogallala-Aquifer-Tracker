@@ -21,8 +21,9 @@ The live `main` branch and the current Version 2 landing page (`index.html`) hav
 
 The new entrance includes:
 
-- Windmill/sunset hero image.
-- Version 3 development label.
+- Windmill/sunset hero image shown unobstructed so the original title artwork is not duplicated by extra overlay text.
+- Version 3 development badge.
+- Clean launch panel beneath the hero image.
 - Direct entrance to the interactive timeline.
 - Direct entrance to My Aquifer.
 - Blue aquifer “What lies beneath” visual bridge.
@@ -34,6 +35,8 @@ The new entrance includes:
   - 2050 — 40 — Northern Stressed; Central Critical; Southern Severe.
 - “Everything is connected” section connecting water, communities, land/habitat, and demand.
 - Paths into Interactive Timeline, My Aquifer, and Groundwater Window.
+- Mobile-friendly sticky navigation that scrolls horizontally instead of becoming a tall stacked menu.
+- Improved keyboard focus treatment for major links and buttons.
 - Mission line: “You cannot borrow from tomorrow’s groundwater.”
 
 ## Version 3 interactive map (`map.html`)
@@ -74,8 +77,8 @@ Current Version 3 map work includes:
 
 ## Next Version 3 build targets
 
-1. Review the `v3.html` entrance visually at desktop and mobile widths.
-2. Strengthen navigation between `v3.html`, `map.html`, My Aquifer, and Groundwater Window.
+1. Strengthen navigation from the Version 3 map back to `v3.html`, My Aquifer, and Groundwater Window.
+2. Review the full entrance at desktop and phone widths after the hero/navigation polish.
 3. Decide how much of the legacy standalone 1950 / 1980 / 2026 / 2050 pages should remain once the unified timeline is approved.
 4. Continue integrating dashboard information into the unified experience rather than making the reader jump between separate legacy pages.
 5. Expand the present-day infrastructure layer only with verified, source-backed facilities and water/cooling information.
