@@ -113,6 +113,20 @@ frame.addEventListener('load',()=>{
           max-width:58%;
           text-align:right;
         }
+        .tick-row span:nth-child(1),
+        .tick-row span:nth-child(2),
+        .tick-row span:nth-child(3),
+        .tick-row span:nth-child(8){
+          color:#e7f5fb;
+          font-weight:900;
+        }
+        .tick-row span:nth-child(4),
+        .tick-row span:nth-child(5),
+        .tick-row span:nth-child(6),
+        .tick-row span:nth-child(7){
+          opacity:.55;
+          font-size:9px;
+        }
       `;
       doc.head.appendChild(style);
     }
@@ -167,8 +181,10 @@ frame.addEventListener('load',()=>{
       const summaryCards=[...doc.querySelectorAll('.side-stack>.summary-card')];
       const summaryHeading=summaryCards[0]?.querySelector('h3');
       const facilityHeading=doc.getElementById('facilityPanel')?.parentElement?.querySelector('h3');
+      const sourceNote=doc.querySelector('.source-note');
       if(summaryHeading)summaryHeading.textContent='Selected-year dashboard';
       if(facilityHeading)facilityHeading.textContent='2026 digital-infrastructure context';
+      if(sourceNote)sourceNote.textContent='Tracker working indices communicate change over time; they are not USGS percentages of remaining aquifer water. The four anchor indices are 100, 85, 60, and 40, with intermediate projection steps between 2026 and 2050.';
 
       if(is1950){
         const descriptor=doc.getElementById('healthDescriptor');
