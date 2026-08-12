@@ -78,6 +78,19 @@ frame.addEventListener('load',()=>{
           width:14px;
           height:14px;
         }
+        body.v3-year-1980 .community-marker{
+          opacity:.7;
+          width:9px;
+          height:9px;
+          background:#dbeafe!important;
+          border-color:#64748b;
+          box-shadow:0 0 0 1px rgba(255,255,255,.16);
+        }
+        body.v3-year-1980 .community-marker:hover{
+          opacity:1;
+          width:15px;
+          height:15px;
+        }
       `;
       doc.head.appendChild(style);
     }
@@ -109,7 +122,9 @@ frame.addEventListener('load',()=>{
     const applyYearPresentation=()=>{
       const year=Number((doc.getElementById('sliderYear')?.textContent||'').trim());
       const is1950=year===1950;
+      const is1980=year===1980;
       doc.body.classList.toggle('v3-year-1950',is1950);
+      doc.body.classList.toggle('v3-year-1980',is1980);
 
       if(is1950){
         const descriptor=doc.getElementById('healthDescriptor');
@@ -120,6 +135,15 @@ frame.addEventListener('load',()=>{
         if(context)context.textContent='1950 is the Tracker baseline: 100 is a comparison index, not a claim that 100% of the aquifer remains today. All three basin zones are shown Healthy. Community dots are modern reference locations retained only to orient the viewer.';
         if(summary)summary.textContent='28 modern reference locations — orientation only';
         if(subtitle)subtitle.textContent='1950 baseline: all three basin zones Healthy; modern community locations are muted and retained only for geographic orientation.';
+      }else if(is1980){
+        const descriptor=doc.getElementById('healthDescriptor');
+        const context=doc.getElementById('yearContext');
+        const summary=doc.getElementById('communitySummary');
+        const subtitle=doc.getElementById('mapSubtitle');
+        if(descriptor)descriptor.textContent='Early-decline working index — not percent of water remaining';
+        if(context)context.textContent='1980 marks the early-decline comparison point: the Tracker working index is 85, with the Northern Basin shown Good and the Central and Southern basins shown Declining. Community dots are modern reference locations, not an historical monitoring network.';
+        if(summary)summary.textContent='28 modern reference locations — orientation only';
+        if(subtitle)subtitle.textContent='1980 early decline: Northern Good; Central and Southern Declining. Modern community locations are muted so basin-scale change remains the focus.';
       }
     };
 
