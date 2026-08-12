@@ -1,0 +1,44 @@
+name: V3 Browser Smoke Test
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'v3.html'
+      - 'v3-map.html'
+      - 'v3-timeline.html'
+      - 'groundwater-window.html'
+      - 'groundwater-window-core.html'
+      - 'geography.js'
+      - 'map-engine.js'
+      - 'scripts/v3-smoke.mjs'
+      - '.github/workflows/v3-smoke-test.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Playwright
+        run: |
+          npm init -y
+          npm install playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Allow GitHub Pages to settle
+        run: sleep 20
+
+      - name: Run Version 3 browser smoke test
+        run: node scripts/v3-smoke.mjs
