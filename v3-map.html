@@ -93,6 +93,26 @@ frame.addEventListener('load',()=>{
           width:15px;
           height:15px;
         }
+        body.v3-year-2026 .side-stack>.summary-card:first-child{
+          border-color:#5eead4;
+          box-shadow:0 16px 38px rgba(0,0,0,.32),0 0 0 1px rgba(94,234,212,.12);
+        }
+        body.v3-year-2026 .side-stack>.summary-card:first-child h3{
+          color:#dffff9;
+        }
+        body.v3-year-2026 #hotspotNote{
+          background:#352513;
+          border-color:#d9982f;
+          color:#fff3d0;
+        }
+        body.v3-year-2026 #facilityPanel .facility{
+          background:#12232d;
+          border-color:#3d5260;
+        }
+        body.v3-year-2026 .summary-row strong{
+          max-width:58%;
+          text-align:right;
+        }
       `;
       doc.head.appendChild(style);
     }
@@ -125,10 +145,18 @@ frame.addEventListener('load',()=>{
       const year=Number((doc.getElementById('sliderYear')?.textContent||'').trim());
       const is1950=year===1950;
       const is1980=year===1980;
+      const is2026=year===2026;
       const isProjection=year>2026;
       doc.body.classList.toggle('v3-year-1950',is1950);
       doc.body.classList.toggle('v3-year-1980',is1980);
+      doc.body.classList.toggle('v3-year-2026',is2026);
       doc.body.classList.toggle('v3-projection',isProjection);
+
+      const summaryCards=[...doc.querySelectorAll('.side-stack>.summary-card')];
+      const summaryHeading=summaryCards[0]?.querySelector('h3');
+      const facilityHeading=doc.getElementById('facilityPanel')?.parentElement?.querySelector('h3');
+      if(summaryHeading)summaryHeading.textContent='Selected-year dashboard';
+      if(facilityHeading)facilityHeading.textContent='2026 digital-infrastructure context';
 
       if(is1950){
         const descriptor=doc.getElementById('healthDescriptor');
@@ -148,6 +176,21 @@ frame.addEventListener('load',()=>{
         if(context)context.textContent='1980 marks the early-decline comparison point: the Tracker working index is 85, with the Northern Basin shown Good and the Central and Southern basins shown Declining. Community dots are modern reference locations, not an historical monitoring network.';
         if(summary)summary.textContent='28 modern reference locations — orientation only';
         if(subtitle)subtitle.textContent='1980 early decline: Northern Good; Central and Southern Declining. Modern community locations are muted so basin-scale change remains the focus.';
+      }else if(is2026){
+        const descriptor=doc.getElementById('healthDescriptor');
+        const context=doc.getElementById('yearContext');
+        const summary=doc.getElementById('communitySummary');
+        const hotspot=doc.getElementById('hotspotSummary');
+        const dc=doc.getElementById('dcSummary');
+        const subtitle=doc.getElementById('mapSubtitle');
+        if(summaryHeading)summaryHeading.textContent='2026 — What matters now';
+        if(facilityHeading)facilityHeading.textContent='Infrastructure context — not attribution';
+        if(descriptor)descriptor.textContent='Present-day working index — not percent of water remaining';
+        if(context)context.textContent='Present-day view: Northern Stable, Central Stressed, Southern Critical. Community dots show Tracker locations; red rings show regional >150-ft decline context and are not city-specific measurements.';
+        if(summary)summary.textContent='28 current tracker communities';
+        if(hotspot)hotspot.textContent='Regional context — parts of TX / OK / KS';
+        if(dc)dc.textContent='3 verified examples — context only';
+        if(subtitle)subtitle.textContent='Present-day basin conditions first, followed by community reference points, regional >150-ft decline context, and three verified infrastructure examples.';
       }else if(year===2050){
         const descriptor=doc.getElementById('healthDescriptor');
         const context=doc.getElementById('yearContext');
