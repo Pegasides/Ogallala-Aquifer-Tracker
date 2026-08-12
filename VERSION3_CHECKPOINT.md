@@ -13,6 +13,7 @@ The live `main` branch and the current Version 2 landing page (`index.html`) hav
 ## Version 3 files added or changed
 
 - `v3.html` — separate Version 3 development entrance.
+- `v3-map.html` — Version 3 navigation shell around the interactive timeline.
 - `v3-windmill-hero.jpg` — optimized windmill/sunset title image.
 - `v3-aquifer-visual.jpg` — optimized blue aquifer explanatory visual.
 - `map.html` — rebuilt interactive timeline/map for Version 3.
@@ -24,7 +25,7 @@ The new entrance includes:
 - Windmill/sunset hero image shown unobstructed so the original title artwork is not duplicated by extra overlay text.
 - Version 3 development badge.
 - Clean launch panel beneath the hero image.
-- Direct entrance to the interactive timeline.
+- Direct entrance to the Version 3 interactive timeline shell.
 - Direct entrance to My Aquifer.
 - Blue aquifer “What lies beneath” visual bridge.
 - Clear note that the aquifer illustration is explanatory visual context, not the georeferenced interactive map.
@@ -38,6 +39,15 @@ The new entrance includes:
 - Mobile-friendly sticky navigation that scrolls horizontally instead of becoming a tall stacked menu.
 - Improved keyboard focus treatment for major links and buttons.
 - Mission line: “You cannot borrow from tomorrow’s groundwater.”
+
+## Version 3 timeline shell (`v3-map.html`)
+
+- Keeps Version 3 navigation visible while the interactive timeline is open.
+- Provides direct routes to V3 Home, Interactive Timeline, My Aquifer, and Groundwater Window.
+- Embeds the working `map.html` timeline rather than duplicating its map logic.
+- Hides the older standalone map header/navigation inside the embedded view when same-origin access is available.
+- Leaves the underlying map engine and year-switching logic unchanged.
+- Uses horizontal scrolling for the navigation links on smaller screens.
 
 ## Version 3 interactive map (`map.html`)
 
@@ -77,12 +87,12 @@ Current Version 3 map work includes:
 
 ## Next Version 3 build targets
 
-1. Strengthen navigation from the Version 3 map back to `v3.html`, My Aquifer, and Groundwater Window.
-2. Review the full entrance at desktop and phone widths after the hero/navigation polish.
-3. Decide how much of the legacy standalone 1950 / 1980 / 2026 / 2050 pages should remain once the unified timeline is approved.
-4. Continue integrating dashboard information into the unified experience rather than making the reader jump between separate legacy pages.
-5. Expand the present-day infrastructure layer only with verified, source-backed facilities and water/cooling information.
-6. Continue refining the basin geography and hotspot representation as better source geometry/data are incorporated.
+1. Review `v3-map.html` at desktop and phone widths and confirm the embedded map remains comfortable to use.
+2. Decide how much of the legacy standalone 1950 / 1980 / 2026 / 2050 pages should remain once the unified timeline is approved.
+3. Continue integrating dashboard information into the unified experience rather than making the reader jump between separate legacy pages.
+4. Expand the present-day infrastructure layer only with verified, source-backed facilities and water/cooling information.
+5. Continue refining the basin geography and hotspot representation as better source geometry/data are incorporated.
+6. Bring Version 3 navigation into Groundwater Window and, later, the My Aquifer experience without disrupting the current Version 2 landing page.
 7. Review the full Version 3 branch before any merge to `main`.
 
 ## Product direction
