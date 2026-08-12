@@ -32,9 +32,12 @@ a:focus-visible,.btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
 .navbar{position:sticky;top:0;z-index:30;background:rgba(4,18,27,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .nav-inner{width:min(1120px,calc(100% - 32px));margin:auto;display:flex;gap:12px;align-items:center;justify-content:space-between;padding:9px 0}
 .brand{text-decoration:none;font-weight:900;font-size:13px;color:#dffcf7;white-space:nowrap}
-.nav-links{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+.nav-links{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end;align-items:center}
 .nav-links a{text-decoration:none;color:#e4eef3;border:1px solid #345164;background:#102736;border-radius:8px;padding:8px 10px;font-size:11px;font-weight:800}
 .nav-links a:hover,.nav-links a.active{border-color:var(--aqua);background:#123c43;color:#e7fffb}
+.nav-context{font-size:9px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:#8fb0c1;padding:0 2px}
+.nav-divider{width:1px;height:26px;background:rgba(188,218,235,.32);margin:0 3px}
+.nav-publication{display:inline-flex;align-items:center;min-height:34px;border:1px solid rgba(242,198,109,.56);background:rgba(67,49,18,.38);color:#f6dca0;border-radius:8px;padding:7px 10px;font-size:10px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
 .wrap{width:min(1120px,calc(100% - 32px));margin:auto;padding:54px 0}
 .section-kicker{color:var(--aqua);font-size:12px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;margin-bottom:8px}
 .section-title{font-family:Georgia,"Times New Roman",serif;font-size:clamp(2rem,4vw,3.5rem);line-height:1.05;margin:0 0 14px}
@@ -80,7 +83,8 @@ footer{border-top:1px solid var(--line);color:#9eb3bf;text-align:center;font-siz
  .brand{display:block;margin-bottom:6px;font-size:11px}
  .nav-links{display:flex;flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;padding-bottom:2px;scrollbar-width:none}
  .nav-links::-webkit-scrollbar{display:none}
- .nav-links a{flex:0 0 auto;min-height:40px;display:inline-flex;align-items:center}
+ .nav-links a,.nav-context,.nav-publication,.nav-divider{flex:0 0 auto}
+ .nav-links a{min-height:40px;display:inline-flex;align-items:center}
 }
 @media(max-width:560px){
  .hero-badge{bottom:8px;font-size:9px;padding:5px 9px}
@@ -91,6 +95,8 @@ footer{border-top:1px solid var(--line);color:#9eb3bf;text-align:center;font-siz
  .launch-actions .btn{width:100%;min-height:44px}
  .nav-inner{width:calc(100% - 24px)}
  .nav-links a{padding:9px 10px}
+ .nav-context{font-size:8px}
+ .nav-publication{min-height:40px}
  .wrap{width:calc(100% - 24px);padding:34px 0}
  .section-title{font-size:2rem}
  .section-copy{font-size:.95rem}
@@ -126,10 +132,13 @@ footer{border-top:1px solid var(--line);color:#9eb3bf;text-align:center;font-siz
   <div class="nav-inner">
     <a class="brand" href="#top">OGALLALA AQUIFER TRACKER · V3.1</a>
     <div class="nav-links" aria-label="Version 3.1 navigation">
+      <span class="nav-context">Tracker</span>
       <a class="active" aria-current="page" href="v3.html">V3.1 Home</a>
       <a href="v3-map.html">Interactive Timeline</a>
       <a href="groundwater-window.html">Groundwater Window</a>
       <a href="index.html">My Aquifer</a>
+      <span class="nav-divider" aria-hidden="true"></span>
+      <span class="nav-publication" title="Separate publication experience; final Substack destination has not yet been connected">Publication · Substack</span>
     </div>
   </div>
 </div>
