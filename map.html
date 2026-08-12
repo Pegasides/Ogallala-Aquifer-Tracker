@@ -94,8 +94,16 @@ nav a.active{background:var(--aqua);color:#0f2930}
 .source-card p{margin:7px 0;color:var(--muted);font-size:12px}
 .source-note{margin-top:16px;text-align:center;color:#aebdc7;font-size:11px}
 .hidden{display:none!important}
-@media(max-width:900px){.main-grid{grid-template-columns:1fr}.status-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:620px){.status-grid{grid-template-columns:1fr}#map-viewport{min-height:500px;overflow:auto}.map-grid{left:0;transform:none}.basin-callout{right:-120px}}
+@media(max-width:900px){
+ .main-grid{grid-template-columns:1fr}
+ .status-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:620px){
+ .status-grid{grid-template-columns:1fr}
+ #map-viewport{min-height:500px;overflow:auto}
+ .map-grid{left:0;transform:none}
+ .basin-callout{right:-120px}
+}
 </style>
 </head>
 <body>
@@ -174,9 +182,15 @@ nav a.active{background:var(--aqua);color:#0f2930}
           <div class="state" style="top:325px;left:110px;width:180px;height:165px;">TEXAS</div>
 
           <div id="basin-layer">
-            <div class="basin-zone" id="basin-north"><div class="basin-callout">NORTHERN<small id="basinNorthLabel">Stable</small></div></div>
-            <div class="basin-zone" id="basin-central"><div class="basin-callout">CENTRAL<small id="basinCentralLabel">Stressed</small></div></div>
-            <div class="basin-zone" id="basin-south"><div class="basin-callout">SOUTHERN<small id="basinSouthLabel">Critical</small></div></div>
+            <div class="basin-zone" id="basin-north">
+              <div class="basin-callout">NORTHERN<small id="basinNorthLabel">Stable</small></div>
+            </div>
+            <div class="basin-zone" id="basin-central">
+              <div class="basin-callout">CENTRAL<small id="basinCentralLabel">Stressed</small></div>
+            </div>
+            <div class="basin-zone" id="basin-south">
+              <div class="basin-callout">SOUTHERN<small id="basinSouthLabel">Critical</small></div>
+            </div>
           </div>
 
           <div id="community-layer"></div>
@@ -186,11 +200,11 @@ nav a.active{background:var(--aqua);color:#0f2930}
       </div>
 
       <div class="legend" aria-label="Map legend">
-        <span class="legend-item"><span class="dot" style="background:#60a5fa"></span>Northern communities</span>
-        <span class="legend-item"><span class="dot" style="background:#f59e0b"></span>Central communities</span>
-        <span class="legend-item"><span class="dot" style="background:#ef4444"></span>Southern communities</span>
-        <span class="legend-item"><span class="ring"></span>&gt;150-ft documented decline zone</span>
-        <span class="legend-item"><span class="diamond"></span>2026 data-center context</span>
+        <span class="legend-item"><span class="dot" id="legendNorthDot" style="background:#60a5fa"></span><span id="legendNorthText">Northern — Stable</span></span>
+        <span class="legend-item"><span class="dot" id="legendCentralDot" style="background:#f59e0b"></span><span id="legendCentralText">Central — Stressed</span></span>
+        <span class="legend-item"><span class="dot" id="legendSouthDot" style="background:#ef4444"></span><span id="legendSouthText">Southern — Critical</span></span>
+        <span class="legend-item" id="hotspotLegend"><span class="ring"></span>&gt;150-ft documented decline zone</span>
+        <span class="legend-item" id="dcLegend"><span class="diamond"></span>2026 data-center context</span>
       </div>
     </section>
 
@@ -205,8 +219,12 @@ nav a.active{background:var(--aqua);color:#0f2930}
           <div class="summary-row"><span>&gt;150-ft decline</span><strong id="hotspotSummary">Documented in parts of TX / OK / KS</strong></div>
           <div class="summary-row"><span>Data-center layer</span><strong id="dcSummary">Shown for 2026</strong></div>
         </div>
-        <div class="alert-box" id="hotspotNote">USGS reports water-level declines greater than 150 feet in some areas of the Texas Panhandle and farther north through parts of the Oklahoma Panhandle and Kansas. These rings show broad hotspot context, not a city-specific measurement.</div>
-        <div class="context-box"><strong>Local impact vs. regional pressure:</strong> a nearby data center is not proof that it lowered a local well. Direct effects depend on water source, pumping rate, cooling design, recharge, hydraulic connectivity, and cumulative withdrawals.</div>
+        <div class="alert-box" id="hotspotNote">
+          USGS reports water-level declines greater than 150 feet in some areas of the Texas Panhandle and farther north through parts of the Oklahoma Panhandle and Kansas. These rings show broad hotspot context, not a city-specific measurement.
+        </div>
+        <div class="context-box">
+          <strong>Local impact vs. regional pressure:</strong> a nearby data center is not proof that it lowered a local well. Direct effects depend on water source, pumping rate, cooling design, recharge, hydraulic connectivity, and cumulative withdrawals.
+        </div>
       </section>
 
       <section class="summary-card">
@@ -238,6 +256,7 @@ nav a.active{background:var(--aqua);color:#0f2930}
 <script src="map-engine.js"></script>
 <script>
 const timelineYears=[1950,1980,2026,2030,2035,2040,2045,2050];
+
 const aquiferTimeline={
   1950:{overallHealth:100,northern:"Healthy",central:"Healthy",southern:"Healthy",condition:"Baseline",descriptor:"Predevelopment baseline working index"},
   1980:{overallHealth:85,northern:"Good",central:"Declining",southern:"Declining",condition:"Early decline",descriptor:"Historical change is becoming visible"},
@@ -248,28 +267,266 @@ const aquiferTimeline={
   2045:{overallHealth:42,northern:"Stressed",central:"Critical",southern:"Severe",condition:"Projection",descriptor:"Illustrative tracker projection"},
   2050:{overallHealth:40,northern:"Stressed",central:"Critical",southern:"Severe",condition:"Projection",descriptor:"2050 tracker projection"}
 };
+
 const communities=[
- {name:"Alliance",state:"NE",basin:"Northern",lat:42.102567,lon:-102.876188,x:137,y:86},{name:"Grand Island",state:"NE",basin:"Northern",lat:40.921352,lon:-98.358559,x:441,y:138},{name:"North Platte",state:"NE",basin:"Northern",lat:41.124960,lon:-100.750359,x:280,y:129},{name:"Ogallala",state:"NE",basin:"Northern",lat:41.129595,lon:-101.720677,x:215,y:129},{name:"Scottsbluff",state:"NE",basin:"Northern",lat:41.868088,lon:-103.662035,x:85,y:96},{name:"Pine Ridge",state:"SD",basin:"Northern",lat:43.026919,lon:-102.552352,x:159,y:46},{name:"Martin",state:"SD",basin:"Northern",lat:43.174875,lon:-101.732315,x:214,y:39},{name:"Torrington",state:"WY",basin:"Northern",lat:42.065050,lon:-104.173528,x:50,y:88},{name:"Pine Bluffs",state:"WY",basin:"Northern",lat:41.180212,lon:-104.074782,x:57,y:126},{name:"Yuma",state:"CO",basin:"Northern",lat:40.122511,lon:-102.715636,x:148,y:173},
- {name:"Garden City",state:"KS",basin:"Central",lat:37.975876,lon:-100.850884,x:273,y:266},{name:"Dodge City",state:"KS",basin:"Central",lat:37.760670,lon:-100.017863,x:329,y:276},{name:"Liberal",state:"KS",basin:"Central",lat:37.046108,lon:-100.927706,x:268,y:307},{name:"Goodland",state:"KS",basin:"Central",lat:39.348512,lon:-101.713819,x:215,y:206},{name:"Colby",state:"KS",basin:"Central",lat:39.384564,lon:-101.044978,x:260,y:205},{name:"Burlington",state:"CO",basin:"Central",lat:39.304169,lon:-102.271412,x:178,y:208},{name:"Wray",state:"CO",basin:"Central",lat:40.079920,lon:-102.228597,x:181,y:174},{name:"Tucumcari",state:"NM",basin:"Central",lat:35.170291,lon:-103.705046,x:82,y:389},
- {name:"Amarillo",state:"TX",basin:"Southern",lat:35.198064,lon:-101.833107,x:207,y:388},{name:"Dalhart",state:"TX",basin:"Southern",lat:36.057423,lon:-102.512212,x:162,y:350},{name:"Pampa",state:"TX",basin:"Southern",lat:35.547852,lon:-100.965032,x:266,y:372},{name:"Plainview",state:"TX",basin:"Southern",lat:34.191119,lon:-101.723501,x:215,y:432},{name:"Lubbock",state:"TX",basin:"Southern",lat:33.561901,lon:-101.888883,x:204,y:459},{name:"Guymon",state:"OK",basin:"Southern",lat:36.690101,lon:-101.477046,x:231,y:323},{name:"Beaver",state:"OK",basin:"Southern",lat:36.815087,lon:-100.523543,x:295,y:317},{name:"Boise City",state:"OK",basin:"Southern",lat:36.731336,lon:-102.509522,x:162,y:321},{name:"Clovis",state:"NM",basin:"Southern",lat:34.438569,lon:-103.194194,x:116,y:421},{name:"Hereford",state:"TX",basin:"Southern",lat:34.822603,lon:-102.400159,x:169,y:404}
+ {name:"Alliance",state:"NE",basin:"Northern",lat:42.102567,lon:-102.876188,x:137,y:86},
+ {name:"Grand Island",state:"NE",basin:"Northern",lat:40.921352,lon:-98.358559,x:441,y:138},
+ {name:"North Platte",state:"NE",basin:"Northern",lat:41.124960,lon:-100.750359,x:280,y:129},
+ {name:"Ogallala",state:"NE",basin:"Northern",lat:41.129595,lon:-101.720677,x:215,y:129},
+ {name:"Scottsbluff",state:"NE",basin:"Northern",lat:41.868088,lon:-103.662035,x:85,y:96},
+ {name:"Pine Ridge",state:"SD",basin:"Northern",lat:43.026919,lon:-102.552352,x:159,y:46},
+ {name:"Martin",state:"SD",basin:"Northern",lat:43.174875,lon:-101.732315,x:214,y:39},
+ {name:"Torrington",state:"WY",basin:"Northern",lat:42.065050,lon:-104.173528,x:50,y:88},
+ {name:"Pine Bluffs",state:"WY",basin:"Northern",lat:41.180212,lon:-104.074782,x:57,y:126},
+ {name:"Yuma",state:"CO",basin:"Northern",lat:40.122511,lon:-102.715636,x:148,y:173},
+ {name:"Garden City",state:"KS",basin:"Central",lat:37.975876,lon:-100.850884,x:273,y:266},
+ {name:"Dodge City",state:"KS",basin:"Central",lat:37.760670,lon:-100.017863,x:329,y:276},
+ {name:"Liberal",state:"KS",basin:"Central",lat:37.046108,lon:-100.927706,x:268,y:307},
+ {name:"Goodland",state:"KS",basin:"Central",lat:39.348512,lon:-101.713819,x:215,y:206},
+ {name:"Colby",state:"KS",basin:"Central",lat:39.384564,lon:-101.044978,x:260,y:205},
+ {name:"Burlington",state:"CO",basin:"Central",lat:39.304169,lon:-102.271412,x:178,y:208},
+ {name:"Wray",state:"CO",basin:"Central",lat:40.079920,lon:-102.228597,x:181,y:174},
+ {name:"Tucumcari",state:"NM",basin:"Central",lat:35.170291,lon:-103.705046,x:82,y:389},
+ {name:"Amarillo",state:"TX",basin:"Southern",lat:35.198064,lon:-101.833107,x:207,y:388},
+ {name:"Dalhart",state:"TX",basin:"Southern",lat:36.057423,lon:-102.512212,x:162,y:350},
+ {name:"Pampa",state:"TX",basin:"Southern",lat:35.547852,lon:-100.965032,x:266,y:372},
+ {name:"Plainview",state:"TX",basin:"Southern",lat:34.191119,lon:-101.723501,x:215,y:432},
+ {name:"Lubbock",state:"TX",basin:"Southern",lat:33.561901,lon:-101.888883,x:204,y:459},
+ {name:"Guymon",state:"OK",basin:"Southern",lat:36.690101,lon:-101.477046,x:231,y:323},
+ {name:"Beaver",state:"OK",basin:"Southern",lat:36.815087,lon:-100.523543,x:295,y:317},
+ {name:"Boise City",state:"OK",basin:"Southern",lat:36.731336,lon:-102.509522,x:162,y:321},
+ {name:"Clovis",state:"NM",basin:"Southern",lat:34.438569,lon:-103.194194,x:116,y:421},
+ {name:"Hereford",state:"TX",basin:"Southern",lat:34.822603,lon:-102.400159,x:169,y:404}
 ];
-const hotspots=[{name:"Texas Panhandle hotspot context",lat:35.45,lon:-101.95,x:199,y:377},{name:"Oklahoma Panhandle / southwest Kansas hotspot context",lat:36.8,lon:-101.4,x:236,y:318},{name:"Western Kansas hotspot context",lat:38.1,lon:-100.9,x:270,y:259}];
-const dataCenters=[{name:"Duos Amarillo",lat:35.198064,lon:-101.833107,x:207,y:388,detail:"Second Amarillo-market deployment announced March 2026; cited release did not state operational water use."},{name:"Duos Hereford",lat:34.822603,lon:-102.400159,x:169,y:404,detail:"Hereford facility showcased June 2026; Duos says no water is required for cooling."},{name:"Duos Lubbock",lat:33.561901,lon:-101.888883,x:204,y:459,detail:"Operational Lubbock edge facility showcased May 2026; cited release did not state water use."}];
-let currentYear=2026,playing=false,timer=null;
-function colorForBasin(basin){return basin==="Northern"?"#60a5fa":basin==="Central"?"#f59e0b":"#ef4444"}
-function getPoint(item){try{if(window.MapEngine&&MapEngine.projection){const p=MapEngine.projection([item.lon,item.lat]);if(p)return{x:p[0],y:p[1]}}if(window.Geography&&Geography.project){const p=Geography.project(item.lat,item.lon);if(p)return{x:p.x,y:p.y}}}catch(e){}return{x:item.x,y:item.y}}
-function clearTooltip(){const old=document.querySelector(".map-tooltip");if(old)old.remove()}
-function showTooltip(target,html){clearTooltip();const p=target.getBoundingClientRect(),v=document.querySelector(".map-grid").getBoundingClientRect(),tip=document.createElement("div");tip.className="map-tooltip";tip.innerHTML=html;tip.style.left=Math.min(285,Math.max(8,p.left-v.left+16))+"px";tip.style.top=Math.min(430,Math.max(8,p.top-v.top+16))+"px";document.querySelector(".map-grid").appendChild(tip);setTimeout(()=>{if(tip.isConnected)tip.remove()},5000)}
-function drawCommunities(){const layer=document.getElementById("community-layer");layer.innerHTML="";communities.forEach(city=>{const pos=getPoint(city),marker=document.createElement("div");marker.className="community-marker";marker.style.left=pos.x+"px";marker.style.top=pos.y+"px";marker.style.background=colorForBasin(city.basin);marker.title=city.name+", "+city.state+" — "+city.basin+" Basin reference community";marker.addEventListener("click",()=>showTooltip(marker,"<strong>"+city.name+", "+city.state+"</strong><br>"+city.basin+" Basin<br><span style='color:#475569'>Reference community location; status is shown at basin scale unless a locality-specific source is cited.</span>"));layer.appendChild(marker)})}
-function drawHotspots(show){const layer=document.getElementById("hotspot-layer");layer.innerHTML="";if(!show)return;hotspots.forEach(h=>{const pos=getPoint(h),el=document.createElement("div");el.className="hotspot";el.style.left=pos.x+"px";el.style.top=pos.y+"px";el.title=h.name;el.addEventListener("click",()=>showTooltip(el,"<strong>"+h.name+"</strong><br><span style='color:#475569'>USGS documents declines greater than 150 feet in some areas across this southern/central High Plains corridor. This marker is regional context, not a city measurement.</span>"));layer.appendChild(el)})}
-function drawDataCenters(show){const layer=document.getElementById("data-center-layer");layer.innerHTML="";if(!show)return;dataCenters.forEach(dc=>{const pos=getPoint(dc),pin=document.createElement("div");pin.className="dc-pin";pin.style.left=pos.x+"px";pin.style.top=pos.y+"px";const label=document.createElement("span");label.className="dc-label";label.textContent=dc.name;pin.appendChild(label);pin.addEventListener("click",()=>showTooltip(pin,"<strong>"+dc.name+"</strong><br><span style='color:#475569'>"+dc.detail+"</span>"));layer.appendChild(pin)})}
-function setHealthBar(data){const bar=document.getElementById("healthBar"),label=document.getElementById("healthBarLabel");bar.style.width=data.overallHealth+"%";bar.style.background=data.overallHealth>=80?"#22c55e":data.overallHealth>=60?"#eab308":data.overallHealth>=40?"#f97316":"#991b1b";label.textContent=data.overallHealth+"% — "+data.condition}
-function updateButtons(year){document.querySelectorAll(".year-btn").forEach(btn=>btn.classList.toggle("active",Number(btn.dataset.year)===year))}
-function updateBasinStyles(data){document.getElementById("basinNorthLabel").textContent=data.northern;document.getElementById("basinCentralLabel").textContent=data.central;document.getElementById("basinSouthLabel").textContent=data.southern}
-function updateYear(year){currentYear=year;const data=aquiferTimeline[year],projected=year>2026,historical=year<2026;document.getElementById("headerYearLabel").textContent=(projected?"Interactive Timeline — Projection ":"Interactive Timeline — Year ")+year;document.getElementById("sliderYear").textContent=year;document.getElementById("sliderMode").textContent=projected?"Projection year":"Year";document.getElementById("overallStatus").textContent="Overall relative health: "+data.overallHealth+"%";document.getElementById("healthDescriptor").textContent=data.descriptor;document.getElementById("northStatus").textContent="Northern — "+data.northern;document.getElementById("centralStatus").textContent="Central — "+data.central;document.getElementById("southStatus").textContent="Southern — "+data.southern;document.getElementById("summaryHealth").textContent=data.overallHealth+"%";document.getElementById("summaryCondition").textContent=data.condition;document.getElementById("mapTitle").textContent=year+" — "+data.condition;document.getElementById("dataBadge").classList.toggle("hidden",projected);document.getElementById("projectionBadge").classList.toggle("hidden",!projected);if(year===1950){document.getElementById("yearContext").textContent="Baseline view. The community dots are modern reference locations used to orient the viewer; they are not presented as a 1950 monitoring network.";document.getElementById("communitySummary").textContent="Modern locations for orientation";document.getElementById("hotspotSummary").textContent="Not shown at baseline";document.getElementById("dcSummary").textContent="Not applicable";document.getElementById("mapSubtitle").textContent="Baseline basin condition with modern community locations retained only for geographic orientation."}else if(year===1980){document.getElementById("yearContext").textContent="Historical 1980 view. The Tracker shows basin-scale condition while modern community locations remain as geographic reference points.";document.getElementById("communitySummary").textContent="Modern locations for orientation";document.getElementById("hotspotSummary").textContent="Not labeled as today's >150-ft zones";document.getElementById("dcSummary").textContent="Not applicable";document.getElementById("mapSubtitle").textContent="Early-decline basin assessment with the working 85% relative-health index."}else if(year===2026){document.getElementById("yearContext").textContent="Present-day tracker view. Community locations are reference points, not claims that every point has the same measured decline.";document.getElementById("communitySummary").textContent="28 current tracker communities";document.getElementById("hotspotSummary").textContent="Documented in parts of TX / OK / KS";document.getElementById("dcSummary").textContent="Three verified 2026 examples shown";document.getElementById("mapSubtitle").textContent="Basin boundaries, tracker communities, documented long-term decline zones, and digital-infrastructure context."}else{document.getElementById("yearContext").textContent="Projection view. Basin status and the relative-health index are Tracker scenarios; present-day communities, hotspot context and infrastructure are retained as reference layers, not future measurements.";document.getElementById("communitySummary").textContent="Current locations carried forward";document.getElementById("hotspotSummary").textContent="Current documented zones, not a 2050 forecast";document.getElementById("dcSummary").textContent="Current infrastructure context only";document.getElementById("mapSubtitle").textContent="Tracker projection with present-day geographic context retained for orientation."}document.getElementById("hotspotNote").classList.toggle("hidden",historical);document.getElementById("facilityPanel").parentElement.classList.toggle("hidden",year<2026);setHealthBar(data);updateButtons(year);updateBasinStyles(data);drawCommunities();drawHotspots(year>=2026);drawDataCenters(year>=2026)}
-function setTimelineYear(year){const index=timelineYears.indexOf(year);if(index<0)return;document.getElementById("yearSlider").value=index;updateYear(year)}
-document.querySelectorAll(".year-btn").forEach(btn=>btn.addEventListener("click",()=>setTimelineYear(Number(btn.dataset.year))));document.getElementById("yearSlider").addEventListener("input",function(){updateYear(timelineYears[Number(this.value)])});document.getElementById("playTimeline").addEventListener("click",function(){playing=!playing;this.textContent=playing?"⏸ Pause Timeline":"▶ Play Timeline";if(playing){let i=Number(document.getElementById("yearSlider").value);timer=setInterval(()=>{i=(i+1)%timelineYears.length;document.getElementById("yearSlider").value=i;updateYear(timelineYears[i])},1800)}else clearInterval(timer)});
-function repositionLayers(){drawCommunities();drawHotspots(currentYear>=2026);drawDataCenters(currentYear>=2026)}if(window.MapEngine&&MapEngine.projection)repositionLayers();else window.addEventListener("mapengine:geography-ready",repositionLayers,{once:true});document.addEventListener("click",e=>{if(!e.target.closest(".community-marker,.hotspot,.dc-pin"))clearTooltip()});updateYear(2026);
+
+const hotspots=[
+ {name:"Texas Panhandle hotspot context",lat:35.45,lon:-101.95,x:199,y:377},
+ {name:"Oklahoma Panhandle / southwest Kansas hotspot context",lat:36.8,lon:-101.4,x:236,y:318},
+ {name:"Western Kansas hotspot context",lat:38.1,lon:-100.9,x:270,y:259}
+];
+
+const dataCenters=[
+ {name:"Duos Amarillo",lat:35.198064,lon:-101.833107,x:207,y:388,detail:"Second Amarillo-market deployment announced March 2026; cited release did not state operational water use."},
+ {name:"Duos Hereford",lat:34.822603,lon:-102.400159,x:169,y:404,detail:"Hereford facility showcased June 2026; Duos says no water is required for cooling."},
+ {name:"Duos Lubbock",lat:33.561901,lon:-101.888883,x:204,y:459,detail:"Operational Lubbock edge facility showcased May 2026; cited release did not state water use."}
+];
+
+let currentYear=2026;
+let playing=false;
+let timer=null;
+
+function statusForBasin(data,basin){
+  return basin==="Northern"?data.northern:basin==="Central"?data.central:data.southern;
+}
+function colorForStatus(status){
+  const colors={Healthy:"#22c55e",Good:"#60a5fa",Stable:"#60a5fa",Declining:"#f59e0b",Stressed:"#f97316",Critical:"#ef4444",Severe:"#991b1b"};
+  return colors[status]||"#94a3b8";
+}
+function fillForStatus(status){
+  const fills={Healthy:"rgba(34,197,94,.10)",Good:"rgba(96,165,250,.10)",Stable:"rgba(96,165,250,.10)",Declining:"rgba(245,158,11,.10)",Stressed:"rgba(249,115,22,.10)",Critical:"rgba(239,68,68,.10)",Severe:"rgba(153,27,27,.14)"};
+  return fills[status]||"rgba(148,163,184,.08)";
+}
+function getPoint(item){
+  try{
+    if(window.MapEngine && MapEngine.projection){
+      const p=MapEngine.projection([item.lon,item.lat]);
+      if(p) return {x:p[0],y:p[1]};
+    }
+    if(window.Geography && Geography.project){
+      const p=Geography.project(item.lat,item.lon);
+      if(p) return {x:p.x,y:p.y};
+    }
+  }catch(e){}
+  return {x:item.x,y:item.y};
+}
+function clearTooltip(){
+  const old=document.querySelector(".map-tooltip");
+  if(old) old.remove();
+}
+function showTooltip(target,html){
+  clearTooltip();
+  const p=target.getBoundingClientRect();
+  const v=document.querySelector(".map-grid").getBoundingClientRect();
+  const tip=document.createElement("div");
+  tip.className="map-tooltip";
+  tip.innerHTML=html;
+  tip.style.left=Math.min(285,Math.max(8,p.left-v.left+16))+"px";
+  tip.style.top=Math.min(430,Math.max(8,p.top-v.top+16))+"px";
+  document.querySelector(".map-grid").appendChild(tip);
+  setTimeout(()=>{if(tip.isConnected)tip.remove()},5000);
+}
+function drawCommunities(){
+  const layer=document.getElementById("community-layer");
+  layer.innerHTML="";
+  communities.forEach(city=>{
+    const pos=getPoint(city);
+    const marker=document.createElement("div");
+    marker.className="community-marker";
+    marker.style.left=pos.x+"px";
+    marker.style.top=pos.y+"px";
+    marker.style.background=colorForStatus(statusForBasin(aquiferTimeline[currentYear],city.basin));
+    marker.title=city.name+", "+city.state+" — "+city.basin+" Basin reference community";
+    marker.addEventListener("click",()=>showTooltip(marker,
+      "<strong>"+city.name+", "+city.state+"</strong><br>"+city.basin+" Basin<br><span style='color:#475569'>Reference community location; status is shown at basin scale unless a locality-specific source is cited.</span>"
+    ));
+    layer.appendChild(marker);
+  });
+}
+function drawHotspots(show){
+  const layer=document.getElementById("hotspot-layer");
+  layer.innerHTML="";
+  if(!show)return;
+  hotspots.forEach(h=>{
+    const pos=getPoint(h);
+    const el=document.createElement("div");
+    el.className="hotspot";
+    el.style.left=pos.x+"px";el.style.top=pos.y+"px";
+    el.title=h.name;
+    el.addEventListener("click",()=>showTooltip(el,
+      "<strong>"+h.name+"</strong><br><span style='color:#475569'>USGS documents declines greater than 150 feet in some areas across this southern/central High Plains corridor. This marker is regional context, not a city measurement.</span>"
+    ));
+    layer.appendChild(el);
+  });
+}
+function drawDataCenters(show){
+  const layer=document.getElementById("data-center-layer");
+  layer.innerHTML="";
+  if(!show)return;
+  dataCenters.forEach(dc=>{
+    const pos=getPoint(dc);
+    const pin=document.createElement("div");
+    pin.className="dc-pin";
+    pin.style.left=pos.x+"px";pin.style.top=pos.y+"px";
+    const label=document.createElement("span");
+    label.className="dc-label";label.textContent=dc.name;
+    pin.appendChild(label);
+    pin.addEventListener("click",()=>showTooltip(pin,
+      "<strong>"+dc.name+"</strong><br><span style='color:#475569'>"+dc.detail+"</span>"
+    ));
+    layer.appendChild(pin);
+  });
+}
+function setHealthBar(data){
+  const bar=document.getElementById("healthBar");
+  const label=document.getElementById("healthBarLabel");
+  bar.style.width=data.overallHealth+"%";
+  bar.style.background=data.overallHealth>=80?"#22c55e":data.overallHealth>=60?"#eab308":data.overallHealth>=40?"#f97316":"#991b1b";
+  label.textContent=data.overallHealth+"% — "+data.condition;
+}
+function updateButtons(year){
+  document.querySelectorAll(".year-btn").forEach(btn=>{
+    btn.classList.toggle("active",Number(btn.dataset.year)===year);
+  });
+}
+function updateBasinStyles(data){
+  const map={
+    north:{el:document.getElementById("basin-north"),label:document.getElementById("basinNorthLabel"),value:data.northern},
+    central:{el:document.getElementById("basin-central"),label:document.getElementById("basinCentralLabel"),value:data.central},
+    south:{el:document.getElementById("basin-south"),label:document.getElementById("basinSouthLabel"),value:data.southern}
+  };
+  Object.values(map).forEach(x=>{
+    const color=colorForStatus(x.value);
+    x.label.textContent=x.value;
+    x.el.style.borderColor=color;
+    x.el.style.color=color;
+    x.el.style.background=fillForStatus(x.value);
+  });
+  const legend=[
+    {dot:"legendNorthDot",text:"legendNorthText",name:"Northern",value:data.northern},
+    {dot:"legendCentralDot",text:"legendCentralText",name:"Central",value:data.central},
+    {dot:"legendSouthDot",text:"legendSouthText",name:"Southern",value:data.southern}
+  ];
+  legend.forEach(item=>{
+    document.getElementById(item.dot).style.background=colorForStatus(item.value);
+    document.getElementById(item.text).textContent=item.name+" — "+item.value;
+  });
+}
+function updateYear(year){
+  currentYear=year;
+  const data=aquiferTimeline[year];
+  const projected=year>2026;
+  const historical=year<2026;
+  document.getElementById("headerYearLabel").textContent=(projected?"Interactive Timeline — Projection ":"Interactive Timeline — Year ")+year;
+  document.getElementById("sliderYear").textContent=year;
+  document.getElementById("sliderMode").textContent=projected?"Projection year":"Year";
+  document.getElementById("overallStatus").textContent="Overall relative health: "+data.overallHealth+"%";
+  document.getElementById("healthDescriptor").textContent=data.descriptor;
+  document.getElementById("northStatus").textContent="Northern — "+data.northern;
+  document.getElementById("centralStatus").textContent="Central — "+data.central;
+  document.getElementById("southStatus").textContent="Southern — "+data.southern;
+  document.getElementById("summaryHealth").textContent=data.overallHealth+"%";
+  document.getElementById("summaryCondition").textContent=data.condition;
+  document.getElementById("mapTitle").textContent=year+" — "+data.condition;
+  document.getElementById("dataBadge").classList.toggle("hidden",projected);
+  document.getElementById("projectionBadge").classList.toggle("hidden",!projected);
+  if(!projected){document.getElementById("dataBadge").textContent=year===2026?"Observed / source-backed context":"Historical / tracker context";}
+
+  if(year===1950){
+    document.getElementById("yearContext").textContent="Baseline view. The community dots are modern reference locations used to orient the viewer; they are not presented as a 1950 monitoring network.";
+    document.getElementById("communitySummary").textContent="Modern locations for orientation";
+    document.getElementById("hotspotSummary").textContent="Not shown at baseline";
+    document.getElementById("dcSummary").textContent="Not applicable";
+    document.getElementById("mapSubtitle").textContent="Baseline basin condition with modern community locations retained only for geographic orientation.";
+  }else if(year===1980){
+    document.getElementById("yearContext").textContent="Historical 1980 view. The Tracker shows basin-scale condition while modern community locations remain as geographic reference points.";
+    document.getElementById("communitySummary").textContent="Modern locations for orientation";
+    document.getElementById("hotspotSummary").textContent="Not labeled as today's >150-ft zones";
+    document.getElementById("dcSummary").textContent="Not applicable";
+    document.getElementById("mapSubtitle").textContent="Early-decline basin assessment with the working 85% relative-health index.";
+  }else if(year===2026){
+    document.getElementById("yearContext").textContent="Present-day tracker view. Community locations are reference points, not claims that every point has the same measured decline.";
+    document.getElementById("communitySummary").textContent="28 current tracker communities";
+    document.getElementById("hotspotSummary").textContent="Documented in parts of TX / OK / KS";
+    document.getElementById("dcSummary").textContent="Three verified 2026 examples shown";
+    document.getElementById("mapSubtitle").textContent="Basin boundaries, tracker communities, documented long-term decline zones, and digital-infrastructure context.";
+  }else{
+    document.getElementById("yearContext").textContent="Projection view. Basin status and the relative-health index are Tracker scenarios. Present-day hotspot and data-center layers are intentionally hidden so they are not mistaken for future measurements.";
+    document.getElementById("communitySummary").textContent="Current locations carried forward";
+    document.getElementById("hotspotSummary").textContent="Not shown in projection";
+    document.getElementById("dcSummary").textContent="Not shown in projection";
+    document.getElementById("mapSubtitle").textContent="Tracker projection with modern community locations retained only for geographic orientation.";
+  }
+
+  document.getElementById("hotspotNote").classList.toggle("hidden",year!==2026);
+  document.getElementById("facilityPanel").parentElement.classList.toggle("hidden",year!==2026);
+  document.getElementById("hotspotLegend").classList.toggle("hidden",year!==2026);
+  document.getElementById("dcLegend").classList.toggle("hidden",year!==2026);
+  setHealthBar(data);
+  updateButtons(year);
+  updateBasinStyles(data);
+  drawCommunities();
+  drawHotspots(year===2026);
+  drawDataCenters(year===2026);
+}
+function setTimelineYear(year){
+  const index=timelineYears.indexOf(year);
+  if(index<0)return;
+  document.getElementById("yearSlider").value=index;
+  updateYear(year);
+}
+document.querySelectorAll(".year-btn").forEach(btn=>btn.addEventListener("click",()=>setTimelineYear(Number(btn.dataset.year))));
+document.getElementById("yearSlider").addEventListener("input",function(){updateYear(timelineYears[Number(this.value)])});
+document.getElementById("playTimeline").addEventListener("click",function(){
+  playing=!playing;
+  this.textContent=playing?"⏸ Pause Timeline":"▶ Play Timeline";
+  if(playing){
+    let i=Number(document.getElementById("yearSlider").value);
+    timer=setInterval(()=>{
+      i=(i+1)%timelineYears.length;
+      document.getElementById("yearSlider").value=i;
+      updateYear(timelineYears[i]);
+    },1800);
+  }else clearInterval(timer);
+});
+function repositionLayers(){
+  drawCommunities();
+  drawHotspots(currentYear===2026);
+  drawDataCenters(currentYear===2026);
+}
+if(window.MapEngine && MapEngine.projection)repositionLayers();
+else window.addEventListener("mapengine:geography-ready",repositionLayers,{once:true});
+document.addEventListener("click",e=>{if(!e.target.closest(".community-marker,.hotspot,.dc-pin"))clearTooltip()});
+updateYear(2026);
 </script>
 </body>
 </html>
