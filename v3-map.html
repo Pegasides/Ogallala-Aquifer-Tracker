@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Version 3 Interactive Timeline — Ogallala Aquifer Tracker</title>
+<title>Version 3.1 Interactive Timeline — Ogallala Aquifer Tracker</title>
 <style>
 :root{--night:#06131d;--panel:#0d2536;--ink:#f7fbff;--muted:#b9ccd8;--aqua:#5eead4;--line:rgba(188,218,235,.25)}
 *{box-sizing:border-box}
@@ -15,6 +15,9 @@ a:focus-visible{outline:3px solid #fff;outline-offset:3px}
 .links{display:flex;gap:7px;align-items:center;flex-wrap:nowrap}
 .links a{color:#e8f2f6;text-decoration:none;border:1px solid #3b596c;background:#102b3d;border-radius:8px;padding:8px 10px;font-size:11px;font-weight:800;white-space:nowrap}
 .links a:hover,.links a.active{border-color:var(--aqua);background:#123c43;color:#e7fffb}
+.nav-context{font-size:9px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:#8fb0c1;padding:0 2px;white-space:nowrap}
+.nav-divider{width:1px;height:26px;background:rgba(188,218,235,.32);margin:0 3px;flex:0 0 auto}
+.nav-publication{display:inline-flex;align-items:center;min-height:34px;border:1px solid rgba(242,198,109,.56);background:rgba(67,49,18,.38);color:#f6dca0;border-radius:8px;padding:7px 10px;font-size:10px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
 .context{min-height:34px;background:#0a202f;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:center;padding:7px 12px;color:var(--muted);font-size:11px;text-align:center}
 .context strong{color:var(--aqua)}
 .frame-wrap{height:calc(100vh - 92px);min-height:560px;background:#243442}
@@ -25,27 +28,32 @@ iframe{display:block;width:100%;height:100%;border:0;background:#243442}
  .brand{display:block;margin-bottom:7px;font-size:11px}
  .links{overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
  .links::-webkit-scrollbar{display:none}
- .links a{flex:0 0 auto;min-height:40px;display:inline-flex;align-items:center}
+ .links a,.nav-context,.nav-publication,.nav-divider{flex:0 0 auto}
+ .links a{min-height:40px;display:inline-flex;align-items:center}
+ .nav-publication{min-height:40px}
  .context{font-size:10px;line-height:1.35}
  .frame-wrap{height:calc(100dvh - 116px);min-height:520px}
 }
 </style>
 </head>
 <body>
-<nav class="v3bar" aria-label="Version 3 primary navigation">
+<nav class="v3bar" aria-label="Version 3.1 primary navigation">
   <div class="v3inner">
-    <a class="brand" href="v3.html">OGALLALA AQUIFER TRACKER · VERSION 3</a>
+    <a class="brand" href="v3.html">OGALLALA AQUIFER TRACKER · VERSION 3.1</a>
     <div class="links">
-      <a href="v3.html">V3 Home</a>
-      <a class="active" href="v3-map.html">Interactive Timeline</a>
+      <span class="nav-context">Tracker</span>
+      <a href="v3.html">V3.1 Home</a>
+      <a class="active" aria-current="page" href="v3-map.html">Interactive Timeline</a>
       <a href="groundwater-window.html">Groundwater Window</a>
       <a href="index.html">My Aquifer</a>
+      <span class="nav-divider" aria-hidden="true"></span>
+      <span class="nav-publication" title="Separate publication experience; final Substack destination has not yet been connected">Publication · Substack</span>
     </div>
   </div>
 </nav>
-<div class="context"><strong>Version 3 timeline:</strong>&nbsp; four anchor years tell the main story; 2030–2045 are intermediate projection steps.</div>
+<div class="context"><strong>Version 3.1 timeline:</strong>&nbsp; four anchor years tell the main story; 2030–2045 are intermediate projection steps.</div>
 <div class="frame-wrap">
-  <iframe id="timelineFrame" src="v3-timeline.html" title="Ogallala Aquifer Version 3 interactive timeline"></iframe>
+  <iframe id="timelineFrame" src="v3-timeline.html" title="Ogallala Aquifer Version 3.1 interactive timeline"></iframe>
 </div>
 <script>
 const frame=document.getElementById('timelineFrame');
@@ -300,7 +308,7 @@ frame.addEventListener('load',()=>{
     applyYearPresentation();
     setTimeout(fitTimelineForMobile,80);
   }catch(e){
-    console.warn('Version 3 shell could not adjust embedded map chrome or V3 presentation refinements.',e);
+    console.warn('Version 3.1 shell could not adjust embedded map chrome or presentation refinements.',e);
   }
 });
 </script>
