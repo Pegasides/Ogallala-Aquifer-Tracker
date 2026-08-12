@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Timeline - Ogallala Aquifer Tracker</title>
+<style>
+:root{
+  --bg:#243442;--ink:#f8fafc;--muted:#b7c4cf;--panel:#17232d;--panel2:#1d2d39;
+  --line:#4b6474;--aqua:#2dd4bf;--blue:#60a5fa;--amber:#f59e0b;--red:#ef4444;
+  --deepred:#991b1b;--green:#22c55e;--white:#fff;--shadow:0 14px 34px rgba(0,0,0,.26);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.45}
+header{background:#101b24;border-bottom:4px solid var(--aqua);padding:20px 16px;text-align:center}
+header h1{margin:0;font-size:clamp(1.8rem,4vw,2.5rem)}
+header h2{margin:5px 0 0;color:#dbe8ef;font-size:1rem;font-weight:700}
+nav{background:#31495a;padding:10px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;border-bottom:1px solid #17242d}
+nav a{color:white;text-decoration:none;padding:9px 13px;border:2px solid var(--aqua);border-radius:7px;background:#243746;font-weight:800;font-size:12px}
+nav a.active{background:var(--aqua);color:#0f2930}
+.shell{max-width:1160px;margin:0 auto;padding:20px 16px 54px}
+.timeline-card,.map-card,.summary-card,.source-card{background:linear-gradient(145deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
+.timeline-card{padding:18px;margin-bottom:18px}
+.year-buttons{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.year-btn{appearance:none;border:2px solid #6b7f8e;background:#1b2b35;color:#f8fafc;border-radius:999px;padding:10px 19px;font-weight:900;cursor:pointer;min-width:92px}
+.year-btn:hover{border-color:var(--aqua)}
+.year-btn.active{background:#f8fafc;color:#0f172a;border-color:#f8fafc;box-shadow:0 0 0 4px rgba(45,212,191,.32)}
+.slider-row{max-width:650px;margin:16px auto 0}
+.slider-label{display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:13px}
+.slider-label strong{color:var(--aqua)}
+#yearSlider{width:100%;accent-color:var(--aqua)}
+.tick-row{display:flex;justify-content:space-between;font-size:10px;color:var(--muted)}
+.play-btn{display:block;margin:12px auto 0;border:1px solid var(--aqua);background:#183c3a;color:#d9fffa;border-radius:8px;padding:8px 13px;font-weight:800;cursor:pointer}
+.status-grid{display:grid;grid-template-columns:minmax(0,1.3fr) repeat(3,minmax(0,1fr));gap:10px;margin-top:16px}
+.status-box{background:#12222c;border:1px solid #425a69;border-radius:10px;padding:12px}
+.status-box strong{display:block;font-size:1.05rem;margin-bottom:2px}
+.status-box span{color:var(--muted);font-size:12px}
+.health-track{height:24px;border:1px solid #546a78;background:#0f1d25;border-radius:999px;overflow:hidden;position:relative;margin-top:8px}
+#healthBar{height:100%;width:60%;transition:width .25s ease,background .25s ease}
+#healthBarLabel{position:absolute;inset:0;display:grid;place-items:center;font-weight:900;font-size:12px;text-shadow:0 1px 2px #000}
+.main-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(300px,.65fr);gap:18px;align-items:start}
+.map-card{padding:16px}
+.map-heading{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:10px;flex-wrap:wrap}
+.map-heading h3{margin:0;font-size:1.25rem}
+.map-heading p{margin:3px 0 0;color:var(--muted);font-size:12px}
+.map-badges{display:flex;gap:6px;flex-wrap:wrap}
+.badge{border:1px solid #667c89;border-radius:999px;padding:4px 8px;font-size:10px;font-weight:900}
+.badge.observed{border-color:#7dd3fc;color:#d9f5ff}.badge.projected{border-color:#fda4af;color:#ffe4e6}
+#map-viewport{width:100%;max-width:650px;aspect-ratio:1/1.02;min-height:520px;margin:auto;background:#0d1720;border:1px solid #405765;border-radius:12px;position:relative;overflow:hidden}
+.map-grid{position:absolute;width:500px;height:500px;top:10px;left:50%;transform:translateX(-50%)}
+#map-engine-layer{position:absolute;inset:0;width:500px;height:500px;z-index:40;pointer-events:none;opacity:.92}
+.state{position:absolute;border:1px dashed rgba(195,210,220,.2);background:rgba(255,255,255,.01);color:rgba(218,231,239,.32);font-size:10px;font-weight:800;padding:5px;z-index:20;pointer-events:none}
+#basin-layer,#community-layer,#hotspot-layer,#data-center-layer{position:absolute;inset:0;z-index:120;pointer-events:none}
+#community-layer{z-index:180}
+#hotspot-layer{z-index:160}
+#data-center-layer{z-index:220}
+.basin-zone{position:absolute;left:126px;width:235px;border-left:2px dashed;border-right:2px dashed;pointer-events:none;transition:background .2s ease,border-color .2s ease}
+.basin-zone::after{content:"";position:absolute;right:-44px;top:50%;width:42px;border-top:2px solid currentColor;opacity:.8}
+#basin-north{top:35px;height:155px;border-top:2px dashed;border-bottom:2px dashed;border-color:#60a5fa;color:#60a5fa;background:rgba(96,165,250,.08)}
+#basin-central{top:190px;height:135px;border-bottom:2px dashed;border-color:#f59e0b;color:#f59e0b;background:rgba(245,158,11,.08)}
+#basin-south{top:325px;height:155px;border-bottom:2px dashed;border-color:#ef4444;color:#ef4444;background:rgba(239,68,68,.08)}
+.basin-callout{position:absolute;right:-137px;top:50%;transform:translateY(-50%);width:92px;padding:7px;background:rgba(7,18,25,.94);border:1px solid currentColor;border-radius:7px;font-size:10px;font-weight:900;text-align:left;color:inherit;text-shadow:0 1px 2px #000}
+.basin-callout small{display:block;color:#e7eef3;font-size:9px;margin-top:2px;font-weight:700}
+.community-marker{position:absolute;width:10px;height:10px;border:2px solid white;border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 0 2px rgba(0,0,0,.25);pointer-events:auto;cursor:pointer}
+.community-marker:hover{width:16px;height:16px;z-index:300}
+.map-tooltip{position:absolute;min-width:170px;max-width:230px;background:#fff;color:#111827;border:2px solid #0f172a;border-radius:8px;padding:9px 10px;font-size:12px;z-index:500;box-shadow:0 10px 24px rgba(0,0,0,.35);pointer-events:none}
+.hotspot{position:absolute;width:40px;height:40px;border:3px solid #ff4d4d;border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 0 7px rgba(239,68,68,.16),0 0 22px rgba(239,68,68,.8);pointer-events:auto;cursor:help}
+.hotspot::after{content:">150 ft";position:absolute;left:30px;top:-7px;white-space:nowrap;background:#3b1115;color:#fff;border:1px solid #ff7373;border-radius:5px;padding:3px 5px;font-size:9px;font-weight:900}
+.dc-pin{position:absolute;width:15px;height:15px;background:#c084fc;border:2px solid #fff;border-radius:2px;transform:translate(-50%,-50%) rotate(45deg);box-shadow:0 0 12px rgba(192,132,252,.9);pointer-events:auto;cursor:pointer}
+.dc-pin:hover{width:20px;height:20px}
+.dc-label{position:absolute;left:11px;top:-13px;transform:rotate(-45deg);white-space:nowrap;background:#26123a;color:#f5e9ff;border:1px solid #c084fc;border-radius:5px;padding:3px 5px;font-size:9px;font-weight:900}
+.legend{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:12px;font-size:11px;color:#d5e0e7}
+.legend-item{display:inline-flex;align-items:center;gap:5px}
+.dot{width:10px;height:10px;border-radius:50%;border:1px solid #fff}.diamond{width:10px;height:10px;background:#c084fc;border:1px solid #fff;transform:rotate(45deg)}
+.ring{width:14px;height:14px;border:2px solid #ef4444;border-radius:50%}
+.side-stack{display:grid;gap:18px}
+.summary-card{padding:16px}
+.summary-card h3,.source-card h3{margin:0 0 10px}
+.big-health{font-size:2.35rem;font-weight:900;line-height:1;color:var(--aqua)}
+.summary-list{display:grid;gap:8px;margin-top:12px}
+.summary-row{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid #3c5260;font-size:13px}
+.summary-row:last-child{border-bottom:none}
+.summary-row span{color:var(--muted)}
+.alert-box,.context-box{border-radius:9px;padding:11px 12px;margin-top:12px;font-size:12px}
+.alert-box{background:#3a1d1d;border:1px solid #9f4545;color:#ffe8e8}
+.context-box{background:#162b36;border:1px solid #426274;color:#dce9ef}
+#yearContext{margin:7px 0 0;color:var(--muted);font-size:13px}
+.facility-list{display:grid;gap:8px;margin-top:10px}
+.facility{background:#14242e;border:1px solid #445b6a;border-radius:8px;padding:9px}
+.facility strong{display:block;font-size:12px}
+.facility span{display:block;color:var(--muted);font-size:11px;margin-top:2px}
+.source-card{padding:16px}
+.source-card a{color:#8ce8db}
+.source-card p{margin:7px 0;color:var(--muted);font-size:12px}
+.source-note{margin-top:16px;text-align:center;color:#aebdc7;font-size:11px}
+.hidden{display:none!important}
+@media(max-width:900px){
+ .main-grid{grid-template-columns:1fr}
+ .status-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:620px){
+ .status-grid{grid-template-columns:1fr}
+ #map-viewport{min-height:500px;overflow:auto}
+ .map-grid{left:0;transform:none}
+ .basin-callout{right:-120px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Ogallala Aquifer Tracker</h1>
+  <h2 id="headerYearLabel">Interactive Timeline — Year 2026</h2>
+</header>
+<nav>
+  <a href="index.html">Tracker / My Aquifer</a>
+  <a class="active" href="map.html">Interactive Map</a>
+  <a href="timeline-1950.html">1950</a>
+  <a href="timeline-1980.html">1980</a>
+  <a href="present.html">2026</a>
+  <a href="timeline-projection.html">2050</a>
+  <a href="dashboard.html">Legacy Dashboard</a>
+</nav>
+
+<main class="shell">
+  <section class="timeline-card" aria-label="Aquifer timeline controls">
+    <div class="year-buttons">
+      <button class="year-btn" data-year="1950">1950</button>
+      <button class="year-btn" data-year="1980">1980</button>
+      <button class="year-btn active" data-year="2026">2026</button>
+      <button class="year-btn" data-year="2050">2050</button>
+    </div>
+
+    <div class="slider-row">
+      <div class="slider-label">
+        <span id="sliderMode">Year</span>
+        <strong id="sliderYear">2026</strong>
+      </div>
+      <input type="range" id="yearSlider" min="0" max="7" value="2" step="1">
+      <div class="tick-row"><span>1950</span><span>1980</span><span>2026</span><span>2030</span><span>2035</span><span>2040</span><span>2045</span><span>2050</span></div>
+      <button class="play-btn" id="playTimeline">▶ Play Timeline</button>
+    </div>
+
+    <div class="status-grid">
+      <div class="status-box">
+        <strong id="overallStatus">Overall relative health: 60%</strong>
+        <span id="healthDescriptor">Present-day tracker condition</span>
+        <div class="health-track">
+          <div id="healthBar"></div>
+          <div id="healthBarLabel">60% — Present Day</div>
+        </div>
+      </div>
+      <div class="status-box"><strong id="northStatus">Northern — Stable</strong><span>Northern Basin</span></div>
+      <div class="status-box"><strong id="centralStatus">Central — Stressed</strong><span>Central Basin</span></div>
+      <div class="status-box"><strong id="southStatus">Southern — Critical</strong><span>Southern Plains</span></div>
+    </div>
+  </section>
+
+  <div class="main-grid">
+    <section class="map-card">
+      <div class="map-heading">
+        <div>
+          <h3 id="mapTitle">2026 — Present-day condition</h3>
+          <p id="mapSubtitle">Basin boundaries, tracker communities, documented long-term decline zones, and digital-infrastructure context.</p>
+        </div>
+        <div class="map-badges">
+          <span class="badge observed" id="dataBadge">Observed / source-backed context</span>
+          <span class="badge projected hidden" id="projectionBadge">Projection</span>
+        </div>
+      </div>
+
+      <div id="map-viewport">
+        <div class="map-grid">
+          <div id="map-engine-layer" aria-label="Map Engine 2.0 geographic layer"></div>
+
+          <div class="state" style="top:10px;left:140px;width:200px;height:60px;">SOUTH DAKOTA</div>
+          <div class="state" style="top:80px;left:10px;width:120px;height:80px;">WYOMING</div>
+          <div class="state" style="top:80px;left:140px;width:220px;height:80px;">NEBRASKA</div>
+          <div class="state" style="top:170px;left:10px;width:120px;height:95px;">COLORADO</div>
+          <div class="state" style="top:170px;left:140px;width:220px;height:90px;">KANSAS</div>
+          <div class="state" style="top:270px;left:10px;width:120px;height:110px;">NEW MEXICO</div>
+          <div class="state" style="top:270px;left:140px;width:220px;height:45px;">OKLAHOMA</div>
+          <div class="state" style="top:325px;left:110px;width:180px;height:165px;">TEXAS</div>
+
+          <div id="basin-layer">
+            <div class="basin-zone" id="basin-north">
+              <div class="basin-callout">NORTHERN<small id="basinNorthLabel">Stable</small></div>
+            </div>
+            <div class="basin-zone" id="basin-central">
+              <div class="basin-callout">CENTRAL<small id="basinCentralLabel">Stressed</small></div>
+            </div>
+            <div class="basin-zone" id="basin-south">
+              <div class="basin-callout">SOUTHERN<small id="basinSouthLabel">Critical</small></div>
+            </div>
+          </div>
+
+          <div id="community-layer"></div>
+          <div id="hotspot-layer"></div>
+          <div id="data-center-layer"></div>
+        </div>
+      </div>
+
+      <div class="legend" aria-label="Map legend">
+        <span class="legend-item"><span class="dot" id="legendNorthDot" style="background:#60a5fa"></span><span id="legendNorthText">Northern — Stable</span></span>
+        <span class="legend-item"><span class="dot" id="legendCentralDot" style="background:#f59e0b"></span><span id="legendCentralText">Central — Stressed</span></span>
+        <span class="legend-item"><span class="dot" id="legendSouthDot" style="background:#ef4444"></span><span id="legendSouthText">Southern — Critical</span></span>
+        <span class="legend-item" id="hotspotLegend"><span class="ring"></span>&gt;150-ft documented decline zone</span>
+        <span class="legend-item" id="dcLegend"><span class="diamond"></span>2026 data-center context</span>
+      </div>
+    </section>
+
+    <aside class="side-stack">
+      <section class="summary-card">
+        <h3>Selected-year dashboard</h3>
+        <div class="big-health" id="summaryHealth">60%</div>
+        <p id="yearContext">Present-day tracker view. Community locations are reference points, not claims that every point has the same measured decline.</p>
+        <div class="summary-list">
+          <div class="summary-row"><span>Overall condition</span><strong id="summaryCondition">Present day</strong></div>
+          <div class="summary-row"><span>Community layer</span><strong id="communitySummary">28 current tracker communities</strong></div>
+          <div class="summary-row"><span>&gt;150-ft decline</span><strong id="hotspotSummary">Documented in parts of TX / OK / KS</strong></div>
+          <div class="summary-row"><span>Data-center layer</span><strong id="dcSummary">Shown for 2026</strong></div>
+        </div>
+        <div class="alert-box" id="hotspotNote">
+          USGS reports water-level declines greater than 150 feet in some areas of the Texas Panhandle and farther north through parts of the Oklahoma Panhandle and Kansas. These rings show broad hotspot context, not a city-specific measurement.
+        </div>
+        <div class="context-box">
+          <strong>Local impact vs. regional pressure:</strong> a nearby data center is not proof that it lowered a local well. Direct effects depend on water source, pumping rate, cooling design, recharge, hydraulic connectivity, and cumulative withdrawals.
+        </div>
+      </section>
+
+      <section class="summary-card">
+        <h3>2026 digital-infrastructure context</h3>
+        <div id="facilityPanel" class="facility-list">
+          <div class="facility"><strong>Amarillo, TX — Duos Edge AI</strong><span>Two Amarillo-market edge deployments announced/deployed by March 2026; water use was not specified in the cited deployment release.</span></div>
+          <div class="facility"><strong>Hereford, TX — Duos Edge AI</strong><span>Facility showcased June 2026; company says it requires no water for cooling.</span></div>
+          <div class="facility"><strong>Lubbock, TX — Duos Edge AI</strong><span>Operational edge data center showcased May 2026; water use was not stated in the cited Lubbock release.</span></div>
+        </div>
+      </section>
+
+      <section class="source-card">
+        <h3>Sources used in this map pass</h3>
+        <p><a href="https://ne.water.usgs.gov/projects/HPA/" target="_blank" rel="noopener">USGS High Plains Water-Level Monitoring Study</a> — long-term water-level monitoring and mapping.</p>
+        <p><a href="https://www.usgs.gov/media/videos/water-level-change-high-plains-aquifer-system" target="_blank" rel="noopener">USGS water-level change overview</a> — documents &gt;150-ft declines in parts of the Texas Panhandle, Oklahoma Panhandle and Kansas.</p>
+        <p><a href="https://ir.duostechnologies.com/news-events/press-releases/detail/832/duos-edge-ai-deploys-second-edge-data-center-in-amarillo" target="_blank" rel="noopener">Duos — Amarillo deployment</a></p>
+        <p><a href="https://ir.duostechnologies.com/news-events/press-releases/detail/844/duos-edge-ai-to-host-hereford-edge-data-center-open-house" target="_blank" rel="noopener">Duos — Hereford facility</a></p>
+        <p><a href="https://ir.duostechnologies.com/news-events/press-releases/detail/840/duos-edge-ai-to-host-lubbock-edge-data-center-open-house" target="_blank" rel="noopener">Duos — Lubbock facility</a></p>
+      </section>
+    </aside>
+  </div>
+
+  <p class="source-note">Relative-health percentages (100 / 85 / 60 / 40) are Tracker working indices for communicating change over time; they are not USGS percentages of remaining aquifer water.</p>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+<script src="geography.js"></script>
+<script src="map-engine.js"></script>
+<script>
+const timelineYears=[1950,1980,2026,2030,2035,2040,2045,2050];
+
+const aquiferTimeline={
+  1950:{overallHealth:100,northern:"Healthy",central:"Healthy",southern:"Healthy",condition:"Baseline",descriptor:"Predevelopment baseline working index"},
+  1980:{overallHealth:85,northern:"Good",central:"Declining",southern:"Declining",condition:"Early decline",descriptor:"Historical change is becoming visible"},
+  2026:{overallHealth:60,northern:"Stable",central:"Stressed",southern:"Critical",condition:"Present day",descriptor:"Present-day tracker condition"},
+  2030:{overallHealth:55,northern:"Stable",central:"Stressed",southern:"Critical",condition:"Projection",descriptor:"Illustrative tracker projection"},
+  2035:{overallHealth:50,northern:"Stressed",central:"Stressed",southern:"Severe",condition:"Projection",descriptor:"Illustrative tracker projection"},
+  2040:{overallHealth:45,northern:"Stressed",central:"Critical",southern:"Severe",condition:"Projection",descriptor:"Illustrative tracker projection"},
+  2045:{overallHealth:42,northern:"Stressed",central:"Critical",southern:"Severe",condition:"Projection",descriptor:"Illustrative tracker projection"},
+  2050:{overallHealth:40,northern:"Stressed",central:"Critical",southern:"Severe",condition:"Projection",descriptor:"2050 tracker projection"}
+};
+
+const communities=[
+ {name:"Alliance",state:"NE",basin:"Northern",lat:42.102567,lon:-102.876188,x:137,y:86},
+ {name:"Grand Island",state:"NE",basin:"Northern",lat:40.921352,lon:-98.358559,x:441,y:138},
+ {name:"North Platte",state:"NE",basin:"Northern",lat:41.124960,lon:-100.750359,x:280,y:129},
+ {name:"Ogallala",state:"NE",basin:"Northern",lat:41.129595,lon:-101.720677,x:215,y:129},
+ {name:"Scottsbluff",state:"NE",basin:"Northern",lat:41.868088,lon:-103.662035,x:85,y:96},
+ {name:"Pine Ridge",state:"SD",basin:"Northern",lat:43.026919,lon:-102.552352,x:159,y:46},
+ {name:"Martin",state:"SD",basin:"Northern",lat:43.174875,lon:-101.732315,x:214,y:39},
+ {name:"Torrington",state:"WY",basin:"Northern",lat:42.065050,lon:-104.173528,x:50,y:88},
+ {name:"Pine Bluffs",state:"WY",basin:"Northern",lat:41.180212,lon:-104.074782,x:57,y:126},
+ {name:"Yuma",state:"CO",basin:"Northern",lat:40.122511,lon:-102.715636,x:148,y:173},
+ {name:"Garden City",state:"KS",basin:"Central",lat:37.975876,lon:-100.850884,x:273,y:266},
+ {name:"Dodge City",state:"KS",basin:"Central",lat:37.760670,lon:-100.017863,x:329,y:276},
+ {name:"Liberal",state:"KS",basin:"Central",lat:37.046108,lon:-100.927706,x:268,y:307},
+ {name:"Goodland",state:"KS",basin:"Central",lat:39.348512,lon:-101.713819,x:215,y:206},
+ {name:"Colby",state:"KS",basin:"Central",lat:39.384564,lon:-101.044978,x:260,y:205},
+ {name:"Burlington",state:"CO",basin:"Central",lat:39.304169,lon:-102.271412,x:178,y:208},
+ {name:"Wray",state:"CO",basin:"Central",lat:40.079920,lon:-102.228597,x:181,y:174},
+ {name:"Tucumcari",state:"NM",basin:"Central",lat:35.170291,lon:-103.705046,x:82,y:389},
+ {name:"Amarillo",state:"TX",basin:"Southern",lat:35.198064,lon:-101.833107,x:207,y:388},
+ {name:"Dalhart",state:"TX",basin:"Southern",lat:36.057423,lon:-102.512212,x:162,y:350},
+ {name:"Pampa",state:"TX",basin:"Southern",lat:35.547852,lon:-100.965032,x:266,y:372},
+ {name:"Plainview",state:"TX",basin:"Southern",lat:34.191119,lon:-101.723501,x:215,y:432},
+ {name:"Lubbock",state:"TX",basin:"Southern",lat:33.561901,lon:-101.888883,x:204,y:459},
+ {name:"Guymon",state:"OK",basin:"Southern",lat:36.690101,lon:-101.477046,x:231,y:323},
+ {name:"Beaver",state:"OK",basin:"Southern",lat:36.815087,lon:-100.523543,x:295,y:317},
+ {name:"Boise City",state:"OK",basin:"Southern",lat:36.731336,lon:-102.509522,x:162,y:321},
+ {name:"Clovis",state:"NM",basin:"Southern",lat:34.438569,lon:-103.194194,x:116,y:421},
+ {name:"Hereford",state:"TX",basin:"Southern",lat:34.822603,lon:-102.400159,x:169,y:404}
+];
+
+const hotspots=[
+ {name:"Texas Panhandle hotspot context",lat:35.45,lon:-101.95,x:199,y:377},
+ {name:"Oklahoma Panhandle / southwest Kansas hotspot context",lat:36.8,lon:-101.4,x:236,y:318},
+ {name:"Western Kansas hotspot context",lat:38.1,lon:-100.9,x:270,y:259}
+];
+
+const dataCenters=[
+ {name:"Duos Amarillo",lat:35.198064,lon:-101.833107,x:207,y:388,detail:"Second Amarillo-market deployment announced March 2026; cited release did not state operational water use."},
+ {name:"Duos Hereford",lat:34.822603,lon:-102.400159,x:169,y:404,detail:"Hereford facility showcased June 2026; Duos says no water is required for cooling."},
+ {name:"Duos Lubbock",lat:33.561901,lon:-101.888883,x:204,y:459,detail:"Operational Lubbock edge facility showcased May 2026; cited release did not state water use."}
+];
+
+let currentYear=2026;
+let playing=false;
+let timer=null;
+
+function statusForBasin(data,basin){
+  return basin==="Northern"?data.northern:basin==="Central"?data.central:data.southern;
+}
+function colorForStatus(status){
+  const colors={Healthy:"#22c55e",Good:"#60a5fa",Stable:"#60a5fa",Declining:"#f59e0b",Stressed:"#f97316",Critical:"#ef4444",Severe:"#991b1b"};
+  return colors[status]||"#94a3b8";
+}
+function fillForStatus(status){
+  const fills={Healthy:"rgba(34,197,94,.10)",Good:"rgba(96,165,250,.10)",Stable:"rgba(96,165,250,.10)",Declining:"rgba(245,158,11,.10)",Stressed:"rgba(249,115,22,.10)",Critical:"rgba(239,68,68,.10)",Severe:"rgba(153,27,27,.14)"};
+  return fills[status]||"rgba(148,163,184,.08)";
+}
+function getPoint(item){
+  try{
+    if(window.MapEngine && MapEngine.projection){
+      const p=MapEngine.projection([item.lon,item.lat]);
+      if(p) return {x:p[0],y:p[1]};
+    }
+    if(window.Geography && Geography.project){
+      const p=Geography.project(item.lat,item.lon);
+      if(p) return {x:p.x,y:p.y};
+    }
+  }catch(e){}
+  return {x:item.x,y:item.y};
+}
+function clearTooltip(){
+  const old=document.querySelector(".map-tooltip");
+  if(old) old.remove();
+}
+function showTooltip(target,html){
+  clearTooltip();
+  const p=target.getBoundingClientRect();
+  const v=document.querySelector(".map-grid").getBoundingClientRect();
+  const tip=document.createElement("div");
+  tip.className="map-tooltip";
+  tip.innerHTML=html;
+  tip.style.left=Math.min(285,Math.max(8,p.left-v.left+16))+"px";
+  tip.style.top=Math.min(430,Math.max(8,p.top-v.top+16))+"px";
+  document.querySelector(".map-grid").appendChild(tip);
+  setTimeout(()=>{if(tip.isConnected)tip.remove()},5000);
+}
+function drawCommunities(){
+  const layer=document.getElementById("community-layer");
+  layer.innerHTML="";
+  communities.forEach(city=>{
+    const pos=getPoint(city);
+    const marker=document.createElement("div");
+    marker.className="community-marker";
+    marker.style.left=pos.x+"px";
+    marker.style.top=pos.y+"px";
+    marker.style.background=colorForStatus(statusForBasin(aquiferTimeline[currentYear],city.basin));
+    marker.title=city.name+", "+city.state+" — "+city.basin+" Basin reference community";
+    marker.addEventListener("click",()=>showTooltip(marker,
+      "<strong>"+city.name+", "+city.state+"</strong><br>"+city.basin+" Basin<br><span style='color:#475569'>Reference community location; status is shown at basin scale unless a locality-specific source is cited.</span>"
+    ));
+    layer.appendChild(marker);
+  });
+}
+function drawHotspots(show){
+  const layer=document.getElementById("hotspot-layer");
+  layer.innerHTML="";
+  if(!show)return;
+  hotspots.forEach(h=>{
+    const pos=getPoint(h);
+    const el=document.createElement("div");
+    el.className="hotspot";
+    el.style.left=pos.x+"px";el.style.top=pos.y+"px";
+    el.title=h.name;
+    el.addEventListener("click",()=>showTooltip(el,
+      "<strong>"+h.name+"</strong><br><span style='color:#475569'>USGS documents declines greater than 150 feet in some areas across this southern/central High Plains corridor. This marker is regional context, not a city measurement.</span>"
+    ));
+    layer.appendChild(el);
+  });
+}
+function drawDataCenters(show){
+  const layer=document.getElementById("data-center-layer");
+  layer.innerHTML="";
+  if(!show)return;
+  dataCenters.forEach(dc=>{
+    const pos=getPoint(dc);
+    const pin=document.createElement("div");
+    pin.className="dc-pin";
+    pin.style.left=pos.x+"px";pin.style.top=pos.y+"px";
+    const label=document.createElement("span");
+    label.className="dc-label";label.textContent=dc.name;
+    pin.appendChild(label);
+    pin.addEventListener("click",()=>showTooltip(pin,
+      "<strong>"+dc.name+"</strong><br><span style='color:#475569'>"+dc.detail+"</span>"
+    ));
+    layer.appendChild(pin);
+  });
+}
+function setHealthBar(data){
+  const bar=document.getElementById("healthBar");
+  const label=document.getElementById("healthBarLabel");
+  bar.style.width=data.overallHealth+"%";
+  bar.style.background=data.overallHealth>=80?"#22c55e":data.overallHealth>=60?"#eab308":data.overallHealth>=40?"#f97316":"#991b1b";
+  label.textContent=data.overallHealth+"% — "+data.condition;
+}
+function updateButtons(year){
+  document.querySelectorAll(".year-btn").forEach(btn=>{
+    btn.classList.toggle("active",Number(btn.dataset.year)===year);
+  });
+}
+function updateBasinStyles(data){
+  const map={
+    north:{el:document.getElementById("basin-north"),label:document.getElementById("basinNorthLabel"),value:data.northern},
+    central:{el:document.getElementById("basin-central"),label:document.getElementById("basinCentralLabel"),value:data.central},
+    south:{el:document.getElementById("basin-south"),label:document.getElementById("basinSouthLabel"),value:data.southern}
+  };
+  Object.values(map).forEach(x=>{
+    const color=colorForStatus(x.value);
+    x.label.textContent=x.value;
+    x.el.style.borderColor=color;
+    x.el.style.color=color;
+    x.el.style.background=fillForStatus(x.value);
+  });
+  const legend=[
+    {dot:"legendNorthDot",text:"legendNorthText",name:"Northern",value:data.northern},
+    {dot:"legendCentralDot",text:"legendCentralText",name:"Central",value:data.central},
+    {dot:"legendSouthDot",text:"legendSouthText",name:"Southern",value:data.southern}
+  ];
+  legend.forEach(item=>{
+    document.getElementById(item.dot).style.background=colorForStatus(item.value);
+    document.getElementById(item.text).textContent=item.name+" — "+item.value;
+  });
+}
+function updateYear(year){
+  currentYear=year;
+  const data=aquiferTimeline[year];
+  const projected=year>2026;
+  const historical=year<2026;
+  document.getElementById("headerYearLabel").textContent=(projected?"Interactive Timeline — Projection ":"Interactive Timeline — Year ")+year;
+  document.getElementById("sliderYear").textContent=year;
+  document.getElementById("sliderMode").textContent=projected?"Projection year":"Year";
+  document.getElementById("overallStatus").textContent="Overall relative health: "+data.overallHealth+"%";
+  document.getElementById("healthDescriptor").textContent=data.descriptor;
+  document.getElementById("northStatus").textContent="Northern — "+data.northern;
+  document.getElementById("centralStatus").textContent="Central — "+data.central;
+  document.getElementById("southStatus").textContent="Southern — "+data.southern;
+  document.getElementById("summaryHealth").textContent=data.overallHealth+"%";
+  document.getElementById("summaryCondition").textContent=data.condition;
+  document.getElementById("mapTitle").textContent=year+" — "+data.condition;
+  document.getElementById("dataBadge").classList.toggle("hidden",projected);
+  document.getElementById("projectionBadge").classList.toggle("hidden",!projected);
+  if(!projected){document.getElementById("dataBadge").textContent=year===2026?"Observed / source-backed context":"Historical / tracker context";}
+
+  if(year===1950){
+    document.getElementById("yearContext").textContent="Baseline view. The community dots are modern reference locations used to orient the viewer; they are not presented as a 1950 monitoring network.";
+    document.getElementById("communitySummary").textContent="Modern locations for orientation";
+    document.getElementById("hotspotSummary").textContent="Not shown at baseline";
+    document.getElementById("dcSummary").textContent="Not applicable";
+    document.getElementById("mapSubtitle").textContent="Baseline basin condition with modern community locations retained only for geographic orientation.";
+  }else if(year===1980){
+    document.getElementById("yearContext").textContent="Historical 1980 view. The Tracker shows basin-scale condition while modern community locations remain as geographic reference points.";
+    document.getElementById("communitySummary").textContent="Modern locations for orientation";
+    document.getElementById("hotspotSummary").textContent="Not labeled as today's >150-ft zones";
+    document.getElementById("dcSummary").textContent="Not applicable";
+    document.getElementById("mapSubtitle").textContent="Early-decline basin assessment with the working 85% relative-health index.";
+  }else if(year===2026){
+    document.getElementById("yearContext").textContent="Present-day tracker view. Community locations are reference points, not claims that every point has the same measured decline.";
+    document.getElementById("communitySummary").textContent="28 current tracker communities";
+    document.getElementById("hotspotSummary").textContent="Documented in parts of TX / OK / KS";
+    document.getElementById("dcSummary").textContent="Three verified 2026 examples shown";
+    document.getElementById("mapSubtitle").textContent="Basin boundaries, tracker communities, documented long-term decline zones, and digital-infrastructure context.";
+  }else{
+    document.getElementById("yearContext").textContent="Projection view. Basin status and the relative-health index are Tracker scenarios. Present-day hotspot and data-center layers are intentionally hidden so they are not mistaken for future measurements.";
+    document.getElementById("communitySummary").textContent="Current locations carried forward";
+    document.getElementById("hotspotSummary").textContent="Not shown in projection";
+    document.getElementById("dcSummary").textContent="Not shown in projection";
+    document.getElementById("mapSubtitle").textContent="Tracker projection with modern community locations retained only for geographic orientation.";
+  }
+
+  document.getElementById("hotspotNote").classList.toggle("hidden",year!==2026);
+  document.getElementById("facilityPanel").parentElement.classList.toggle("hidden",year!==2026);
+  document.getElementById("hotspotLegend").classList.toggle("hidden",year!==2026);
+  document.getElementById("dcLegend").classList.toggle("hidden",year!==2026);
+  setHealthBar(data);
+  updateButtons(year);
+  updateBasinStyles(data);
+  drawCommunities();
+  drawHotspots(year===2026);
+  drawDataCenters(year===2026);
+}
+function setTimelineYear(year){
+  const index=timelineYears.indexOf(year);
+  if(index<0)return;
+  document.getElementById("yearSlider").value=index;
+  updateYear(year);
+}
+document.querySelectorAll(".year-btn").forEach(btn=>btn.addEventListener("click",()=>setTimelineYear(Number(btn.dataset.year))));
+document.getElementById("yearSlider").addEventListener("input",function(){updateYear(timelineYears[Number(this.value)])});
+document.getElementById("playTimeline").addEventListener("click",function(){
+  playing=!playing;
+  this.textContent=playing?"⏸ Pause Timeline":"▶ Play Timeline";
+  if(playing){
+    let i=Number(document.getElementById("yearSlider").value);
+    timer=setInterval(()=>{
+      i=(i+1)%timelineYears.length;
+      document.getElementById("yearSlider").value=i;
+      updateYear(timelineYears[i]);
+    },1800);
+  }else clearInterval(timer);
+});
+function repositionLayers(){
+  drawCommunities();
+  drawHotspots(currentYear===2026);
+  drawDataCenters(currentYear===2026);
+}
+if(window.MapEngine && MapEngine.projection)repositionLayers();
+else window.addEventListener("mapengine:geography-ready",repositionLayers,{once:true});
+document.addEventListener("click",e=>{if(!e.target.closest(".community-marker,.hotspot,.dc-pin"))clearTooltip()});
+updateYear(2026);
+</script>
+</body>
+</html>
