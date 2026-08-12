@@ -87,6 +87,7 @@ frame.addEventListener('load',()=>{
         .tick-row span:nth-child(4),.tick-row span:nth-child(5),.tick-row span:nth-child(6),.tick-row span:nth-child(7){opacity:.55;font-size:9px}
         #v3-index-caption{margin-top:4px;color:#9fb6c4;font-size:10px;font-weight:800;letter-spacing:.03em;text-transform:uppercase}
         #v3-timeline-hint{margin:6px 0 0;color:#9fb6c4;font-size:10px;text-align:center}
+        .community-marker:focus-visible,.hotspot:focus-visible,.dc-pin:focus-visible{outline:3px solid #fff;outline-offset:4px;z-index:520!important}
         @media(max-width:620px){
           .shell{padding:12px 10px 40px!important}
           .timeline-card,.map-card,.summary-card,.source-card{border-radius:10px!important}
@@ -152,6 +153,30 @@ frame.addEventListener('load',()=>{
       hereford.replaceWith(marker);
     };
 
+    const makeKeyboardClickable=(el,label)=>{
+      if(!el)return;
+      el.tabIndex=0;
+      el.setAttribute('role','button');
+      if(label)el.setAttribute('aria-label',label);
+      if(el.dataset.v3Keyboard==='1')return;
+      el.dataset.v3Keyboard='1';
+      el.addEventListener('keydown',event=>{
+        if(event.key==='Enter'||event.key===' '){
+          event.preventDefault();
+          el.click();
+        }
+      });
+    };
+
+    const enhanceMapInteractions=()=>{
+      doc.querySelectorAll('.community-marker').forEach(marker=>makeKeyboardClickable(marker,marker.title||'Community reference point'));
+      doc.querySelectorAll('.hotspot').forEach(marker=>makeKeyboardClickable(marker,marker.title||'Regional decline context'));
+      doc.querySelectorAll('.dc-pin').forEach(marker=>{
+        const name=marker.querySelector('.dc-label')?.textContent||'Digital infrastructure example';
+        makeKeyboardClickable(marker,name+' — 2026 infrastructure context');
+      });
+    };
+
     const normalizeWorkingIndexDisplay=()=>{
       const summaryHealth=doc.getElementById('summaryHealth');
       const value=(summaryHealth?.textContent||'').replace(/[^0-9.]/g,'');
@@ -180,6 +205,11 @@ frame.addEventListener('load',()=>{
       }
     };
 
+    const stopAutoplay=()=>{
+      const playButton=doc.getElementById('playTimeline');
+      if(playButton && /Pause/i.test(playButton.textContent))playButton.click();
+    };
+
     const applyYearPresentation=()=>{
       const year=Number((doc.getElementById('sliderYear')?.textContent||'').trim());
       const is1950=year===1950,is1980=year===1980,is2026=year===2026,is2050=year===2050;
@@ -190,6 +220,7 @@ frame.addEventListener('load',()=>{
       doc.body.classList.toggle('v3-year-2026',is2026);
       doc.body.classList.toggle('v3-projection',isProjection);
       normalizeWorkingIndexDisplay();
+      enhanceMapInteractions();
       setText('sliderMode',isAnchor?(is2050?'Anchor projection':'Anchor year'):'Projection step');
 
       const summaryCards=[...doc.querySelectorAll('.side-stack>.summary-card')];
@@ -224,6 +255,8 @@ frame.addEventListener('load',()=>{
         setText('yearContext','2050 is a Tracker scenario, not a measured future condition: the working index is 40, with the Northern Basin shown Stressed, Central Critical, and Southern Severe. Present-day hotspot and data-center layers stay hidden, and community dots are current locations carried forward only for orientation.');
         setText('communitySummary','28 current locations carried forward — orientation only');
         setText('mapSubtitle','2050 projection: Northern Stressed; Central Critical; Southern Severe. Current community locations are muted and no present-day hotspot or data-center layer is projected forward.');
+        const playButton=doc.getElementById('playTimeline');
+        if(playButton && /Pause/i.test(playButton.textContent))setTimeout(stopAutoplay,0);
       }else if(isProjection){
         setText('healthDescriptor',year+' projection-step working index — not percent of water remaining');
         setText('yearContext',year+' is an intermediate Tracker projection step between the 2026 present-day view and the 2050 anchor scenario. Present-day hotspot and data-center layers remain hidden, and community locations are carried forward only for orientation.');
@@ -233,22 +266,37 @@ frame.addEventListener('load',()=>{
       requestAnimationFrame(fitTimelineForMobile);
     };
 
-    const communityLayer=doc.getElementById('community-layer');
-    if(communityLayer){
-      normalizeCommunityLayer();
-      const observer=new MutationObserver(()=>{normalizeCommunityLayer();applyYearPresentation()});
-      observer.observe(communityLayer,{childList:true});
-    }
+    const sliderYear=doc.getElementById('sliderYear');
+    if(sliderYear){sliderYear.setAttribute('aria-live','polite');sliderYear.setAttribute('aria-atomic','true')}
+    const overallStatus=doc.getElementById('overallStatus');
+    if(overallStatus){overallStatus.setAttribute('aria-live','polite');overallStatus.setAttribute('aria-atomic','true')}
+
+    ['community-layer','hotspot-layer','data-center-layer'].forEach(id=>{
+      const layer=doc.getElementById(id);
+      if(!layer)return;
+      const observer=new MutationObserver(()=>{
+        if(id==='community-layer')normalizeCommunityLayer();
+        enhanceMapInteractions();
+        applyYearPresentation();
+      });
+      observer.observe(layer,{childList:true});
+    });
+
     const yearLabel=doc.getElementById('sliderYear');
     if(yearLabel){
       const observer=new MutationObserver(applyYearPresentation);
       observer.observe(yearLabel,{childList:true,characterData:true,subtree:true});
     }
+
+    doc.querySelectorAll('.year-btn').forEach(button=>button.addEventListener('click',()=>setTimeout(stopAutoplay,0)));
+    doc.getElementById('yearSlider')?.addEventListener('input',()=>setTimeout(stopAutoplay,0));
     win.addEventListener('resize',fitTimelineForMobile);
     window.addEventListener('resize',fitTimelineForMobile);
 
     if(typeof win.setTimelineYear==='function')win.setTimelineYear(1950);
     else doc.querySelector('.year-btn[data-year="1950"]')?.click();
+    normalizeCommunityLayer();
+    enhanceMapInteractions();
     applyYearPresentation();
     setTimeout(fitTimelineForMobile,80);
   }catch(e){
