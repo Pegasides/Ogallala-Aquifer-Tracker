@@ -43,7 +43,7 @@ iframe{display:block;width:100%;height:100%;border:0;background:#06131d}
     </div>
   </div>
 </nav>
-<div class="context"><strong>Groundwater Window:</strong>&nbsp; educational cross-section for the four V3 anchor years. Index = comparison scale; cross-section = illustrative, not surveyed.</div>
+<div class="context"><strong>Groundwater Window:</strong>&nbsp; educational cross-section for the four V3 anchor years. Index = comparison scale; cross-section and well profiles = illustrative, not surveyed measurements.</div>
 <div class="frame-wrap">
   <iframe id="groundwaterFrame" src="groundwater-window-core.html" title="Ogallala Aquifer Groundwater Window educational cross-section"></iframe>
 </div>
@@ -63,6 +63,12 @@ frame.addEventListener('load',()=>{
           line-height:1.4;text-align:center;text-transform:uppercase;letter-spacing:.04em;
         }
         .health-panel .panel-heading{color:#dffcf7}
+        .well-data-grid,.water-change-box{display:none!important}
+        #v3IllustrativeWellNote{
+          margin:4px 0 0;padding:12px;border:1px solid rgba(129,232,255,.28);
+          border-radius:10px;background:rgba(16,96,128,.16);color:#d8f5ff;
+          font-size:.82rem;line-height:1.5;
+        }
         @media(max-width:650px){
           .app-shell{padding:8px!important}
           .topbar{padding:12px!important;gap:10px!important;margin-bottom:10px!important;border-radius:12px!important}
@@ -90,6 +96,7 @@ frame.addEventListener('load',()=>{
           .year-buttons{gap:7px!important}
           .year-button{min-height:44px!important;padding:10px 8px!important}
           .well-card{padding:12px!important;border-radius:12px!important}
+          #v3IllustrativeWellNote{font-size:.76rem!important;padding:10px!important}
         }
       `;
       doc.head.appendChild(style);
@@ -111,6 +118,34 @@ frame.addEventListener('load',()=>{
       2050:'2050 is a Tracker scenario, not a measured future condition or forecast. The index is 40, and the illustrated water-table shift is a storytelling device rather than a literal statewide projection.'
     };
 
+    const profileNames=['A','B','C'];
+    const wellButtons=[...doc.querySelectorAll('.well')];
+    const wellLabels=[...doc.querySelectorAll('.well-label')];
+    wellButtons.forEach((button,index)=>button.setAttribute('aria-label','Open illustrative groundwater profile '+profileNames[index]));
+    wellLabels.forEach((label,index)=>label.textContent='Illustrative profile '+profileNames[index]);
+    const wellInstruction=doc.querySelector('.well-instruction');
+    if(wellInstruction)wellInstruction.textContent='Tap any glowing profile marker to see how this educational panel responds to the selected year.';
+
+    const wellCard=doc.getElementById('wellCard');
+    if(wellCard && !doc.getElementById('v3IllustrativeWellNote')){
+      const note=doc.createElement('div');
+      note.id='v3IllustrativeWellNote';
+      note.textContent='Illustrative profile only. Version 3 does not assert these placeholder well IDs, coordinates, depths, dates, or timeline values as verified locality-specific measurements. A sourced monitoring-well layer can replace this placeholder in a later data pass.';
+      wellCard.querySelector('.well-card-header')?.insertAdjacentElement('afterend',note);
+    }
+    const wellPanelHeading=wellCard?.querySelector('.panel-heading');
+    if(wellPanelHeading)wellPanelHeading.textContent='Educational Well Profile';
+
+    let activeProfileIndex=0;
+    const sanitizeWellCard=()=>{
+      const title=doc.getElementById('wellTitle');
+      if(title)title.textContent='Illustrative profile '+profileNames[activeProfileIndex];
+      const note=doc.getElementById('v3IllustrativeWellNote');
+      const year=Number((doc.getElementById('currentYearBadge')?.textContent||'').replace(/[^0-9]/g,''));
+      if(note)note.textContent='Illustrative profile only — '+(year||'selected year')+'. This interaction demonstrates how a sourced monitoring-well panel could respond to the timeline; no placeholder ID, coordinate, depth, date, or numeric water-level value is presented here as a verified measurement.';
+    };
+    wellButtons.forEach((button,index)=>button.addEventListener('click',()=>{activeProfileIndex=index;setTimeout(sanitizeWellCard,0)}));
+
     const applyV3Language=()=>{
       const year=Number((doc.getElementById('currentYearBadge')?.textContent||'').replace(/[^0-9]/g,''));
       const healthNumber=doc.getElementById('healthNumber');
@@ -124,10 +159,13 @@ frame.addEventListener('load',()=>{
       if(healthWord&&yearLabels[year])healthWord.textContent=yearLabels[year];
       const explanation=doc.getElementById('healthExplanation');
       if(explanation&&explanations[year])explanation.textContent=explanations[year];
+      sanitizeWellCard();
     };
 
     const yearBadge=doc.getElementById('currentYearBadge');
     if(yearBadge){
+      yearBadge.setAttribute('aria-live','polite');
+      yearBadge.setAttribute('aria-atomic','true');
       const observer=new MutationObserver(applyV3Language);
       observer.observe(yearBadge,{childList:true,characterData:true,subtree:true});
     }
