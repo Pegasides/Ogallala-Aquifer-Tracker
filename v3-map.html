@@ -43,7 +43,7 @@ iframe{display:block;width:100%;height:100%;border:0;background:#243442}
     </div>
   </div>
 </nav>
-<div class="context"><strong>Version 3 timeline:</strong>&nbsp; begin at the 1950 baseline, then use the year buttons or slider to move through the story.</div>
+<div class="context"><strong>Version 3 timeline:</strong>&nbsp; four anchor years tell the main story; the slider adds intermediate projection steps between 2026 and 2050.</div>
 <div class="frame-wrap">
   <iframe id="timelineFrame" src="v3-timeline.html" title="Ogallala Aquifer Version 3 interactive timeline"></iframe>
 </div>
@@ -127,8 +127,37 @@ frame.addEventListener('load',()=>{
           opacity:.55;
           font-size:9px;
         }
+        #v3-index-caption{
+          margin-top:4px;
+          color:#9fb6c4;
+          font-size:10px;
+          font-weight:800;
+          letter-spacing:.03em;
+          text-transform:uppercase;
+        }
+        #v3-timeline-hint{
+          margin:6px 0 0;
+          color:#9fb6c4;
+          font-size:10px;
+          text-align:center;
+        }
       `;
       doc.head.appendChild(style);
+    }
+
+    const summaryHealthForCaption=doc.getElementById('summaryHealth');
+    if(summaryHealthForCaption && !doc.getElementById('v3-index-caption')){
+      const caption=doc.createElement('div');
+      caption.id='v3-index-caption';
+      caption.textContent='Tracker working index · comparison scale, not percent water remaining';
+      summaryHealthForCaption.insertAdjacentElement('afterend',caption);
+    }
+    const tickRow=doc.querySelector('.tick-row');
+    if(tickRow && !doc.getElementById('v3-timeline-hint')){
+      const hint=doc.createElement('p');
+      hint.id='v3-timeline-hint';
+      hint.textContent='Bold dates are anchor years. 2030–2045 are intermediate projection steps.';
+      tickRow.insertAdjacentElement('afterend',hint);
     }
 
     // Preserve the Tracker's original 28-community set in the V3 experience:
@@ -171,12 +200,17 @@ frame.addEventListener('load',()=>{
       const is1950=year===1950;
       const is1980=year===1980;
       const is2026=year===2026;
+      const is2050=year===2050;
       const isProjection=year>2026;
+      const isAnchor=is1950||is1980||is2026||is2050;
       doc.body.classList.toggle('v3-year-1950',is1950);
       doc.body.classList.toggle('v3-year-1980',is1980);
       doc.body.classList.toggle('v3-year-2026',is2026);
       doc.body.classList.toggle('v3-projection',isProjection);
       normalizeWorkingIndexDisplay();
+
+      const sliderMode=doc.getElementById('sliderMode');
+      if(sliderMode)sliderMode.textContent=isAnchor?(is2050?'Anchor projection':'Anchor year'):'Projection step';
 
       const summaryCards=[...doc.querySelectorAll('.side-stack>.summary-card')];
       const summaryHeading=summaryCards[0]?.querySelector('h3');
@@ -219,7 +253,7 @@ frame.addEventListener('load',()=>{
         if(hotspot)hotspot.textContent='Regional context — parts of TX / OK / KS';
         if(dc)dc.textContent='3 verified examples — context only';
         if(subtitle)subtitle.textContent='Present-day basin conditions first, followed by community reference points, regional >150-ft decline context, and three verified infrastructure examples.';
-      }else if(year===2050){
+      }else if(is2050){
         const descriptor=doc.getElementById('healthDescriptor');
         const context=doc.getElementById('yearContext');
         const summary=doc.getElementById('communitySummary');
