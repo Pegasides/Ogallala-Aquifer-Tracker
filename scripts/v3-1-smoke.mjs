@@ -37,7 +37,7 @@ try {
 
   await page.goto(BASE + 'v3.html?smoke=desktop', { waitUntil: 'networkidle' });
   check('V3.1 home loads', (await page.title()).includes('Version 3.1'), await page.title());
-  check('V3.1 preview badge is present', (await txt(page.locator('.hero-badge'))).includes('Version 3.1'), await txt(page.locator('.hero-badge')));
+  check('V3.1 preview badge is present', (await txt(page.locator('.hero-badge'))).toLowerCase().includes('version 3.1'), await txt(page.locator('.hero-badge')));
   check('Primary timeline CTA present', await page.locator('a.btn.primary[href="v3-map.html"]').count() > 0, await txt(page.locator('a.btn.primary[href="v3-map.html"]').first()));
 
   const hero = page.locator('.hero img').first();
@@ -53,7 +53,7 @@ try {
 
   const homeNav = await page.locator('.nav-links a').allInnerTexts();
   check('V3.1 home Tracker navigation order', JSON.stringify(homeNav.slice(0,5)) === JSON.stringify(['V3.1 Home','Interactive Timeline','Groundwater Window','My Aquifer','Sources']), homeNav.slice(0,5).join(' → '));
-  check('Publication is visually separated from Tracker links', await page.locator('.nav-publication').count() === 1 && (await txt(page.locator('.nav-publication'))).includes('Substack'), await txt(page.locator('.nav-publication')));
+  check('Publication is visually separated from Tracker links', await page.locator('.nav-publication').count() === 1 && (await txt(page.locator('.nav-publication'))).toLowerCase().includes('substack'), await txt(page.locator('.nav-publication')));
   check('Sources credibility destination is present', await page.locator('a.destination[href="sources.html"]').count() === 1, await txt(page.locator('a.destination[href="sources.html"] h3')));
 
   await page.locator('a.btn.primary[href="v3-map.html"]').first().click();
