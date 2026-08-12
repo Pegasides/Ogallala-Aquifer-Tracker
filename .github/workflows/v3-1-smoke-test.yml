@@ -1,0 +1,72 @@
+name: V3.1 Branch Browser Smoke Test
+
+on:
+  push:
+    branches: [version-3.1-working]
+    paths:
+      - 'v3.html'
+      - 'v3-map.html'
+      - 'v3-timeline.html'
+      - 'groundwater-window.html'
+      - 'groundwater-window-core.html'
+      - 'sources.html'
+      - 'Ogallala_Aquifer_Tracker_Sources_Poster_V3_1_verified.png'
+      - 'ChatGPT Image Aug 8, 2026, 10_14_56 AM.png'
+      - 'geography.js'
+      - 'map-engine.js'
+      - 'scripts/v3-1-smoke.mjs'
+      - '.github/workflows/v3-1-smoke-test.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: v3-1-branch-smoke-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout Version 3.1 branch commit
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Install Playwright
+        run: |
+          npm init -y
+          npm install playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Serve and test Version 3.1 branch files locally
+        env:
+          BASE_URL: http://127.0.0.1:8000/
+        run: |
+          set -euxo pipefail
+          python3 -m http.server 8000 --bind 127.0.0.1 > /tmp/v3-1-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+
+          for i in $(seq 1 30); do
+            if curl -fsSI http://127.0.0.1:8000/v3.html >/dev/null; then
+              break
+            fi
+            sleep 1
+          done
+
+          curl -fsSI http://127.0.0.1:8000/v3.html
+          curl -fsSI http://127.0.0.1:8000/v3-map.html
+          curl -fsSI http://127.0.0.1:8000/groundwater-window.html
+          curl -fsSI http://127.0.0.1:8000/groundwater-window-core.html
+          curl -fsSI http://127.0.0.1:8000/sources.html
+          curl -fsSI http://127.0.0.1:8000/Ogallala_Aquifer_Tracker_Sources_Poster_V3_1_verified.png
+          curl -fsSL http://127.0.0.1:8000/groundwater-window.html | grep -F 'id="groundwaterFrame"'
+          curl -fsSL http://127.0.0.1:8000/sources.html | grep -F 'Ogallala_Aquifer_Tracker_Sources_Poster_V3_1_verified.png'
+
+          node scripts/v3-1-smoke.mjs
