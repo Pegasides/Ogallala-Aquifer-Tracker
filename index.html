@@ -206,7 +206,119 @@ header p{margin:5px 0 0;color:var(--aqua);font-weight:700}
       SNWA / U.S. Bureau of Reclamation — Xeriscape Conversion Study
     </a>
   </p>
-</div><div class="card-actions"><button class="action-btn primary" id="photoGalleryBtn">See Photos</button><button class="action-btn" id="wildflowerVideoBtn">Watch Video</button><button class="action-btn save-btn" data-object="water-wise">Save</button></div></div>
+</div><div class="note-box" style="margin-top:18px">
+  <p class="eyebrow">Try Your Own Yard</p>
+  <h4>How much lawn could you replace?</h4>
+
+  <p class="context-note">
+    Enter the approximate square feet of lawn you might replace with native flowers,
+    grasses or other water-wise landscaping.
+  </p>
+
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin:12px 0">
+    <button type="button" class="action-btn yard-preset" data-sqft="500">500 sq. ft.</button>
+    <button type="button" class="action-btn yard-preset" data-sqft="1000">1,000 sq. ft.</button>
+    <button type="button" class="action-btn yard-preset" data-sqft="2500">2,500 sq. ft.</button>
+    <button type="button" class="action-btn yard-preset" data-sqft="5000">5,000 sq. ft.</button>
+  </div>
+
+  <label for="yardSqFt"><strong>Or enter your own amount:</strong></label>
+  <input
+    id="yardSqFt"
+    type="number"
+    min="1"
+    step="1"
+    value="1000"
+    style="width:100%;max-width:260px;padding:10px;margin:8px 0 14px;border:1px solid #bbb;border-radius:8px"
+  >
+
+  <button type="button" class="action-btn primary" id="yardCalcBtn">
+    Calculate My Yard
+  </button>
+
+  <div class="metric-grid" style="margin-top:16px">
+    <div class="metric good">
+      <strong id="yardGallons">≈ 623 gallons</strong>
+      <span>water represented by 1 inch across this lawn area</span>
+    </div>
+
+    <div class="metric good">
+      <strong id="yardSummer">≈ 623–935 gallons</strong>
+      <span>water represented by UNL's 1–1½ inch summer weekly benchmark</span>
+    </div>
+
+    <div class="metric good">
+      <strong id="yardCost">≈ $1.30–$2.25</strong>
+      <span>Alliance water-use charge represented by 1 inch, depending on billing tier</span>
+    </div>
+  </div>
+
+  <p class="context-note" id="yardMessage">
+    Replacing 1,000 sq. ft. of irrigated lawn could remove the need to apply
+    this lawn-irrigation volume after the new landscape is established.
+    Actual savings depend on rainfall, irrigation habits, plant choices and establishment needs.
+  </p>
+
+  <p class="muted" style="font-size:12px">
+    Calculator basis: 1 inch of water over 1,000 sq. ft. ≈ 623 gallons.
+    Alliance residential water rates used above are the local rates cited in this section.
+    This is an estimate of lawn-irrigation volume and cost — not a guaranteed bill reduction.
+  </p>
+</div>
+
+<script>
+(function () {
+  const input = document.getElementById('yardSqFt');
+  const gallonsEl = document.getElementById('yardGallons');
+  const summerEl = document.getElementById('yardSummer');
+  const costEl = document.getElementById('yardCost');
+  const messageEl = document.getElementById('yardMessage');
+  const calcBtn = document.getElementById('yardCalcBtn');
+
+  function calculateYard() {
+    const sqft = Math.max(1, Number(input.value) || 1);
+
+    // 1 inch of water over 1 square foot = approximately 0.623 gallons.
+    const gallonsOneInch = sqft * 0.623;
+    const gallonsOneAndHalf = gallonsOneInch * 1.5;
+
+    // Alliance residential rate range per 100 cubic feet.
+    // 100 cubic feet = approximately 748 gallons.
+    const lowCost = (gallonsOneInch / 748) * 1.557;
+    const highCost = (gallonsOneInch / 748) * 2.706;
+
+    gallonsEl.textContent =
+      '≈ ' + Math.round(gallonsOneInch).toLocaleString() + ' gallons';
+
+    summerEl.textContent =
+      '≈ ' + Math.round(gallonsOneInch).toLocaleString() +
+      '–' + Math.round(gallonsOneAndHalf).toLocaleString() + ' gallons';
+
+    costEl.textContent =
+      '≈ $' + lowCost.toFixed(2) + '–$' + highCost.toFixed(2);
+
+    messageEl.innerHTML =
+      'Replacing <strong>' + Math.round(sqft).toLocaleString() +
+      ' sq. ft.</strong> of irrigated lawn could remove the need to apply this lawn-irrigation volume after the new landscape is established. ' +
+      'Actual savings depend on rainfall, irrigation habits, plant choices and establishment needs.';
+  }
+
+  calcBtn.addEventListener('click', calculateYard);
+
+  document.querySelectorAll('.yard-preset').forEach(function (button) {
+    button.addEventListener('click', function () {
+      input.value = button.dataset.sqft;
+      calculateYard();
+    });
+  });
+
+  input.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') calculateYard();
+  });
+
+  calculateYard();
+})();
+</script><div class="card-actions"><button class="action-btn primary" id="photoGalleryBtn">See Photos</button><button class="action-btn" id="wildflowerVideoBtn">Watch Video</button><button class="action-btn save-btn" data-object="water-wise">Save</button></div></div>
     </article>
   </section>
 
