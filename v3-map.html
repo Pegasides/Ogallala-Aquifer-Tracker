@@ -51,6 +51,7 @@ iframe{display:block;width:100%;height:100%;border:0;background:#243442}
 const frame=document.getElementById('timelineFrame');
 frame.addEventListener('load',()=>{
   try{
+    const win=frame.contentWindow;
     const doc=frame.contentDocument;
     if(!doc)return;
     const header=doc.querySelector('header');
@@ -58,8 +59,39 @@ frame.addEventListener('load',()=>{
     if(header)header.style.display='none';
     if(nav)nav.style.display='none';
     doc.documentElement.style.scrollBehavior='smooth';
+
+    // Preserve the Tracker's original 28-community set in the V3 experience:
+    // Portales, NM is a community marker; Hereford, TX remains a separate 2026 data-center example.
+    const normalizeCommunityLayer=()=>{
+      const layer=doc.getElementById('community-layer');
+      if(!layer)return;
+      const hereford=[...layer.querySelectorAll('.community-marker')].find(marker=>
+        (marker.title||'').startsWith('Hereford, TX')
+      );
+      if(!hereford)return;
+
+      const portales={name:'Portales',state:'NM',basin:'Southern',lat:34.1753553,lon:-103.3565191,x:105,y:433};
+      const pos=typeof win.getPoint==='function'?win.getPoint(portales):portales;
+      const marker=hereford.cloneNode(false);
+      marker.style.left=pos.x+'px';
+      marker.style.top=pos.y+'px';
+      marker.title='Portales, NM — Southern Basin reference community';
+      marker.addEventListener('click',()=>{
+        if(typeof win.showTooltip==='function'){
+          win.showTooltip(marker,"<strong>Portales, NM</strong><br><span style='color:#475569'>Southern Basin reference community.</span>");
+        }
+      });
+      hereford.replaceWith(marker);
+    };
+
+    const communityLayer=doc.getElementById('community-layer');
+    if(communityLayer){
+      normalizeCommunityLayer();
+      const observer=new MutationObserver(normalizeCommunityLayer);
+      observer.observe(communityLayer,{childList:true});
+    }
   }catch(e){
-    console.warn('Version 3 shell could not adjust embedded map chrome.',e);
+    console.warn('Version 3 shell could not adjust embedded map chrome or community normalization.',e);
   }
 });
 </script>
