@@ -40,27 +40,27 @@ jobs:
           npm install playwright@1.55.0
           npx playwright install --with-deps chromium
 
-      - name: Wait for public preview proxy
+      - name: Wait for immutable public preview
         env:
-          PREVIEW_BASE: https://raw.githack.com/Pegasides/Ogallala-Aquifer-Tracker/${{ github.sha }}/
+          PREVIEW_BASE: https://rawcdn.githack.com/Pegasides/Ogallala-Aquifer-Tracker/${{ github.sha }}/
         run: |
           set -euxo pipefail
           ready=0
           for i in $(seq 1 30); do
-            if curl -fsSI "${PREVIEW_BASE}v3.html" >/dev/null; then
+            if curl -fsS "${PREVIEW_BASE}v3.html" -o /dev/null; then
               ready=1
               break
             fi
             sleep 2
           done
           test "$ready" = "1"
-          curl -fsSI "${PREVIEW_BASE}v3.html"
-          curl -fsSI "${PREVIEW_BASE}v3-map.html"
-          curl -fsSI "${PREVIEW_BASE}groundwater-window.html"
-          curl -fsSI "${PREVIEW_BASE}sources.html"
-          curl -fsSI "${PREVIEW_BASE}Ogallala_Aquifer_Tracker_Sources_Poster_V3_1_verified.png"
+          curl -fsS "${PREVIEW_BASE}v3.html" -o /dev/null
+          curl -fsS "${PREVIEW_BASE}v3-map.html" -o /dev/null
+          curl -fsS "${PREVIEW_BASE}groundwater-window.html" -o /dev/null
+          curl -fsS "${PREVIEW_BASE}sources.html" -o /dev/null
+          curl -fsS "${PREVIEW_BASE}Ogallala_Aquifer_Tracker_Sources_Poster_V3_1_verified.png" -o /dev/null
 
       - name: Run browser checks through public preview URL
         env:
-          BASE_URL: https://raw.githack.com/Pegasides/Ogallala-Aquifer-Tracker/${{ github.sha }}/
+          BASE_URL: https://rawcdn.githack.com/Pegasides/Ogallala-Aquifer-Tracker/${{ github.sha }}/
         run: node scripts/v3-1-smoke.mjs
