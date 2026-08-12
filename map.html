@@ -1,773 +1,362 @@
-
-      <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Map Matrix - Ogallala Aquifer Tracker</title>
-    <style>
-        body { background-color: #2c3e50 !important; color: #ffffff !important; font-family: Arial, sans-serif; margin: 0; padding: 0; min-height: 100vh; display: flex; flex-direction: column; }
-        header { background-color: #1a252f; padding: 20px; text-align: center; border-bottom: 4px solid #1abc9c; flex-shrink: 0; }
-        h1 { margin: 0; font-size: 2.2rem; color: #ffffff; }
-        h2 { margin: 5px 0 0 0; color: #bdc3c7; font-size: 1.2rem; }
-        
-        nav { background-color: #34495e; padding: 10px; display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; border-bottom: 2px solid #2c3e50; flex-shrink: 0; }
-        nav a { color: #ffffff; text-decoration: none; padding: 10px 16px; background-color: #2c3e50; border: 2px solid #1abc9c; border-radius: 5px; font-weight: bold; font-size: 13px; }
-        nav a:hover { background-color: #1abc9c; color: #2c3e50; }
-        
-        .main-flex-row { flex: 1; display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; padding: 20px; gap: 20px; box-sizing: border-box; background-color: #1a252f; max-width: 1040px; margin: 20px auto; border-radius: 8px; width: 95%; }
-        
-        #map-viewport { width: 500px; height: 550px; background-color: #16161a; border: 2px solid #34495e; border-radius: 8px; position: relative; overflow: hidden; flex-shrink: 0; }
-        .map-grid { position: absolute; width: 500px; height: 500px; top: 25px; left: 0; }
-          #map-engine-layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 500px;
-    height: 500px;
-   z-index: 100;
-    pointer-events: none;
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Map - Ogallala Aquifer Tracker</title>
+<style>
+:root{
+  --bg:#1a252f;--panel:#22313f;--panel2:#2c3e50;--line:#496172;--aqua:#1abc9c;
+  --text:#ffffff;--muted:#bdc3c7;--blue:#3b82f6;--amber:#d97706;--red:#ef4444;
+  --lavender:#c4b5fd;--lavender-dark:#6d28d9;
 }
-        .state { position: absolute; border: 1px dashed #44444c; background: rgba(255,255,255,0.01); color: #444; font-size: 11px; font-weight: bold; padding: 5px; pointer-events: none; }
-        
-        /* OVERALL Aquifer Shape Layer (For 1950) */
-        #total-aquifer-1950 { position: absolute; top: 35px; left: 130px; width: 220px; height: 420px; background-color: rgba(43,108,176,0.7); border: 3px solid #2b6cb0; border-radius: 40% 50% 45% 60%; z-index: 4; display: none; pointer-events: none; }
-        .total-label { position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%); font-size: 14px; font-weight: bold; color: #fff; text-shadow: 1px 1px 4px #000; text-align: center; }
-
-        /* LARGE SEPARATED ERA CIRCLES (NO OVERLAP) */
-        .health-circle { position: absolute; transform: translate(-50%, -50%); border-radius: 50%; transition: all 0.2s ease-out; z-index: 5; pointer-events: none; display: block; }
-        .health-circle { 
-    position: absolute; 
-    width: 90px;
-    height: 90px;
-    transform: translate(-50%, -50%); 
-    border-radius: 50%; 
-    transition: all 0.2s ease-out; 
-    z-index: 5; 
-    pointer-events: none; 
-    display: block; 
+*{box-sizing:border-box}
+body{background:#2c3e50;color:var(--text);font-family:Arial,sans-serif;margin:0;min-height:100vh}
+header{background:#1a252f;padding:20px;text-align:center;border-bottom:4px solid var(--aqua)}
+header h1{margin:0;font-size:2.2rem}
+header h2{margin:5px 0 0;color:var(--muted);font-size:1.2rem}
+nav{background:#34495e;padding:10px;display:flex;justify-content:center;flex-wrap:wrap;gap:8px;border-bottom:2px solid #2c3e50}
+nav a{color:#fff;text-decoration:none;padding:10px 14px;background:#2c3e50;border:2px solid var(--aqua);border-radius:5px;font-weight:bold;font-size:13px}
+nav a.active{background:var(--aqua);color:#17313a}
+.timeline-panel{max-width:1040px;margin:18px auto 0;background:#1a252f;border-radius:10px;padding:18px;width:95%;text-align:center}
+.year-buttons{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.year-btn{cursor:pointer;border:2px solid #6f8090;background:#263746;color:#fff;border-radius:7px;padding:10px 18px;font-weight:800;font-size:15px}
+.year-btn.active{background:var(--lavender);border-color:#efeaff;color:#24133f;box-shadow:0 0 0 3px rgba(196,181,253,.22)}
+.slider-label{font-size:16px;font-weight:800;margin-bottom:8px}
+#yearSlider{width:min(520px,90%)}
+.slider-years{max-width:540px;margin:6px auto 0;display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}
+#playTimeline{margin-top:14px;cursor:pointer;border:1px solid var(--aqua);background:#21323f;color:#fff;border-radius:7px;padding:9px 14px;font-weight:800}
+.health-summary{max-width:760px;margin:18px auto 0;background:#22313f;border:1px solid #496172;border-radius:10px;padding:14px}
+.health-head{display:flex;justify-content:space-between;gap:12px;align-items:end;flex-wrap:wrap}
+.health-title{font-weight:900;font-size:18px}
+.health-value{font-size:24px;font-weight:900}
+.health-track{height:20px;background:#111820;border:1px solid #617280;border-radius:999px;overflow:hidden;margin:10px 0 4px}
+#health-bar{height:100%;width:60%;background:#ffcc00;transition:width .25s ease,background .25s ease}
+.health-note{color:var(--muted);font-size:12px;text-align:left}
+.basin-status-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:760px;margin:12px auto 0}
+.basin-status{background:#263746;border:1px solid #52687a;border-radius:8px;padding:10px;text-align:left}
+.basin-status strong{display:block;font-size:13px;color:#fff}
+.basin-status span{display:block;margin-top:3px;font-size:17px;font-weight:900}
+.main-flex-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;padding:20px;gap:20px;background:#1a252f;max-width:1040px;margin:20px auto;border-radius:10px;width:95%}
+.map-column{display:flex;flex-direction:column;align-items:center;width:500px;max-width:100%}
+#map-viewport{width:500px;height:550px;max-width:100%;background:#0f1115;border:2px solid #506474;border-radius:8px;position:relative;overflow:hidden}
+.map-grid{position:absolute;width:500px;height:500px;top:25px;left:0}
+#map-engine-layer{position:absolute;inset:0;width:500px;height:500px;z-index:100;pointer-events:none}
+.health-circle{position:absolute;width:100px;height:100px;transform:translate(-50%,-50%);border-radius:50%;transition:all .2s ease-out;z-index:150;pointer-events:none;display:grid;place-items:center;text-align:center;padding:8px;border:3px solid rgba(255,255,255,.72);box-shadow:0 0 0 2px rgba(0,0,0,.25)}
+.circle-label{font-size:12px;font-weight:900;color:#fff;text-shadow:1px 1px 3px #000}
+#community-layer{position:absolute;inset:0;width:100%;height:100%;z-index:200;pointer-events:auto}
+.side-panel{width:440px;max-width:100%;display:grid;gap:14px}
+.info-card{background:#2c3e50;border:1px solid #4e6575;border-radius:9px;padding:16px;text-align:left}
+.info-card h3{margin:0 0 10px;font-size:17px;color:var(--aqua)}
+.info-card p{margin:6px 0;color:var(--muted);font-size:14px;line-height:1.45}
+.metric-row{border-bottom:1px solid #425666;padding:8px 0;display:flex;justify-content:space-between;gap:12px;font-size:14px}
+.metric-row:last-child{border-bottom:none}
+.metric-row strong{text-align:right}
+.community-groups{display:grid;gap:10px}
+.community-group{border-left:4px solid #777;padding-left:10px}
+.community-group.blue{border-left-color:var(--blue)}
+.community-group.amber{border-left-color:var(--amber)}
+.community-group.red{border-left-color:var(--red)}
+.community-group strong{display:block;margin-bottom:3px}
+.community-group p{margin:0;font-size:13px}
+.hotspot{border-color:#a84343;background:#3b2528}
+.hotspot h3{color:#ff9c9c}
+.data-center-note{border-color:#735f99;background:#2c2840}
+.data-center-note h3{color:#d9ccff}
+.small-note{font-size:12px!important}
+@media(max-width:760px){
+  .basin-status-row{grid-template-columns:1fr}.main-flex-row{padding:12px}.map-column{width:100%}
+  #map-viewport{transform-origin:top left}.side-panel{width:100%}.slider-years{font-size:9px}
 }
-        .metric-row { border-bottom: 1px solid #34495e; padding: 6px 0; display: flex; justify-content: space-between; font-size: 0.85rem; }
-        .metric-row:last-child { border-bottom: none; }
-
-        @keyframes pulse {
-            0% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 0 0 rgba(239,68,68,0.7); }
-            70% { transform: translate(-50%, -50%) scale(1.2); box-shadow: 0 0 0 10px rgba(239,68,68,0); }
-            100% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 0 0 rgba(239,68,68,0); }
-        }
-    </style>
+</style>
 </head>
 <body>
+<header>
+  <h1>Ogallala Aquifer Tracker</h1>
+  <h2><span id="year-heading-prefix">Year</span>: <span id="year-display">2026</span></h2>
+</header>
+<nav>
+  <a href="index.html">Ogallala Aquifer Tracker — Substack</a>
+  <a class="active" href="map.html">Interactive Tracker</a>
+  <a href="timeline-1950.html">1950 Baseline</a>
+  <a href="timeline-1980.html">1980 Timeline</a>
+  <a href="present.html">Present 2026</a>
+  <a href="timeline-projection.html">2050 Projection</a>
+</nav>
 
-    <header>
-        <h1>Ogallala Aquifer Tracker</h1>
-        <h2>Year: <span id="year-display">2026</span></h2>
-    </header>
+<section class="timeline-panel">
+  <div class="year-buttons">
+    <button class="year-btn" data-year="1950">1950</button>
+    <button class="year-btn" data-year="1980">1980</button>
+    <button class="year-btn active" data-year="2026">2026</button>
+    <button class="year-btn" data-year="2050">2050</button>
+  </div>
+  <div class="slider-label"><span id="sliderLabelPrefix">Year</span> <span id="sliderYear">2026</span></div>
+  <input type="range" id="yearSlider" min="0" max="7" value="2" step="1">
+  <div class="slider-years">
+    <span>1950</span><span>1980</span><span>2026</span><span>2030</span><span>2035</span><span>2040</span><span>2045</span><span>2050</span>
+  </div>
+  <button id="playTimeline">▶ Play Timeline</button>
 
-    <nav>
-        <a href="index.html">Ogallala Aquifer Tracker</a>
-        <a href="map.html" style="background-color: #1abc9c; color: #2c3e50;">Interactive Map Matrix</a>
-        <a href="timeline-1950.html">1950 Baseline</a>
-        <a href="timeline-1980.html">1980 Timeline</a>
-        <a href="present.html">Present Day 2026</a>
-        <a href="timeline-projection.html">2050 Projection</a>
-        <a href="dashboard.html">Data Dashboard</a>
-    </nav>
-    
-<div style="text-align:center; padding:10px;">
-
-
-<button onclick="setTimelineYear(1950)">1950</button>
-
-<button onclick="setTimelineYear(1980)">1980</button>
-
-<button onclick="setTimelineYear(2026)">2026</button>
-
-<button onclick="setTimelineYear(2050)">2050</button>
-
-
-      
-
-<br><br>
-
-<label for="yearSlider">
-    Forecast Year:
-    <span id="sliderYear">2026</span>
-</label>
-
-
-      
-<br>   
-  
-<input 
-    type="range"
-    id="yearSlider"
-    min="0"
-    max="7"
-    value="2"
-    step="1"
-    style="width:300px;"
->
-
-<br><br>
-
-<button id="playTimeline">
-    ▶ Play Forecast
-</button>
-
-      
-<div style="width:320px; margin:auto; display:flex; justify-content:space-between; font-size:12px;">
-    <span>1950</span>
-    <span>1980</span>
-    <span>2026</span>
-    <span>2030</span>
-    <span>2035</span>
-    <span>2040</span>
-    <span>2045</span>
-    <span>2050</span>
-</div>
-
-</div>
-    
-      
+  <div class="health-summary">
+    <div class="health-head">
+      <div class="health-title" id="health-title">Relative Aquifer Health — 2026</div>
+      <div class="health-value" id="status-health">60%</div>
     </div>
+    <div class="health-track"><div id="health-bar"></div></div>
+    <div class="health-note">A comparative project index for the selected year. The color matrix below remains the visual key for regional condition.</div>
+  </div>
 
-<p id="status-health">
+  <div class="basin-status-row">
+    <div class="basin-status"><strong>Northern Basin</strong><span id="status-north">Stable</span></div>
+    <div class="basin-status"><strong>Central Basin</strong><span id="status-central">Stressed</span></div>
+    <div class="basin-status"><strong>Southern Basin</strong><span id="status-south">Critical</span></div>
+  </div>
+</section>
 
-<div style="
-    width:250px;
-    height:20px;
-    border:1px solid #333;
-    border-radius:10px;
-    margin:10px auto;
-    overflow:hidden;
-">
+<div class="main-flex-row">
+  <div class="map-column">
+    <div id="map-viewport">
+      <div class="map-grid">
+        <div id="map-engine-layer" aria-label="Ogallala Aquifer geographic layer"></div>
 
-<div id="health-bar" style="
-    height:100%;
-    width:60%;
-    background:#ff9900;
-">
-</div>
+        <div id="circle-ne" class="health-circle" style="top:110px;left:260px;background:rgba(43,108,176,.70)">
+          <div class="circle-label" id="lbl-ne">Northern Basin<br>Stable</div>
+        </div>
+        <div id="circle-ks" class="health-circle" style="top:230px;left:280px;background:rgba(217,119,6,.72)">
+          <div class="circle-label" id="lbl-ks">Central Basin<br>Stressed</div>
+        </div>
+        <div id="circle-tx" class="health-circle" style="top:385px;left:180px;background:rgba(239,68,68,.72)">
+          <div class="circle-label" id="lbl-tx">Southern Basin<br>Critical</div>
+        </div>
 
-</div>
+        <div id="community-layer"></div>
+      </div>
+    </div>
+  </div>
 
-      
+  <aside class="side-panel">
+    <section class="info-card">
+      <h3>Selected-Year Snapshot</h3>
+      <div class="metric-row"><span>Selected year</span><strong id="snapshot-year">2026</strong></div>
+      <div class="metric-row"><span>Relative aquifer health</span><strong id="snapshot-health">60%</strong></div>
+      <div class="metric-row"><span>Condition summary</span><strong id="snapshot-condition">Split regional matrix</strong></div>
+      <div class="metric-row"><span>Monitored communities</span><strong id="snapshot-communities">28 current nodes</strong></div>
+    </section>
 
-</p>
+    <section class="info-card">
+      <h3>Community Condition Matrix</h3>
+      <div class="community-groups">
+        <div class="community-group blue"><strong>Northern Basin</strong><p>Alliance, Grand Island, North Platte, Ogallala, Scottsbluff; Pine Ridge, Martin; Torrington, Pine Bluffs; Yuma.</p></div>
+        <div class="community-group amber"><strong>Central Basin</strong><p>Garden City, Colby, Dodge City, Goodland, Liberal; Burlington, Wray; Tucumcari.</p></div>
+        <div class="community-group red"><strong>Southern Basin</strong><p>Amarillo, Dalhart, Pampa, Plainview, Lubbock, Hereford; Guymon, Beaver, Boise City; Clovis.</p></div>
+      </div>
+      <p class="small-note">Community marker colors change with the selected year. The matrix itself is the color key, so no second legend is repeated here.</p>
+    </section>
 
-<p id="status-north">
-Northern Basin: Stable
-</p>
+    <section class="info-card hotspot">
+      <h3>Critical Hotspots — Decline Greater Than 150 ft</h3>
+      <p>This threshold remains part of the main year view because large groundwater-level declines are critical context.</p>
+      <p class="small-note"><strong>Important:</strong> community colors show regional condition; they do not by themselves mean every listed community has experienced a decline greater than 150 feet. Verified hotspot locations should be pinned only where site-specific data supports that threshold.</p>
+    </section>
 
-<p id="status-central">
-Central Basin: Stressed
-</p>
-
-<p id="status-south">
-Southern Plains: Critical
-</p>
-
-</div>
-      
-     <div class="main-flex-row">
-        
-        <!-- LEFT COLUMN: MAP GRAPHICS ENGINE -->  <div style="display: flex; flex-direction: column; align-items: center; width: 500px;">
-            <div id="map-viewport">
-                <div class="map-grid">
-                      <div id="map-engine-layer" aria-label="Map Engine 2.0 geographic layer"></div>
-                    <!-- States Matrix Boundary Layout -->
-                    <div class="state" style="top: 10px; left: 140px; width: 200px; height: 60px;">SOUTH DAKOTA</div>
-                    <div class="state" style="top: 80px; left: 10px; width: 120px; height: 80px;">WYOMING</div>
-                    <div class="state" style="top: 80px; left: 140px; width: 220px; height: 80px;">NEBRASKA</div>
-                    <div class="state" style="top: 170px; left: 10px; width: 120px; height: 95px;">COLORADO</div>
-                    <div class="state" style="top: 170px; left: 140px; width: 220px; height: 90px;">KANSAS</div>
-                    <div class="state" style="top: 270px; left: 10px; width: 120px; height: 110px;">NEW MEXICO</div>
-                    <div class="state" style="top: 270px; left: 140px; width: 220px; height: 45px;">OKLAHOMA</div>
-                    <div class="state" style="top: 325px; left: 110px; width: 180px; height: 165px;">TEXAS</div>
-                    
-                    <!-- 1950 TOTAL AQUIFER VIEWPORT BLOB -->
-                    <div id="total-aquifer-1950">
-                        <div class="total-label">Ogallala Aquifer<br>Unified Baseline (OK)<br>Volume: 100%</div>
-                    </div>
-
-                    <!-- 3 LARGE CHRONOLOGICAL HEALTH CIRCLES (POSITIONED TO NEVER OVERLAP) -->
-                    <div id="circle-ne" class="health-circle" style="top: 110px; left: 260px; background-color: rgba(43,108,176,0.65); border: 2px solid #2b6cb0;">
-                        <div class="circle-label" id="lbl-ne">Northern Basin</div>
-                    </div>
-                    <div id="circle-ks" class="health-circle" style="top: 230px; left: 280px; background-color: rgba(138,90,54,0.65); border: 2px solid #8a5a36;">
-                        <div class="circle-label" id="lbl-ks">Central Basin</div>
-                    </div>
-                    <div id="circle-tx" class="health-circle" style="top: 385px; left: 180px; background-color: rgba(220,38,38,0.65); border: 2px solid #dc2626;">
-                        <div class="circle-label" id="lbl-tx">Southern Plains</div>
-                    </div>
-
-                    <!-- COMPLETE 28 CORRECTED MUNICIPAL NODES ARRAY FRAME -->
-                    <div style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 50; pointer-events: none;">
-                       <div id="community-layer"
-style="
-position:absolute;
-width:100%;
-height:100%;
-top:0;
-left:0;
-z-index:200;
-pointer-events:auto;
-
-                             
-"></div>
-
-                           <!--
-                          
-                        
--->
-
+    <section class="info-card data-center-note" id="data-center-panel">
+      <h3>2026 Data Centers & Major New Water Users</h3>
+      <p id="data-center-copy">This layer is being retained for the present-day view. Verified facility locations inside, along the edge of, and just outside the Ogallala boundary will be added as a dedicated overlay rather than guessed from incomplete coordinates.</p>
+    </section>
+  </aside>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
 <script src="geography.js"></script>
 <script src="map-engine.js"></script>
-
-
-
-
-                      
-                      
 <script>
-document.getElementById("year-display").textContent = "2026";
-
-console.log("Ogallala Aquifer Tracker engine loaded.");
-
 const communities = [
-    { id: 1, name: "Alliance", state: "NE", basin: "Northern", lat: 42.102567, lon: -102.876188, x: 137, y: 86 },
-    { id: 2, name: "Grand Island", state: "NE", basin: "Northern", lat: 40.921352, lon: -98.358559, x: 441, y: 138 },
-    { id: 3, name: "North Platte", state: "NE", basin: "Northern", lat: 41.124960, lon: -100.750359, x: 280, y: 129 },
-    { id: 4, name: "Ogallala", state: "NE", basin: "Northern", lat: 41.129595, lon: -101.720677, x: 215, y: 129 },
-    { id: 5, name: "Scottsbluff", state: "NE", basin: "Northern", lat: 41.868088, lon: -103.662035, x: 85, y: 96 },
-
-    { id: 6, name: "Pine Ridge", state: "SD", basin: "Northern", lat: 43.026919, lon: -102.552352, x: 159, y: 46 },
-    { id: 7, name: "Martin", state: "SD", basin: "Northern", lat: 43.174875, lon: -101.732315, x: 214, y: 39 },
-
-    { id: 8, name: "Torrington", state: "WY", basin: "Northern", lat: 42.065050, lon: -104.173528, x: 50, y: 88 },
-    { id: 9, name: "Pine Bluffs", state: "WY", basin: "Northern", lat: 41.180212, lon: -104.074782, x: 57, y: 126 },
-
-    { id: 10, name: "Yuma", state: "CO", basin: "Northern", lat: 40.122511, lon: -102.715636, x: 148, y: 173 },
-
-    { id: 11, name: "Garden City", state: "KS", basin: "Central", lat: 37.975876, lon: -100.850884, x: 273, y: 266 },
-    { id: 12, name: "Dodge City", state: "KS", basin: "Central", lat: 37.760670, lon: -100.017863, x: 329, y: 276 },
-    { id: 13, name: "Liberal", state: "KS", basin: "Central", lat: 37.046108, lon: -100.927706, x: 268, y: 307 },
-    { id: 14, name: "Goodland", state: "KS", basin: "Central", lat: 39.348512, lon: -101.713819, x: 215, y: 206 },
-    { id: 15, name: "Colby", state: "KS", basin: "Central", lat: 39.384564, lon: -101.044978, x: 260, y: 205 },
-
-    { id: 16, name: "Burlington", state: "CO", basin: "Central", lat: 39.304169, lon: -102.271412, x: 178, y: 208 },
-    { id: 17, name: "Wray", state: "CO", basin: "Central", lat: 40.079920, lon: -102.228597, x: 181, y: 174 },
-
-    { id: 18, name: "Tucumcari", state: "NM", basin: "Central", lat: 35.170291, lon: -103.705046, x: 82, y: 389 },
-
-    { id: 19, name: "Amarillo", state: "TX", basin: "Southern", lat: 35.198064, lon: -101.833107, x: 207, y: 388 },
-    { id: 20, name: "Dalhart", state: "TX", basin: "Southern", lat: 36.057423, lon: -102.512212, x: 162, y: 350 },
-    { id: 21, name: "Pampa", state: "TX", basin: "Southern", lat: 35.547852, lon: -100.965032, x: 266, y: 372 },
-    { id: 22, name: "Plainview", state: "TX", basin: "Southern", lat: 34.191119, lon: -101.723501, x: 215, y: 432 },
-    { id: 23, name: "Lubbock", state: "TX", basin: "Southern", lat: 33.561901, lon: -101.888883, x: 204, y: 459 },
-
-    { id: 24, name: "Guymon", state: "OK", basin: "Southern", lat: 36.690101, lon: -101.477046, x: 231, y: 323 },
-    { id: 25, name: "Beaver", state: "OK", basin: "Southern", lat: 36.815087, lon: -100.523543, x: 295, y: 317 },
-    { id: 26, name: "Boise City", state: "OK", basin: "Southern", lat: 36.731336, lon: -102.509522, x: 162, y: 321 },
-
-    { id: 27, name: "Clovis", state: "NM", basin: "Southern", lat: 34.438569, lon: -103.194194, x: 116, y: 421 },
-
-    { id: 28, name: "Hereford", state: "TX", basin: "Southern", lat: 34.822603, lon: -102.400159, x: 169, y: 404 }
+  {id:1,name:"Alliance",state:"NE",basin:"Northern",lat:42.102567,lon:-102.876188},
+  {id:2,name:"Grand Island",state:"NE",basin:"Northern",lat:40.921352,lon:-98.358559},
+  {id:3,name:"North Platte",state:"NE",basin:"Northern",lat:41.124960,lon:-100.750359},
+  {id:4,name:"Ogallala",state:"NE",basin:"Northern",lat:41.129595,lon:-101.720677},
+  {id:5,name:"Scottsbluff",state:"NE",basin:"Northern",lat:41.868088,lon:-103.662035},
+  {id:6,name:"Pine Ridge",state:"SD",basin:"Northern",lat:43.026919,lon:-102.552352},
+  {id:7,name:"Martin",state:"SD",basin:"Northern",lat:43.174875,lon:-101.732315},
+  {id:8,name:"Torrington",state:"WY",basin:"Northern",lat:42.065050,lon:-104.173528},
+  {id:9,name:"Pine Bluffs",state:"WY",basin:"Northern",lat:41.180212,lon:-104.074782},
+  {id:10,name:"Yuma",state:"CO",basin:"Northern",lat:40.122511,lon:-102.715636},
+  {id:11,name:"Garden City",state:"KS",basin:"Central",lat:37.975876,lon:-100.850884},
+  {id:12,name:"Dodge City",state:"KS",basin:"Central",lat:37.760670,lon:-100.017863},
+  {id:13,name:"Liberal",state:"KS",basin:"Central",lat:37.046108,lon:-100.927706},
+  {id:14,name:"Goodland",state:"KS",basin:"Central",lat:39.348512,lon:-101.713819},
+  {id:15,name:"Colby",state:"KS",basin:"Central",lat:39.384564,lon:-101.044978},
+  {id:16,name:"Burlington",state:"CO",basin:"Central",lat:39.304169,lon:-102.271412},
+  {id:17,name:"Wray",state:"CO",basin:"Central",lat:40.079920,lon:-102.228597},
+  {id:18,name:"Tucumcari",state:"NM",basin:"Central",lat:35.170291,lon:-103.705046},
+  {id:19,name:"Amarillo",state:"TX",basin:"Southern",lat:35.198064,lon:-101.833107},
+  {id:20,name:"Dalhart",state:"TX",basin:"Southern",lat:36.057423,lon:-102.512212},
+  {id:21,name:"Pampa",state:"TX",basin:"Southern",lat:35.547852,lon:-100.965032},
+  {id:22,name:"Plainview",state:"TX",basin:"Southern",lat:34.191119,lon:-101.723501},
+  {id:23,name:"Lubbock",state:"TX",basin:"Southern",lat:33.561901,lon:-101.888883},
+  {id:24,name:"Guymon",state:"OK",basin:"Southern",lat:36.690101,lon:-101.477046},
+  {id:25,name:"Beaver",state:"OK",basin:"Southern",lat:36.815087,lon:-100.523543},
+  {id:26,name:"Boise City",state:"OK",basin:"Southern",lat:36.731336,lon:-102.509522},
+  {id:27,name:"Clovis",state:"NM",basin:"Southern",lat:34.438569,lon:-103.194194},
+  {id:28,name:"Hereford",state:"TX",basin:"Southern",lat:34.822603,lon:-102.400159}
 ];
 
-
-
-
-
-
-      
-
-      
-
-console.log("Communities Loaded:", communities);
-
-// Community monitoring status framework
-
-const communityStatus = {
-    Torrington: {
-        region: "Northern Basin",
-        note: "Ogallala monitoring point"
-    },
-    "Pine Bluffs": {
-        region: "Northern Basin",
-        note: "Ogallala monitoring point"
-    }
-};
-      
 const aquiferTimeline = {
-
-1950: {
-        year: "1950",
-        overallHealth: 100,
-        northern: "Healthy",
-        central: "Healthy",
-        southern: "Healthy"
-    },
-
-    1980: {
-        year: "1980",
-        overallHealth: 85,
-        northern: "Good",
-        central: "Declining",
-        southern: "Declining"
-    },
-
-    2026: {
-        year: "2026",
-        overallHealth: 60,
-        northern: "Stable",
-        central: "Stressed",
-        southern: "Critical"
-    },
-
-    2030: {
-        year: "2030",
-        overallHealth: 55,
-        northern: "Stable",
-        central: "Stressed",
-        southern: "Critical"
-    },
-
-    2035: {
-        year: "2035",
-        overallHealth: 50,
-        northern: "Stressed",
-        central: "Stressed",
-        southern: "Severe"
-    },
-
-    2040: {
-        year: "2040",
-        overallHealth: 45,
-        northern: "Stressed",
-        central: "Critical",
-        southern: "Severe"
-    },
-
-    2045: {
-        year: "2045",
-        overallHealth: 42,
-        northern: "Stressed",
-        central: "Critical",
-        southern: "Severe"
-    },
-
-    2050: {
-        year: "2050",
-        overallHealth: 40,
-        northern: "Stressed",
-        central: "Critical",
-        southern: "Severe"
-    }
-
+  1950:{year:"1950",overallHealth:100,northern:"Healthy",central:"Healthy",southern:"Healthy",condition:"Historical unified baseline"},
+  1980:{year:"1980",overallHealth:85,northern:"Good",central:"Declining",southern:"Declining",condition:"Early regional divergence"},
+  2026:{year:"2026",overallHealth:60,northern:"Stable",central:"Stressed",southern:"Critical",condition:"Split regional matrix"},
+  2030:{year:"2030",overallHealth:55,northern:"Stable",central:"Stressed",southern:"Critical",condition:"Projected regional stress"},
+  2035:{year:"2035",overallHealth:50,northern:"Stressed",central:"Stressed",southern:"Severe",condition:"Projected increasing stress"},
+  2040:{year:"2040",overallHealth:45,northern:"Stressed",central:"Critical",southern:"Severe",condition:"Projected critical regional split"},
+  2045:{year:"2045",overallHealth:42,northern:"Stressed",central:"Critical",southern:"Severe",condition:"Projected restricted core"},
+  2050:{year:"2050",overallHealth:40,northern:"Stressed",central:"Critical",southern:"Severe",condition:"Projected critical restricted core"}
 };
-    
-document.getElementById("year-display").textContent = aquiferTimeline[2026].year;
+const timelineYears=[1950,1980,2026,2030,2035,2040,2045,2050];
 
-console.log("Aquifer Timeline Loaded:", aquiferTimeline);
-
-     function drawCommunities() {
-
-    const layer = document.getElementById("community-layer");
-
-    communities.forEach(city => {
-
-        const marker = document.createElement("div");
-marker.className = "community-marker";
-marker.dataset.latitude = city.lat;
-marker.dataset.longitude = city.lon;
-
-          
-const position = Geography.project(city.lat, city.lon);
-marker.style.position = "absolute";
-          
-marker.style.width = "10px";
-marker.style.height = "10px";
-     marker.style.transition = "all 0.2s ease";     
-
-   marker.style.background = "magenta";    
-marker.style.border = "2px solid #ffffff";
-marker.style.zIndex = "999";
-        marker.style.borderRadius = "50%";
-      marker.style.left = position.x + "px";
-marker.style.top = position.y + "px"; 
-
-        marker.title = city.name + ", " + city.state;
-marker.dataset.city = city.name;
-       marker.dataset.state = city.state;   
-marker.dataset.region = "Ogallala Aquifer";
-marker.addEventListener("mouseenter", function() {
-    marker.style.width = "16px";
-    marker.style.height = "16px";
-    marker.style.zIndex = "1200";
-});
-
-marker.addEventListener("mouseleave", function() {
-    marker.style.width = "10px";
-    marker.style.height = "10px";
-    marker.style.zIndex = "999";
-});
-marker.addEventListener("click", function() {
-
-    const existing = document.getElementById("community-info");
-
-    if (existing) {
-        existing.remove();
-    }
-
-    const info = document.createElement("div");
-
-    info.id = "community-info";
-
-    info.style.position = "absolute";
-   info.style.left = (position.x + 15) + "px";
-info.style.top = (position.y + 15) + "px";
-    info.style.background = "#ffffff";
-    info.style.color = "#000000";
-    info.style.border = "2px solid #333";
-    info.style.borderRadius = "6px";
-    info.style.padding = "10px";
-    info.style.zIndex = "500";
-    info.style.fontSize = "14px";
-    info.style.boxShadow = "2px 2px 6px rgba(0,0,0,0.4)";
-
-    info.innerHTML =
-        "<b>" + city.name + ", " + city.state + "</b><br>" +
-        "Ogallala Aquifer Community<br>" +
-        "Monitoring Region: " + marker.dataset.region;
-
-    document.getElementById("map-viewport").appendChild(info);
-
-info.style.transition = "opacity 0.5s ease";
-
-setTimeout(function() {
-    if (info) {
-        info.style.opacity = "0";
-    }
-}, 4500);
-
-setTimeout(function() {
-    if (info) {
-        info.style.display = "none";
-    }
-}, 5000);
- 
-});    
-        layer.appendChild(marker);
-
-    });
-
+function drawCommunities(){
+  const layer=document.getElementById("community-layer");
+  layer.innerHTML="";
+  communities.forEach(city=>{
+    const marker=document.createElement("div");
+    marker.className="community-marker";
+    marker.dataset.latitude=city.lat;
+    marker.dataset.longitude=city.lon;
+    marker.dataset.city=city.name;
+    marker.dataset.state=city.state;
+    marker.dataset.basin=city.basin;
+    marker.style.position="absolute";
+    marker.style.width="11px";
+    marker.style.height="11px";
+    marker.style.borderRadius="50%";
+    marker.style.background="#ffcc00";
+    marker.style.border="2px solid #fff";
+    marker.style.zIndex="999";
+    marker.style.transition="all .2s ease";
+    marker.title=city.name+", "+city.state;
+    marker.addEventListener("mouseenter",()=>{marker.style.width="17px";marker.style.height="17px";marker.style.zIndex="1200"});
+    marker.addEventListener("mouseleave",()=>{marker.style.width="11px";marker.style.height="11px";marker.style.zIndex="999"});
+    marker.addEventListener("click",()=>showCommunityInfo(marker));
+    layer.appendChild(marker);
+  });
 }
 
+function showCommunityInfo(marker){
+  const old=document.getElementById("community-info"); if(old) old.remove();
+  const info=document.createElement("div");
+  info.id="community-info";
+  info.style.position="absolute";
+  info.style.left=marker.style.left;
+  info.style.top=marker.style.top;
+  info.style.transform="translate(12px,12px)";
+  info.style.background="#fff";
+  info.style.color="#000";
+  info.style.border="2px solid #333";
+  info.style.borderRadius="6px";
+  info.style.padding="9px";
+  info.style.zIndex="1400";
+  info.style.fontSize="13px";
+  info.innerHTML="<b>"+marker.dataset.city+", "+marker.dataset.state+"</b><br>"+marker.dataset.basin+" Basin community";
+  document.getElementById("map-viewport").appendChild(info);
+  setTimeout(()=>{if(info) info.remove()},4500);
+}
+
+function positionCommunitiesOnGeographicMap(){
+  if(!window.MapEngine || !MapEngine.projection) return;
+  document.querySelectorAll(".community-marker").forEach(marker=>{
+    const projected=MapEngine.projection([Number(marker.dataset.longitude),Number(marker.dataset.latitude)]);
+    if(!projected) return;
+    marker.style.left=projected[0]+"px";
+    marker.style.top=projected[1]+"px";
+    marker.style.transform="translate(-50%,-50%)";
+  });
+}
+
+function communityColor(year,state){
+  if(year===1950) return "#3b82f6";
+  if(year===1980) return (state==="TX"||state==="KS") ? "#d4a017" : "#3b82f6";
+  if(year===2026) return state==="TX" ? "#ef4444" : state==="KS" ? "#d97706" : "#3b82f6";
+  if(year>=2050) return (state==="TX"||state==="NM"||state==="OK") ? "#991b1b" : state==="KS" ? "#ef4444" : "#d97706";
+  if(year>=2040) return (state==="TX"||state==="NM"||state==="OK") ? "#991b1b" : state==="KS" ? "#ef4444" : "#d97706";
+  return state==="TX" ? "#ef4444" : state==="KS" ? "#d97706" : "#3b82f6";
+}
+
+function updateCommunityMarkers(year){
+  document.querySelectorAll(".community-marker").forEach(marker=>{marker.style.background=communityColor(year,marker.dataset.state)});
+}
+
+function basinColor(status){
+  if(status==="Healthy"||status==="Good"||status==="Stable") return "rgba(43,108,176,.72)";
+  if(status==="Declining"||status==="Stressed") return "rgba(217,119,6,.76)";
+  if(status==="Critical") return "rgba(239,68,68,.76)";
+  if(status==="Severe") return "rgba(127,29,29,.82)";
+  return "rgba(100,116,139,.72)";
+}
+
+function healthColor(value){
+  if(value>=80) return "#3b82f6";
+  if(value>=60) return "#d4a017";
+  if(value>=40) return "#d97706";
+  return "#991b1b";
+}
+
+function setActiveYearButton(year){
+  document.querySelectorAll(".year-btn").forEach(btn=>btn.classList.toggle("active",Number(btn.dataset.year)===year));
+}
+
+function updateAquiferYear(year){
+  const data=aquiferTimeline[year]; if(!data) return;
+  const projected=year>2026;
+  document.getElementById("year-display").textContent=data.year;
+  document.getElementById("year-heading-prefix").textContent=projected?"Projection Year":"Year";
+  document.getElementById("sliderLabelPrefix").textContent=projected?"Projection Year":"Year";
+  document.getElementById("sliderYear").textContent=data.year;
+  document.getElementById("health-title").textContent=(projected?"Projected Relative Aquifer Health — ":"Relative Aquifer Health — ")+data.year;
+  document.getElementById("status-health").textContent=data.overallHealth+"%";
+  const bar=document.getElementById("health-bar"); bar.style.width=data.overallHealth+"%"; bar.style.background=healthColor(data.overallHealth);
+  document.getElementById("status-north").textContent=data.northern;
+  document.getElementById("status-central").textContent=data.central;
+  document.getElementById("status-south").textContent=data.southern;
+  document.getElementById("lbl-ne").innerHTML="Northern Basin<br>"+data.northern;
+  document.getElementById("lbl-ks").innerHTML="Central Basin<br>"+data.central;
+  document.getElementById("lbl-tx").innerHTML="Southern Basin<br>"+data.southern;
+  document.getElementById("circle-ne").style.background=basinColor(data.northern);
+  document.getElementById("circle-ks").style.background=basinColor(data.central);
+  document.getElementById("circle-tx").style.background=basinColor(data.southern);
+  document.getElementById("snapshot-year").textContent=projected?data.year+" projection":data.year;
+  document.getElementById("snapshot-health").textContent=data.overallHealth+"%";
+  document.getElementById("snapshot-condition").textContent=data.condition;
+  document.getElementById("snapshot-communities").textContent=year===2026?"28 current nodes":"28 reference communities";
+  const dc=document.getElementById("data-center-panel"); dc.style.display=year===2026?"block":"none";
+  setActiveYearButton(year);
+  updateCommunityMarkers(year);
+}
+
+function setTimelineYear(year){
+  const index=timelineYears.indexOf(year); if(index<0) return;
+  document.getElementById("yearSlider").value=index;
+  updateAquiferYear(year);
+}
+
+document.querySelectorAll(".year-btn").forEach(btn=>btn.addEventListener("click",()=>setTimelineYear(Number(btn.dataset.year))));
+document.getElementById("yearSlider").addEventListener("input",function(){updateAquiferYear(timelineYears[Number(this.value)])});
+
+let timelinePlaying=false,timelineTimer;
+document.getElementById("playTimeline").addEventListener("click",function(){
+  timelinePlaying=!timelinePlaying;
+  if(timelinePlaying){
+    this.textContent="⏸ Pause Timeline";
+    let currentIndex=Number(document.getElementById("yearSlider").value);
+    timelineTimer=setInterval(()=>{currentIndex=(currentIndex+1)%timelineYears.length;document.getElementById("yearSlider").value=currentIndex;updateAquiferYear(timelineYears[currentIndex])},2000);
+  }else{
+    this.textContent="▶ Play Timeline";clearInterval(timelineTimer);
+  }
+});
 
 drawCommunities();
-
-function positionCommunitiesOnGeographicMap() {
-
-    if (!MapEngine.projection) {
-        return;
-    }
-
-    document.querySelectorAll(".community-marker").forEach(marker => {
-
-        const latitude = Number(marker.dataset.latitude);
-        const longitude = Number(marker.dataset.longitude);
-
-        const projected = MapEngine.projection([
-            longitude,
-            latitude
-        ]);
-
-        if (!projected) {
-            return;
-        }
-
-        marker.style.left = projected[0] + "px";
-        marker.style.top = projected[1] + "px";
-        marker.style.transform = "translate(-50%, -50%)";
-    });
-
-    console.log("Communities positioned on geographic map.");
-}
-
-if (MapEngine.projection) {
-    positionCommunitiesOnGeographicMap();
-} else {
-    window.addEventListener(
-        "mapengine:geography-ready",
-        positionCommunitiesOnGeographicMap,
-        { once: true }
-    );
-}
-
-
-      
-
-const timelineYears = [
-    1950,
-    1980,
-    2026,
-    2030,
-    2035,
-    2040,
-    2045,
-    2050
-];
-      
-function setTimelineYear(year) {
-
-    const index = timelineYears.indexOf(year);
-
-    if (index === -1) return;
-
-    document.getElementById("yearSlider").value = index;
-
-    document.getElementById("sliderYear").textContent = year;
-
-    updateAquiferYear(year);
-
-    updateCommunityMarkers(year);
-
-}
-
-
-
-
-
-
-      
-
-document.getElementById("yearSlider").addEventListener("input", function() {
-
-    const year = timelineYears[this.value];
-
-    document.getElementById("sliderYear").textContent = year;
-
-    updateAquiferYear(year);
-    updateCommunityMarkers(year);
-
-});
-
-
-
-
-let timelinePlaying = false;
-let timelineTimer;
-
-document.getElementById("playTimeline").addEventListener("click", function() {
-
-    timelinePlaying = !timelinePlaying;
-
-    if (timelinePlaying) {
-
-        this.textContent = "⏸ Pause Forecast";
-
-        let currentIndex = Number(
-            document.getElementById("yearSlider").value
-        );
-
-        timelineTimer = setInterval(function() {
-
-            currentIndex++;
-
-            if (currentIndex > timelineYears.length - 1) {
-                currentIndex = 0;
-            }
-
-            document.getElementById("yearSlider").value = currentIndex;
-
-            const year = timelineYears[currentIndex];
-
-            document.getElementById("sliderYear").textContent = year;
-
-            updateAquiferYear(year);
-            updateCommunityMarkers(year);
-
-        }, 2000);
-
-    } else {
-
-        this.textContent = "▶ Play Forecast";
-
-        clearInterval(timelineTimer);
-
-    }
-
-});
-
-      
- function updateCommunityMarkers(year) {
-
-    const markers = document.querySelectorAll("#community-layer div");
-
-    markers.forEach(marker => {
-
-        const state = marker.dataset.state;
-
-        // Default baseline colors
-        let color = "#00ff00";
-
-        if (year === 1950) {
-            color = "#00ff00";
-        }
-
-        if (year === 1980) {
-
-            if (state === "TX" || state === "KS") {
-                color = "#d4a017";   // early stress
-            } else {
-                color = "#ffff00";   // stable
-            }
-
-        }
-
-        if (year === 2026) {
-
-            if (state === "TX") {
-                color = "#ff3300";   // critical
-            } 
-            else if (state === "KS") {
-                color = "#ff9900";   // stressed
-            } 
-            else {
-                color = "#ffcc00";   // moderate
-            }
-
-        }
-
-        if (year === 2050) {
-
-            if (state === "TX" || state === "NM" || state === "OK") {
-                color = "#990000";   // severe
-            }
-            else if (state === "KS") {
-                color = "#ff0000";   // critical
-            }
-            else {
-                color = "#ff9900";   // stressed
-            }
-
-        }
-
-        marker.style.background = color;
-
-    });
-
-}
-      
-function updateAquiferYear(year) {
-
-    const data = aquiferTimeline[year];
-
-    const healthBar = document.getElementById("health-bar");
-
-    healthBar.style.width = data.overallHealth + "%";
-
-    if (data.overallHealth >= 80) {
-        healthBar.style.background = "#00aa00";
-    }
-    else if (data.overallHealth >= 60) {
-        healthBar.style.background = "#ffcc00";
-    }
-    else if (data.overallHealth >= 40) {
-        healthBar.style.background = "#ff9900";
-    }
-    else {
-        healthBar.style.background = "#990000";
-    }
-          
-// Update basin colors based on health status
-
-if (data.northern === "Healthy") {
-    document.getElementById("circle-ne").style.background = "rgba(43,108,176,0.65)";
-}
-
-if (data.central === "Healthy") {
-    document.getElementById("circle-ks").style.background = "rgba(138,90,54,0.65)";
-}
-
-if (data.southern === "Healthy") {
-    document.getElementById("circle-tx").style.background = "rgba(220,38,38,0.65)";
-}
-
-   // 1980 status colors
-
-if (data.northern === "Good") {
-    document.getElementById("circle-ne").style.background = "rgba(43,108,176,0.65)";
-}
-
-if (data.central === "Declining") {
-    document.getElementById("circle-ks").style.background = "rgba(200,150,60,0.65)";
-}
-
-if (data.southern === "Declining") {
-    document.getElementById("circle-tx").style.background = "rgba(200,80,60,0.65)";
-}       
-       // 2026 status colors
-
-if (data.northern === "Stable") {
-    document.getElementById("circle-ne").style.background = "rgba(43,108,176,0.65)";
-}
-
-if (data.central === "Stressed") {
-    document.getElementById("circle-ks").style.background = "rgba(255,165,0,0.65)";
-}
-
-if (data.southern === "Critical") {
-    document.getElementById("circle-tx").style.background = "rgba(220,38,38,0.65)";
-}
-
-
-// 2050 status colors
-
-if (data.northern === "Stressed") {
-    document.getElementById("circle-ne").style.background = "rgba(255,165,0,0.65)";
-}
-
-if (data.central === "Critical") {
-    document.getElementById("circle-ks").style.background = "rgba(220,38,38,0.65)";
-}
-
-if (data.southern === "Severe") {
-    document.getElementById("circle-tx").style.background = "rgba(139,0,0,0.65)";
-}
-
-   
-
-    document.getElementById("year-display").textContent = data.year;
-
-document.getElementById("status-health").textContent =
-    "Overall Health: " + data.overallHealth + "%";
-
-document.getElementById("status-north").textContent =
-    "Northern Basin: " + data.northern;
-
-document.getElementById("status-central").textContent =
-    "Central Basin: " + data.central;
-
-document.getElementById("status-south").textContent =
-    "Southern Plains: " + data.southern;
-          
-
-    console.log("Showing aquifer status for:", year);
-console.log(data);
-
-document.getElementById("lbl-ne").textContent = data.northern;
-document.getElementById("lbl-ks").textContent = data.central;
-document.getElementById("lbl-tx").textContent = data.southern;
-
-}
+if(window.MapEngine && MapEngine.projection){positionCommunitiesOnGeographicMap()}else{window.addEventListener("mapengine:geography-ready",positionCommunitiesOnGeographicMap,{once:true})}
+updateAquiferYear(2026);
 </script>
-              
 </body>
 </html>
