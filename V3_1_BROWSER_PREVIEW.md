@@ -10,25 +10,26 @@ Provide a human browser-review route for Version 3.1 without changing `main`, th
 
 GitHub's public `deploy-pages` action currently documents pull-request Pages previews as an alpha feature that is not publicly available. Therefore Version 3.1 is **not** being deployed over the production GitHub Pages site for review.
 
-## Preview routes
+## Chosen review route: StackBlitz
 
-### Frozen QA-passed checkpoint
+StackBlitz officially supports importing a public GitHub repository at a specific branch, tag, or commit and running a start command from the repository's `package.json`.
 
-Use this for deliberate visual review of the state frozen after the 55/55 branch QA pass:
+Version 3.1 now includes a small preview-only `package.json` that starts a static `http-server` on port 3000. This file does not alter Tracker content and exists to let a browser-based development environment serve the branch correctly.
 
-`https://raw.githack.com/Pegasides/Ogallala-Aquifer-Tracker/checkpoint-v3.1-qa-pass-2026-08-12/v3.html`
+Current working-branch review route:
 
-### Current working branch
+`https://stackblitz.com/github/Pegasides/Ogallala-Aquifer-Tracker/tree/version-3.1-working?file=v3.html&startScript=start&view=preview&initialpath=%2Fv3.html`
 
-Use this when reviewing the newest Version 3.1 working changes:
+The GitHub branch remains the source of truth. Pushing new Version 3.1 commits updates what StackBlitz imports from that branch.
 
-`https://raw.githack.com/Pegasides/Ogallala-Aquifer-Tracker/version-3.1-working/v3.html`
+## Rejected routes — do not use
 
-## What this preview is
+Two RawGitHack approaches were tested and rejected:
 
-RawGitHack is a static-content proxy for public GitHub files that serves HTML, JavaScript, CSS, images, and related assets with browser-renderable content types. The Ogallala Aquifer Tracker repository is public, so this preview does not expose private repository content.
+1. `raw.githack.com` returned HTTP 403 to the GitHub Actions validator.
+2. `rawcdn.githack.com` served the files but inserted an **External Content Notice** interstitial instead of opening the Tracker directly.
 
-The working-branch preview may be briefly cached. The frozen checkpoint URL is intended for stable review.
+Those routes are retained only in GitHub Actions history as an audit trail and should not be used for human review.
 
 ## What this preview is not
 
@@ -37,6 +38,8 @@ The working-branch preview may be briefly cached. The frozen checkpoint URL is i
 - It does **not** alter Version 2 or sacred Version 3.
 - It should not be treated as the final public publication URL.
 
-## Validation
+## Existing branch QA
 
-A separate GitHub Actions public-preview smoke workflow should test an exact Version 3.1 commit through this public browser route before the link is handed off for human review.
+The independent branch-local GitHub Actions test remains the controlling automated QA for Version 3.1. The successful run passed **55/55 browser checks** against the branch files using a local server inside Actions.
+
+Human browser review in StackBlitz is an additional visual/interaction review step, not a replacement for that automated QA.
