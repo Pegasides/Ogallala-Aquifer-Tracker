@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ogallala Aquifer Tracker — Version 3.1</title>
+<title>Ogallala Aquifer Tracker — Version 3.2</title>
 <style>
 :root{
   --night:#07131d;--deep:#0c2030;--panel:#102b3d;--panel2:#0d2536;
@@ -23,11 +23,13 @@ a:focus-visible,.btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
 .btn:hover{transform:translateY(-1px)}
 .btn.primary{background:var(--aqua);color:#06262a}
 .navbar{position:sticky;top:0;z-index:30;background:rgba(4,18,27,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.nav-inner{width:min(1120px,calc(100% - 32px));margin:auto;display:flex;gap:12px;align-items:center;justify-content:space-between;padding:9px 0}
+.nav-inner{width:min(1180px,calc(100% - 32px));margin:auto;display:flex;gap:12px;align-items:center;justify-content:space-between;padding:9px 0}
 .brand{text-decoration:none;font-weight:900;font-size:13px;color:#dffcf7;white-space:nowrap}
 .nav-links{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end;align-items:center}
 .nav-links a{text-decoration:none;color:#e4eef3;border:1px solid #345164;background:#102736;border-radius:8px;padding:8px 10px;font-size:11px;font-weight:800}
 .nav-links a:hover,.nav-links a.active{border-color:var(--aqua);background:#123c43;color:#e7fffb}
+.nav-links a.data-center-link{border-color:rgba(242,198,109,.78);background:rgba(83,57,15,.55);color:#ffe7ad}
+.nav-links a.data-center-link:hover{border-color:var(--gold);background:#6b4510;color:#fff1c6}
 .nav-context{font-size:9px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:#8fb0c1;padding:0 2px}
 .nav-divider{width:1px;height:26px;background:rgba(188,218,235,.32);margin:0 3px}
 .nav-publication{display:inline-flex;align-items:center;min-height:34px;border:1px solid rgba(242,198,109,.56);background:rgba(67,49,18,.38);color:#f6dca0;border-radius:8px;padding:7px 10px;font-size:10px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
@@ -51,20 +53,24 @@ a:focus-visible,.btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
 .connection .icon{font-size:1.55rem}
 .connection h3{margin:8px 0 6px;font-size:1rem}
 .connection p{margin:0;color:var(--muted);font-size:12.5px}
-.destinations{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}
-.destination{display:flex;flex-direction:column;min-height:188px;border:1px solid var(--line);border-radius:16px;background:#0b2130;padding:18px;text-decoration:none;box-shadow:0 12px 28px rgba(0,0,0,.18)}
+.destinations{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:20px}
+.destination{display:flex;flex-direction:column;min-height:205px;border:1px solid var(--line);border-radius:16px;background:#0b2130;padding:18px;text-decoration:none;box-shadow:0 12px 28px rgba(0,0,0,.18)}
 .destination:hover{border-color:var(--aqua)}
+.destination.data-center-destination{border-color:rgba(242,198,109,.62);background:linear-gradient(145deg,rgba(76,51,15,.68),#0b2130)}
+.destination.data-center-destination:hover{border-color:var(--gold)}
 .destination .tag{font-size:9px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--aqua)}
-.destination h3{font-family:Georgia,"Times New Roman",serif;font-size:1.4rem;margin:9px 0 7px}
-.destination p{color:var(--muted);font-size:12.5px;margin:0}
+.destination.data-center-destination .tag,.destination.data-center-destination .go{color:#ffe3a0}
+.destination h3{font-family:Georgia,"Times New Roman",serif;font-size:1.35rem;margin:9px 0 7px}
+.destination p{color:var(--muted);font-size:12px;margin:0}
 .destination .go{margin-top:auto;padding-top:16px;font-weight:900;color:#d8fff8}
 .mission{margin-top:12px;border:1px solid rgba(242,198,109,.35);background:linear-gradient(145deg,rgba(50,38,17,.62),rgba(10,28,41,.8));border-radius:18px;padding:25px;text-align:center}
 .mission blockquote{font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.55rem,3.6vw,2.7rem);line-height:1.15;margin:0;color:#fff}
 .mission p{color:#d9c9a7;margin:10px 0 0}
 footer{border-top:1px solid var(--line);color:#9eb3bf;text-align:center;font-size:11px;padding:24px 16px 36px}
+@media(max-width:1050px){.destinations{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:900px){
  .bridge{grid-template-columns:1fr}
- .connection-grid,.destinations{grid-template-columns:1fr}
+ .connection-grid{grid-template-columns:1fr}
  .nav-inner{display:block;padding:8px 0}
  .brand{display:block;margin-bottom:6px;font-size:11px}
  .nav-links{display:flex;flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;padding-bottom:2px;scrollbar-width:none}
@@ -86,23 +92,25 @@ footer{border-top:1px solid var(--line);color:#9eb3bf;text-align:center;font-siz
  .bridge-copy{padding:17px;border-radius:14px}
  .bridge-copy h3{font-size:1.55rem}
  .connection{padding:16px}
+ .destinations{grid-template-columns:1fr}
  .destination{min-height:0;padding:17px}
  .mission{padding:21px 15px}
 }
 </style>
 </head>
 <body id="top">
-<section class="hero" aria-label="Ogallala Aquifer Tracker Version 3.1 title image">
+<section class="hero" aria-label="Ogallala Aquifer Tracker Version 3.2 title image">
   <img src="ChatGPT%20Image%20Aug%208,%202026,%2010_14_56%20AM.png" alt="Ogallala Aquifer Tracker over a Nebraska prairie sunset with a traditional windmill. One of America’s greatest hidden natural resources. Sometimes change begins in one yard.">
-  <span class="hero-badge">Version 3.1 Preview</span>
+  <span class="hero-badge">Version 3.2 Preview</span>
 </section>
 <div class="navbar">
   <div class="nav-inner">
-    <a class="brand" href="#top">OGALLALA AQUIFER TRACKER · V3.1</a>
-    <div class="nav-links" aria-label="Version 3.1 navigation">
+    <a class="brand" href="#top">OGALLALA AQUIFER TRACKER · V3.2</a>
+    <div class="nav-links" aria-label="Version 3.2 navigation">
       <span class="nav-context">Tracker</span>
-      <a class="active" aria-current="page" href="v3.html">V3.1 Home</a>
+      <a class="active" aria-current="page" href="v3.html">V3.2 Home</a>
       <a href="v3-map.html">Interactive Timeline</a>
+      <a class="data-center-link" href="data-centers.html">AI Data Centers</a>
       <a href="groundwater-window.html">Groundwater Window</a>
       <a href="v3-my-aquifer.html">My Aquifer</a>
       <a href="sources.html">Sources</a>
@@ -116,12 +124,12 @@ footer{border-top:1px solid var(--line);color:#9eb3bf;text-align:center;font-siz
     <div class="bridge">
       <div class="aquifer-frame">
         <img src="ChatGPT%20Image%20Aug%208,%202026,%2012_40_48%20PM.png" alt="Illustrated map of the Ogallala Aquifer beneath the Great Plains, showing its footprint across eight states">
-        <div class="visual-note"><strong>Visual context:</strong> this image is an explanatory overview. The interactive timeline uses the separate geographic map engine for locations, communities, and changing year views.</div>
+        <div class="visual-note"><strong>Visual context:</strong> this image is an explanatory overview. Version 3.2 is moving the interactive experience toward the shared Pretty Map for communities, monitoring context, timeline conditions, and data-center overlays.</div>
       </div>
       <div class="bridge-copy">
         <div class="section-kicker">What lies beneath</div>
         <h3>One aquifer. Eight states. Different local realities.</h3>
-        <p>The Ogallala is not a single bathtub that rises and falls evenly. Conditions vary across the High Plains, which is why Version 3.1 separates the story into <strong>Northern, Central, and Southern</strong> basin views and adds community reference points for geographic orientation.</p>
+        <p>The Ogallala is not a single bathtub that rises and falls evenly. Conditions vary across the High Plains, which is why Version 3.2 separates the story into <strong>Northern, Central, and Southern</strong> basin views and adds community reference points for geographic orientation.</p>
         <p>The goal is simple: make groundwater change understandable without pretending the science is simpler than it is.</p>
         <a class="btn primary" href="v3-map.html">Open the Interactive Timeline</a>
       </div>
@@ -130,17 +138,18 @@ footer{border-top:1px solid var(--line);color:#9eb3bf;text-align:center;font-siz
   <section class="wrap connection-wrap" id="connection">
     <div class="section-kicker">Everything is connected</div>
     <h2 class="section-title">Groundwater is not a story about water alone.</h2>
-    <p class="section-copy">Version 3.1 is organized around connections a reader can actually feel: what happens beneath a farm or town, what changes around a community, and what choices above ground influence demand and resilience.</p>
+    <p class="section-copy">Version 3.2 keeps the public story compact while giving subscribers a deeper place to investigate infrastructure, local context, groundwater evidence, and what is changing over time.</p>
     <div class="connection-grid">
       <article class="connection"><div class="icon">💧</div><h3>Water quantity + quality</h3><p>Levels, drawdown, monitoring wells, water quality, and the difference between basin-wide pressure and local conditions.</p></article>
       <article class="connection"><div class="icon">🏘️</div><h3>People + place</h3><p>Farmers, towns, rural homeowners, schools, property, infrastructure, and the local decisions that shape groundwater use.</p></article>
-      <article class="connection"><div class="icon">🌾</div><h3>Land + habitat + demand</h3><p>Irrigation, water-wise yards, pollinators, industry, digital infrastructure, and practical ways to reduce unnecessary pressure.</p></article>
+      <article class="connection"><div class="icon">🖥️</div><h3>Infrastructure + evidence</h3><p>AI data centers, project status, facility profiles, public records, monitoring context, and clear separation between location, claims, measurements, and causation.</p></article>
     </div>
     <div class="destinations">
-      <a class="destination" href="v3-map.html"><span class="tag">Start here</span><h3>Interactive Timeline</h3><p>Move from 1950 through 2050. Compare basin conditions, communities, regional &gt;150-ft decline context, and three verified 2026 infrastructure examples shown as context—not attribution.</p><span class="go">Explore the timeline →</span></a>
-      <a class="destination" href="groundwater-window.html"><span class="tag">Below Ground</span><h3>Groundwater Window</h3><p>Use the same four anchor years in an educational Nebraska cross-section. The index is a comparison scale, and the illustrated water table is not a surveyed statewide profile.</p><span class="go">Look beneath the prairie →</span></a>
-      <a class="destination" href="v3-my-aquifer.html"><span class="tag">Personalized</span><h3>My Aquifer</h3><p>The Alliance-centered subscriber experience: local groundwater context, profiles, useful actions, Water-Wise Living, and saved information.</p><span class="go">Open My Aquifer →</span></a>
-      <a class="destination" href="sources.html"><span class="tag">Credibility</span><h3>Sources That Inform Our Story</h3><p>See the verified federal, state, local, and university sources behind the Tracker—plus the integrity rules that separate measurements, interpretation, context, and scenarios.</p><span class="go">Review the evidence →</span></a>
+      <a class="destination data-center-destination" href="data-centers.html"><span class="tag">Subscriber deep dive</span><h3>AI Data Centers</h3><p>Explore operational, under-construction, and proposed facilities on the shared aquifer map, then open individual project profiles and evidence trails.</p><span class="go">Open Data Centers →</span></a>
+      <a class="destination" href="v3-map.html"><span class="tag">Timeline</span><h3>Interactive Timeline</h3><p>Move from 1950 through 2050 and compare basin conditions, communities, and regional groundwater context.</p><span class="go">Explore the timeline →</span></a>
+      <a class="destination" href="groundwater-window.html"><span class="tag">Below Ground</span><h3>Groundwater Window</h3><p>Use the four anchor years in an educational cross-section. The index is a comparison scale, not percent water remaining.</p><span class="go">Look beneath the prairie →</span></a>
+      <a class="destination" href="v3-my-aquifer.html"><span class="tag">Subscriber home</span><h3>My Aquifer</h3><p>Local groundwater context, alerts, useful actions, Water-Wise Living, and the personalized subscriber experience.</p><span class="go">Open My Aquifer →</span></a>
+      <a class="destination" href="sources.html"><span class="tag">Credibility</span><h3>Sources</h3><p>The verified federal, state, local, and university source directory behind the Tracker.</p><span class="go">Review the evidence →</span></a>
     </div>
     <div class="mission">
       <blockquote>“You cannot borrow from tomorrow’s groundwater.”</blockquote>
@@ -148,6 +157,6 @@ footer{border-top:1px solid var(--line);color:#9eb3bf;text-align:center;font-siz
     </div>
   </section>
 </main>
-<footer>Version 3.1 preview · Versions 2 and 3 are preserved while Version 3.1 is developed and reviewed.</footer>
+<footer>Version 3.2 working preview · Versions 2, 3, and the completed 3.1 review state remain preserved.</footer>
 </body>
 </html>
