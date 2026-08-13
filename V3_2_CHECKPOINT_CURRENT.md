@@ -28,7 +28,8 @@ Version 3.2 is the active design/development branch. Versions 2 and 3 remain sac
 - Added `scripts/v3-2-smoke.mjs` and `.github/workflows/v3-2-smoke-test.yml`.
 - Expanded V3.2 browser QA to 62 checks; run `31672091967` completed successfully with **62/62** checks passed.
 - Froze milestone branch `checkpoint-v3.2-shell-data-centers-2026-08-12`.
-- Recovered and installed the clean high-resolution windmill hero as `v3-2-hero-clean.webp` and wired `v3.html` to it. The new asset has no Project 247 branding.
+- Recovered and installed the clean windmill hero as `v3-2-hero-clean.webp` and wired `v3.html` to it. The artwork has no Project 247 branding.
+- Repaired the hero binary at commit `8b99446d5dd8f79f5976aa9c1ffd568ef32b6356`. One-time repair run `31674274112` verified the rebuilt file is exactly 50,060 bytes, matches SHA-256 `8353ac49b2b65b5f1dc118d80bb13d44fbbb2a298eeda612cb0dcd25487bc32a`, and identifies as a 1672×941 WebP before committing it.
 - Recovered the approved Pretty Map reference from the image library and compressed a web reference copy as `v3-2-pretty-map-reference.webp`. This reference asset is now in the repository but has **not yet replaced the live interactive map**, because the interactive 28-community layer remains the controlling geographic/evidence layer and must preserve the Portales correction.
 
 ## Pending visual / data work
