@@ -1,0 +1,51 @@
+name: V3.2 Repair Clean Hero
+
+on:
+  push:
+    branches:
+      - version-3.2-working
+    paths:
+      - '.hero-fix/READY'
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Version 3.2 working branch
+        uses: actions/checkout@v4
+        with:
+          ref: version-3.2-working
+          fetch-depth: 0
+
+      - name: Rebuild and verify clean hero
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ ! -f .hero-fix/READY ]; then
+            echo "Repair marker is absent; nothing to do."
+            exit 0
+          fi
+          cat .hero-fix/part-00 .hero-fix/part-01 .hero-fix/part-02 .hero-fix/part-03 | tr -d '\r\n' | base64 -d > /tmp/v3-2-hero-clean.webp
+          test "$(wc -c < /tmp/v3-2-hero-clean.webp)" -eq 50060
+          echo "8353ac49b2b65b5f1dc118d80bb13d44fbbb2a298eeda612cb0dcd25487bc32a  /tmp/v3-2-hero-clean.webp" | sha256sum -c -
+          file /tmp/v3-2-hero-clean.webp | tee /tmp/hero-file.txt
+          grep -q 'Web/P image' /tmp/hero-file.txt
+          grep -q '1672x941' /tmp/hero-file.txt
+          cp /tmp/v3-2-hero-clean.webp v3-2-hero-clean.webp
+
+      - name: Commit repaired hero and remove staging files
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ ! -f .hero-fix/READY ]; then
+            exit 0
+          fi
+          rm -rf .hero-fix
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add v3-2-hero-clean.webp .hero-fix
+          git commit -m "Repair clean Version 3.2 hero binary"
+          git push origin HEAD:version-3.2-working
