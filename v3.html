@@ -19,16 +19,9 @@ a:focus-visible,.btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
 .hero{position:relative;background:#07131d;border-bottom:1px solid rgba(242,198,109,.35)}
 .hero img{display:block;width:100%;height:auto;max-height:82vh;object-fit:contain;background:#07131d}
 .hero-badge{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);z-index:2;background:rgba(3,15,24,.88);border:1px solid rgba(94,234,212,.75);color:#cffff7;border-radius:999px;padding:7px 12px;font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
-.launch{background:linear-gradient(180deg,#091a27,#07131d);border-bottom:1px solid var(--line)}
-.launch-inner{width:min(1120px,calc(100% - 32px));margin:auto;padding:25px 0 28px;display:grid;grid-template-columns:minmax(0,1.25fr) auto;gap:24px;align-items:center}
-.launch-copy h1{font-family:Georgia,"Times New Roman",serif;margin:0 0 7px;font-size:clamp(1.55rem,3vw,2.45rem)}
-.launch-copy p{max-width:770px;margin:0;color:#d6e4ec;font-size:clamp(.95rem,1.7vw,1.08rem)}
-.launch-copy p strong{color:#fff}
-.launch-actions{display:flex;gap:9px;flex-wrap:wrap;justify-content:flex-end}
 .btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border-radius:10px;padding:11px 15px;font-weight:900;border:1px solid transparent;transition:transform .18s ease,border-color .18s ease,background .18s ease;white-space:nowrap}
 .btn:hover{transform:translateY(-1px)}
 .btn.primary{background:var(--aqua);color:#06262a}
-.btn.secondary{background:#0e2939;border-color:#496476;color:#fff}
 .navbar{position:sticky;top:0;z-index:30;background:rgba(4,18,27,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .nav-inner{width:min(1120px,calc(100% - 32px));margin:auto;display:flex;gap:12px;align-items:center;justify-content:space-between;padding:9px 0}
 .brand{text-decoration:none;font-weight:900;font-size:13px;color:#dffcf7;white-space:nowrap}
@@ -42,42 +35,35 @@ a:focus-visible,.btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
 .section-kicker{color:var(--aqua);font-size:12px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;margin-bottom:8px}
 .section-title{font-family:Georgia,"Times New Roman",serif;font-size:clamp(2rem,4vw,3.5rem);line-height:1.05;margin:0 0 14px}
 .section-copy{max-width:800px;color:var(--muted);font-size:1.02rem;margin:0}
-.bridge{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(300px,.95fr);gap:24px;align-items:center}
+.bridge{display:grid;grid-template-columns:minmax(0,1.62fr) minmax(260px,.68fr);gap:22px;align-items:center}
 .aquifer-frame{position:relative;border:1px solid rgba(56,189,248,.45);border-radius:18px;overflow:hidden;background:#06131d;box-shadow:var(--shadow)}
 .aquifer-frame img{display:block;width:100%;height:auto}
 .visual-note{position:absolute;left:12px;bottom:12px;right:12px;background:rgba(3,15,24,.9);border:1px solid rgba(94,234,212,.36);border-radius:9px;padding:9px 11px;font-size:11px;color:#dcebf2}
-.bridge-copy{background:linear-gradient(145deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:var(--shadow)}
-.bridge-copy h3{font-family:Georgia,"Times New Roman",serif;font-size:2rem;margin:0 0 12px}
-.bridge-copy p{color:var(--muted);margin:0 0 14px}
+.bridge-copy{background:linear-gradient(145deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:var(--shadow)}
+.bridge-copy h3{font-family:Georgia,"Times New Roman",serif;font-size:1.75rem;line-height:1.1;margin:0 0 10px}
+.bridge-copy p{color:var(--muted);margin:0 0 12px;font-size:.96rem}
 .bridge-copy strong{color:#fff}
-.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px}
-.era{position:relative;overflow:hidden;border:1px solid var(--line);background:linear-gradient(160deg,#0d2536,#0a1c29);border-radius:14px;padding:18px;min-height:188px}
-.era::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--accent)}
-.era .year{font-family:Georgia,"Times New Roman",serif;font-size:2rem;font-weight:900}
-.era .score{font-size:2.45rem;font-weight:900;line-height:1;margin:16px 0 4px;color:var(--accent)}
-.era .label{font-weight:900;margin-bottom:6px}
-.era .mini{font-size:12px;color:var(--muted)}
-.connection-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
-.connection{border:1px solid var(--line);border-radius:14px;padding:20px;background:linear-gradient(150deg,#0c2434,#0a1b28)}
-.connection .icon{font-size:1.75rem}
-.connection h3{margin:10px 0 7px;font-size:1.05rem}
-.connection p{margin:0;color:var(--muted);font-size:13px}
-.destinations{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}
-.destination{display:flex;flex-direction:column;min-height:210px;border:1px solid var(--line);border-radius:16px;background:#0b2130;padding:20px;text-decoration:none;box-shadow:0 12px 28px rgba(0,0,0,.18)}
+.connection-wrap{width:min(1008px,calc(100% - 32px));padding:46px 0}
+.connection-wrap .section-title{font-size:clamp(1.8rem,3.6vw,3.15rem)}
+.connection-wrap .section-copy{font-size:.95rem}
+.connection-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+.connection{border:1px solid var(--line);border-radius:14px;padding:18px;background:linear-gradient(150deg,#0c2434,#0a1b28)}
+.connection .icon{font-size:1.55rem}
+.connection h3{margin:8px 0 6px;font-size:1rem}
+.connection p{margin:0;color:var(--muted);font-size:12.5px}
+.destinations{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}
+.destination{display:flex;flex-direction:column;min-height:188px;border:1px solid var(--line);border-radius:16px;background:#0b2130;padding:18px;text-decoration:none;box-shadow:0 12px 28px rgba(0,0,0,.18)}
 .destination:hover{border-color:var(--aqua)}
-.destination .tag{font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--aqua)}
-.destination h3{font-family:Georgia,"Times New Roman",serif;font-size:1.55rem;margin:11px 0 8px}
-.destination p{color:var(--muted);font-size:13px;margin:0}
-.destination .go{margin-top:auto;padding-top:20px;font-weight:900;color:#d8fff8}
-.mission{margin-top:14px;border:1px solid rgba(242,198,109,.35);background:linear-gradient(145deg,rgba(50,38,17,.62),rgba(10,28,41,.8));border-radius:18px;padding:30px;text-align:center}
-.mission blockquote{font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.7rem,4vw,3rem);line-height:1.15;margin:0;color:#fff}
-.mission p{color:#d9c9a7;margin:12px 0 0}
-footer{border-top:1px solid var(--line);color:#9eb3bf;text-align:center;font-size:11px;padding:26px 16px 40px}
+.destination .tag{font-size:9px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--aqua)}
+.destination h3{font-family:Georgia,"Times New Roman",serif;font-size:1.4rem;margin:9px 0 7px}
+.destination p{color:var(--muted);font-size:12.5px;margin:0}
+.destination .go{margin-top:auto;padding-top:16px;font-weight:900;color:#d8fff8}
+.mission{margin-top:12px;border:1px solid rgba(242,198,109,.35);background:linear-gradient(145deg,rgba(50,38,17,.62),rgba(10,28,41,.8));border-radius:18px;padding:25px;text-align:center}
+.mission blockquote{font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.55rem,3.6vw,2.7rem);line-height:1.15;margin:0;color:#fff}
+.mission p{color:#d9c9a7;margin:10px 0 0}
+footer{border-top:1px solid var(--line);color:#9eb3bf;text-align:center;font-size:11px;padding:24px 16px 36px}
 @media(max-width:900px){
- .launch-inner{grid-template-columns:1fr}
- .launch-actions{justify-content:flex-start}
  .bridge{grid-template-columns:1fr}
- .timeline{grid-template-columns:1fr 1fr}
  .connection-grid,.destinations{grid-template-columns:1fr}
  .nav-inner{display:block;padding:8px 0}
  .brand{display:block;margin-bottom:6px;font-size:11px}
@@ -85,14 +71,10 @@ footer{border-top:1px solid var(--line);color:#9eb3bf;text-align:center;font-siz
  .nav-links::-webkit-scrollbar{display:none}
  .nav-links a,.nav-context,.nav-publication,.nav-divider{flex:0 0 auto}
  .nav-links a{min-height:40px;display:inline-flex;align-items:center}
+ .connection-wrap{width:min(100%,calc(100% - 24px))}
 }
 @media(max-width:560px){
  .hero-badge{bottom:8px;font-size:9px;padding:5px 9px}
- .launch-inner{width:calc(100% - 24px);padding:18px 0 22px;gap:16px}
- .launch-copy h1{font-size:1.6rem;line-height:1.12}
- .launch-copy p{font-size:.94rem;line-height:1.48}
- .timeline{grid-template-columns:1fr}
- .launch-actions .btn{width:100%;min-height:44px}
  .nav-inner{width:calc(100% - 24px)}
  .nav-links a{padding:9px 10px}
  .nav-context{font-size:8px}
@@ -101,13 +83,11 @@ footer{border-top:1px solid var(--line);color:#9eb3bf;text-align:center;font-siz
  .section-title{font-size:2rem}
  .section-copy{font-size:.95rem}
  .visual-note{position:static;border-radius:0;border-left:0;border-right:0;border-bottom:0;line-height:1.4}
- .bridge-copy{padding:18px;border-radius:14px}
- .bridge-copy h3{font-size:1.65rem}
- .era{min-height:0;padding:16px}
- .era .score{margin-top:10px}
- .connection{padding:17px}
- .destination{min-height:0;padding:18px}
- .mission{padding:22px 16px}
+ .bridge-copy{padding:17px;border-radius:14px}
+ .bridge-copy h3{font-size:1.55rem}
+ .connection{padding:16px}
+ .destination{min-height:0;padding:17px}
+ .mission{padding:21px 15px}
 }
 </style>
 </head>
@@ -115,18 +95,6 @@ footer{border-top:1px solid var(--line);color:#9eb3bf;text-align:center;font-siz
 <section class="hero" aria-label="Ogallala Aquifer Tracker Version 3.1 title image">
   <img src="ChatGPT%20Image%20Aug%208,%202026,%2010_14_56%20AM.png" alt="Ogallala Aquifer Tracker over a Nebraska prairie sunset with a traditional windmill. One of America’s greatest hidden natural resources. Sometimes change begins in one yard.">
   <span class="hero-badge">Version 3.1 Preview</span>
-</section>
-<section class="launch" aria-label="Version 3.1 introduction">
-  <div class="launch-inner">
-    <div class="launch-copy">
-      <h1>Four anchor years. One aquifer. A changing story.</h1>
-      <p><strong>One of America’s greatest hidden natural resources is changing beneath us. Sometimes change begins in one yard.</strong> Start with 1950, 1980, 2026, and 2050. Compare Northern, Central, and Southern basin conditions, then explore the communities and present-day context behind the map.</p>
-    </div>
-    <div class="launch-actions">
-      <a class="btn primary" href="v3-map.html">Start the Interactive Timeline</a>
-      <a class="btn secondary" href="#beneath">See What Lies Beneath</a>
-    </div>
-  </div>
 </section>
 <div class="navbar">
   <div class="nav-inner">
@@ -159,18 +127,7 @@ footer{border-top:1px solid var(--line);color:#9eb3bf;text-align:center;font-siz
       </div>
     </div>
   </section>
-  <section class="wrap" id="timeline">
-    <div class="section-kicker">The long view</div>
-    <h2 class="section-title">See the story change with time.</h2>
-    <p class="section-copy">Version 3.1 keeps the four anchor years easy to compare. The numbers below are Tracker working indices for communicating change over time—not percentages of the aquifer's remaining water.</p>
-    <div class="timeline">
-      <article class="era" style="--accent:#4ade80"><div class="year">1950</div><div class="score">100</div><div class="label">Baseline</div><div class="mini">Northern: Healthy<br>Central: Healthy<br>Southern: Healthy</div></article>
-      <article class="era" style="--accent:#60a5fa"><div class="year">1980</div><div class="score">85</div><div class="label">Early decline</div><div class="mini">Northern: Good<br>Central: Declining<br>Southern: Declining</div></article>
-      <article class="era" style="--accent:#f59e0b"><div class="year">2026</div><div class="score">60</div><div class="label">Present day</div><div class="mini">Northern: Stable<br>Central: Stressed<br>Southern: Critical</div></article>
-      <article class="era" style="--accent:#ef4444"><div class="year">2050</div><div class="score">40</div><div class="label">Projection</div><div class="mini">Northern: Stressed<br>Central: Critical<br>Southern: Severe</div></article>
-    </div>
-  </section>
-  <section class="wrap" id="connection">
+  <section class="wrap connection-wrap" id="connection">
     <div class="section-kicker">Everything is connected</div>
     <h2 class="section-title">Groundwater is not a story about water alone.</h2>
     <p class="section-copy">Version 3.1 is organized around connections a reader can actually feel: what happens beneath a farm or town, what changes around a community, and what choices above ground influence demand and resilience.</p>
