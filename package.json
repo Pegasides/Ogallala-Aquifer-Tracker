@@ -1,6 +1,6 @@
 {
-  "name": "ogallala-aquifer-tracker-v3-1-preview",
-  "version": "3.1.0",
+  "name": "ogallala-aquifer-tracker-v3-2-preview",
+  "version": "3.2.0",
   "private": true,
   "scripts": {
     "start": "http-server . -p 3000 -c-1"
