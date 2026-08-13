@@ -1,4 +1,3 @@
-// QA retrigger after verified Version 3.2 hero repair.
 import { chromium } from 'playwright';
 
 const rawBase = process.env.BASE_URL || 'http://127.0.0.1:8000/';
