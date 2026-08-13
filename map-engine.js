@@ -116,3 +116,67 @@ window.dispatchEvent(
 };
 
 MapEngine.initialize();
+
+/*
+==========================================================
+VERSION 3.1 TIMELINE PRESENTATION ORDER
+Human visual-review pass, August 12, 2026.
+Order: map -> Tracker Working Index -> timeline controls -> sources.
+==========================================================
+*/
+function applyV31TimelinePresentationOrder(){
+    const shell=document.querySelector('.shell');
+    const timelineCard=document.querySelector('.timeline-card');
+    const mainGrid=document.querySelector('.main-grid');
+    const mapCard=document.querySelector('.map-card');
+    const statusGrid=document.querySelector('.status-grid');
+    const sideStack=document.querySelector('.side-stack');
+    const sourceCard=document.querySelector('.source-card');
+
+    if(!shell||!timelineCard||!mainGrid||!mapCard||!statusGrid||document.body.dataset.v31Presentation==='1')return;
+    document.body.dataset.v31Presentation='1';
+
+    const style=document.createElement('style');
+    style.id='v3-1-presentation-order';
+    style.textContent=`
+      .shell{max-width:1080px!important;padding-top:16px!important}
+      .map-card{margin-bottom:16px}
+      .v3-status-card{background:linear-gradient(145deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:16px;margin-bottom:16px}
+      .v3-status-label{margin:0 0 10px;color:#dffcf7;font-size:11px;font-weight:900;letter-spacing:.11em;text-transform:uppercase}
+      .v3-status-card .status-grid{margin-top:0}
+      .timeline-card{margin-bottom:16px}
+      .timeline-card::before{content:'Timeline controls';display:block;margin:0 0 12px;color:#dffcf7;font-size:11px;font-weight:900;letter-spacing:.11em;text-transform:uppercase;text-align:center}
+      .source-card{margin-bottom:16px}
+      .main-grid{display:block!important}
+      .side-stack{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+      @media(max-width:760px){.side-stack{grid-template-columns:1fr}.shell{padding-top:10px!important}}
+    `;
+    document.head.appendChild(style);
+
+    shell.insertBefore(mapCard,shell.firstElementChild);
+
+    const statusSection=document.createElement('section');
+    statusSection.className='v3-status-card';
+    statusSection.setAttribute('aria-label','Tracker Working Index and basin condition');
+    const statusLabel=document.createElement('div');
+    statusLabel.className='v3-status-label';
+    statusLabel.textContent='Tracker Working Index · relative aquifer condition';
+    statusSection.appendChild(statusLabel);
+    statusSection.appendChild(statusGrid);
+    shell.insertBefore(statusSection,timelineCard);
+
+    if(sourceCard){
+        sourceCard.setAttribute('aria-label','Sources used in this map pass');
+        shell.insertBefore(sourceCard,mainGrid);
+    }
+
+    if(sideStack && !sideStack.children.length){
+        mainGrid.remove();
+    }
+}
+
+if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',applyV31TimelinePresentationOrder,{once:true});
+}else{
+    applyV31TimelinePresentationOrder();
+}
