@@ -16,6 +16,7 @@ on:
       - 'data-centers.html'
       - 'scripts/v3-2-smoke.mjs'
       - '.github/workflows/v3-2-smoke-test.yml'
+      - 'assets/*.b64'
       - '*.png'
       - '*.jpg'
       - '*.jpeg'
