@@ -1,0 +1,61 @@
+name: V3.2 Install Homepage Artwork Gallery
+
+on:
+  push:
+    branches:
+      - version-3.2-working
+    paths:
+      - '.v32-gallery-upload/READY'
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Version 3.2 working branch
+        uses: actions/checkout@v4
+        with:
+          ref: version-3.2-working
+          fetch-depth: 0
+
+      - name: Rebuild and verify homepage artwork package
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ ! -f .v32-gallery-upload/READY ]; then
+            echo "Upload marker is absent; nothing to do."
+            exit 0
+          fi
+          cat .v32-gallery-upload/chunk-* | tr -d '\r\n' | base64 -d > /tmp/v3-2-gallery-assets.tar.gz
+          test "$(wc -c < /tmp/v3-2-gallery-assets.tar.gz)" -eq 1129043
+          echo "304b277e47018d184293e3a53c9bb291da640b3fb3a414a478645f5bad9341d8  /tmp/v3-2-gallery-assets.tar.gz" | sha256sum -c -
+          mkdir -p /tmp/v32-gallery
+          tar -xzf /tmp/v3-2-gallery-assets.tar.gz -C /tmp/v32-gallery
+
+          test "$(wc -c < /tmp/v32-gallery/v3-2-gallery-aquifer-map.webp)" -eq 189062
+          echo "e4d523653e03092d7945072415e4ca197c3e664e9ef9f90091cbfb464188ce8d  /tmp/v32-gallery/v3-2-gallery-aquifer-map.webp" | sha256sum -c -
+          test "$(wc -c < /tmp/v32-gallery/v3-2-gallery-groundwater-window.webp)" -eq 197722
+          echo "1f160c1db098207ee02110bfde2c9f3087a0000c9cee857ae050813fa4005c7d  /tmp/v32-gallery/v3-2-gallery-groundwater-window.webp" | sha256sum -c -
+          test "$(wc -c < /tmp/v32-gallery/v3-2-gallery-ai-impact.webp)" -eq 384438
+          echo "b233f755123e2eacd16dd43a65e7e02a216989ac2582f5575e6bfb40ce17af52  /tmp/v32-gallery/v3-2-gallery-ai-impact.webp" | sha256sum -c -
+          test "$(wc -c < /tmp/v32-gallery/v3-2-gallery-real-example.webp)" -eq 356524
+          echo "d97d1207992ddc299a7688c5906d9cb6bb1a5817a4f0d31129ebb95008822262  /tmp/v32-gallery/v3-2-gallery-real-example.webp" | sha256sum -c -
+
+          file /tmp/v32-gallery/*.webp
+          cp /tmp/v32-gallery/*.webp .
+
+      - name: Commit installed artwork and remove staging files
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ ! -f .v32-gallery-upload/READY ]; then
+            exit 0
+          fi
+          rm -rf .v32-gallery-upload
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add v3-2-gallery-aquifer-map.webp v3-2-gallery-groundwater-window.webp v3-2-gallery-ai-impact.webp v3-2-gallery-real-example.webp .v32-gallery-upload
+          git commit -m "Install V3.2 homepage artwork gallery"
+          git push origin HEAD:version-3.2-working
