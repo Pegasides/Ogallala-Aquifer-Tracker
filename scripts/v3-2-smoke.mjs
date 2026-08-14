@@ -36,10 +36,12 @@ await page.goto(BASE + 'v3.html', { waitUntil: 'networkidle' });
 check((await page.title()).includes('Version 3.2'), 'V3.2 home title', await page.title());
 check((await page.locator('.hero-badge').innerText()).toUpperCase().includes('VERSION 3.2'), 'V3.2 preview badge');
 check(await page.locator('a.data-center-link[href="data-centers.html"]').count() === 1, 'Primary AI Data Centers navigation button exists');
-check(await page.locator('.data-center-destination[href="data-centers.html"]').count() === 1, 'Homepage Data Centers destination exists');
 check((await page.locator('.nav-publication').innerText()).toUpperCase().includes('SUBSTACK'), 'Substack publication marker remains visible');
-check((await page.locator('.bridge').count()) === 1, 'Aquifer overview remains present');
-check((await page.locator('.mission blockquote').innerText()).includes('tomorrow'), 'Groundwater stewardship line remains present');
+check(await page.locator('#story-gallery .artwork').count() === 5, 'Homepage carries five approved artwork panels');
+check(await page.locator('#story-gallery .artwork img').count() === 5, 'Homepage five-image sequence is wired');
+check(await page.locator('#story-gallery img[src="Ogallala_Aquifer_Tracker_Sources_Poster_V3_1_verified.png"]').count() === 1, 'Sources poster closes the homepage story');
+const galleryImages = await page.locator('#story-gallery .artwork img').evaluateAll(imgs => imgs.map(img => ({hidden: img.hidden, complete: img.complete, w: img.naturalWidth, h: img.naturalHeight})));
+check(galleryImages.every(info => !info.hidden && info.complete && info.w > 0 && info.h > 0), 'All five homepage artworks render', JSON.stringify(galleryImages));
 
 const hero = page.locator('.hero img');
 const heroInfo = await hero.evaluate(img => ({complete: img.complete, w: img.naturalWidth, h: img.naturalHeight, src: img.getAttribute('src')}));
@@ -106,6 +108,9 @@ for (const route of ['v3.html','data-centers.html','v3-map.html','groundwater-wi
   const dims = await mobilePage.evaluate(() => ({scroll: document.documentElement.scrollWidth, client: document.documentElement.clientWidth}));
   check(dims.scroll <= dims.client + 1, `Mobile ${route} avoids page-level horizontal overflow`, `scroll=${dims.scroll}, client=${dims.client}`);
 }
+
+await mobilePage.goto(BASE + 'v3.html', { waitUntil: 'networkidle' });
+check(await mobilePage.locator('#story-gallery .artwork').count() === 5, 'Mobile homepage keeps all five artwork panels');
 
 await mobilePage.goto(BASE + 'data-centers.html', { waitUntil: 'networkidle' });
 const dataCenterButtonHeight = await mobilePage.locator('a.data-center-link').evaluate(el => Math.round(el.getBoundingClientRect().height));
