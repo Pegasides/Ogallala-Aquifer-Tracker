@@ -29,19 +29,16 @@ jobs:
             exit 0
           fi
           cat .v32-gallery-upload/chunk-* | tr -d '\r\n' | base64 -d > /tmp/v3-2-gallery-assets.tar.gz
-          test "$(wc -c < /tmp/v3-2-gallery-assets.tar.gz)" -eq 261131
-          echo "f3d7482cd4b93cf300d3f45efef6459e8ad5ae0eca8998bbde79f3ed9e4aa243  /tmp/v3-2-gallery-assets.tar.gz" | sha256sum -c -
+          test "$(wc -c < /tmp/v3-2-gallery-assets.tar.gz)" -eq 326226
+          echo "529c1075a2ed3b8a4b4a1c6c24c3e6f648d912897096bc2e82b65b67708a6f2d  /tmp/v3-2-gallery-assets.tar.gz" | sha256sum -c -
           mkdir -p /tmp/v32-gallery
           tar -xzf /tmp/v3-2-gallery-assets.tar.gz -C /tmp/v32-gallery
 
           test "$(wc -c < /tmp/v32-gallery/v3-2-gallery-aquifer-map.avif)" -eq 49133
-          echo "1e765bb8c5862802f70f9aeb4e3a97aa55a320aa95a775aa09608561c3c9587a  /tmp/v32-gallery/v3-2-gallery-aquifer-map.avif" | sha256sum -c -
           test "$(wc -c < /tmp/v32-gallery/v3-2-gallery-groundwater-window.avif)" -eq 48732
-          echo "0ee3d95f22524b3f57dce5d62f4344d9346282ae46c6380d6fcfad11cdccda79  /tmp/v32-gallery/v3-2-gallery-groundwater-window.avif" | sha256sum -c -
           test "$(wc -c < /tmp/v32-gallery/v3-2-gallery-ai-impact.avif)" -eq 82280
-          echo "574338675c598cc71426d2cba2f210dcbcf0e7b9b55ff5ead07c12471549184c  /tmp/v32-gallery/v3-2-gallery-ai-impact.avif" | sha256sum -c -
           test "$(wc -c < /tmp/v32-gallery/v3-2-gallery-real-example.avif)" -eq 80051
-          echo "000e44f2af505730b3c511f92407bd2ae30e2952f137d45862396bfae19f822f  /tmp/v32-gallery/v3-2-gallery-real-example.avif" | sha256sum -c -
+          test "$(wc -c < /tmp/v32-gallery/v3-2-gallery-sources.avif)" -eq 65401
 
           file /tmp/v32-gallery/*.avif
           cp /tmp/v32-gallery/*.avif .
@@ -56,6 +53,6 @@ jobs:
           rm -rf .v32-gallery-upload
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add v3-2-gallery-aquifer-map.avif v3-2-gallery-groundwater-window.avif v3-2-gallery-ai-impact.avif v3-2-gallery-real-example.avif .v32-gallery-upload
+          git add v3-2-gallery-aquifer-map.avif v3-2-gallery-groundwater-window.avif v3-2-gallery-ai-impact.avif v3-2-gallery-real-example.avif v3-2-gallery-sources.avif .v32-gallery-upload
           git commit -m "Install V3.2 homepage artwork gallery"
           git push origin HEAD:version-3.2-working
