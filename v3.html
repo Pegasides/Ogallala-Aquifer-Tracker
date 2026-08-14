@@ -127,7 +127,7 @@ footer{border-top:1px solid var(--line);color:#9eb3bf;text-align:center;font-siz
     try {
       const response = await fetch(path, { cache: 'no-store' });
       if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-      const encoded = (await response.text()).trim();
+      const encoded = (await response.text()).replace(/\s+/g, '');
       img.addEventListener('load', () => {
         img.hidden = false;
         if (status) status.remove();
