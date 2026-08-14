@@ -1,9 +1,10 @@
-name: V3.2 Branch Browser Smoke Test
+name: V3.2/V3.3 Branch Browser Smoke Test
 
 on:
   push:
     branches:
       - version-3.2-working
+      - version-3.3-working
     paths:
       - 'v3.html'
       - 'v3-map.html'
@@ -17,6 +18,7 @@ on:
       - 'scripts/v3-2-smoke.mjs'
       - '.github/workflows/v3-2-smoke-test.yml'
       - 'assets/*.b64'
+      - '.v33-gallery/**'
       - '*.png'
       - '*.jpg'
       - '*.jpeg'
@@ -30,7 +32,7 @@ jobs:
   smoke:
     runs-on: ubuntu-24.04
     steps:
-      - name: Checkout Version 3.2 working branch
+      - name: Checkout working branch
         uses: actions/checkout@v4
 
       - name: Set up Node
@@ -44,7 +46,7 @@ jobs:
           npm install playwright@1.55.0
           npx playwright install --with-deps chromium
 
-      - name: Run Version 3.2 browser smoke checks
+      - name: Run browser smoke checks
         env:
           BASE_URL: http://127.0.0.1:8000/
         run: |
