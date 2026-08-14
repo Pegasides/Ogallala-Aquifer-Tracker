@@ -28,7 +28,7 @@ jobs:
             echo "Upload marker is absent; nothing to do."
             exit 0
           fi
-          cat .v32-gallery-upload/chunk-* | tr -d '\r\n' | base64 -d > /tmp/v3-2-gallery-assets.tar.gz
+          cat .v32-gallery-upload/bin-* > /tmp/v3-2-gallery-assets.tar.gz
           test "$(wc -c < /tmp/v3-2-gallery-assets.tar.gz)" -eq 326226
           echo "529c1075a2ed3b8a4b4a1c6c24c3e6f648d912897096bc2e82b65b67708a6f2d  /tmp/v3-2-gallery-assets.tar.gz" | sha256sum -c -
           mkdir -p /tmp/v32-gallery
