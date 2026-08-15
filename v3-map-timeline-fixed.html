@@ -21,198 +21,95 @@ function installSmoothTimeline(){
     const doc=timeline&&timeline.contentDocument;
     const win=timeline&&timeline.contentWindow;
     if(!doc||!win)return false;
-    if(doc.documentElement.dataset.v33SmoothEight==='1')return true;
-    doc.documentElement.dataset.v33SmoothEight='1';
+    if(doc.documentElement.dataset.v33SmoothEightCompact==='1')return true;
+    doc.documentElement.dataset.v33SmoothEightCompact='1';
 
     const years=[1950,1980,2026,2030,2035,2040,2045,2050];
     const indexByYear={1950:100,1980:85,2026:60,2030:55,2035:50,2040:45,2045:42,2050:40};
-    const conditionByYear={1950:'Baseline',1980:'Early decline',2026:'Present day',2030:'Projection',2035:'Projection',2040:'Projection',2045:'Projection',2050:'Projection'};
-    const cropByYear={
-      1950:'0% 0%',
-      1980:'100% 0%',
-      2026:'0% 100%',
-      2030:'100% 100%',
-      2035:'100% 100%',
-      2040:'100% 100%',
-      2045:'100% 100%',
-      2050:'100% 100%'
-    };
+    const cropByYear={1950:'0% 0%',1980:'100% 0%',2026:'0% 100%',2030:'100% 100%',2035:'100% 100%',2040:'100% 100%',2045:'100% 100%',2050:'100% 100%'};
 
     const style=doc.createElement('style');
-    style.id='v33-smooth-eight-style';
+    style.id='v33-smooth-eight-compact-style';
     style.textContent=`
-      .year-buttons{display:grid!important;grid-template-columns:repeat(4,minmax(90px,1fr))!important;gap:10px!important;max-width:720px!important;margin:0 auto!important}
-      .year-btn{width:100%!important;min-width:0!important;font-size:14px!important;padding:11px 8px!important;transition:background .22s ease,border-color .22s ease,transform .22s ease!important}
+      .year-buttons{display:grid!important;grid-template-columns:repeat(4,minmax(90px,1fr))!important;gap:10px!important;max-width:720px!important;margin:0 auto 14px!important;position:relative!important;z-index:980!important}
+      .year-btn{display:block!important;width:100%!important;min-width:0!important;font-size:14px!important;padding:11px 8px!important;transition:background .22s ease,border-color .22s ease,transform .22s ease!important}
       .year-btn.active{transform:translateY(-1px)!important}
-      .slider-row{display:block!important;max-width:720px!important;margin:18px auto 0!important}
-      #yearSlider{width:100%!important}
+      .slider-row{display:block!important;max-width:720px!important;margin:12px auto 0!important;position:relative!important;z-index:980!important}
+      #yearSlider{display:block!important;width:100%!important}
       .tick-row{display:flex!important;justify-content:space-between!important;gap:4px!important;font-size:10px!important}
       .play-btn{display:block!important}
 
       #map-viewport{aspect-ratio:3/2!important;min-height:0!important;height:auto!important;overflow:hidden!important;position:relative!important}
       #v33-anchor-poster{display:none!important}
       #v32-pretty-aquifer,#map-engine-layer,#basin-layer,#community-layer,#hotspot-layer,#data-center-layer,.pretty-state-label{visibility:hidden!important}
+      #v33-index-panel,#v33-projection-index{display:none!important}
 
-      .v33-smooth-poster{
-        position:absolute;inset:0;z-index:460;
-        background-image:url('ChatGPT%20Image%20Aug%2015,%202026,%2010_13_39%20AM.png');
-        background-size:200% 200%;background-repeat:no-repeat;background-color:#0d1720;
-        pointer-events:none;border-radius:10px;opacity:0;transition:opacity .55s ease;
-      }
+      .v33-smooth-poster{position:absolute;inset:0;z-index:460;background-image:url('ChatGPT%20Image%20Aug%2015,%202026,%2010_13_39%20AM.png');background-size:200% 200%;background-repeat:no-repeat;background-color:#0d1720;pointer-events:none;border-radius:10px;opacity:0;transition:opacity .55s ease}
       .v33-smooth-poster.active{opacity:1}
 
-      #v33-index-panel{
-        position:absolute;left:4.5%;right:4.5%;bottom:3.5%;z-index:900;
-        padding:10px 14px 11px;border-radius:11px;
-        background:rgba(5,18,26,.96);border:1px solid rgba(145,190,211,.68);
-        box-shadow:0 8px 24px rgba(0,0,0,.48);text-align:center;color:#eef8fb;
-        pointer-events:none;
-      }
-      #v33-index-panel .label{font-size:10px;font-weight:900;letter-spacing:.11em;text-transform:uppercase;color:#b9d2de}
-      #v33-index-panel .value-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:3px}
-      #v33-index-panel .value{font-size:24px;font-weight:900;line-height:1.1;min-width:52px}
-      #v33-index-panel .condition{font-size:12px;font-weight:800;color:#dffcf7}
-      #v33-index-panel .track{height:8px;border-radius:999px;background:rgba(255,255,255,.12);overflow:hidden;max-width:420px;margin:7px auto 0}
-      #v33-index-panel .fill{height:100%;width:60%;border-radius:999px;background:#eab308;transition:width .65s ease,background .35s ease}
-      #v33-index-panel .note{font-size:9px;color:#9fb5c0;margin-top:5px}
+      #v33-index-badge{position:absolute;right:14px;top:14px;z-index:920;min-width:112px;padding:7px 10px;border-radius:9px;background:rgba(5,18,26,.90);border:1px solid rgba(145,190,211,.62);box-shadow:0 5px 14px rgba(0,0,0,.35);text-align:center;color:#eef8fb;pointer-events:none}
+      #v33-index-badge .label{font-size:8px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#b9d2de}
+      #v33-index-badge .value{font-size:20px;font-weight:900;line-height:1.05;margin-top:2px}
 
-      @media(max-width:620px){
-        .year-buttons{grid-template-columns:repeat(2,minmax(100px,1fr))!important}
-        .tick-row{font-size:8px!important}
-        #v33-index-panel .value{font-size:20px}
-      }
+      @media(max-width:620px){.year-buttons{grid-template-columns:repeat(2,minmax(100px,1fr))!important}.tick-row{font-size:8px!important}#v33-index-badge{right:8px;top:8px;min-width:96px}.year-btn{font-size:13px!important}}
     `;
     doc.head.appendChild(style);
 
     const viewport=doc.getElementById('map-viewport');
     if(!viewport)return false;
 
-    const oldProjection=doc.getElementById('v33-projection-poster');
-    if(oldProjection)oldProjection.remove();
-    const oldIndex=doc.getElementById('v33-projection-index');
-    if(oldIndex)oldIndex.remove();
+    ['v33-projection-poster','v33-projection-index','v33-index-panel','v33-smooth-poster-a','v33-smooth-poster-b','v33-index-badge'].forEach(id=>{const el=doc.getElementById(id);if(el)el.remove();});
 
-    const posterA=doc.createElement('div');
-    posterA.className='v33-smooth-poster active';
-    posterA.id='v33-smooth-poster-a';
-    const posterB=doc.createElement('div');
-    posterB.className='v33-smooth-poster';
-    posterB.id='v33-smooth-poster-b';
-    viewport.appendChild(posterA);
-    viewport.appendChild(posterB);
+    const posterA=doc.createElement('div');posterA.className='v33-smooth-poster active';posterA.id='v33-smooth-poster-a';
+    const posterB=doc.createElement('div');posterB.className='v33-smooth-poster';posterB.id='v33-smooth-poster-b';
+    viewport.appendChild(posterA);viewport.appendChild(posterB);
 
-    const indexPanel=doc.createElement('div');
-    indexPanel.id='v33-index-panel';
-    indexPanel.innerHTML='<div class="label">Tracker Working Index · relative aquifer condition</div><div class="value-row"><div class="value" id="v33-index-value">60</div><div class="condition" id="v33-index-condition">Present day</div></div><div class="track"><div class="fill" id="v33-index-fill"></div></div><div class="note">Tracker working index — not percent of water remaining</div>';
-    viewport.appendChild(indexPanel);
+    const badge=doc.createElement('div');
+    badge.id='v33-index-badge';
+    badge.innerHTML='<div class="label">Tracker Working Index</div><div class="value" id="v33-index-badge-value">60</div>';
+    viewport.appendChild(badge);
 
     const buttonWrap=doc.querySelector('.year-buttons');
     if(buttonWrap){
       const btn2050=[...buttonWrap.querySelectorAll('.year-btn')].find(b=>Number(b.dataset.year)===2050);
       [2030,2035,2040,2045].forEach(year=>{
         if(!buttonWrap.querySelector('.year-btn[data-year="'+year+'"]')){
-          const b=doc.createElement('button');
-          b.className='year-btn';b.dataset.year=String(year);b.textContent=String(year);
-          buttonWrap.insertBefore(b,btn2050||null);
+          const b=doc.createElement('button');b.className='year-btn';b.dataset.year=String(year);b.textContent=String(year);buttonWrap.insertBefore(b,btn2050||null);
         }
       });
     }
 
     let slider=doc.getElementById('yearSlider');
-    if(slider){
-      const clean=slider.cloneNode(true);
-      clean.min='0';clean.max='7';clean.step='1';
-      slider.replaceWith(clean);slider=clean;
-    }
+    if(slider){const clean=slider.cloneNode(true);clean.min='0';clean.max='7';clean.step='1';slider.replaceWith(clean);slider=clean;}
     const tickRow=doc.querySelector('.tick-row');
     if(tickRow)tickRow.innerHTML=years.map(y=>'<span>'+y+'</span>').join('');
 
-    let activePoster=posterA;
-    let standbyPoster=posterB;
-    let currentYear=2026;
-
-    function colorForIndex(value){
-      if(value>=80)return '#22c55e';
-      if(value>=60)return '#eab308';
-      if(value>=45)return '#f97316';
-      return '#991b1b';
-    }
+    let activePoster=posterA,standbyPoster=posterB,currentYear=2026;
 
     function paint(year,animate=true){
       currentYear=year;
       const crop=cropByYear[year];
-      if(animate){
-        standbyPoster.style.backgroundPosition=crop;
-        standbyPoster.classList.add('active');
-        activePoster.classList.remove('active');
-        const tmp=activePoster;activePoster=standbyPoster;standbyPoster=tmp;
-      }else{
-        activePoster.style.backgroundPosition=crop;
-        activePoster.classList.add('active');
-        standbyPoster.classList.remove('active');
-      }
-
-      const value=indexByYear[year];
-      const valueEl=doc.getElementById('v33-index-value');
-      const conditionEl=doc.getElementById('v33-index-condition');
-      const fill=doc.getElementById('v33-index-fill');
-      if(valueEl)valueEl.textContent=String(value);
-      if(conditionEl)conditionEl.textContent=conditionByYear[year];
-      if(fill){fill.style.width=value+'%';fill.style.background=colorForIndex(value);}
-
+      if(animate){standbyPoster.style.backgroundPosition=crop;standbyPoster.classList.add('active');activePoster.classList.remove('active');const tmp=activePoster;activePoster=standbyPoster;standbyPoster=tmp;}
+      else{activePoster.style.backgroundPosition=crop;activePoster.classList.add('active');standbyPoster.classList.remove('active');}
+      const val=doc.getElementById('v33-index-badge-value');if(val)val.textContent=String(indexByYear[year]);
       doc.querySelectorAll('.year-btn').forEach(btn=>btn.classList.toggle('active',Number(btn.dataset.year)===year));
-      const idx=years.indexOf(year);
-      if(slider&&idx>=0)slider.value=String(idx);
+      const idx=years.indexOf(year);if(slider&&idx>=0)slider.value=String(idx);
     }
 
-    function setYear(year){
-      if(!years.includes(year))return;
-      if(typeof win.setTimelineYear==='function')win.setTimelineYear(year);
-      else if(typeof win.updateYear==='function')win.updateYear(year);
-      paint(year,true);
-    }
+    function setYear(year){if(!years.includes(year))return;if(typeof win.setTimelineYear==='function')win.setTimelineYear(year);else if(typeof win.updateYear==='function')win.updateYear(year);paint(year,true);}
 
     doc.querySelectorAll('.year-btn').forEach(btn=>btn.addEventListener('click',()=>setYear(Number(btn.dataset.year))));
-    if(slider){
-      slider.addEventListener('input',()=>setYear(years[Number(slider.value)]));
-      slider.addEventListener('change',()=>setYear(years[Number(slider.value)]));
-    }
+    if(slider){slider.addEventListener('input',()=>setYear(years[Number(slider.value)]));slider.addEventListener('change',()=>setYear(years[Number(slider.value)]));}
 
     let play=doc.getElementById('playTimeline');
-    if(play){
-      const cleanPlay=play.cloneNode(true);
-      play.replaceWith(cleanPlay);play=cleanPlay;
-      let running=false;
-      let timer=null;
-      const stop=()=>{running=false;if(timer){clearTimeout(timer);timer=null;}play.textContent='▶ Play Timeline';};
-      const advance=(index)=>{
-        if(!running)return;
-        const i=index%years.length;
-        setYear(years[i]);
-        timer=setTimeout(()=>advance((i+1)%years.length),1800);
-      };
-      play.addEventListener('click',()=>{
-        if(running){stop();return;}
-        running=true;play.textContent='■ Stop Timeline';
-        const start=Math.max(0,years.indexOf(currentYear));
-        advance(start);
-      });
-    }
+    if(play){const cleanPlay=play.cloneNode(true);play.replaceWith(cleanPlay);play=cleanPlay;let running=false,timer=null;const stop=()=>{running=false;if(timer){clearTimeout(timer);timer=null;}play.textContent='▶ Play Timeline';};const advance=(index)=>{if(!running)return;const i=index%years.length;setYear(years[i]);timer=setTimeout(()=>advance((i+1)%years.length),1800);};play.addEventListener('click',()=>{if(running){stop();return;}running=true;play.textContent='■ Stop Timeline';const start=Math.max(0,years.indexOf(currentYear));advance(start);});}
 
-    const displayed=Number((doc.getElementById('sliderYear')?.textContent||'2026').trim());
-    currentYear=years.includes(displayed)?displayed:2026;
-    paint(currentYear,false);
+    const displayed=Number((doc.getElementById('sliderYear')?.textContent||'2026').trim());currentYear=years.includes(displayed)?displayed:2026;paint(currentYear,false);
     return true;
   }catch(e){console.error(e);return false;}
 }
 
-site.addEventListener('load',()=>{
-  let tries=0;
-  const timer=setInterval(()=>{
-    tries++;
-    if(installSmoothTimeline()||tries>80)clearInterval(timer);
-  },150);
-});
+site.addEventListener('load',()=>{let tries=0;const timer=setInterval(()=>{tries++;if(installSmoothTimeline()||tries>80)clearInterval(timer);},150);});
 </script>
 </body>
 </html>
