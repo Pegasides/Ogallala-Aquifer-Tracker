@@ -21,8 +21,8 @@ function installSmoothTimeline(){
     const doc=timeline&&timeline.contentDocument;
     const win=timeline&&timeline.contentWindow;
     if(!doc||!win)return false;
-    if(doc.documentElement.dataset.v33SmoothEightCompact4==='1')return true;
-    doc.documentElement.dataset.v33SmoothEightCompact4='1';
+    if(doc.documentElement.dataset.v33SmoothEightCompact5==='1')return true;
+    doc.documentElement.dataset.v33SmoothEightCompact5='1';
 
     const years=[1950,1980,2026,2030,2035,2040,2045,2050];
     const indexByYear={1950:100,1980:85,2026:60,2030:55,2035:50,2040:45,2045:42,2050:40};
@@ -30,15 +30,15 @@ function installSmoothTimeline(){
     const cropByYear={1950:'0% 0%',1980:'100% 0%',2026:'0% 100%',2030:'100% 100%',2035:'100% 100%',2040:'100% 100%',2045:'100% 100%',2050:'100% 100%'};
 
     const style=doc.createElement('style');
-    style.id='v33-smooth-eight-compact-style-4';
+    style.id='v33-smooth-eight-compact-style-5';
     style.textContent=`
-      .year-buttons{display:grid!important;grid-template-columns:repeat(4,minmax(90px,1fr))!important;gap:10px!important;max-width:720px!important;margin:0 auto 14px!important;position:relative!important;z-index:980!important}
-      .year-btn{display:block!important;width:100%!important;min-width:0!important;font-size:14px!important;padding:11px 8px!important;transition:background .22s ease,border-color .22s ease,transform .22s ease!important}
+      .year-buttons{display:grid!important;grid-template-columns:repeat(4,minmax(90px,1fr))!important;gap:10px!important;max-width:720px!important;margin:0 auto 14px!important;position:relative!important;z-index:980!important;pointer-events:auto!important}
+      .year-btn{display:block!important;width:100%!important;min-width:0!important;font-size:14px!important;padding:11px 8px!important;transition:background .22s ease,border-color .22s ease,transform .22s ease!important;cursor:pointer!important;pointer-events:auto!important;position:relative!important;z-index:981!important}
       .year-btn.active{transform:translateY(-1px)!important}
-      .slider-row{display:block!important;max-width:720px!important;margin:12px auto 0!important;position:relative!important;z-index:980!important}
-      #yearSlider{display:block!important;width:100%!important}
+      .slider-row{display:block!important;max-width:720px!important;margin:12px auto 0!important;position:relative!important;z-index:980!important;pointer-events:auto!important}
+      #yearSlider{display:block!important;width:100%!important;cursor:pointer!important;pointer-events:auto!important}
       .tick-row{display:flex!important;justify-content:space-between!important;gap:4px!important;font-size:10px!important}
-      .play-btn{display:block!important}
+      .play-btn{display:block!important;cursor:pointer!important;pointer-events:auto!important;position:relative!important;z-index:981!important}
 
       #map-viewport{aspect-ratio:3/2!important;min-height:0!important;height:auto!important;overflow:hidden!important;position:relative!important}
       #v33-anchor-poster{display:none!important}
@@ -52,17 +52,7 @@ function installSmoothTimeline(){
       #v33-index-badge .label{font-size:8px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#b9d2de}
       #v33-index-badge .value{font-size:20px;font-weight:900;line-height:1.05;margin-top:2px}
 
-      /* Exact overlay over the tracker box baked into the lower-right (2050) artwork panel. */
-      #v33-embedded-index-fix{
-        position:absolute;
-        left:18.35%;top:57.1%;width:14.75%;height:20.4%;
-        z-index:950;display:none;box-sizing:border-box;
-        border-radius:6px;background:#071722;
-        border:1px solid rgba(82,188,235,.82);
-        box-shadow:0 3px 10px rgba(0,0,0,.55);
-        color:#eef8fb;pointer-events:none;overflow:hidden;
-        text-align:center;padding:3px 4px 0;
-      }
+      #v33-embedded-index-fix{position:absolute;left:18.35%;top:57.1%;width:14.75%;height:20.4%;z-index:950;display:none;box-sizing:border-box;border-radius:6px;background:#071722;border:1px solid rgba(82,188,235,.82);box-shadow:0 3px 10px rgba(0,0,0,.55);color:#eef8fb;pointer-events:none;overflow:hidden;text-align:center;padding:3px 4px 0}
       #v33-embedded-index-fix.show{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start}
       #v33-embedded-index-fix .label{font-size:6.5px;line-height:1.05;font-weight:900;letter-spacing:.04em;text-transform:uppercase;color:#62c6f4;white-space:nowrap}
       #v33-embedded-index-fix .sub{font-size:5.8px;line-height:1.05;color:#b6cbd5;margin-top:2px}
@@ -72,16 +62,7 @@ function installSmoothTimeline(){
       #v33-embedded-index-fix .fill{height:100%;width:40%;border-radius:999px;background:#f97316;transition:width .45s ease,background .3s ease}
       #v33-embedded-index-fix .footer{margin-top:auto;background:#0877be;color:#fff;font-size:6.3px;font-weight:900;line-height:1;padding:3px 1px 4px;margin-left:-4px;margin-right:-4px}
 
-      @media(max-width:620px){
-        .year-buttons{grid-template-columns:repeat(2,minmax(100px,1fr))!important}
-        .tick-row{font-size:8px!important}
-        #v33-index-badge{right:8px;top:8px;min-width:96px}
-        .year-btn{font-size:13px!important}
-        #v33-embedded-index-fix .label{font-size:5.6px}
-        #v33-embedded-index-fix .sub,#v33-embedded-index-fix .desc{font-size:5px}
-        #v33-embedded-index-fix .value{font-size:18px}
-        #v33-embedded-index-fix .footer{font-size:5.5px}
-      }
+      @media(max-width:620px){.year-buttons{grid-template-columns:repeat(2,minmax(100px,1fr))!important}.tick-row{font-size:8px!important}#v33-index-badge{right:8px;top:8px;min-width:96px}.year-btn{font-size:13px!important}#v33-embedded-index-fix .label{font-size:5.6px}#v33-embedded-index-fix .sub,#v33-embedded-index-fix .desc{font-size:5px}#v33-embedded-index-fix .value{font-size:18px}#v33-embedded-index-fix .footer{font-size:5.5px}}
     `;
     doc.head.appendChild(style);
 
@@ -94,87 +75,57 @@ function installSmoothTimeline(){
     const posterB=doc.createElement('div');posterB.className='v33-smooth-poster';posterB.id='v33-smooth-poster-b';
     viewport.appendChild(posterA);viewport.appendChild(posterB);
 
-    const badge=doc.createElement('div');
-    badge.id='v33-index-badge';
-    badge.innerHTML='<div class="label">Tracker Working Index</div><div class="value" id="v33-index-badge-value">60</div>';
-    viewport.appendChild(badge);
+    const badge=doc.createElement('div');badge.id='v33-index-badge';badge.innerHTML='<div class="label">Tracker Working Index</div><div class="value" id="v33-index-badge-value">60</div>';viewport.appendChild(badge);
 
-    const embeddedFix=doc.createElement('div');
-    embeddedFix.id='v33-embedded-index-fix';
-    embeddedFix.innerHTML='<div class="label">Tracker Working Index</div><div class="sub">Relative aquifer condition</div><div class="value" id="v33-embedded-index-value"></div><div class="desc">Projection working index — not percent of water remaining</div><div class="mini-track"><div class="fill" id="v33-embedded-index-fill"></div></div><div class="footer" id="v33-embedded-index-footer"></div>';
-    viewport.appendChild(embeddedFix);
+    const embeddedFix=doc.createElement('div');embeddedFix.id='v33-embedded-index-fix';embeddedFix.innerHTML='<div class="label">Tracker Working Index</div><div class="sub">Relative aquifer condition</div><div class="value" id="v33-embedded-index-value"></div><div class="desc">Projection working index — not percent of water remaining</div><div class="mini-track"><div class="fill" id="v33-embedded-index-fill"></div></div><div class="footer" id="v33-embedded-index-footer"></div>';viewport.appendChild(embeddedFix);
 
     const buttonWrap=doc.querySelector('.year-buttons');
     if(buttonWrap){
       const btn2050=[...buttonWrap.querySelectorAll('.year-btn')].find(b=>Number(b.dataset.year)===2050);
       [2030,2035,2040,2045].forEach(year=>{
         if(!buttonWrap.querySelector('.year-btn[data-year="'+year+'"]')){
-          const b=doc.createElement('button');b.className='year-btn';b.dataset.year=String(year);b.textContent=String(year);buttonWrap.insertBefore(b,btn2050||null);
+          const b=doc.createElement('button');b.type='button';b.className='year-btn';b.dataset.year=String(year);b.textContent=String(year);buttonWrap.insertBefore(b,btn2050||null);
         }
       });
+      buttonWrap.querySelectorAll('.year-btn').forEach(b=>{b.type='button';b.removeAttribute('disabled');b.setAttribute('aria-label','Show '+b.dataset.year+' aquifer view');});
     }
 
     let slider=doc.getElementById('yearSlider');
-    if(slider){const clean=slider.cloneNode(true);clean.min='0';clean.max='7';clean.step='1';slider.replaceWith(clean);slider=clean;}
-    const tickRow=doc.querySelector('.tick-row');
-    if(tickRow)tickRow.innerHTML=years.map(y=>'<span>'+y+'</span>').join('');
+    if(slider){const clean=slider.cloneNode(true);clean.min='0';clean.max='7';clean.step='1';clean.disabled=false;slider.replaceWith(clean);slider=clean;}
+    const tickRow=doc.querySelector('.tick-row');if(tickRow)tickRow.innerHTML=years.map(y=>'<span>'+y+'</span>').join('');
 
     let activePoster=posterA,standbyPoster=posterB,currentYear=2026;
-
-    function trackerColor(value){
-      if(value>=80)return '#22c55e';
-      if(value>=60)return '#eab308';
-      if(value>=45)return '#f97316';
-      return '#991b1b';
-    }
+    function trackerColor(value){if(value>=80)return '#22c55e';if(value>=60)return '#eab308';if(value>=45)return '#f97316';return '#991b1b';}
 
     function paint(year,animate=true){
       currentYear=year;
       const crop=cropByYear[year];
-      if(animate){standbyPoster.style.backgroundPosition=crop;standbyPoster.classList.add('active');activePoster.classList.remove('active');const tmp=activePoster;activePoster=standbyPoster;standbyPoster=tmp;}
-      else{activePoster.style.backgroundPosition=crop;activePoster.classList.add('active');standbyPoster.classList.remove('active');}
-
+      if(animate){standbyPoster.style.backgroundPosition=crop;standbyPoster.classList.add('active');activePoster.classList.remove('active');const tmp=activePoster;activePoster=standbyPoster;standbyPoster=tmp;}else{activePoster.style.backgroundPosition=crop;activePoster.classList.add('active');standbyPoster.classList.remove('active');}
       const index=indexByYear[year];
-      const badgeValue=doc.getElementById('v33-index-badge-value');
-      if(badgeValue)badgeValue.textContent=String(index);
-
-      const embeddedValue=doc.getElementById('v33-embedded-index-value');
-      const embeddedFill=doc.getElementById('v33-embedded-index-fill');
-      const embeddedFooter=doc.getElementById('v33-embedded-index-footer');
-      const needsFix=projectionYears.includes(year);
-      embeddedFix.classList.toggle('show',needsFix);
-      if(needsFix){
-        if(embeddedValue)embeddedValue.textContent=String(index);
-        if(embeddedFill){embeddedFill.style.width=index+'%';embeddedFill.style.background=trackerColor(index);}
-        if(embeddedFooter)embeddedFooter.textContent=index+' — '+year+' PROJECTION';
-      }
-
-      doc.querySelectorAll('.year-btn').forEach(btn=>btn.classList.toggle('active',Number(btn.dataset.year)===year));
+      const badgeValue=doc.getElementById('v33-index-badge-value');if(badgeValue)badgeValue.textContent=String(index);
+      const embeddedValue=doc.getElementById('v33-embedded-index-value');const embeddedFill=doc.getElementById('v33-embedded-index-fill');const embeddedFooter=doc.getElementById('v33-embedded-index-footer');const needsFix=projectionYears.includes(year);embeddedFix.classList.toggle('show',needsFix);
+      if(needsFix){if(embeddedValue)embeddedValue.textContent=String(index);if(embeddedFill){embeddedFill.style.width=index+'%';embeddedFill.style.background=trackerColor(index);}if(embeddedFooter)embeddedFooter.textContent=index+' — '+year+' PROJECTION';}
+      doc.querySelectorAll('.year-btn').forEach(btn=>{const active=Number(btn.dataset.year)===year;btn.classList.toggle('active',active);btn.setAttribute('aria-pressed',active?'true':'false');});
       const idx=years.indexOf(year);if(slider&&idx>=0)slider.value=String(idx);
     }
 
-    function setYear(year){
-      if(!years.includes(year))return;
-      if(typeof win.setTimelineYear==='function')win.setTimelineYear(year);
-      else if(typeof win.updateYear==='function')win.updateYear(year);
-      paint(year,true);
-    }
+    function setYear(year){if(!years.includes(year))return;if(typeof win.setTimelineYear==='function')win.setTimelineYear(year);else if(typeof win.updateYear==='function')win.updateYear(year);paint(year,true);}
 
-    doc.querySelectorAll('.year-btn').forEach(btn=>btn.addEventListener('click',()=>setYear(Number(btn.dataset.year))));
+    if(buttonWrap){
+      buttonWrap.addEventListener('click',event=>{const btn=event.target.closest('.year-btn');if(!btn||!buttonWrap.contains(btn))return;event.preventDefault();setYear(Number(btn.dataset.year));});
+    }
     if(slider){slider.addEventListener('input',()=>setYear(years[Number(slider.value)]));slider.addEventListener('change',()=>setYear(years[Number(slider.value)]));}
 
     let play=doc.getElementById('playTimeline');
     if(play){
-      const cleanPlay=play.cloneNode(true);play.replaceWith(cleanPlay);play=cleanPlay;
+      const cleanPlay=play.cloneNode(true);cleanPlay.type='button';cleanPlay.disabled=false;cleanPlay.removeAttribute('disabled');play.replaceWith(cleanPlay);play=cleanPlay;
       let running=false,timer=null;
-      const stop=()=>{running=false;if(timer){clearTimeout(timer);timer=null;}play.textContent='▶ Play Timeline';};
+      const stop=()=>{running=false;if(timer){clearTimeout(timer);timer=null;}play.textContent='▶ Play Timeline';play.setAttribute('aria-pressed','false');};
       const advance=(index)=>{if(!running)return;const i=index%years.length;setYear(years[i]);timer=setTimeout(()=>advance((i+1)%years.length),1800);};
-      play.addEventListener('click',()=>{if(running){stop();return;}running=true;play.textContent='■ Stop Timeline';const start=Math.max(0,years.indexOf(currentYear));advance(start);});
+      play.addEventListener('click',event=>{event.preventDefault();if(running){stop();return;}running=true;play.textContent='■ Stop Timeline';play.setAttribute('aria-pressed','true');const start=Math.max(0,years.indexOf(currentYear));advance(start);});
     }
 
-    const displayed=Number((doc.getElementById('sliderYear')?.textContent||'2026').trim());
-    currentYear=years.includes(displayed)?displayed:2026;
-    paint(currentYear,false);
+    const displayed=Number((doc.getElementById('sliderYear')?.textContent||'2026').trim());currentYear=years.includes(displayed)?displayed:2026;paint(currentYear,false);
     return true;
   }catch(e){console.error(e);return false;}
 }
