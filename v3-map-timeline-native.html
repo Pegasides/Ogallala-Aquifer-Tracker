@@ -18,7 +18,7 @@
 .stage{position:relative;width:100%;aspect-ratio:1448/900;overflow:hidden;background:#06131d}
 #master{display:block;width:100%;height:auto;position:absolute;left:0;top:0;z-index:1}
 #tintSvg{position:absolute;inset:0;width:100%;height:100%;z-index:10;pointer-events:none}
-.tint{mix-blend-mode:color;transition:fill .35s ease,opacity .35s ease}
+.tint{mix-blend-mode:hue;transition:fill .35s ease,opacity .35s ease}
 .status-card{position:absolute;z-index:20;background:rgba(5,17,25,.91);border:1.5px solid;border-radius:8px;padding:6px 8px;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,.35);pointer-events:none}
 .status-card b{display:block;font-size:clamp(8px,.9vw,14px);letter-spacing:.04em}.status-card span{display:block;font-size:clamp(8px,.86vw,13px);font-weight:900;margin-top:1px}.status-card small{display:block;color:#e7eef3;font-size:clamp(6px,.67vw,10px);margin-top:2px}
 #northCard{left:31.6%;top:20.1%;width:15.3%}#centralCard{left:41.9%;top:42.5%;width:13.8%}#southCard{left:46.3%;top:66.2%;width:12.8%}
@@ -93,7 +93,7 @@ const labels={n:['NORTHERN BASIN','(NE, SD, WY, Yuma CO)'],c:['CENTRAL BASIN','(
 let current=2,running=false,timer=null;
 function suffix(y){return y===1950?'BASELINE':y===1980?'TURNING POINT':y===2026?'REALITY':'PROJECTION'}
 function updateCard(id,key,status){const el=document.getElementById(id),color=statusColor[status];el.style.borderColor=color;el.style.color=color;el.innerHTML=`<b>${labels[key][0]}</b><span>${status}</span><small>${labels[key][1]}</small>`}
-function updateTint(id,key,status){const p=document.getElementById(id);p.setAttribute('fill',statusColor[status]);p.style.opacity=(status===base2026[key]?'0':'0.78')}
+function updateTint(id,key,status){const p=document.getElementById(id);p.setAttribute('fill',statusColor[status]);p.style.opacity=(status===base2026[key]?'0':'0.92')}
 function drawDC(y){const layer=document.getElementById('dcLayer');layer.innerHTML='';const show=y>=2026;document.getElementById('dcLegend').style.display=show?'flex':'none';if(!show)return;dcs.forEach(d=>{const el=document.createElement('div');el.className='dc '+d.status;el.style.left=d.x+'%';el.style.top=d.y+'%';el.tabIndex=0;const lab=document.createElement('span');lab.className='dc-label';lab.textContent=d.name+' — '+(d.status==='construction'?'under construction':d.status);el.appendChild(lab);layer.appendChild(el)})}
 function highlightAnchor(y){const el=document.getElementById('anchorHighlight'),g=anchors[y];if(!g){el.style.display='none';return}el.style.display='block';el.style.left=g[0]+'%';el.style.top=g[1]+'%';el.style.width=g[2]+'%';el.style.height=g[3]+'%'}
 function setYear(y){current=years.indexOf(y);const s=statusByYear[y],v=indexByYear[y];document.querySelectorAll('.year-btn').forEach(b=>b.classList.toggle('active',+b.dataset.year===y));updateCard('northCard','n',s.n);updateCard('centralCard','c',s.c);updateCard('southCard','s',s.s);updateTint('northTint','n',s.n);updateTint('centralTint','c',s.c);updateTint('southTint','s',s.s);document.getElementById('indexValue').textContent=v;document.getElementById('indexValue').style.color=v>=80?'#22c55e':v>=60?'#eab308':v>=45?'#f97316':'#ef4444';document.getElementById('indexFoot').textContent=v+' — '+y+' '+suffix(y);drawDC(y);highlightAnchor(y)}
