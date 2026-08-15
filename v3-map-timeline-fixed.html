@@ -57,9 +57,22 @@ function applyTimelineFix(){
         body.v33-projection-year #data-center-layer,
         body.v33-projection-year .pretty-state-label{visibility:hidden!important}
 
+        #v33-projection-index{
+          position:absolute;left:4%;right:4%;bottom:3%;z-index:470;display:none;
+          padding:9px 14px 10px;border-radius:10px;
+          background:rgba(5,18,26,.96);border:1px solid rgba(145,190,211,.55);
+          box-shadow:0 8px 24px rgba(0,0,0,.42);text-align:center;color:#eef8fb;
+          pointer-events:none;
+        }
+        body.v33-projection-year #v33-projection-index{display:block}
+        #v33-projection-index .label{font-size:10px;font-weight:900;letter-spacing:.11em;text-transform:uppercase;color:#b9d2de}
+        #v33-projection-index .value{font-size:23px;font-weight:900;line-height:1.15;margin-top:2px}
+        #v33-projection-index .note{font-size:9px;color:#9fb5c0;margin-top:2px}
+
         @media(max-width:620px){
           .year-buttons{grid-template-columns:repeat(2,minmax(100px,1fr))!important}
           .tick-row{font-size:8px!important}
+          #v33-projection-index .value{font-size:19px}
         }
       `;
       doc.head.appendChild(style);
@@ -68,6 +81,7 @@ function applyTimelineFix(){
     const years=[1950,1980,2026,2030,2035,2040,2045,2050];
     const anchors=[1950,1980,2026,2050];
     const projections=[2030,2035,2040,2045];
+    const projectionIndex={2030:55,2035:50,2040:45,2045:42};
 
     const viewport=doc.getElementById('map-viewport');
     if(viewport&&!doc.getElementById('v33-projection-poster')){
@@ -75,6 +89,12 @@ function applyTimelineFix(){
       p.id='v33-projection-poster';
       p.setAttribute('aria-hidden','true');
       viewport.appendChild(p);
+    }
+    if(viewport&&!doc.getElementById('v33-projection-index')){
+      const indexPanel=doc.createElement('div');
+      indexPanel.id='v33-projection-index';
+      indexPanel.innerHTML='<div class="label">Tracker Working Index · relative aquifer condition</div><div class="value" id="v33-projection-index-value"></div><div class="note">Tracker working index — not percent of water remaining</div>';
+      viewport.appendChild(indexPanel);
     }
 
     const buttonWrap=doc.querySelector('.year-buttons');
@@ -109,6 +129,8 @@ function applyTimelineFix(){
       doc.body.classList.toggle('v33-anchor-year',isAnchor);
       doc.body.classList.toggle('v33-projection-year',isProjection);
       anchors.forEach(y=>doc.body.classList.toggle('v33-year-'+y,isAnchor&&year===y));
+      const value=doc.getElementById('v33-projection-index-value');
+      if(value&&isProjection)value.textContent=projectionIndex[year]+' — Projection';
     }
 
     function setYear(year){
@@ -139,23 +161,19 @@ function applyTimelineFix(){
       cleanPlay.dataset.strictEightStep='1';
       play.replaceWith(cleanPlay);
       play=cleanPlay;
-
       let running=false;
       let timeoutId=null;
-
       const stopPlayback=()=>{
         running=false;
         if(timeoutId){clearTimeout(timeoutId);timeoutId=null;}
         play.textContent='▶ Play Timeline';
       };
-
       const advance=(index)=>{
         if(!running)return;
         const i=index%years.length;
         setYear(years[i]);
         timeoutId=setTimeout(()=>advance((i+1)%years.length),1800);
       };
-
       play.addEventListener('click',()=>{
         if(running){stopPlayback();return;}
         running=true;
