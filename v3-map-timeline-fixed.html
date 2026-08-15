@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ogallala Aquifer Tracker — Interactive Timeline</title>
+<style>
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#06131d}
+#site{display:block;width:100%;height:100%;border:0}
+</style>
+</head>
+<body>
+<iframe id="site" src="v3-map.html" title="Ogallala Aquifer Tracker Interactive Timeline"></iframe>
+<script>
+const site=document.getElementById('site');
+function applyTimelineFix(){
+  try{
+    const outer=site.contentDocument;
+    const timeline=outer&&outer.getElementById('timelineFrame');
+    const doc=timeline&&timeline.contentDocument;
+    if(!doc)return false;
+    let style=doc.getElementById('v33-anchor-timeline-crop-fix');
+    if(!style){
+      style=doc.createElement('style');
+      style.id='v33-anchor-timeline-crop-fix';
+      style.textContent=`
+        #v33-anchor-poster{background-size:200% 235%!important}
+        body.v33-anchor-year #map-viewport{aspect-ratio:16/9!important;min-height:0!important;height:auto!important}
+        body.v33-year-1950 #v33-anchor-poster{background-position:0% 0%!important}
+        body.v33-year-1980 #v33-anchor-poster{background-position:100% 0%!important}
+        body.v33-year-2026 #v33-anchor-poster{background-position:0% 87%!important}
+        body.v33-year-2050 #v33-anchor-poster{background-position:100% 87%!important}
+      `;
+      doc.head.appendChild(style);
+    }
+    return true;
+  }catch(e){return false}
+}
+site.addEventListener('load',()=>{
+  let tries=0;
+  const timer=setInterval(()=>{
+    tries++;
+    if(applyTimelineFix()||tries>40)clearInterval(timer);
+  },150);
+});
+</script>
+</body>
+</html>
