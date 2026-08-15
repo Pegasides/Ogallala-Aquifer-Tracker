@@ -17,26 +17,28 @@
 .map-stage{position:relative;width:100%;aspect-ratio:1448/900;overflow:hidden;background:#06131d}
 #master{display:block;width:100%;height:auto;position:absolute;left:0;top:0;z-index:1}
 .loading{position:absolute;inset:0;z-index:50;display:grid;place-items:center;background:#07131d;color:#9fc0d0;font-weight:900;letter-spacing:.06em}
-/* Keep the baked basin tabs. Only remove the two slogans and the 4 Key Timeframes block. */
-.sky-cover{position:absolute;z-index:16;pointer-events:none;left:41.2%;top:4.4%;width:18.7%;height:7.7%;background:linear-gradient(90deg,#071d29 0%,#08232f 48%,#071c28 100%);border-radius:5px}
-.dc-panel{position:absolute;z-index:20;left:60.2%;top:4.2%;width:36.9%;height:42.0%;background:#081b27;border:1px solid rgba(145,190,211,.58);border-radius:12px;padding:clamp(10px,1.15vw,17px);box-shadow:0 8px 24px rgba(0,0,0,.34);overflow:hidden}
-.dc-panel h2{margin:0;text-align:center;font-size:clamp(16px,1.8vw,28px);letter-spacing:.05em;line-height:1.05}
-.dc-panel .sub{text-align:center;color:#aac1cd;font-size:clamp(7px,.72vw,11px);margin:4px 0 13px}
-.legend-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:5px}
-.legend-card{border:1px solid rgba(255,255,255,.10);border-radius:9px;background:rgba(255,255,255,.035);padding:11px 8px;text-align:center;min-width:0}
-.legend-card strong{display:block;font-size:clamp(9px,.92vw,14px);margin-top:8px}.legend-card small{display:block;color:#9fb5c1;font-size:clamp(6px,.6vw,9px);margin-top:3px}
-.legend-tri{margin:0 auto;width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-bottom:17px solid}
+/* Preserve the baked basin tabs. This narrow sky patch removes only the blue slogan after TRACKER. */
+.sky-cover{position:absolute;z-index:16;pointer-events:none;left:46.7%;top:5.0%;width:13.7%;height:4.5%;background:linear-gradient(90deg,#071d29 0%,#08232f 52%,#071c28 100%);border-radius:3px}
+/* Styled to echo the framed 28 Communities panel below, while staying entirely above it. */
+.dc-panel{position:absolute;z-index:20;left:60.6%;top:5.0%;width:36.1%;height:31.6%;background:rgba(5,18,26,.975);border:1px solid #405b6d;border-radius:8px;padding:clamp(8px,.9vw,13px);box-shadow:none;overflow:hidden}
+.dc-panel h2{margin:0;text-align:center;color:#4fc3e8;font-size:clamp(15px,1.55vw,24px);letter-spacing:.045em;line-height:1.05}
+.dc-panel .sub{text-align:center;color:#c1d0d8;font-size:clamp(7px,.67vw,10px);margin:3px 0 8px}
+.legend-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:3px}
+.legend-card{border:1px solid #334c5c;border-radius:6px;background:rgba(7,22,31,.90);padding:8px 6px 7px;text-align:center;min-width:0;min-height:86px}
+.legend-card strong{display:block;font-size:clamp(8px,.82vw,12px);margin-top:6px;text-transform:uppercase;letter-spacing:.035em}.legend-card small{display:block;color:#9fb5c1;font-size:clamp(5.8px,.55vw,8.5px);margin-top:2px;line-height:1.15}
+.legend-tri{margin:0 auto;width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:13px solid}
+.legend-card.built{border-top:3px solid var(--built)}.legend-card.planned{border-top:3px solid var(--planned)}.legend-card.proposed{border-top:3px solid var(--proposed)}
 .legend-card.built .legend-tri{border-bottom-color:var(--built)}.legend-card.planned .legend-tri{border-bottom-color:var(--planned)}.legend-card.proposed .legend-tri{border-bottom-color:var(--proposed)}
 .legend-card.built strong{color:#9ff8ea}.legend-card.planned strong{color:#ffd58b}.legend-card.proposed strong{color:#e2c6ff}
-.dc-count{text-align:center;margin:14px 0 0;color:#dcebf1;font-size:clamp(8px,.8vw,12px);font-weight:900;letter-spacing:.03em}
-.dc-note{text-align:center;margin:7px auto 0;max-width:92%;color:#819dab;font-size:clamp(6px,.58vw,9px);line-height:1.35}
+.dc-count{text-align:center;margin:9px 0 0;color:#dcebf1;font-size:clamp(7px,.68vw,10px);font-weight:900;letter-spacing:.025em}
+.dc-note{text-align:center;margin:4px auto 0;max-width:92%;color:#819dab;font-size:clamp(5.5px,.51vw,7.8px);line-height:1.2}
 .dc-layer{position:absolute;inset:0;z-index:25;pointer-events:none}
 .dc{position:absolute;width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-bottom:15px solid;filter:drop-shadow(0 0 4px rgba(0,0,0,.9));pointer-events:auto;cursor:help;transform:translate(-50%,-50%)}
 .dc.built{border-bottom-color:var(--built)}.dc.planned{border-bottom-color:var(--planned)}.dc.proposed{border-bottom-color:var(--proposed)}
 .dc-label{position:absolute;left:12px;top:-11px;background:rgba(5,18,26,.97);border:1px solid #536f80;border-radius:6px;padding:4px 6px;color:#fff;font-size:9px;font-weight:900;white-space:nowrap;opacity:0;visibility:hidden;transition:opacity .15s;z-index:40}
 .dc:hover .dc-label,.dc:focus .dc-label{opacity:1;visibility:visible}
 .checkpoint{margin-top:14px;text-align:center;color:#9fb5c1;font-size:11px}
-@media(max-width:850px){.v3inner{display:block}.brand{display:block;margin-bottom:6px}.links{overflow-x:auto;flex-wrap:nowrap}.links a{flex:0 0 auto}.shell{width:calc(100% - 10px)}.dc-panel{padding:7px}.legend-grid{gap:5px}.legend-card{padding:7px 4px}.dc{border-left-width:6px;border-right-width:6px;border-bottom-width:12px}}
+@media(max-width:850px){.v3inner{display:block}.brand{display:block;margin-bottom:6px}.links{overflow-x:auto;flex-wrap:nowrap}.links a{flex:0 0 auto}.shell{width:calc(100% - 10px)}.dc-panel{padding:6px}.legend-grid{gap:4px}.legend-card{padding:5px 3px;min-height:70px}.dc{border-left-width:6px;border-right-width:6px;border-bottom-width:12px}}
 </style>
 </head>
 <body>
@@ -50,7 +52,7 @@
 <div class="sky-cover" aria-hidden="true"></div>
 <section class="dc-panel" aria-label="AI data center status legend">
 <h2>AI DATA CENTERS</h2>
-<div class="sub">Status legend for tracked facilities</div>
+<div class="sub">Tracked facilities · project status</div>
 <div class="legend-grid">
 <div class="legend-card built"><i class="legend-tri"></i><strong>Built</strong><small>Operational</small></div>
 <div class="legend-card planned"><i class="legend-tri"></i><strong>Planned</strong><small>Under construction / planned</small></div>
