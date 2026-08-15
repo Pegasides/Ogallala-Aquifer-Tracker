@@ -52,13 +52,13 @@ function applyTimelineFix(){
         body.v33-year-2026 #v33-anchor-poster{background-position:0% 100%!important}
         body.v33-year-2050 #v33-anchor-poster{background-position:100% 100%!important}
 
-        /* Intermediate projections use the current approved aquifer artwork,
-           zoomed to the aquifer/map portion so the old silhouette never shows. */
+        /* Intermediate projections use the current approved aquifer artwork
+           at the same visual scale as the four anchor-year panels. */
         #v33-projection-poster{
           position:absolute;inset:0;z-index:459;display:none;
           background-image:url('ChatGPT%20Image%20Aug%2015,%202026,%2010_13_39%20AM.png');
           background-repeat:no-repeat;background-color:#0d1720;
-          background-size:390% 390%;background-position:94% 86%;
+          background-size:200% 200%;background-position:100% 100%;
           pointer-events:none;overflow:hidden;border-radius:10px;
         }
         body.v33-projection-year #v33-projection-poster{display:block}
@@ -82,7 +82,6 @@ function applyTimelineFix(){
     const anchors=[1950,1980,2026,2050];
     const projections=[2030,2035,2040,2045];
 
-    /* Add a clean overlay for intermediate projections. */
     const viewport=doc.getElementById('map-viewport');
     if(viewport&&!doc.getElementById('v33-projection-poster')){
       const p=doc.createElement('div');
@@ -91,7 +90,6 @@ function applyTimelineFix(){
       viewport.appendChild(p);
     }
 
-    /* Re-create the four intermediate projection buttons between 2026 and 2050. */
     const buttonWrap=doc.querySelector('.year-buttons');
     if(buttonWrap){
       const btn2050=[...buttonWrap.querySelectorAll('.year-btn')].find(b=>Number(b.dataset.year)===2050);
@@ -107,7 +105,6 @@ function applyTimelineFix(){
       });
     }
 
-    /* Replace the tracker range input so temporary handlers cannot interfere. */
     let slider=doc.getElementById('yearSlider');
     if(slider && !slider.dataset.eightStop){
       const clean=slider.cloneNode(true);
@@ -150,7 +147,6 @@ function applyTimelineFix(){
       slider.addEventListener('change',()=>setYear(years[Number(slider.value)]));
     }
 
-    /* Play Timeline now loops continuously: 2050 -> 1950. */
     let play=doc.getElementById('playTimeline');
     if(play && !play.dataset.eightStopLoop){
       const cleanPlay=play.cloneNode(true);
