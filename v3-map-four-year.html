@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ogallala Aquifer Tracker — Four-Year Timeline</title>
+<style>
+html,body{margin:0;width:100%;height:100%;background:#06131d;overflow:hidden}
+#site{display:block;width:100%;height:100%;border:0}
+</style>
+</head>
+<body>
+<iframe id="site" src="v3-map.html" title="Ogallala Aquifer Tracker Interactive Timeline"></iframe>
+<script>
+const site=document.getElementById('site');
+function wireFourYearVisual(){
+  try{
+    const outer=site.contentDocument;
+    if(!outer)return false;
+    const timelineFrame=outer.getElementById('timelineFrame');
+    if(!timelineFrame||!timelineFrame.contentDocument)return false;
+    const doc=timelineFrame.contentDocument;
+    const viewport=doc.getElementById('map-viewport');
+    const yearLabel=doc.getElementById('sliderYear');
+    if(!viewport||!yearLabel)return false;
+
+    if(!doc.getElementById('v33-anchor-poster-style')){
+      const style=doc.createElement('style');
+      style.id='v33-anchor-poster-style';
+      style.textContent=`
+        #v33-anchor-poster{position:absolute;inset:0;z-index:900;display:none;overflow:hidden;border-radius:10px;background:#08141d;pointer-events:none}
+        #v33-anchor-poster img{position:absolute;width:200%;height:200%;max-width:none;object-fit:fill;left:0;top:0;display:block}
+        body.v33-anchor-poster #v33-anchor-poster{display:block}
+        body.v33-anchor-poster #map-viewport{aspect-ratio:3/2!important;min-height:0!important;height:auto!important}
+      `;
+      doc.head.appendChild(style);
+    }
+
+    let poster=doc.getElementById('v33-anchor-poster');
+    if(!poster){
+      poster=doc.createElement('div');
+      poster.id='v33-anchor-poster';
+      poster.setAttribute('aria-hidden','true');
+      const img=doc.createElement('img');
+      img.src='ChatGPT%20Image%20Aug%2015,%202026,%2010_13_39%20AM.png';
+      img.alt='Ogallala Aquifer Tracker four-year visual';
+      poster.appendChild(img);
+      viewport.appendChild(poster);
+    }
+
+    const sync=()=>{
+      const year=Number((yearLabel.textContent||'').trim());
+      const anchors=[1950,1980,2026,2050];
+      doc.body.classList.toggle('v33-anchor-poster',anchors.includes(year));
+      const img=poster.querySelector('img');
+      if(!img)return;
+      if(year===1950){img.style.left='0';img.style.top='0';}
+      else if(year===1980){img.style.left='-100%';img.style.top='0';}
+      else if(year===2026){img.style.left='0';img.style.top='-100%';}
+      else if(year===2050){img.style.left='-100%';img.style.top='-100%';}
+    };
+    if(!yearLabel.dataset.v33PosterObserver){
+      yearLabel.dataset.v33PosterObserver='1';
+      new MutationObserver(sync).observe(yearLabel,{childList:true,characterData:true,subtree:true});
+    }
+    sync();
+    return true;
+  }catch(e){console.warn('Four-year visual wiring retrying',e);return false;}
+}
+site.addEventListener('load',()=>{
+  let tries=0;
+  const timer=setInterval(()=>{
+    tries++;
+    if(wireFourYearVisual()||tries>80)clearInterval(timer);
+  },100);
+});
+</script>
+</body>
+</html>
