@@ -33,30 +33,24 @@ function applyTimelineFix(){
         .tick-row{display:flex!important;justify-content:space-between!important;gap:4px!important;font-size:10px!important}
         .play-btn{display:block!important}
 
-        #v33-anchor-poster{background-size:200% 200%!important;background-repeat:no-repeat!important}
-        body.v33-anchor-year #map-viewport,
-        body.v33-projection-year #map-viewport{aspect-ratio:3/2!important;min-height:0!important;height:auto!important}
+        #v33-anchor-poster{
+          background-size:200% 200%!important;
+          background-repeat:no-repeat!important;
+          transition:background-position .18s ease;
+        }
+        body.v33-anchor-year #map-viewport{
+          aspect-ratio:3/2!important;
+          min-height:0!important;
+          height:auto!important;
+        }
         body.v33-year-1950 #v33-anchor-poster{background-position:0% 0%!important}
         body.v33-year-1980 #v33-anchor-poster{background-position:100% 0%!important}
         body.v33-year-2026 #v33-anchor-poster{background-position:0% 100%!important}
+        body.v33-year-projection #v33-anchor-poster{background-position:100% 100%!important}
         body.v33-year-2050 #v33-anchor-poster{background-position:100% 100%!important}
 
-        #v33-projection-poster{
-          position:absolute;inset:0;z-index:459;display:none;
-          background-image:url('ChatGPT%20Image%20Aug%2015,%202026,%2010_13_39%20AM.png');
-          background-repeat:no-repeat;background-color:#0d1720;
-          background-size:200% 200%;background-position:100% 100%;
-          pointer-events:none;overflow:hidden;border-radius:10px;
-        }
-        body.v33-projection-year #v33-projection-poster{display:block}
-        body.v33-projection-year #v32-pretty-aquifer,
-        body.v33-projection-year #map-engine-layer,
-        body.v33-projection-year #basin-layer,
-        body.v33-projection-year #community-layer,
-        body.v33-projection-year #hotspot-layer,
-        body.v33-projection-year #data-center-layer,
-        body.v33-projection-year .pretty-state-label{visibility:hidden!important}
-
+        /* The same single poster remains visible for 2030-2045; only the
+           year/index overlay changes, preventing the old map from flashing through. */
         #v33-projection-index{
           position:absolute;left:4%;right:4%;bottom:3%;z-index:470;display:none;
           padding:9px 14px 10px;border-radius:10px;
@@ -64,7 +58,7 @@ function applyTimelineFix(){
           box-shadow:0 8px 24px rgba(0,0,0,.42);text-align:center;color:#eef8fb;
           pointer-events:none;
         }
-        body.v33-projection-year #v33-projection-index{display:block}
+        body.v33-year-projection #v33-projection-index{display:block}
         #v33-projection-index .label{font-size:10px;font-weight:900;letter-spacing:.11em;text-transform:uppercase;color:#b9d2de}
         #v33-projection-index .value{font-size:23px;font-weight:900;line-height:1.15;margin-top:2px}
         #v33-projection-index .note{font-size:9px;color:#9fb5c0;margin-top:2px}
@@ -79,23 +73,19 @@ function applyTimelineFix(){
     }
 
     const years=[1950,1980,2026,2030,2035,2040,2045,2050];
-    const anchors=[1950,1980,2026,2050];
     const projections=[2030,2035,2040,2045];
     const projectionIndex={2030:55,2035:50,2040:45,2045:42};
 
     const viewport=doc.getElementById('map-viewport');
-    if(viewport&&!doc.getElementById('v33-projection-poster')){
-      const p=doc.createElement('div');
-      p.id='v33-projection-poster';
-      p.setAttribute('aria-hidden','true');
-      viewport.appendChild(p);
-    }
     if(viewport&&!doc.getElementById('v33-projection-index')){
       const indexPanel=doc.createElement('div');
       indexPanel.id='v33-projection-index';
       indexPanel.innerHTML='<div class="label">Tracker Working Index · relative aquifer condition</div><div class="value" id="v33-projection-index-value"></div><div class="note">Tracker working index — not percent of water remaining</div>';
       viewport.appendChild(indexPanel);
     }
+
+    const oldProjectionPoster=doc.getElementById('v33-projection-poster');
+    if(oldProjectionPoster)oldProjectionPoster.remove();
 
     const buttonWrap=doc.querySelector('.year-buttons');
     if(buttonWrap){
@@ -124,11 +114,13 @@ function applyTimelineFix(){
     if(tickRow)tickRow.innerHTML=years.map(y=>'<span>'+y+'</span>').join('');
 
     function syncPoster(year){
-      const isAnchor=anchors.includes(year);
       const isProjection=projections.includes(year);
-      doc.body.classList.toggle('v33-anchor-year',isAnchor);
-      doc.body.classList.toggle('v33-projection-year',isProjection);
-      anchors.forEach(y=>doc.body.classList.toggle('v33-year-'+y,isAnchor&&year===y));
+      doc.body.classList.add('v33-anchor-year');
+      doc.body.classList.toggle('v33-year-1950',year===1950);
+      doc.body.classList.toggle('v33-year-1980',year===1980);
+      doc.body.classList.toggle('v33-year-2026',year===2026);
+      doc.body.classList.toggle('v33-year-projection',isProjection);
+      doc.body.classList.toggle('v33-year-2050',year===2050);
       const value=doc.getElementById('v33-projection-index-value');
       if(value&&isProjection)value.textContent=projectionIndex[year]+' — Projection';
     }
@@ -156,9 +148,9 @@ function applyTimelineFix(){
     }
 
     let play=doc.getElementById('playTimeline');
-    if(play&&!play.dataset.strictEightStep){
+    if(play&&!play.dataset.seamlessEightStep){
       const cleanPlay=play.cloneNode(true);
-      cleanPlay.dataset.strictEightStep='1';
+      cleanPlay.dataset.seamlessEightStep='1';
       play.replaceWith(cleanPlay);
       play=cleanPlay;
       let running=false;
