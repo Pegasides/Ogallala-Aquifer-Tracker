@@ -19,8 +19,9 @@
 #tintSvg{position:absolute;inset:0;width:100%;height:100%;z-index:10;pointer-events:none}
 .tint{mix-blend-mode:hue;transition:fill .35s ease,opacity .35s ease}
 #lumaRestore{display:block;width:100%;height:auto;position:absolute;left:0;top:0;z-index:12;mix-blend-mode:luminosity;pointer-events:none;opacity:0;transition:opacity .35s ease}
-/* Surgical neutral masks: hide only the baked duplicate basin wording without adding basin-colored blocks. */
-.erase-patch{position:absolute;z-index:16;pointer-events:none;border-radius:5px;background:linear-gradient(90deg,rgba(7,24,32,.96),rgba(10,32,42,.93));box-shadow:none;opacity:.98}
+/* Texture-copy cleanup windows hide the baked duplicate basin wording without dark blocks or blur. */
+.erase-patch{position:absolute;z-index:16;pointer-events:none;overflow:hidden;border-radius:4px;background:transparent;box-shadow:none;opacity:1}
+.erase-patch img{position:absolute;max-width:none;pointer-events:none}
 .erase-n{left:31.7%;top:21.25%;width:14.6%;height:4.25%}
 .erase-c{left:42.25%;top:44.15%;width:7.15%;height:4.05%}
 .erase-s{left:46.55%;top:67.7%;width:3.85%;height:4.0%}
@@ -46,24 +47,24 @@
 .dc.operational{border-bottom-color:#2dd4bf}.dc.construction{border-bottom-color:#f59e0b}.dc.proposed{border-bottom-color:#c084fc}
 .dc-label{position:absolute;left:10px;top:-9px;background:rgba(5,18,26,.96);border:1px solid currentColor;border-radius:5px;padding:3px 5px;color:#fff;font-size:9px;font-weight:900;white-space:nowrap;opacity:0;visibility:hidden;transition:opacity .15s}
 .dc:hover .dc-label,.dc:focus .dc-label{opacity:1;visibility:visible}
-/* AI Data Centers remains live HTML; the original embedded 28 Communities panel is visible again below it. */
-.side-panel{position:absolute;left:60.0%;width:37.2%;z-index:27;background:linear-gradient(145deg,rgba(8,23,32,.992),rgba(11,33,45,.992));border:1px solid rgba(145,190,211,.52);border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.45);overflow:hidden}
-.dc-panel{top:13.8%;height:31.0%;padding:clamp(7px,.78vw,11px)}
+/* Compact, fully opaque AI Data Centers panel aligned to the right-side communities footprint. */
+.side-panel{position:absolute;left:60.6%;width:36.4%;z-index:27;background:#081b27;border:1px solid rgba(145,190,211,.58);border-radius:12px;box-shadow:none;overflow:hidden}
+.dc-panel{top:14.8%;height:24.8%;padding:clamp(6px,.68vw,9px)}
 .dc-panel h2{margin:0;text-align:center;font-size:clamp(13px,1.38vw,21px);letter-spacing:.045em;line-height:1.08}
 .panel-sub{text-align:center;color:#aac1cd;font-size:clamp(6px,.58vw,9px);margin:2px 0 6px}
 .dc-groups{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
-.dc-group{min-width:0;border-top:3px solid;border-left:1px solid rgba(255,255,255,.08);border-right:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);border-radius:6px;background:rgba(255,255,255,.035);padding:4px 5px}
-.dc-group.north{border-top-color:var(--north)}.dc-group.central{border-top-color:var(--central)}.dc-group.south{border-top-color:var(--south)}.dc-group.regional{grid-column:1/-1;border-top-color:#748995;padding:3px 5px}
-.dc-group-head{display:flex;align-items:center;justify-content:space-between;gap:6px;font-size:clamp(6.2px,.6vw,9px);font-weight:900;margin-bottom:2px;line-height:1.05}
+.dc-group{min-width:0;border-top:3px solid;border-left:1px solid rgba(255,255,255,.08);border-right:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);border-radius:6px;background:rgba(255,255,255,.035);padding:3px 5px}
+.dc-group.north{border-top-color:var(--north)}.dc-group.central{border-top-color:var(--central)}.dc-group.south{border-top-color:var(--south)}.dc-group.regional{grid-column:1/-1;border-top-color:#748995;padding:2px 5px}
+.dc-group-head{display:flex;align-items:center;justify-content:space-between;gap:6px;font-size:clamp(6px,.58vw,8.8px);font-weight:900;margin-bottom:1px;line-height:1.05}
 .dc-group.north .dc-group-head{color:#7fc8f4}.dc-group.central .dc-group-head{color:#e9b85d}.dc-group.south .dc-group-head{color:#ff8585}.dc-group.regional .dc-group-head{color:#c2d1d9}
-.dc-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:4px;padding:1px 0;font-size:clamp(5.4px,.5vw,7.9px);line-height:1.18}
+.dc-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:4px;padding:0;font-size:clamp(5.2px,.48vw,7.5px);line-height:1.14}
 .dc-row .name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#edf6fa}
-.status-pill{border-radius:999px;padding:0 3px;font-size:clamp(4.8px,.44vw,6.8px);font-weight:900;border:1px solid;line-height:1.2}
+.status-pill{border-radius:999px;padding:0 3px;font-size:clamp(4.7px,.42vw,6.5px);font-weight:900;border:1px solid;line-height:1.15}
 .status-pill.operational{color:#a7fff1;border-color:#2dd4bf;background:rgba(45,212,191,.11)}
 .status-pill.construction{color:#ffe0a1;border-color:#f59e0b;background:rgba(245,158,11,.11)}
 .status-pill.proposed{color:#e7cbff;border-color:#c084fc;background:rgba(192,132,252,.11)}
-.dc-historical{height:70%;display:grid;place-items:center;text-align:center;color:#b4c6cf;font-size:clamp(7px,.68vw,10px);padding:8px}
-.dc-panel-note{position:absolute;left:8px;right:8px;bottom:4px;color:#7fa0b0;text-align:center;font-size:clamp(4.7px,.43vw,6.8px);line-height:1.1}
+.dc-historical{height:68%;display:grid;place-items:center;text-align:center;color:#b4c6cf;font-size:clamp(7px,.66vw,9.8px);padding:7px}
+.dc-panel-note{position:absolute;left:8px;right:8px;bottom:3px;color:#7fa0b0;text-align:center;font-size:clamp(4.6px,.42vw,6.5px);line-height:1.08}
 .dc-legend{display:none!important}
 .controls{padding:13px 14px 14px;background:linear-gradient(180deg,#0c1e2b,#081620);border-top:1px solid rgba(188,218,235,.2)}
 .year-row{display:grid;grid-template-columns:repeat(8,minmax(64px,1fr)) auto;gap:8px;align-items:center}
@@ -159,8 +160,11 @@ document.getElementById('playTimeline').onclick=function(){running=!running;this
 (async()=>{try{
  const parts=await Promise.all(['.v33-gallery/g1-00.b64','.v33-gallery/g1-00b.b64','.v33-gallery/g1-01.b64','.v33-gallery/g1-02.b64'].map(async p=>{const r=await fetch(p,{cache:'no-store'});if(!r.ok)throw new Error(p+' '+r.status);return (await r.text()).replace(/\s+/g,'')}));
  const data='data:image/avif;base64,'+parts.join(''),img=document.getElementById('master'),restore=document.getElementById('lumaRestore');
- img.onload=()=>document.getElementById('loading').remove();img.onerror=()=>document.getElementById('loading').textContent='Image 2 could not be displayed.';
- img.src=data;restore.src=data
+ const shifts={eraseNorth:[0.016,0.060],eraseCentral:[-0.012,-0.055],eraseSouth:[-0.010,-0.055]};
+ const alignCleanup=()=>{const stage=document.getElementById('stage'),sr=stage.getBoundingClientRect();document.querySelectorAll('.erase-patch').forEach(w=>{const r=w.getBoundingClientRect(),pi=w.querySelector('img');if(!pi)return;const sh=shifts[w.id]||[0,0],dx=sh[0]*sr.width,dy=sh[1]*sr.height;pi.style.width=sr.width+'px';pi.style.height=sr.height+'px';pi.style.left=(-(r.left-sr.left)+dx)+'px';pi.style.top=(-(r.top-sr.top)+dy)+'px';});};
+ document.querySelectorAll('.erase-patch').forEach(w=>{const pi=document.createElement('img');pi.alt='';pi.setAttribute('aria-hidden','true');pi.src=data;w.appendChild(pi)});
+ img.onload=()=>{document.getElementById('loading').remove();alignCleanup()};img.onerror=()=>document.getElementById('loading').textContent='Image 2 could not be displayed.';
+ img.src=data;restore.src=data;window.addEventListener('resize',alignCleanup)
 }catch(e){console.error(e);document.getElementById('loading').textContent='Image 2 could not be loaded.'}})();
 setYear(2026);
 </script>
