@@ -259,12 +259,15 @@ function applyV32PrettyMapPresentation(){
       .v32-pretty-map-caption strong{color:#dffcf7}
       #v32-1950-poster{
         position:absolute;inset:0;z-index:460;display:none;align-items:center;justify-content:center;
-        background:#eef4f0;pointer-events:none;overflow:hidden;border-radius:10px;
+        background:#0d1720;pointer-events:none;overflow:hidden;border-radius:10px;
       }
       #v32-1950-poster img{
         width:100%;height:100%;object-fit:contain;display:block;
       }
       body.v32-show-1950-poster #v32-1950-poster{display:flex}
+      body.v32-show-1950-poster #map-viewport{
+        aspect-ratio:4/3!important;min-height:0!important;height:auto!important;
+      }
       @media(max-width:620px){
         #v32-pretty-aquifer{left:70px;top:16px}
         .pretty-state-label{font-size:10px}
@@ -287,7 +290,7 @@ function applyV32PrettyMapPresentation(){
     posterImage.src='ChatGPT%20Image%20Aug%2014,%202026,%2012_39_48%20PM.png';
     posterImage.alt='Ogallala Aquifer Tracker approved 1950 baseline infographic';
     poster1950.appendChild(posterImage);
-    mapGrid.appendChild(poster1950);
+    viewport.appendChild(poster1950);
 
     const sync1950Poster=()=>{
         const year=Number((document.getElementById('sliderYear')?.textContent||'').trim());
