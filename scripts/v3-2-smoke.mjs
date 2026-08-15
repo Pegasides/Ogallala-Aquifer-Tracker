@@ -33,13 +33,13 @@ page.on('console', msg => { if (msg.type() === 'error') consoleErrors.push(msg.t
 page.on('pageerror', err => consoleErrors.push(err.message));
 
 await page.goto(BASE + 'v3.html', { waitUntil: 'networkidle' });
-check((await page.title()).includes('Version 3.2'), 'V3.2 home title', await page.title());
-check((await page.locator('.hero-badge').innerText()).toUpperCase().includes('VERSION 3.2'), 'V3.2 preview badge');
+check((await page.title()).includes('Version 3.3'), 'V3.3 home title', await page.title());
+check((await page.locator('.hero-badge').innerText()).toUpperCase().includes('VERSION 3.3'), 'V3.3 preview badge');
 check(await page.locator('a.data-center-link[href="data-centers.html"]').count() === 1, 'Primary AI Data Centers navigation button exists');
 check((await page.locator('.nav-publication').innerText()).toUpperCase().includes('SUBSTACK'), 'Substack publication marker remains visible');
 check(await page.locator('#story-gallery .artwork').count() === 5, 'Homepage carries five approved artwork panels');
 check(await page.locator('#story-gallery .artwork img').count() === 5, 'Homepage five-image sequence is wired');
-check(await page.locator('#story-gallery img[src="Ogallala_Aquifer_Tracker_Sources_Poster_V3_1_verified.png"]').count() === 1, 'Sources poster closes the homepage story');
+check(await page.locator('#story-gallery .artwork[data-gallery-index="5"] img[alt*="Sources That Inform Our Story"]').count() === 1, 'Sources poster closes the homepage story');
 const galleryImages = await page.locator('#story-gallery .artwork img').evaluateAll(imgs => imgs.map(img => ({hidden: img.hidden, complete: img.complete, w: img.naturalWidth, h: img.naturalHeight})));
 check(galleryImages.every(info => !info.hidden && info.complete && info.w > 0 && info.h > 0), 'All five homepage artworks render', JSON.stringify(galleryImages));
 
@@ -120,5 +120,5 @@ check(mobileErrors.filter(text => !/favicon/i.test(text)).length === 0, 'No rele
 await mobile.close();
 await browser.close();
 
-console.log(`\n${passed}/${passed + failed} Version 3.2 smoke checks passed.`);
+console.log(`\n${passed}/${passed + failed} Version 3.3 smoke checks passed.`);
 if (failed) process.exit(1);
