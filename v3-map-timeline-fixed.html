@@ -36,12 +36,13 @@ function applyTimelineFix(){
         .tick-row{display:flex!important;justify-content:space-between!important;gap:4px!important;font-size:10px!important}
         .play-btn{display:block!important}
 
-        /* Approved artwork remains on the four anchor years only. */
+        /* Approved artwork on the four anchor years. */
         #v33-anchor-poster{
           background-size:200% 200%!important;
           background-repeat:no-repeat!important;
         }
-        body.v33-anchor-year #map-viewport{
+        body.v33-anchor-year #map-viewport,
+        body.v33-projection-year #map-viewport{
           aspect-ratio:3/2!important;
           min-height:0!important;
           height:auto!important;
@@ -50,6 +51,24 @@ function applyTimelineFix(){
         body.v33-year-1980 #v33-anchor-poster{background-position:100% 0%!important}
         body.v33-year-2026 #v33-anchor-poster{background-position:0% 100%!important}
         body.v33-year-2050 #v33-anchor-poster{background-position:100% 100%!important}
+
+        /* Intermediate projections use the current approved aquifer artwork,
+           zoomed to the aquifer/map portion so the old silhouette never shows. */
+        #v33-projection-poster{
+          position:absolute;inset:0;z-index:459;display:none;
+          background-image:url('ChatGPT%20Image%20Aug%2015,%202026,%2010_13_39%20AM.png');
+          background-repeat:no-repeat;background-color:#0d1720;
+          background-size:390% 390%;background-position:94% 86%;
+          pointer-events:none;overflow:hidden;border-radius:10px;
+        }
+        body.v33-projection-year #v33-projection-poster{display:block}
+        body.v33-projection-year #v32-pretty-aquifer,
+        body.v33-projection-year #map-engine-layer,
+        body.v33-projection-year #basin-layer,
+        body.v33-projection-year #community-layer,
+        body.v33-projection-year #hotspot-layer,
+        body.v33-projection-year #data-center-layer,
+        body.v33-projection-year .pretty-state-label{visibility:hidden!important}
 
         @media(max-width:620px){
           .year-buttons{grid-template-columns:repeat(2,minmax(100px,1fr))!important}
@@ -61,6 +80,16 @@ function applyTimelineFix(){
 
     const years=[1950,1980,2026,2030,2035,2040,2045,2050];
     const anchors=[1950,1980,2026,2050];
+    const projections=[2030,2035,2040,2045];
+
+    /* Add a clean overlay for intermediate projections. */
+    const viewport=doc.getElementById('map-viewport');
+    if(viewport&&!doc.getElementById('v33-projection-poster')){
+      const p=doc.createElement('div');
+      p.id='v33-projection-poster';
+      p.setAttribute('aria-hidden','true');
+      viewport.appendChild(p);
+    }
 
     /* Re-create the four intermediate projection buttons between 2026 and 2050. */
     const buttonWrap=doc.querySelector('.year-buttons');
@@ -78,7 +107,7 @@ function applyTimelineFix(){
       });
     }
 
-    /* Replace the tracker range input so the old temporary four-stop handler is gone. */
+    /* Replace the tracker range input so temporary handlers cannot interfere. */
     let slider=doc.getElementById('yearSlider');
     if(slider && !slider.dataset.eightStop){
       const clean=slider.cloneNode(true);
@@ -89,13 +118,13 @@ function applyTimelineFix(){
     }
 
     const tickRow=doc.querySelector('.tick-row');
-    if(tickRow){
-      tickRow.innerHTML=years.map(y=>'<span>'+y+'</span>').join('');
-    }
+    if(tickRow){tickRow.innerHTML=years.map(y=>'<span>'+y+'</span>').join('');}
 
     function syncPoster(year){
       const isAnchor=anchors.includes(year);
+      const isProjection=projections.includes(year);
       doc.body.classList.toggle('v33-anchor-year',isAnchor);
+      doc.body.classList.toggle('v33-projection-year',isProjection);
       anchors.forEach(y=>doc.body.classList.toggle('v33-year-'+y,isAnchor&&year===y));
     }
 
@@ -108,7 +137,6 @@ function applyTimelineFix(){
       doc.querySelectorAll('.year-btn').forEach(btn=>btn.classList.toggle('active',Number(btn.dataset.year)===year));
     }
 
-    /* Rebind all eight buttons so they share one current timeline path. */
     doc.querySelectorAll('.year-btn').forEach(btn=>{
       if(!btn.dataset.eightStopBound){
         btn.dataset.eightStopBound='1';
@@ -122,11 +150,11 @@ function applyTimelineFix(){
       slider.addEventListener('change',()=>setYear(years[Number(slider.value)]));
     }
 
-    /* Restore Play Timeline across all eight dates. */
+    /* Play Timeline now loops continuously: 2050 -> 1950. */
     let play=doc.getElementById('playTimeline');
-    if(play && !play.dataset.eightStop){
+    if(play && !play.dataset.eightStopLoop){
       const cleanPlay=play.cloneNode(true);
-      cleanPlay.dataset.eightStop='1';
+      cleanPlay.dataset.eightStopLoop='1';
       play.replaceWith(cleanPlay);
       play=cleanPlay;
       let timer=null;
@@ -136,8 +164,7 @@ function applyTimelineFix(){
         let i=Math.max(0,Number(slider?.value||0));
         setYear(years[i]);
         timer=setInterval(()=>{
-          i++;
-          if(i>=years.length){clearInterval(timer);timer=null;play.textContent='▶ Play Timeline';return;}
+          i=(i+1)%years.length;
           setYear(years[i]);
         },1400);
       });
