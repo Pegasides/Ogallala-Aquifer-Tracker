@@ -257,6 +257,14 @@ function applyV32PrettyMapPresentation(){
         max-width:720px;margin:8px auto 0;color:#a9bdc8;font-size:10.5px;line-height:1.45;text-align:center;
       }
       .v32-pretty-map-caption strong{color:#dffcf7}
+      #v32-1950-poster{
+        position:absolute;inset:0;z-index:460;display:none;align-items:center;justify-content:center;
+        background:#eef4f0;pointer-events:none;overflow:hidden;border-radius:10px;
+      }
+      #v32-1950-poster img{
+        width:100%;height:100%;object-fit:contain;display:block;
+      }
+      body.v32-show-1950-poster #v32-1950-poster{display:flex}
       @media(max-width:620px){
         #v32-pretty-aquifer{left:70px;top:16px}
         .pretty-state-label{font-size:10px}
@@ -269,6 +277,28 @@ function applyV32PrettyMapPresentation(){
     field.id='v32-pretty-aquifer';
     field.setAttribute('aria-hidden','true');
     mapGrid.insertBefore(field,basinLayer);
+
+    // Version 3.3: use Quinn's approved infographic for the 1950 anchor view.
+    // Other years continue to use the interactive map and year-driven basin colors underneath.
+    const poster1950=document.createElement('div');
+    poster1950.id='v32-1950-poster';
+    poster1950.setAttribute('aria-hidden','true');
+    const posterImage=document.createElement('img');
+    posterImage.src='ChatGPT%20Image%20Aug%2014,%202026,%2012_39_48%20PM.png';
+    posterImage.alt='Ogallala Aquifer Tracker approved 1950 baseline infographic';
+    poster1950.appendChild(posterImage);
+    mapGrid.appendChild(poster1950);
+
+    const sync1950Poster=()=>{
+        const year=Number((document.getElementById('sliderYear')?.textContent||'').trim());
+        document.body.classList.toggle('v32-show-1950-poster',year===1950);
+    };
+    const sliderYear=document.getElementById('sliderYear');
+    if(sliderYear){
+        const yearObserver=new MutationObserver(sync1950Poster);
+        yearObserver.observe(sliderYear,{childList:true,characterData:true,subtree:true});
+    }
+    sync1950Poster();
 
     const stateLabels=[
         ['SD',245,36],['WY',48,112],['NE',292,112],['CO',48,215],
