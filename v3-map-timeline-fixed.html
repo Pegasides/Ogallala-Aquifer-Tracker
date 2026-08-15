@@ -26,34 +26,21 @@ function applyTimelineFix(){
       style=doc.createElement('style');
       style.id='v33-four-year-timeline-fix';
       style.textContent=`
-        /* Eight working timeline stops: four anchor years plus four projections. */
         .year-buttons{display:grid!important;grid-template-columns:repeat(4,minmax(90px,1fr))!important;gap:10px!important;max-width:720px!important;margin:0 auto!important}
         .year-btn{width:100%!important;min-width:0!important;font-size:14px!important;padding:11px 8px!important}
-
-        /* Keep the tracker bar visible with all eight stops. */
         .slider-row{display:block!important;max-width:720px!important;margin:18px auto 0!important}
         #yearSlider{width:100%!important}
         .tick-row{display:flex!important;justify-content:space-between!important;gap:4px!important;font-size:10px!important}
         .play-btn{display:block!important}
 
-        /* Approved artwork on the four anchor years. */
-        #v33-anchor-poster{
-          background-size:200% 200%!important;
-          background-repeat:no-repeat!important;
-        }
+        #v33-anchor-poster{background-size:200% 200%!important;background-repeat:no-repeat!important}
         body.v33-anchor-year #map-viewport,
-        body.v33-projection-year #map-viewport{
-          aspect-ratio:3/2!important;
-          min-height:0!important;
-          height:auto!important;
-        }
+        body.v33-projection-year #map-viewport{aspect-ratio:3/2!important;min-height:0!important;height:auto!important}
         body.v33-year-1950 #v33-anchor-poster{background-position:0% 0%!important}
         body.v33-year-1980 #v33-anchor-poster{background-position:100% 0%!important}
         body.v33-year-2026 #v33-anchor-poster{background-position:0% 100%!important}
         body.v33-year-2050 #v33-anchor-poster{background-position:100% 100%!important}
 
-        /* Intermediate projections use the current approved aquifer artwork
-           at the same visual scale as the four anchor-year panels. */
         #v33-projection-poster{
           position:absolute;inset:0;z-index:459;display:none;
           background-image:url('ChatGPT%20Image%20Aug%2015,%202026,%2010_13_39%20AM.png');
@@ -99,7 +86,6 @@ function applyTimelineFix(){
           btn.className='year-btn';
           btn.dataset.year=String(year);
           btn.textContent=String(year);
-          btn.addEventListener('click',()=>setYear(year));
           buttonWrap.insertBefore(btn,btn2050||null);
         }
       });
@@ -109,13 +95,13 @@ function applyTimelineFix(){
     if(slider && !slider.dataset.eightStop){
       const clean=slider.cloneNode(true);
       clean.dataset.eightStop='1';
-      clean.min='0'; clean.max='7'; clean.step='1';
+      clean.min='0';clean.max='7';clean.step='1';
       slider.replaceWith(clean);
       slider=clean;
     }
 
     const tickRow=doc.querySelector('.tick-row');
-    if(tickRow){tickRow.innerHTML=years.map(y=>'<span>'+y+'</span>').join('');}
+    if(tickRow)tickRow.innerHTML=years.map(y=>'<span>'+y+'</span>').join('');
 
     function syncPoster(year){
       const isAnchor=anchors.includes(year);
@@ -126,10 +112,10 @@ function applyTimelineFix(){
     }
 
     function setYear(year){
-      if(typeof win.setTimelineYear==='function') win.setTimelineYear(year);
-      else if(typeof win.updateYear==='function') win.updateYear(year);
+      if(typeof win.setTimelineYear==='function')win.setTimelineYear(year);
+      else if(typeof win.updateYear==='function')win.updateYear(year);
       const idx=years.indexOf(year);
-      if(slider && idx>=0) slider.value=String(idx);
+      if(slider&&idx>=0)slider.value=String(idx);
       syncPoster(year);
       doc.querySelectorAll('.year-btn').forEach(btn=>btn.classList.toggle('active',Number(btn.dataset.year)===year));
     }
@@ -141,34 +127,47 @@ function applyTimelineFix(){
       }
     });
 
-    if(slider && !slider.dataset.eightStopBound){
+    if(slider&&!slider.dataset.eightStopBound){
       slider.dataset.eightStopBound='1';
       slider.addEventListener('input',()=>setYear(years[Number(slider.value)]));
       slider.addEventListener('change',()=>setYear(years[Number(slider.value)]));
     }
 
     let play=doc.getElementById('playTimeline');
-    if(play && !play.dataset.eightStopLoop){
+    if(play&&!play.dataset.strictEightStep){
       const cleanPlay=play.cloneNode(true);
-      cleanPlay.dataset.eightStopLoop='1';
+      cleanPlay.dataset.strictEightStep='1';
       play.replaceWith(cleanPlay);
       play=cleanPlay;
-      let timer=null;
-      play.addEventListener('click',()=>{
-        if(timer){clearInterval(timer);timer=null;play.textContent='▶ Play Timeline';return;}
-        play.textContent='■ Stop Timeline';
-        let i=Math.max(0,Number(slider?.value||0));
+
+      let running=false;
+      let timeoutId=null;
+
+      const stopPlayback=()=>{
+        running=false;
+        if(timeoutId){clearTimeout(timeoutId);timeoutId=null;}
+        play.textContent='▶ Play Timeline';
+      };
+
+      const advance=(index)=>{
+        if(!running)return;
+        const i=index%years.length;
         setYear(years[i]);
-        timer=setInterval(()=>{
-          i=(i+1)%years.length;
-          setYear(years[i]);
-        },1400);
+        timeoutId=setTimeout(()=>advance((i+1)%years.length),1800);
+      };
+
+      play.addEventListener('click',()=>{
+        if(running){stopPlayback();return;}
+        running=true;
+        play.textContent='■ Stop Timeline';
+        const start=Math.max(0,Math.min(7,Number(slider?.value||0)));
+        advance(start);
       });
     }
 
     const shownYear=Number((doc.getElementById('sliderYear')?.textContent||'2026').trim());
     const current=years.includes(shownYear)?shownYear:2026;
-    if(slider) slider.value=String(years.indexOf(current));
+    if(slider)slider.value=String(years.indexOf(current));
     syncPoster(current);
 
     return true;
