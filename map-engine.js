@@ -257,17 +257,20 @@ function applyV32PrettyMapPresentation(){
         max-width:720px;margin:8px auto 0;color:#a9bdc8;font-size:10.5px;line-height:1.45;text-align:center;
       }
       .v32-pretty-map-caption strong{color:#dffcf7}
-      #v32-1950-poster{
-        position:absolute;inset:0;z-index:460;display:none;align-items:center;justify-content:center;
-        background:#0d1720;pointer-events:none;overflow:hidden;border-radius:10px;
+      #v33-anchor-poster{
+        position:absolute;inset:0;z-index:460;display:none;
+        background-image:url('ChatGPT%20Image%20Aug%2015,%202026,%2010_13_39%20AM.png');
+        background-size:200% 200%;background-repeat:no-repeat;background-color:#0d1720;
+        pointer-events:none;overflow:hidden;border-radius:10px;
       }
-      #v32-1950-poster img{
-        width:100%;height:100%;object-fit:contain;display:block;
+      body.v33-anchor-year #v33-anchor-poster{display:block}
+      body.v33-anchor-year #map-viewport{
+        aspect-ratio:3/2!important;min-height:0!important;height:auto!important;
       }
-      body.v32-show-1950-poster #v32-1950-poster{display:flex}
-      body.v32-show-1950-poster #map-viewport{
-        aspect-ratio:4/3!important;min-height:0!important;height:auto!important;
-      }
+      body.v33-year-1950 #v33-anchor-poster{background-position:0% 0%}
+      body.v33-year-1980 #v33-anchor-poster{background-position:100% 0%}
+      body.v33-year-2026 #v33-anchor-poster{background-position:0% 100%}
+      body.v33-year-2050 #v33-anchor-poster{background-position:100% 100%}
       @media(max-width:620px){
         #v32-pretty-aquifer{left:70px;top:16px}
         .pretty-state-label{font-size:10px}
@@ -281,27 +284,26 @@ function applyV32PrettyMapPresentation(){
     field.setAttribute('aria-hidden','true');
     mapGrid.insertBefore(field,basinLayer);
 
-    // Version 3.3: use Quinn's approved infographic for the 1950 anchor view.
-    // Other years continue to use the interactive map and year-driven basin colors underneath.
-    const poster1950=document.createElement('div');
-    poster1950.id='v32-1950-poster';
-    poster1950.setAttribute('aria-hidden','true');
-    const posterImage=document.createElement('img');
-    posterImage.src='ChatGPT%20Image%20Aug%2014,%202026,%2012_39_48%20PM.png';
-    posterImage.alt='Ogallala Aquifer Tracker approved 1950 baseline infographic';
-    poster1950.appendChild(posterImage);
-    viewport.appendChild(poster1950);
+    // Version 3.3 anchor-year artwork: one approved four-panel visual,
+    // cropped to the selected anchor year. Intermediate projection years
+    // keep the existing interactive map.
+    const anchorPoster=document.createElement('div');
+    anchorPoster.id='v33-anchor-poster';
+    anchorPoster.setAttribute('aria-hidden','true');
+    viewport.appendChild(anchorPoster);
 
-    const sync1950Poster=()=>{
+    const syncAnchorPoster=()=>{
         const year=Number((document.getElementById('sliderYear')?.textContent||'').trim());
-        document.body.classList.toggle('v32-show-1950-poster',year===1950);
+        const anchorYears=[1950,1980,2026,2050];
+        document.body.classList.toggle('v33-anchor-year',anchorYears.includes(year));
+        [1950,1980,2026,2050].forEach(y=>document.body.classList.toggle('v33-year-'+y,year===y));
     };
-    const sliderYear=document.getElementById('sliderYear');
-    if(sliderYear){
-        const yearObserver=new MutationObserver(sync1950Poster);
-        yearObserver.observe(sliderYear,{childList:true,characterData:true,subtree:true});
+    const anchorYearLabel=document.getElementById('sliderYear');
+    if(anchorYearLabel){
+        const anchorObserver=new MutationObserver(syncAnchorPoster);
+        anchorObserver.observe(anchorYearLabel,{childList:true,characterData:true,subtree:true});
     }
-    sync1950Poster();
+    syncAnchorPoster();
 
     const stateLabels=[
         ['SD',245,36],['WY',48,112],['NE',292,112],['CO',48,215],
