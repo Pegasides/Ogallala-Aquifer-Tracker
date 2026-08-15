@@ -14,73 +14,97 @@ html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#06131d}
 <script>
 const site=document.getElementById('site');
 
-function installTimelineController(){
+function installSmoothTimeline(){
   try{
     const outer=site.contentDocument;
     const timeline=outer&&outer.getElementById('timelineFrame');
     const doc=timeline&&timeline.contentDocument;
     const win=timeline&&timeline.contentWindow;
     if(!doc||!win)return false;
-    if(doc.documentElement.dataset.v33StableEight==='1')return true;
-    doc.documentElement.dataset.v33StableEight='1';
+    if(doc.documentElement.dataset.v33SmoothEight==='1')return true;
+    doc.documentElement.dataset.v33SmoothEight='1';
 
     const years=[1950,1980,2026,2030,2035,2040,2045,2050];
-    const projections=[2030,2035,2040,2045];
-    const projectionIndex={2030:55,2035:50,2040:45,2045:42};
+    const indexByYear={1950:100,1980:85,2026:60,2030:55,2035:50,2040:45,2045:42,2050:40};
+    const conditionByYear={1950:'Baseline',1980:'Early decline',2026:'Present day',2030:'Projection',2035:'Projection',2040:'Projection',2045:'Projection',2050:'Projection'};
+    const cropByYear={
+      1950:'0% 0%',
+      1980:'100% 0%',
+      2026:'0% 100%',
+      2030:'100% 100%',
+      2035:'100% 100%',
+      2040:'100% 100%',
+      2045:'100% 100%',
+      2050:'100% 100%'
+    };
 
     const style=doc.createElement('style');
-    style.id='v33-stable-eight-style';
+    style.id='v33-smooth-eight-style';
     style.textContent=`
       .year-buttons{display:grid!important;grid-template-columns:repeat(4,minmax(90px,1fr))!important;gap:10px!important;max-width:720px!important;margin:0 auto!important}
-      .year-btn{width:100%!important;min-width:0!important;font-size:14px!important;padding:11px 8px!important}
+      .year-btn{width:100%!important;min-width:0!important;font-size:14px!important;padding:11px 8px!important;transition:background .22s ease,border-color .22s ease,transform .22s ease!important}
+      .year-btn.active{transform:translateY(-1px)!important}
       .slider-row{display:block!important;max-width:720px!important;margin:18px auto 0!important}
       #yearSlider{width:100%!important}
       .tick-row{display:flex!important;justify-content:space-between!important;gap:4px!important;font-size:10px!important}
       .play-btn{display:block!important}
 
-      /* Keep the approved poster continuously mounted so the page never jumps. */
-      #v33-anchor-poster{
-        display:block!important;
-        background-size:200% 200%!important;
-        background-repeat:no-repeat!important;
-        transition:background-position .55s ease!important;
-      }
-      #map-viewport{aspect-ratio:3/2!important;min-height:0!important;height:auto!important}
-      body.v33-view-1950 #v33-anchor-poster{background-position:0% 0%!important}
-      body.v33-view-1980 #v33-anchor-poster{background-position:100% 0%!important}
-      body.v33-view-2026 #v33-anchor-poster{background-position:0% 100%!important}
-      body.v33-view-projection #v33-anchor-poster,
-      body.v33-view-2050 #v33-anchor-poster{background-position:100% 100%!important}
+      #map-viewport{aspect-ratio:3/2!important;min-height:0!important;height:auto!important;overflow:hidden!important;position:relative!important}
+      #v33-anchor-poster{display:none!important}
+      #v32-pretty-aquifer,#map-engine-layer,#basin-layer,#community-layer,#hotspot-layer,#data-center-layer,.pretty-state-label{visibility:hidden!important}
 
-      /* Intermediate projection correction panel: covers the baked 2050 index area. */
-      #v33-projection-index{
-        position:absolute;left:5%;right:5%;bottom:5%;z-index:900;display:none;
-        min-height:74px;padding:10px 14px;border-radius:11px;
-        background:#071722;border:1px solid rgba(145,190,211,.7);
-        box-shadow:0 8px 24px rgba(0,0,0,.52);text-align:center;color:#eef8fb;
+      .v33-smooth-poster{
+        position:absolute;inset:0;z-index:460;
+        background-image:url('ChatGPT%20Image%20Aug%2015,%202026,%2010_13_39%20AM.png');
+        background-size:200% 200%;background-repeat:no-repeat;background-color:#0d1720;
+        pointer-events:none;border-radius:10px;opacity:0;transition:opacity .55s ease;
+      }
+      .v33-smooth-poster.active{opacity:1}
+
+      #v33-index-panel{
+        position:absolute;left:4.5%;right:4.5%;bottom:3.5%;z-index:900;
+        padding:10px 14px 11px;border-radius:11px;
+        background:rgba(5,18,26,.96);border:1px solid rgba(145,190,211,.68);
+        box-shadow:0 8px 24px rgba(0,0,0,.48);text-align:center;color:#eef8fb;
         pointer-events:none;
       }
-      body.v33-view-projection #v33-projection-index{display:block!important}
-      #v33-projection-index .year{font-size:12px;font-weight:900;letter-spacing:.08em;color:#dffcf7}
-      #v33-projection-index .label{font-size:10px;font-weight:900;letter-spacing:.11em;text-transform:uppercase;color:#b9d2de;margin-top:3px}
-      #v33-projection-index .value{font-size:24px;font-weight:900;line-height:1.1;margin-top:2px}
-      #v33-projection-index .note{font-size:9px;color:#9fb5c0;margin-top:3px}
+      #v33-index-panel .label{font-size:10px;font-weight:900;letter-spacing:.11em;text-transform:uppercase;color:#b9d2de}
+      #v33-index-panel .value-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:3px}
+      #v33-index-panel .value{font-size:24px;font-weight:900;line-height:1.1;min-width:52px}
+      #v33-index-panel .condition{font-size:12px;font-weight:800;color:#dffcf7}
+      #v33-index-panel .track{height:8px;border-radius:999px;background:rgba(255,255,255,.12);overflow:hidden;max-width:420px;margin:7px auto 0}
+      #v33-index-panel .fill{height:100%;width:60%;border-radius:999px;background:#eab308;transition:width .65s ease,background .35s ease}
+      #v33-index-panel .note{font-size:9px;color:#9fb5c0;margin-top:5px}
 
       @media(max-width:620px){
         .year-buttons{grid-template-columns:repeat(2,minmax(100px,1fr))!important}
         .tick-row{font-size:8px!important}
-        #v33-projection-index .value{font-size:20px}
+        #v33-index-panel .value{font-size:20px}
       }
     `;
     doc.head.appendChild(style);
 
     const viewport=doc.getElementById('map-viewport');
-    if(viewport&&!doc.getElementById('v33-projection-index')){
-      const panel=doc.createElement('div');
-      panel.id='v33-projection-index';
-      panel.innerHTML='<div class="year" id="v33-projection-year"></div><div class="label">Tracker Working Index · relative aquifer condition</div><div class="value" id="v33-projection-index-value"></div><div class="note">Tracker working index — not percent of water remaining</div>';
-      viewport.appendChild(panel);
-    }
+    if(!viewport)return false;
+
+    const oldProjection=doc.getElementById('v33-projection-poster');
+    if(oldProjection)oldProjection.remove();
+    const oldIndex=doc.getElementById('v33-projection-index');
+    if(oldIndex)oldIndex.remove();
+
+    const posterA=doc.createElement('div');
+    posterA.className='v33-smooth-poster active';
+    posterA.id='v33-smooth-poster-a';
+    const posterB=doc.createElement('div');
+    posterB.className='v33-smooth-poster';
+    posterB.id='v33-smooth-poster-b';
+    viewport.appendChild(posterA);
+    viewport.appendChild(posterB);
+
+    const indexPanel=doc.createElement('div');
+    indexPanel.id='v33-index-panel';
+    indexPanel.innerHTML='<div class="label">Tracker Working Index · relative aquifer condition</div><div class="value-row"><div class="value" id="v33-index-value">60</div><div class="condition" id="v33-index-condition">Present day</div></div><div class="track"><div class="fill" id="v33-index-fill"></div></div><div class="note">Tracker working index — not percent of water remaining</div>';
+    viewport.appendChild(indexPanel);
 
     const buttonWrap=doc.querySelector('.year-buttons');
     if(buttonWrap){
@@ -103,30 +127,49 @@ function installTimelineController(){
     const tickRow=doc.querySelector('.tick-row');
     if(tickRow)tickRow.innerHTML=years.map(y=>'<span>'+y+'</span>').join('');
 
-    function paint(year){
-      const isProjection=projections.includes(year);
-      doc.body.classList.remove('v33-view-1950','v33-view-1980','v33-view-2026','v33-view-projection','v33-view-2050');
-      if(year===1950)doc.body.classList.add('v33-view-1950');
-      else if(year===1980)doc.body.classList.add('v33-view-1980');
-      else if(year===2026)doc.body.classList.add('v33-view-2026');
-      else if(year===2050)doc.body.classList.add('v33-view-2050');
-      else doc.body.classList.add('v33-view-projection');
+    let activePoster=posterA;
+    let standbyPoster=posterB;
+    let currentYear=2026;
 
-      const yearEl=doc.getElementById('v33-projection-year');
-      const valueEl=doc.getElementById('v33-projection-index-value');
-      if(isProjection){
-        if(yearEl)yearEl.textContent=year+' — Projection';
-        if(valueEl)valueEl.textContent=String(projectionIndex[year]);
+    function colorForIndex(value){
+      if(value>=80)return '#22c55e';
+      if(value>=60)return '#eab308';
+      if(value>=45)return '#f97316';
+      return '#991b1b';
+    }
+
+    function paint(year,animate=true){
+      currentYear=year;
+      const crop=cropByYear[year];
+      if(animate){
+        standbyPoster.style.backgroundPosition=crop;
+        standbyPoster.classList.add('active');
+        activePoster.classList.remove('active');
+        const tmp=activePoster;activePoster=standbyPoster;standbyPoster=tmp;
+      }else{
+        activePoster.style.backgroundPosition=crop;
+        activePoster.classList.add('active');
+        standbyPoster.classList.remove('active');
       }
+
+      const value=indexByYear[year];
+      const valueEl=doc.getElementById('v33-index-value');
+      const conditionEl=doc.getElementById('v33-index-condition');
+      const fill=doc.getElementById('v33-index-fill');
+      if(valueEl)valueEl.textContent=String(value);
+      if(conditionEl)conditionEl.textContent=conditionByYear[year];
+      if(fill){fill.style.width=value+'%';fill.style.background=colorForIndex(value);}
+
       doc.querySelectorAll('.year-btn').forEach(btn=>btn.classList.toggle('active',Number(btn.dataset.year)===year));
       const idx=years.indexOf(year);
       if(slider&&idx>=0)slider.value=String(idx);
     }
 
     function setYear(year){
+      if(!years.includes(year))return;
       if(typeof win.setTimelineYear==='function')win.setTimelineYear(year);
       else if(typeof win.updateYear==='function')win.updateYear(year);
-      paint(year);
+      paint(year,true);
     }
 
     doc.querySelectorAll('.year-btn').forEach(btn=>btn.addEventListener('click',()=>setYear(Number(btn.dataset.year))));
@@ -151,14 +194,14 @@ function installTimelineController(){
       play.addEventListener('click',()=>{
         if(running){stop();return;}
         running=true;play.textContent='■ Stop Timeline';
-        const displayed=Number((doc.getElementById('sliderYear')?.textContent||'2026').trim());
-        const start=Math.max(0,years.indexOf(years.includes(displayed)?displayed:2026));
+        const start=Math.max(0,years.indexOf(currentYear));
         advance(start);
       });
     }
 
     const displayed=Number((doc.getElementById('sliderYear')?.textContent||'2026').trim());
-    paint(years.includes(displayed)?displayed:2026);
+    currentYear=years.includes(displayed)?displayed:2026;
+    paint(currentYear,false);
     return true;
   }catch(e){console.error(e);return false;}
 }
@@ -167,7 +210,7 @@ site.addEventListener('load',()=>{
   let tries=0;
   const timer=setInterval(()=>{
     tries++;
-    if(installTimelineController()||tries>80)clearInterval(timer);
+    if(installSmoothTimeline()||tries>80)clearInterval(timer);
   },150);
 });
 </script>
