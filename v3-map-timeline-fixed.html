@@ -18,17 +18,23 @@ function applyTimelineFix(){
     const outer=site.contentDocument;
     const timeline=outer&&outer.getElementById('timelineFrame');
     const doc=timeline&&timeline.contentDocument;
-    if(!doc)return false;
+    const win=timeline&&timeline.contentWindow;
+    if(!doc||!win)return false;
 
     let style=doc.getElementById('v33-four-year-timeline-fix');
     if(!style){
       style=doc.createElement('style');
       style.id='v33-four-year-timeline-fix';
       style.textContent=`
-        /* Keep only the four approved anchor-year controls. */
-        .slider-row{display:none!important}
+        /* Four approved anchor-year buttons. */
         .year-buttons{display:grid!important;grid-template-columns:repeat(4,minmax(90px,1fr))!important;gap:12px!important;max-width:720px!important;margin:0 auto!important}
         .year-btn{width:100%!important;min-width:0!important;font-size:15px!important;padding:12px 10px!important}
+
+        /* Restore the tracker/timeline bar and keep it visually clean. */
+        .slider-row{display:block!important;max-width:720px!important;margin:18px auto 0!important}
+        #yearSlider{width:100%!important}
+        .tick-row{display:flex!important;justify-content:space-between!important;font-size:11px!important}
+        .play-btn{display:block!important}
 
         /* Show one clean artwork panel for each approved year. */
         #v33-anchor-poster{
@@ -52,19 +58,63 @@ function applyTimelineFix(){
       doc.head.appendChild(style);
     }
 
-    /* Remove the intermediate projection stops from keyboard/range access too. */
-    const slider=doc.getElementById('yearSlider');
-    if(slider){slider.disabled=true;slider.setAttribute('aria-hidden','true');}
-    const play=doc.getElementById('playTimeline');
-    if(play){play.disabled=true;play.setAttribute('aria-hidden','true');}
+    const years=[1950,1980,2026,2050];
+    const buttons=[...doc.querySelectorAll('.year-btn')].filter(b=>years.includes(Number(b.dataset.year)));
 
-    /* Re-sync the poster if the page loaded before the presentation script. */
-    const year=Number((doc.getElementById('sliderYear')?.textContent||'2026').trim());
-    const anchors=[1950,1980,2026,2050];
-    if(anchors.includes(year)){
-      doc.body.classList.add('v33-anchor-year');
-      anchors.forEach(y=>doc.body.classList.toggle('v33-year-'+y,year===y));
+    /* Replace the old 8-stop range input so none of its old listeners can fire. */
+    let slider=doc.getElementById('yearSlider');
+    if(slider && !slider.dataset.fourStop){
+      const clean=slider.cloneNode(true);
+      clean.dataset.fourStop='1';
+      clean.min='0'; clean.max='3'; clean.step='1';
+      slider.replaceWith(clean);
+      slider=clean;
     }
+
+    const tickRow=doc.querySelector('.tick-row');
+    if(tickRow){
+      tickRow.innerHTML='<span>1950</span><span>1980</span><span>2026</span><span>2050</span>';
+    }
+
+    function setYear(year){
+      const btn=buttons.find(b=>Number(b.dataset.year)===year);
+      if(btn) btn.click();
+      const idx=years.indexOf(year);
+      if(slider && idx>=0) slider.value=String(idx);
+    }
+
+    if(slider && !slider.dataset.fourStopBound){
+      slider.dataset.fourStopBound='1';
+      slider.addEventListener('input',()=>setYear(years[Number(slider.value)]));
+      slider.addEventListener('change',()=>setYear(years[Number(slider.value)]));
+    }
+
+    let play=doc.getElementById('playTimeline');
+    if(play && !play.dataset.fourStop){
+      const cleanPlay=play.cloneNode(true);
+      cleanPlay.dataset.fourStop='1';
+      play.replaceWith(cleanPlay);
+      play=cleanPlay;
+      let timer=null;
+      play.addEventListener('click',()=>{
+        if(timer){clearInterval(timer);timer=null;play.textContent='▶ Play Timeline';return;}
+        play.textContent='■ Stop Timeline';
+        let i=Math.max(0,Number(slider?.value||0));
+        setYear(years[i]);
+        timer=setInterval(()=>{
+          i++;
+          if(i>=years.length){clearInterval(timer);timer=null;play.textContent='▶ Play Timeline';return;}
+          setYear(years[i]);
+        },1400);
+      });
+    }
+
+    const shownYear=Number((doc.getElementById('sliderYear')?.textContent||'2026').trim());
+    const current=years.includes(shownYear)?shownYear:2026;
+    if(slider) slider.value=String(years.indexOf(current));
+    doc.body.classList.add('v33-anchor-year');
+    years.forEach(y=>doc.body.classList.toggle('v33-year-'+y,current===y));
+
     return true;
   }catch(e){return false}
 }
