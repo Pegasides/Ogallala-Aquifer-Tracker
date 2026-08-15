@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ogallala Aquifer Tracker — Interactive Timeline</title>
+<title>Ogallala Aquifer Tracker — Four-Year Interactive Timeline</title>
 <style>
 html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#06131d}
 #site{display:block;width:100%;height:100%;border:0}
@@ -19,19 +19,51 @@ function applyTimelineFix(){
     const timeline=outer&&outer.getElementById('timelineFrame');
     const doc=timeline&&timeline.contentDocument;
     if(!doc)return false;
-    let style=doc.getElementById('v33-anchor-timeline-crop-fix');
+
+    let style=doc.getElementById('v33-four-year-timeline-fix');
     if(!style){
       style=doc.createElement('style');
-      style.id='v33-anchor-timeline-crop-fix';
+      style.id='v33-four-year-timeline-fix';
       style.textContent=`
-        #v33-anchor-poster{background-size:200% 235%!important}
-        body.v33-anchor-year #map-viewport{aspect-ratio:16/9!important;min-height:0!important;height:auto!important}
+        /* Keep only the four approved anchor-year controls. */
+        .slider-row{display:none!important}
+        .year-buttons{display:grid!important;grid-template-columns:repeat(4,minmax(90px,1fr))!important;gap:12px!important;max-width:720px!important;margin:0 auto!important}
+        .year-btn{width:100%!important;min-width:0!important;font-size:15px!important;padding:12px 10px!important}
+
+        /* Show one clean artwork panel for each approved year. */
+        #v33-anchor-poster{
+          background-size:200% 200%!important;
+          background-repeat:no-repeat!important;
+        }
+        body.v33-anchor-year #map-viewport{
+          aspect-ratio:3/2!important;
+          min-height:0!important;
+          height:auto!important;
+        }
         body.v33-year-1950 #v33-anchor-poster{background-position:0% 0%!important}
         body.v33-year-1980 #v33-anchor-poster{background-position:100% 0%!important}
-        body.v33-year-2026 #v33-anchor-poster{background-position:0% 87%!important}
-        body.v33-year-2050 #v33-anchor-poster{background-position:100% 87%!important}
+        body.v33-year-2026 #v33-anchor-poster{background-position:0% 100%!important}
+        body.v33-year-2050 #v33-anchor-poster{background-position:100% 100%!important}
+
+        @media(max-width:620px){
+          .year-buttons{grid-template-columns:repeat(2,minmax(100px,1fr))!important}
+        }
       `;
       doc.head.appendChild(style);
+    }
+
+    /* Remove the intermediate projection stops from keyboard/range access too. */
+    const slider=doc.getElementById('yearSlider');
+    if(slider){slider.disabled=true;slider.setAttribute('aria-hidden','true');}
+    const play=doc.getElementById('playTimeline');
+    if(play){play.disabled=true;play.setAttribute('aria-hidden','true');}
+
+    /* Re-sync the poster if the page loaded before the presentation script. */
+    const year=Number((doc.getElementById('sliderYear')?.textContent||'2026').trim());
+    const anchors=[1950,1980,2026,2050];
+    if(anchors.includes(year)){
+      doc.body.classList.add('v33-anchor-year');
+      anchors.forEach(y=>doc.body.classList.toggle('v33-year-'+y,year===y));
     }
     return true;
   }catch(e){return false}
@@ -40,7 +72,7 @@ site.addEventListener('load',()=>{
   let tries=0;
   const timer=setInterval(()=>{
     tries++;
-    if(applyTimelineFix()||tries>40)clearInterval(timer);
+    if(applyTimelineFix()||tries>60)clearInterval(timer);
   },150);
 });
 </script>
