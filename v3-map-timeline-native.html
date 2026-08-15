@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ogallala Aquifer Tracker — Clean Base Map</title>
+<title>Ogallala Aquifer Tracker — Aquifer Map + Data Centers</title>
 <style>
-:root{--night:#06131d;--ink:#f7fbff;--muted:#b9ccd8;--aqua:#5eead4;--line:rgba(188,218,235,.25)}
+:root{--night:#06131d;--ink:#f7fbff;--muted:#b9ccd8;--aqua:#5eead4;--line:rgba(188,218,235,.25);--built:#2dd4bf;--planned:#f59e0b;--proposed:#c084fc}
 *{box-sizing:border-box}html,body{margin:0;background:var(--night);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
 .v3bar{min-height:58px;background:#071a27;border-bottom:1px solid var(--line);display:flex;align-items:center}
 .v3inner{width:min(1500px,calc(100% - 20px));margin:auto;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:8px 0}
@@ -15,29 +15,70 @@
 .shell{width:min(1540px,calc(100% - 18px));margin:auto;padding:10px 0 34px}
 .map-card{border:1px solid rgba(145,190,211,.45);border-radius:12px;overflow:hidden;background:#07131d;box-shadow:0 18px 44px rgba(0,0,0,.35)}
 .map-stage{position:relative;width:100%;aspect-ratio:1448/900;overflow:hidden;background:#06131d}
-#master{display:block;width:100%;height:auto;position:absolute;left:0;top:0}
-.loading{position:absolute;inset:0;display:grid;place-items:center;background:#07131d;color:#9fc0d0;font-weight:900;letter-spacing:.06em}
+#master{display:block;width:100%;height:auto;position:absolute;left:0;top:0;z-index:1}
+.loading{position:absolute;inset:0;z-index:50;display:grid;place-items:center;background:#07131d;color:#9fc0d0;font-weight:900;letter-spacing:.06em}
+/* Keep the baked basin tabs. Only remove the two slogans and the 4 Key Timeframes block. */
+.sky-cover{position:absolute;z-index:16;pointer-events:none;left:41.2%;top:4.4%;width:18.7%;height:7.7%;background:linear-gradient(90deg,#071d29 0%,#08232f 48%,#071c28 100%);border-radius:5px}
+.dc-panel{position:absolute;z-index:20;left:60.2%;top:4.2%;width:36.9%;height:42.0%;background:#081b27;border:1px solid rgba(145,190,211,.58);border-radius:12px;padding:clamp(10px,1.15vw,17px);box-shadow:0 8px 24px rgba(0,0,0,.34);overflow:hidden}
+.dc-panel h2{margin:0;text-align:center;font-size:clamp(16px,1.8vw,28px);letter-spacing:.05em;line-height:1.05}
+.dc-panel .sub{text-align:center;color:#aac1cd;font-size:clamp(7px,.72vw,11px);margin:4px 0 13px}
+.legend-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:5px}
+.legend-card{border:1px solid rgba(255,255,255,.10);border-radius:9px;background:rgba(255,255,255,.035);padding:11px 8px;text-align:center;min-width:0}
+.legend-card strong{display:block;font-size:clamp(9px,.92vw,14px);margin-top:8px}.legend-card small{display:block;color:#9fb5c1;font-size:clamp(6px,.6vw,9px);margin-top:3px}
+.legend-tri{margin:0 auto;width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-bottom:17px solid}
+.legend-card.built .legend-tri{border-bottom-color:var(--built)}.legend-card.planned .legend-tri{border-bottom-color:var(--planned)}.legend-card.proposed .legend-tri{border-bottom-color:var(--proposed)}
+.legend-card.built strong{color:#9ff8ea}.legend-card.planned strong{color:#ffd58b}.legend-card.proposed strong{color:#e2c6ff}
+.dc-count{text-align:center;margin:14px 0 0;color:#dcebf1;font-size:clamp(8px,.8vw,12px);font-weight:900;letter-spacing:.03em}
+.dc-note{text-align:center;margin:7px auto 0;max-width:92%;color:#819dab;font-size:clamp(6px,.58vw,9px);line-height:1.35}
+.dc-layer{position:absolute;inset:0;z-index:25;pointer-events:none}
+.dc{position:absolute;width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-bottom:15px solid;filter:drop-shadow(0 0 4px rgba(0,0,0,.9));pointer-events:auto;cursor:help;transform:translate(-50%,-50%)}
+.dc.built{border-bottom-color:var(--built)}.dc.planned{border-bottom-color:var(--planned)}.dc.proposed{border-bottom-color:var(--proposed)}
+.dc-label{position:absolute;left:12px;top:-11px;background:rgba(5,18,26,.97);border:1px solid #536f80;border-radius:6px;padding:4px 6px;color:#fff;font-size:9px;font-weight:900;white-space:nowrap;opacity:0;visibility:hidden;transition:opacity .15s;z-index:40}
+.dc:hover .dc-label,.dc:focus .dc-label{opacity:1;visibility:visible}
 .checkpoint{margin-top:14px;text-align:center;color:#9fb5c1;font-size:11px}
-@media(max-width:850px){.v3inner{display:block}.brand{display:block;margin-bottom:6px}.links{overflow-x:auto;flex-wrap:nowrap}.links a{flex:0 0 auto}.shell{width:calc(100% - 10px)}}
+@media(max-width:850px){.v3inner{display:block}.brand{display:block;margin-bottom:6px}.links{overflow-x:auto;flex-wrap:nowrap}.links a{flex:0 0 auto}.shell{width:calc(100% - 10px)}.dc-panel{padding:7px}.legend-grid{gap:5px}.legend-card{padding:7px 4px}.dc{border-left-width:6px;border-right-width:6px;border-bottom-width:12px}}
 </style>
 </head>
 <body>
 <nav class="v3bar"><div class="v3inner"><a class="brand" href="v3.html">OGALLALA AQUIFER TRACKER · VERSION 3.3</a><div class="links"><a href="v3.html">V3.3 Home</a><a class="active" href="v3-map-timeline-native.html">Aquifer Map</a><a href="data-centers.html">AI Data Centers</a><a href="groundwater-window.html">Groundwater Window</a><a href="v3-my-aquifer.html">My Aquifer</a><a href="sources.html">Sources</a></div></div></nav>
-<div class="context"><strong>Clean Base Map Checkpoint:</strong> original aquifer artwork only — interactive layers will be added back one at a time.</div>
+<div class="context"><strong>Aquifer Map:</strong> basin tabs remain in the original artwork; colored triangles show tracked AI data-center status.</div>
 <main class="shell">
 <section class="map-card">
-<div class="map-stage">
+<div class="map-stage" id="stage">
 <div class="loading" id="loading">Loading aquifer map…</div>
-<img id="master" alt="Ogallala Aquifer Tracker overview map with basin health, communities and key timeframes">
+<img id="master" alt="Ogallala Aquifer Tracker overview map with basin health, communities and data-center triangles">
+<div class="sky-cover" aria-hidden="true"></div>
+<section class="dc-panel" aria-label="AI data center status legend">
+<h2>AI DATA CENTERS</h2>
+<div class="sub">Status legend for tracked facilities</div>
+<div class="legend-grid">
+<div class="legend-card built"><i class="legend-tri"></i><strong>Built</strong><small>Operational</small></div>
+<div class="legend-card planned"><i class="legend-tri"></i><strong>Planned</strong><small>Under construction / planned</small></div>
+<div class="legend-card proposed"><i class="legend-tri"></i><strong>Proposed</strong><small>Announced / proposed</small></div>
+</div>
+<div class="dc-count">7 tracked facilities shown on the map</div>
+<div class="dc-note">Hover a triangle to see the facility name and current Tracker status.</div>
+</section>
+<div id="dcLayer" class="dc-layer"></div>
 </div>
 </section>
-<div class="checkpoint">Base-map reset · no timeline controls · no basin overlays · no live data-center panel</div>
+<div class="checkpoint">Data-center layer added · basin tabs preserved · 4 Key Timeframes replaced by status legend</div>
 </main>
 <script>
+const dataCenters=[
+ {name:'Cheyenne — AI campus',status:'planned',x:21.8,y:18.8},
+ {name:'Amarillo — Duos Edge AI',status:'built',x:38.4,y:71.8},
+ {name:'Hereford — Duos Edge AI',status:'built',x:35.8,y:73.7},
+ {name:'Lubbock — Duos Edge AI',status:'built',x:36.6,y:83.4},
+ {name:'Abernathy — Project Caprock',status:'planned',x:36.3,y:80.2},
+ {name:'Texas Panhandle — proposed campus',status:'proposed',x:39.0,y:67.6},
+ {name:'Santa Teresa — Project Jupiter',status:'planned',x:20.5,y:91.5}
+];
+function drawDataCenters(){const layer=document.getElementById('dcLayer');layer.innerHTML='';dataCenters.forEach(d=>{const el=document.createElement('div');el.className='dc '+d.status;el.style.left=d.x+'%';el.style.top=d.y+'%';el.tabIndex=0;const lab=document.createElement('span');lab.className='dc-label';lab.textContent=d.name+' — '+(d.status==='built'?'Built / Operational':d.status==='planned'?'Planned / Under Construction':'Proposed');el.appendChild(lab);layer.appendChild(el)})}
 (async()=>{try{
  const parts=await Promise.all(['.v33-gallery/g1-00.b64','.v33-gallery/g1-00b.b64','.v33-gallery/g1-01.b64','.v33-gallery/g1-02.b64'].map(async p=>{const r=await fetch(p,{cache:'no-store'});if(!r.ok)throw new Error(p+' '+r.status);return (await r.text()).replace(/\s+/g,'')}));
  const img=document.getElementById('master');
- img.onload=()=>document.getElementById('loading').remove();
+ img.onload=()=>{document.getElementById('loading').remove();drawDataCenters()};
  img.onerror=()=>document.getElementById('loading').textContent='Aquifer map could not be displayed.';
  img.src='data:image/avif;base64,'+parts.join('');
 }catch(e){console.error(e);document.getElementById('loading').textContent='Aquifer map could not be loaded.'}})();
