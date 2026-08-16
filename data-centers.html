@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Data Centers — Ogallala Aquifer Tracker Version 3.2</title>
+<style>
+:root{--night:#06131d;--panel:#0d2536;--panel2:#0a1d2a;--ink:#f7fbff;--muted:#b9ccd8;--aqua:#5eead4;--gold:#f2c66d;--green:#4ade80;--amber:#f59e0b;--red:#ef4444;--line:rgba(188,218,235,.25);--shadow:0 20px 48px rgba(0,0,0,.34)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(180deg,#06131d,#0a1d2a 45%,#06131d);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.55}a{color:inherit}a:focus-visible,button:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.v3bar{background:rgba(5,20,30,.97);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}.v3inner{width:min(1180px,calc(100% - 24px));margin:auto;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:9px 0}.brand{font-weight:900;font-size:13px;color:#dffcf7;text-decoration:none;white-space:nowrap}.links{display:flex;gap:7px;align-items:center;flex-wrap:nowrap}.links a{color:#e8f2f6;text-decoration:none;border:1px solid #3b596c;background:#102b3d;border-radius:8px;padding:8px 10px;font-size:11px;font-weight:800;white-space:nowrap}.links a:hover,.links a.active{border-color:var(--aqua);background:#123c43;color:#e7fffb}.links a.data-center-link{border-color:rgba(242,198,109,.78);background:rgba(83,57,15,.55);color:#ffe7ad}.links a.data-center-link.active{background:#6b4510;border-color:var(--gold);color:#fff1c6}.nav-context{font-size:9px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:#8fb0c1;padding:0 2px;white-space:nowrap}.nav-divider{width:1px;height:26px;background:rgba(188,218,235,.32);margin:0 3px;flex:0 0 auto}.nav-publication{display:inline-flex;align-items:center;min-height:34px;border:1px solid rgba(242,198,109,.56);background:rgba(67,49,18,.38);color:#f6dca0;border-radius:8px;padding:7px 10px;font-size:10px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.wrap{width:min(1120px,calc(100% - 32px));margin:auto;padding:46px 0}.hero{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);gap:22px;align-items:stretch}.hero-copy,.map-stage{border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,var(--panel),var(--panel2));box-shadow:var(--shadow)}.hero-copy{padding:28px}.kicker{color:var(--gold);font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}.hero h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(2.4rem,5vw,4.7rem);line-height:.98;margin:10px 0 16px}.hero-copy p{color:var(--muted);max-width:720px;margin:0 0 15px}.truth-note{border-left:4px solid var(--aqua);background:rgba(94,234,212,.08);padding:12px 14px;border-radius:8px;color:#dffcf7;font-size:13px}.map-stage{padding:20px;display:flex;flex-direction:column;justify-content:center}.map-stage h2{font-family:Georgia,"Times New Roman",serif;margin:0 0 8px;font-size:1.7rem}.map-stage p{margin:0;color:var(--muted);font-size:13px}.map-placeholder{margin-top:16px;min-height:260px;border:1px dashed rgba(94,234,212,.48);border-radius:14px;background:radial-gradient(circle at 40% 35%,rgba(56,189,248,.18),rgba(5,20,30,.25) 52%,rgba(5,20,30,.7));display:grid;place-items:center;text-align:center;padding:24px}.map-placeholder strong{display:block;color:#e7fffb;font-size:1.1rem;margin-bottom:6px}.map-placeholder span{color:#9fb9c8;font-size:12px;max-width:330px}
+.status-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}.status{border:1px solid var(--line);border-radius:14px;background:#0b2130;padding:18px}.status .dot{width:12px;height:12px;border-radius:50%;display:inline-block;margin-right:7px;vertical-align:-1px}.status.operational .dot{background:var(--green)}.status.construction .dot{background:var(--amber)}.status.proposed .dot{background:var(--red)}.status h3{margin:0 0 5px;font-size:1rem}.status p{margin:0;color:var(--muted);font-size:12.5px}
+.section{margin-top:34px}.section-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:14px}.section h2{font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.8rem,4vw,2.8rem);margin:0}.section-head p{margin:0;color:var(--muted);font-size:12px;max-width:520px;text-align:right}.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.profile-slot{min-height:205px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(145deg,#0d2536,#091c29);padding:18px;display:flex;flex-direction:column}.profile-slot .number{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:900}.profile-slot h3{font-family:Georgia,"Times New Roman",serif;margin:8px 0 7px;font-size:1.3rem}.profile-slot p{margin:0;color:var(--muted);font-size:12.5px}.profile-slot .pending{margin-top:auto;padding-top:18px;color:#dffcf7;font-size:11px;font-weight:900}.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.principle{border:1px solid var(--line);border-radius:14px;background:#0b2130;padding:17px}.principle strong{display:block;margin-bottom:5px}.principle span{color:var(--muted);font-size:12px}.cta{margin-top:34px;border:1px solid rgba(242,198,109,.38);background:linear-gradient(145deg,rgba(77,51,13,.52),rgba(9,29,41,.92));border-radius:18px;padding:24px;text-align:center}.cta blockquote{font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.5rem,3.5vw,2.45rem);margin:0}.cta p{margin:10px auto 0;color:#dac9a3;max-width:760px;font-size:13px}footer{border-top:1px solid var(--line);color:#8fa7b5;text-align:center;font-size:11px;padding:26px 16px 38px}
+@media(max-width:900px){.v3inner{display:block}.brand{display:block;margin-bottom:7px;font-size:11px}.links{overflow-x:auto;scrollbar-width:none;padding-bottom:2px}.links::-webkit-scrollbar{display:none}.links a,.nav-context,.nav-publication,.nav-divider{flex:0 0 auto}.links a{min-height:40px;display:inline-flex;align-items:center}.nav-publication{min-height:40px}.hero{grid-template-columns:1fr}.gallery{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.wrap{width:calc(100% - 24px);padding:30px 0}.hero-copy,.map-stage{padding:18px;border-radius:14px}.status-strip,.gallery,.principles{grid-template-columns:1fr}.section-head{display:block}.section-head p{text-align:left;margin-top:6px}.map-placeholder{min-height:220px}}
+</style>
+</head>
+<body>
+<nav class="v3bar" aria-label="Version 3.2 primary navigation">
+  <div class="v3inner">
+    <a class="brand" href="v3.html">OGALLALA AQUIFER TRACKER · VERSION 3.2</a>
+    <div class="links">
+      <span class="nav-context">Tracker</span>
+      <a href="v3.html">V3.2 Home</a>
+      <a href="v3-map.html">Interactive Timeline</a>
+      <a class="data-center-link active" aria-current="page" href="data-centers.html">AI Data Centers</a>
+      <a href="groundwater-window.html">Groundwater Window</a>
+      <a href="v3-my-aquifer.html">My Aquifer</a>
+      <a href="sources.html">Sources</a>
+      <span class="nav-divider" aria-hidden="true"></span>
+      <span class="nav-publication" title="Publication destination will be connected when the final Substack URL is confirmed">Publication · Substack</span>
+    </div>
+  </div>
+</nav>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="kicker">Version 3.2 · dedicated subscriber layer</div>
+      <h1>AI Data Centers</h1>
+      <p>This is the deep-dive destination for the infrastructure story: where facilities are operating, where construction is underway, what is proposed, and how each project sits in relation to the Ogallala Aquifer, communities, and public groundwater information.</p>
+      <p>The page is designed to hold the facility graphics already prepared for the Tracker while keeping the public-facing map simple enough to understand at a glance.</p>
+      <div class="truth-note"><strong>Evidence rule:</strong> a data center appearing on the map is geographic and development-status context. It is not, by itself, proof that the facility caused a nearby groundwater decline. Facility water claims, permit records, monitoring data, and independent measurements must remain clearly separated.</div>
+    </div>
+    <div class="map-stage">
+      <div class="kicker">Pretty Map · shared base layer</div>
+      <h2>One map, then add the facilities.</h2>
+      <p>The Version 3.2 plan keeps the 28 community / monitoring reference points and the three basin health zones visible, then overlays data centers as they enter the story.</p>
+      <div class="map-placeholder" aria-label="Pretty Map integration placeholder">
+        <div><strong>Pretty Map integration point</strong><span>The approved monitoring-well/community map will replace this placeholder. Facility markers will sit above it and use the three status categories below.</span></div>
+      </div>
+    </div>
+  </section>
+  <section class="status-strip" aria-label="Data center status categories">
+    <article class="status operational"><h3><span class="dot"></span>Operational</h3><p>Facilities that have entered operation, labeled with the best verified date and source available.</p></article>
+    <article class="status construction"><h3><span class="dot"></span>Under construction</h3><p>Projects with active construction evidence. Construction status does not imply that full operations have begun.</p></article>
+    <article class="status proposed"><h3><span class="dot"></span>Proposed</h3><p>Announced, planned, or proposed projects that have not yet reached the operational category.</p></article>
+  </section>
+  <section class="section">
+    <div class="section-head"><h2>Facility profile library</h2><p>Seventeen prepared facility graphics can be loaded here as individual profiles. Each card will carry a status, location, evidence date, source trail, and the image you already approved.</p></div>
+    <div class="gallery" aria-label="Planned facility profile slots">
+      <article class="profile-slot"><div class="number">Profile 01</div><h3>Facility profile</h3><p>Image, location, project status, source date, groundwater context, and a concise public-facing summary.</p><div class="pending">Graphic ready to wire →</div></article>
+      <article class="profile-slot"><div class="number">Profile 02</div><h3>Facility profile</h3><p>The same evidence structure repeats so readers learn how to evaluate every project consistently.</p><div class="pending">Graphic ready to wire →</div></article>
+      <article class="profile-slot"><div class="number">Profile 03</div><h3>Facility profile</h3><p>Status colors will match the map layer: operational, under construction, or proposed.</p><div class="pending">Graphic ready to wire →</div></article>
+      <article class="profile-slot"><div class="number">Profiles 04–17</div><h3>Expandable library</h3><p>The remaining prepared graphics will populate this grid without changing the page architecture.</p><div class="pending">13 additional profiles →</div></article>
+    </div>
+  </section>
+  <section class="section">
+    <div class="section-head"><h2>What a subscriber should be able to answer</h2><p>The Data Centers button is for the deeper investigation; Substack can point readers here when a project or groundwater development needs context.</p></div>
+    <div class="principles">
+      <div class="principle"><strong>Where is it?</strong><span>Show the facility on the same aquifer map readers already know, alongside the appropriate community reference points.</span></div>
+      <div class="principle"><strong>What is its real status?</strong><span>Separate operational, under construction, and proposed projects. Put the evidence date beside the status.</span></div>
+      <div class="principle"><strong>What do we actually know about water?</strong><span>Separate permits, company statements, modeled context, monitoring-well observations, and independent findings instead of blending them together.</span></div>
+    </div>
+  </section>
+  <section class="cta">
+    <blockquote>“You cannot borrow from tomorrow’s groundwater.”</blockquote>
+    <p>Version 3.2 makes the data-center story easier to investigate without overstating what the evidence proves.</p>
+  </section>
+</main>
+<footer>Ogallala Aquifer Tracker · Version 3.2 working preview · Data Centers hub</footer>
+</body>
+</html>

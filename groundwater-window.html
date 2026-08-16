@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Groundwater Window — Ogallala Aquifer Tracker Version 3</title>
+<title>Groundwater Window — Ogallala Aquifer Tracker Version 3.2</title>
 <style>
-:root{--night:#06131d;--ink:#f7fbff;--muted:#b9ccd8;--aqua:#5eead4;--line:rgba(188,218,235,.25)}
+:root{--night:#06131d;--ink:#f7fbff;--muted:#b9ccd8;--aqua:#5eead4;--gold:#f2c66d;--line:rgba(188,218,235,.25)}
 *{box-sizing:border-box}
 html,body{margin:0;height:100%;background:var(--night);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
 a:focus-visible{outline:3px solid #fff;outline-offset:3px}
@@ -15,6 +15,11 @@ a:focus-visible{outline:3px solid #fff;outline-offset:3px}
 .links{display:flex;gap:7px;align-items:center;flex-wrap:nowrap}
 .links a{color:#e8f2f6;text-decoration:none;border:1px solid #3b596c;background:#102b3d;border-radius:8px;padding:8px 10px;font-size:11px;font-weight:800;white-space:nowrap}
 .links a:hover,.links a.active{border-color:var(--aqua);background:#123c43;color:#e7fffb}
+.links a.data-center-link{border-color:rgba(242,198,109,.78);background:rgba(83,57,15,.55);color:#ffe7ad}
+.links a.data-center-link:hover{border-color:var(--gold);background:#6b4510;color:#fff1c6}
+.nav-context{font-size:9px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:#8fb0c1;padding:0 2px;white-space:nowrap}
+.nav-divider{width:1px;height:26px;background:rgba(188,218,235,.32);margin:0 3px;flex:0 0 auto}
+.nav-publication{display:inline-flex;align-items:center;min-height:34px;border:1px solid rgba(242,198,109,.56);background:rgba(67,49,18,.38);color:#f6dca0;border-radius:8px;padding:7px 10px;font-size:10px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
 .context{min-height:34px;background:#0a202f;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:center;padding:7px 12px;color:var(--muted);font-size:11px;text-align:center}
 .context strong{color:var(--aqua)}
 .frame-wrap{height:calc(100vh - 92px);min-height:560px;background:#06131d}
@@ -25,25 +30,32 @@ iframe{display:block;width:100%;height:100%;border:0;background:#06131d}
  .brand{display:block;margin-bottom:7px;font-size:11px}
  .links{overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
  .links::-webkit-scrollbar{display:none}
- .links a{flex:0 0 auto;min-height:40px;display:inline-flex;align-items:center}
+ .links a,.nav-context,.nav-publication,.nav-divider{flex:0 0 auto}
+ .links a{min-height:40px;display:inline-flex;align-items:center}
+ .nav-publication{min-height:40px}
  .context{font-size:10px;line-height:1.35}
  .frame-wrap{height:calc(100dvh - 116px);min-height:520px}
 }
 </style>
 </head>
 <body>
-<nav class="v3bar" aria-label="Version 3 primary navigation">
+<nav class="v3bar" aria-label="Version 3.2 primary navigation">
   <div class="v3inner">
-    <a class="brand" href="v3.html">OGALLALA AQUIFER TRACKER · VERSION 3</a>
+    <a class="brand" href="v3.html">OGALLALA AQUIFER TRACKER · VERSION 3.2</a>
     <div class="links">
-      <a href="v3.html">V3 Home</a>
+      <span class="nav-context">Tracker</span>
+      <a href="v3.html">V3.2 Home</a>
       <a href="v3-map.html">Interactive Timeline</a>
-      <a class="active" href="groundwater-window.html">Groundwater Window</a>
-      <a href="index.html">My Aquifer</a>
+      <a class="data-center-link" href="data-centers.html">AI Data Centers</a>
+      <a class="active" aria-current="page" href="groundwater-window.html">Groundwater Window</a>
+      <a href="v3-my-aquifer.html">My Aquifer</a>
+      <a href="sources.html">Sources</a>
+      <span class="nav-divider" aria-hidden="true"></span>
+      <span class="nav-publication" title="Separate publication experience; final Substack destination has not yet been connected">Publication · Substack</span>
     </div>
   </div>
 </nav>
-<div class="context"><strong>Groundwater Window:</strong>&nbsp; educational cross-section for the four V3 anchor years. Index = comparison scale; cross-section and well profiles = illustrative, not surveyed measurements.</div>
+<div class="context"><strong>Groundwater Window:</strong>&nbsp; educational cross-section for the four V3.2 anchor years. Index = comparison scale; cross-section and well profiles = illustrative, not surveyed measurements.</div>
 <div class="frame-wrap">
   <iframe id="groundwaterFrame" src="groundwater-window-core.html" title="Ogallala Aquifer Groundwater Window educational cross-section"></iframe>
 </div>
@@ -130,7 +142,7 @@ frame.addEventListener('load',()=>{
     if(wellCard && !doc.getElementById('v3IllustrativeWellNote')){
       const note=doc.createElement('div');
       note.id='v3IllustrativeWellNote';
-      note.textContent='Illustrative profile only. Version 3 does not assert these placeholder well IDs, coordinates, depths, dates, or timeline values as verified locality-specific measurements. A sourced monitoring-well layer can replace this placeholder in a later data pass.';
+      note.textContent='Illustrative profile only. Version 3.2 does not assert these placeholder well IDs, coordinates, depths, dates, or timeline values as verified locality-specific measurements. A sourced monitoring-well layer can replace this placeholder in a later data pass.';
       wellCard.querySelector('.well-card-header')?.insertAdjacentElement('afterend',note);
     }
     const wellPanelHeading=wellCard?.querySelector('.panel-heading');
@@ -178,7 +190,7 @@ frame.addEventListener('load',()=>{
     doc.querySelector('.year-button[data-index="0"]')?.click();
     applyV3Language();
   }catch(e){
-    console.warn('Version 3 Groundwater Window wrapper could not apply presentation refinements.',e);
+    console.warn('Version 3.2 Groundwater Window wrapper could not apply presentation refinements.',e);
   }
 });
 </script>
