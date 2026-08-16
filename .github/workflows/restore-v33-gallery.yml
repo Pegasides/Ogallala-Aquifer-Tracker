@@ -1,0 +1,67 @@
+name: Restore V3.3 Gallery Images
+
+on:
+  push:
+    paths:
+      - 'v33-gallery-rebuild.trigger'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  restore-gallery:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Reconstruct V3.3 gallery as normal AVIF image files
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p v33-gallery-images
+
+          cat v33-gallery/g2-00.b64 v33-gallery/g2-01.b64 v33-gallery/g2-02.b64 v33-gallery/g2-03.b64 \
+            | tr -d '\r\n\t ' | base64 --decode > v33-gallery-images/01-groundwater-window.avif
+
+          cat v33-gallery/g1-00.b64 v33-gallery/g1-00b.b64 v33-gallery/g1-01.b64 v33-gallery/g1-02.b64 \
+            | tr -d '\r\n\t ' | base64 --decode > v33-gallery-images/02-aquifer-overview.avif
+
+          cat v33-gallery/repair/g3-00-0.b64 v33-gallery/repair/g3-00-1.b64 v33-gallery/repair/g3-00-2.b64 \
+              v33-gallery/q10-g3-01.b64 \
+              v33-gallery/repair/g3-02-0.b64 v33-gallery/repair/g3-02-1.b64 v33-gallery/repair/g3-02-2.b64 \
+              v33-gallery/q10-g3-03.b64 \
+            | tr -d '\r\n\t ' | base64 --decode > v33-gallery-images/03-ai-data-center-impact.avif
+
+          cat v33-gallery/repair/g4-00-0.b64 v33-gallery/repair/g4-00-1.b64 v33-gallery/repair/g4-00-2.b64 \
+              v33-gallery/q10-g4-01.b64 \
+              v33-gallery/repair/g4-02-0.b64 v33-gallery/repair/g4-02-1.b64 v33-gallery/repair/g4-02-2.b64 \
+              v33-gallery/repair/g4-03-0.b64 \
+            | tr -d '\r\n\t ' | base64 --decode > v33-gallery-images/04-cheyenne-example.avif
+
+          cat v33-gallery/q10-g5-00.b64 \
+              v33-gallery/repair/g5-01-0.b64 v33-gallery/repair/g5-01-1.b64 v33-gallery/repair/g5-01-2.b64 \
+              v33-gallery/q10-g5-02.b64 \
+            | tr -d '\r\n\t ' | base64 --decode > v33-gallery-images/05-sources.avif
+
+          for f in v33-gallery-images/*.avif; do
+            test -s "$f"
+            echo "$f $(wc -c < "$f") bytes"
+          done
+
+      - name: Commit restored gallery images
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add v33-gallery-images/*.avif
+          if git diff --cached --quiet; then
+            echo "Gallery images already restored."
+            exit 0
+          fi
+          git commit -m "Restore V3.3 gallery as normal image files"
+          git push origin HEAD:main
