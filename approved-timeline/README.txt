@@ -1,1 +1,0 @@
-Approved V3.3 timeline artwork upload in progress. The live timeline will use the approved year images directly, not overlays.
