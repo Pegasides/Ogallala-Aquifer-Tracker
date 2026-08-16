@@ -3,70 +3,27 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>My Aquifer — Ogallala Aquifer Tracker V3.2</title>
+<title>My Aquifer — Ogallala Aquifer Tracker V3.3</title>
 <style>
 :root{--night:#06131d;--ink:#f7fbff;--aqua:#5eead4;--gold:#f2c66d;--line:rgba(188,218,235,.25)}
-*{box-sizing:border-box}
-html,body{margin:0;height:100%;background:var(--night);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
-a:focus-visible{outline:3px solid #fff;outline-offset:3px}
-.v3bar{min-height:58px;background:#071a27;border-bottom:1px solid var(--line);display:flex;align-items:center;position:relative;z-index:5}
-.v3inner{width:min(1180px,calc(100% - 24px));margin:auto;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:8px 0}
-.brand{font-weight:900;font-size:13px;color:#dffcf7;text-decoration:none;white-space:nowrap}
-.links{display:flex;gap:7px;align-items:center;flex-wrap:nowrap}
-.links a{color:#e8f2f6;text-decoration:none;border:1px solid #3b596c;background:#102b3d;border-radius:8px;padding:8px 10px;font-size:11px;font-weight:800;white-space:nowrap}
-.links a:hover,.links a.active{border-color:var(--aqua);background:#123c43;color:#e7fffb}
-.links a.data-center-link{border-color:rgba(242,198,109,.78);background:rgba(83,57,15,.55);color:#ffe7ad}
-.links a.data-center-link:hover{border-color:var(--gold);background:#6b4510;color:#fff1c6}
-.nav-context{font-size:9px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:#8fb0c1;padding:0 2px;white-space:nowrap}
-.nav-divider{width:1px;height:26px;background:rgba(188,218,235,.32);margin:0 3px;flex:0 0 auto}
-.nav-publication{display:inline-flex;align-items:center;min-height:34px;border:1px solid rgba(242,198,109,.56);background:rgba(67,49,18,.38);color:#f6dca0;border-radius:8px;padding:7px 10px;font-size:10px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
-.frame-wrap{height:calc(100dvh - 58px);overflow:hidden;background:#243442}
-iframe{display:block;width:100%;height:100%;border:0;background:#243442}
-@media(max-width:760px){.v3inner{display:block}.brand{display:block;margin-bottom:7px;font-size:11px}.links{overflow-x:auto;padding-bottom:2px;scrollbar-width:none}.links::-webkit-scrollbar{display:none}.links a,.nav-context,.nav-publication,.nav-divider{flex:0 0 auto}.links a{min-height:40px;display:inline-flex;align-items:center}.nav-publication{min-height:40px}.frame-wrap{height:calc(100dvh - 104px)}}
+*{box-sizing:border-box}html,body{margin:0;height:100%;background:var(--night);color:var(--ink);font-family:Arial,Helvetica,sans-serif}a:focus-visible{outline:3px solid #fff;outline-offset:3px}.v3bar{min-height:58px;background:#071a27;border-bottom:1px solid var(--line);display:flex;align-items:center;position:relative;z-index:5}.v3inner{width:min(1240px,calc(100% - 24px));margin:auto;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:8px 0}.brand{font-weight:900;font-size:13px;color:#dffcf7;text-decoration:none;white-space:nowrap}.links{display:flex;gap:7px;align-items:center;flex-wrap:nowrap}.links a{color:#e8f2f6;text-decoration:none;border:1px solid #3b596c;background:#102b3d;border-radius:8px;padding:8px 10px;font-size:11px;font-weight:800;white-space:nowrap}.links a:hover,.links a.active{border-color:var(--aqua);background:#123c43;color:#e7fffb}.links a.data-center-link{border-color:rgba(242,198,109,.78);background:rgba(83,57,15,.55);color:#ffe7ad}.links a.data-center-link:hover{border-color:var(--gold);background:#6b4510;color:#fff1c6}.links a.yard-link{border-color:rgba(94,234,212,.75);background:rgba(14,92,84,.55);color:#cafff7}.nav-context{font-size:9px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:#8fb0c1;padding:0 2px;white-space:nowrap}.nav-divider{width:1px;height:26px;background:rgba(188,218,235,.32);margin:0 3px;flex:0 0 auto}.nav-publication{display:inline-flex;align-items:center;min-height:34px;border:1px solid rgba(242,198,109,.56);background:rgba(67,49,18,.38);color:#f6dca0;border-radius:8px;padding:7px 10px;font-size:10px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}.frame-wrap{height:calc(100dvh - 58px);overflow:hidden;background:#243442}iframe{display:block;width:100%;height:100%;border:0;background:#243442}@media(max-width:760px){.v3inner{display:block}.brand{display:block;margin-bottom:7px;font-size:11px}.links{overflow-x:auto;padding-bottom:2px;scrollbar-width:none}.links::-webkit-scrollbar{display:none}.links a,.nav-context,.nav-publication,.nav-divider{flex:0 0 auto}.links a{min-height:40px;display:inline-flex;align-items:center}.nav-publication{min-height:40px}.frame-wrap{height:calc(100dvh - 104px)}}
 </style>
 </head>
 <body>
-<nav class="v3bar" aria-label="Version 3.2 primary navigation">
-  <div class="v3inner">
-    <a class="brand" href="v3.html">OGALLALA AQUIFER TRACKER · VERSION 3.2</a>
-    <div class="links">
-      <span class="nav-context">Tracker</span>
-      <a href="v3.html">V3.2 Home</a>
-      <a href="v3-map.html">Interactive Timeline</a>
-      <a class="data-center-link" href="data-centers.html">AI Data Centers</a>
-      <a href="groundwater-window.html">Groundwater Window</a>
-      <a class="active" aria-current="page" href="v3-my-aquifer.html">My Aquifer</a>
-      <a href="sources.html">Sources</a>
-      <span class="nav-divider" aria-hidden="true"></span>
-      <span class="nav-publication" title="Separate publication experience; final Substack destination has not yet been connected">Publication · Substack</span>
-    </div>
-  </div>
-</nav>
-<div class="frame-wrap">
-  <iframe id="myAquiferFrame" src="index.html" title="My Aquifer subscriber experience"></iframe>
-</div>
+<nav class="v3bar" aria-label="Version 3.3 primary navigation"><div class="v3inner"><a class="brand" href="v3.html">OGALLALA AQUIFER TRACKER · VERSION 3.3</a><div class="links"><span class="nav-context">Tracker</span><a href="v3.html">V3.3 Home</a><a href="v3-map.html">Interactive Timeline</a><a class="data-center-link" href="data-centers.html">AI Data Centers</a><a href="groundwater-window.html">Groundwater Window</a><a class="active" aria-current="page" href="v3-my-aquifer.html">My Aquifer</a><a class="yard-link" href="yard-savings-calculator.html">Yard Savings</a><a href="sources.html">Sources</a><span class="nav-divider" aria-hidden="true"></span><span class="nav-publication" title="Separate publication experience; final Substack destination has not yet been connected">Publication · Substack</span></div></div></nav>
+<div class="frame-wrap"><iframe id="myAquiferFrame" src="archive/old-pages/index-v2-before-v33.html" title="My Aquifer subscriber experience"></iframe></div>
 <script>
 const frame=document.getElementById('myAquiferFrame');
 frame.addEventListener('load',()=>{
   try{
-    const doc=frame.contentDocument;
-    if(!doc)return;
-    const innerHeader=doc.querySelector('header');
-    const innerNav=doc.querySelector('.tracker-nav');
-    if(innerHeader)innerHeader.style.display='none';
-    if(innerNav)innerNav.style.display='none';
-    if(!doc.getElementById('v3-2-my-aquifer-scale')){
-      const style=doc.createElement('style');
-      style.id='v3-2-my-aquifer-scale';
-      style.textContent=`
-        html{background:#243442}
-        body{zoom:.9;width:111.111%;margin:0}
-        .shell{max-width:1120px;padding-top:18px}
-        @media(max-width:620px){body{zoom:1;width:100%}.shell{padding-top:14px}}
-      `;
-      doc.head.appendChild(style);
-    }
-  }catch(error){console.error('Unable to apply V3.2 My Aquifer presentation:',error)}
+    const doc=frame.contentDocument;if(!doc)return;
+    const innerHeader=doc.querySelector('header');const innerNav=doc.querySelector('.tracker-nav');if(innerHeader)innerHeader.style.display='none';if(innerNav)innerNav.style.display='none';
+    const banner=doc.querySelector('.pilot-banner');if(banner)banner.textContent='VERSION 3.3 SUBSCRIBER VIEW — Alliance pilot · local evidence + practical household tools';
+    if(!doc.getElementById('v3-3-my-aquifer-scale')){const style=doc.createElement('style');style.id='v3-3-my-aquifer-scale';style.textContent=`html{background:#243442}body{zoom:.9;width:111.111%;margin:0}.shell{max-width:1120px;padding-top:18px}@media(max-width:620px){body{zoom:1;width:100%}.shell{padding-top:14px}}`;doc.head.appendChild(style)}
+    const yardEyebrow=[...doc.querySelectorAll('.eyebrow')].find(el=>el.textContent.trim().toLowerCase()==='try your own yard');
+    const oldCalc=yardEyebrow?.closest('.note-box');
+    if(oldCalc){oldCalc.innerHTML=`<p class="eyebrow">NEW · V3.3 HOUSEHOLD SAVINGS TOOL</p><h4>Your Yard Savings Calculator</h4><p class="context-note"><strong>Now anchored to the subscriber's economics.</strong> Use the standard Alliance estimate or enter your own winter and summer water-only bills. The new calculator separates monthly summer savings, annual cash savings, water volume, power/fuel, lawn inputs and time.</p><div class="metric-grid"><div class="metric good"><strong>Standard Estimate</strong><span>500 · 1,000 · 2,500 · 5,000 sq. ft. or custom</span></div><div class="metric good"><strong>Use My Actual Bill</strong><span>Winter baseline + summer water-only bill + lawn share</span></div><div class="metric good"><strong>Monthly + Annual</strong><span>Six-month season by default; assumptions are editable</span></div></div><p class="context-note"><strong>Example:</strong> a $100 winter water bill and $200 summer water bill can show about $100/month of seasonal water-bill opportunity when the full irrigated lawn is converted and the irrigation-reduction setting is 100%.</p><div class="card-actions"><a class="action-btn primary" target="_top" href="yard-savings-calculator.html">Open Yard Savings Calculator</a></div>`;}
+  }catch(error){console.error('Unable to apply V3.3 My Aquifer presentation:',error)}
 });
 </script>
 </body>
