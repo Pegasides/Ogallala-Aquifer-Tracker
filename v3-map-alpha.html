@@ -72,7 +72,7 @@ function setYear(y){
 document.querySelectorAll('.yearBtn').forEach(b=>b.onclick=()=>setYear(+b.dataset.year));
 slider.oninput=e=>setYear(years[+e.target.value]);
 play.onclick=function(){running=!running;this.textContent=running?'■ Stop Timeline':'▶ Play Timeline';if(!running){clearTimeout(timer);return}const go=()=>{if(!running)return;current=(current+1)%years.length;setYear(years[current]);timer=setTimeout(go,1500)};timer=setTimeout(go,300)};
-(async()=>{try{const paths=['.v33-alpha/ppt2-q85-00.b64','.v33-alpha/ppt2-q85-01.b64','.v33-alpha/ppt2-q85-02.b64','.v33-alpha/ppt2-q85-03.b64'];const parts=await Promise.all(paths.map(async p=>{const r=await fetch(p,{cache:'no-store'});if(!r.ok)throw new Error(p+' '+r.status);return (await r.text()).replace(/\s+/g,'')}));master.onload=()=>loading.remove();master.onerror=()=>loading.textContent='Pretty Picture Two could not be displayed.';master.src='data:image/webp;base64,'+parts.join('')}catch(e){console.error(e);loading.textContent='Pretty Picture Two could not be loaded.'}})();
+(async()=>{try{const root='https://raw.githubusercontent.com/Pegasides/Ogallala-Aquifer-Tracker/main/.v33-alpha/';const paths=['ppt2-q85-00.b64','ppt2-q85-01.b64','ppt2-q85-02.b64','ppt2-q85-03.b64'];const parts=await Promise.all(paths.map(async p=>{const r=await fetch(root+p,{cache:'no-store'});if(!r.ok)throw new Error(p+' '+r.status);return (await r.text()).replace(/\s+/g,'')}));master.onload=()=>loading.remove();master.onerror=()=>loading.textContent='Pretty Picture Two could not be displayed.';master.src='data:image/webp;base64,'+parts.join('')}catch(e){console.error(e);loading.textContent='Pretty Picture Two could not be loaded.'}})();
 setYear(2026);
 </script>
 </body></html>
