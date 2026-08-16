@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Interactive Timeline — Ogallala Aquifer Tracker Version 3.3</title>
+<style>
+:root{--bg:#06131d;--ink:#f7fbff;--aqua:#5eead4;--line:#3e5c6d}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,sans-serif}.nav{background:#071a27;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}.navin{width:min(1180px,calc(100% - 24px));margin:auto;display:flex;justify-content:space-between;gap:14px;align-items:center;padding:9px 0;flex-wrap:wrap}.brand{font-weight:900;color:#dffcf7;text-decoration:none;font-size:13px}.links{display:flex;gap:7px;flex-wrap:wrap}.links a{color:#eef7fb;text-decoration:none;background:#102b3d;border:1px solid #3b596c;border-radius:8px;padding:8px 10px;font-size:11px;font-weight:800}.links a:hover,.links a.active{border-color:var(--aqua);background:#123c43}.context{text-align:center;background:#0a202f;border-bottom:1px solid #244557;color:#a9c0cc;padding:7px 12px;font-size:11px}.context strong{color:var(--aqua)}.shell{width:min(1448px,100%);margin:auto;padding:0 0 28px}.stage{position:relative;width:100%;background:#04111a}.stage img{display:block;width:100%;height:auto}.hit,.playHit{position:absolute;z-index:10;background:transparent;border:0;cursor:pointer;color:transparent;padding:0}.hit:focus-visible,.playHit:focus-visible{outline:3px solid #fff;outline-offset:1px}.sliderHit{position:absolute;z-index:11;left:3.1%;top:72.1%;width:91.4%;height:3.7%;opacity:.001;cursor:pointer}.status{width:min(1180px,calc(100% - 24px));margin:10px auto 0;text-align:center;color:#9fb8c5;font-size:11px}
+@media(max-width:760px){.navin{display:block}.brand{display:block;margin-bottom:7px}.links{overflow-x:auto;flex-wrap:nowrap}.links a{white-space:nowrap}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="navin"><a class="brand" href="v3.html">OGALLALA AQUIFER TRACKER · VERSION 3.3</a><div class="links"><a href="v3.html">V3.3 Home</a><a class="active" href="v3-map.html">Interactive Timeline</a><a href="data-centers.html">AI Data Centers</a><a href="groundwater-window.html">Groundwater Window</a><a href="v3-my-aquifer.html">My Aquifer</a><a href="sources.html">Sources</a></div></div></nav>
+<div class="context"><strong>Version 3.3 Interactive Timeline:</strong> exact approved master artwork for each year.</div>
+<main class="shell"><div class="stage" id="stage"><img id="yearImage" src="approved-timeline-images/2026.png" alt="Ogallala Aquifer Tracker approved 2026 timeline view">
+<button class="hit" data-i="0" aria-label="Show 1950" style="left:3.1%;top:66.8%;width:10.2%;height:4.5%"></button>
+<button class="hit" data-i="1" aria-label="Show 1980" style="left:14.2%;top:66.8%;width:10%;height:4.5%"></button>
+<button class="hit" data-i="2" aria-label="Show 2026" style="left:25.5%;top:66.8%;width:10%;height:4.5%"></button>
+<button class="hit" data-i="3" aria-label="Show 2030" style="left:36.6%;top:66.8%;width:10%;height:4.5%"></button>
+<button class="hit" data-i="4" aria-label="Show 2035" style="left:47.7%;top:66.8%;width:10%;height:4.5%"></button>
+<button class="hit" data-i="5" aria-label="Show 2040" style="left:58.8%;top:66.8%;width:10%;height:4.5%"></button>
+<button class="hit" data-i="6" aria-label="Show 2045" style="left:69.9%;top:66.8%;width:10%;height:4.5%"></button>
+<button class="hit" data-i="7" aria-label="Show 2050" style="left:80.2%;top:66.8%;width:8.5%;height:4.5%"></button>
+<button class="playHit" id="play" aria-label="Play timeline" style="left:88.2%;top:66.8%;width:10%;height:4.5%"></button>
+<input class="sliderHit" id="slider" type="range" min="0" max="7" step="1" value="2" aria-label="Timeline year">
+</div><div class="status" id="status">Approved master: 2026</div></main>
+<script>
+const years=[1950,1980,2026,2030,2035,2040,2045,2050];
+const img=document.getElementById('yearImage'), slider=document.getElementById('slider'), status=document.getElementById('status'), play=document.getElementById('play');
+let current=2,running=false,timer=null;
+function show(i){current=Math.max(0,Math.min(7,Number(i)));const y=years[current];img.src='approved-timeline-images/'+y+'.png';img.alt='Ogallala Aquifer Tracker approved '+y+' timeline view';slider.value=current;status.textContent='Approved master: '+y;}
+document.querySelectorAll('.hit').forEach(b=>b.addEventListener('click',()=>{running=false;clearTimeout(timer);show(b.dataset.i)}));
+slider.addEventListener('input',e=>{running=false;clearTimeout(timer);show(e.target.value)});
+play.addEventListener('click',()=>{running=!running;clearTimeout(timer);if(!running)return;const advance=()=>{if(!running)return;show((current+1)%years.length);timer=setTimeout(advance,1500)};advance();});
+show(2);
+</script>
+</body></html>
