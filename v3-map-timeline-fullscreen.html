@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ogallala Aquifer Tracker — Fullscreen Interactive Timeline</title>
+<style>
+:root{--night:#06131d;--ink:#f7fbff;--muted:#b9ccd8;--aqua:#5eead4;--line:rgba(188,218,235,.25);--existing:#2dd4bf;--construction:#f59e0b;--proposed:#c084fc}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--night);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+body{overflow-x:hidden}
+.v3bar{position:sticky;top:0;z-index:100;min-height:52px;background:rgba(7,26,39,.97);border-bottom:1px solid var(--line);display:flex;align-items:center;backdrop-filter:blur(8px)}
+.v3inner{width:100%;padding:7px 12px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-weight:900;font-size:13px;color:#dffcf7;text-decoration:none;white-space:nowrap}
+.links{display:flex;gap:6px;align-items:center;overflow-x:auto}.links a{flex:0 0 auto;color:#e8f2f6;text-decoration:none;border:1px solid #3b596c;background:#102b3d;border-radius:8px;padding:7px 9px;font-size:10px;font-weight:800}.links a.active{border-color:var(--aqua);background:#123c43;color:#e7fffb}
+.stage{position:relative;width:100vw;aspect-ratio:3/2;min-height:calc(100vh - 52px);overflow:hidden;background:#0d1720}
+.poster{position:absolute;inset:0;background-image:url('ChatGPT%20Image%20Aug%2015,%202026,%2010_13_39%20AM.png');background-size:200% 200%;background-repeat:no-repeat;background-color:#0d1720;opacity:0;transition:opacity .5s ease}.poster.active{opacity:1}
+.index-badge{position:absolute;right:18px;top:18px;z-index:30;min-width:142px;padding:10px 13px;border-radius:10px;background:rgba(5,18,26,.90);border:1px solid rgba(145,190,211,.68);text-align:center;box-shadow:0 6px 18px rgba(0,0,0,.35)}
+.index-badge .label{font-size:9px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:#b9d2de}.index-badge .value{font-size:26px;font-weight:900;line-height:1.05;margin-top:2px}
+.embedded-fix{position:absolute;left:18.35%;top:64%;width:14.75%;height:23%;z-index:28;display:none;border-radius:6px;background:#071722;border:1px solid rgba(82,188,235,.82);box-shadow:0 3px 10px rgba(0,0,0,.55);color:#eef8fb;pointer-events:none;overflow:hidden;text-align:center;padding:3px 4px 0}
+.embedded-fix.show{display:flex;flex-direction:column}.embedded-fix .label{font-size:6.5px;font-weight:900;color:#62c6f4}.embedded-fix .sub{font-size:5.8px;color:#b6cbd5}.embedded-fix .value{font-size:22px;font-weight:900;color:#ff6b47}.embedded-fix .desc{font-size:5.4px;line-height:1.1}.mini-track{height:5px;background:rgba(255,255,255,.13);margin:4px 3px;border-radius:99px;overflow:hidden}.fill{height:100%}.footer{margin-top:auto;background:#0877be;font-size:6.3px;font-weight:900;margin-left:-4px;margin-right:-4px;padding:3px}
+.dc-layer{position:absolute;inset:0;z-index:25;pointer-events:none}
+.dc{position:absolute;width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-bottom:17px solid;filter:drop-shadow(0 0 4px rgba(0,0,0,.9));pointer-events:auto;cursor:help;transform:translate(-50%,-50%)}
+.dc.existing{border-bottom-color:var(--existing)}.dc.construction{border-bottom-color:var(--construction)}.dc.proposed{border-bottom-color:var(--proposed)}
+.dc-label{position:absolute;left:13px;top:-13px;background:rgba(5,18,26,.96);border:1px solid #5d7888;border-radius:6px;padding:4px 6px;color:#fff;font-size:9px;font-weight:900;white-space:nowrap;opacity:0;visibility:hidden;transition:opacity .15s;z-index:40}.dc:hover .dc-label,.dc:focus .dc-label{opacity:1;visibility:visible}
+.dc-legend{position:absolute;left:18px;top:18px;z-index:32;background:rgba(5,18,26,.90);border:1px solid #4b6474;border-radius:9px;padding:8px 10px;font-size:9px;display:flex;gap:12px;align-items:center;box-shadow:0 5px 16px rgba(0,0,0,.28)}
+.dc-legend span{display:flex;align-items:center;gap:5px;white-space:nowrap}.tri{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:10px solid}
+.controls{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);z-index:90;width:min(1180px,calc(100vw - 24px));padding:10px 12px 9px;background:rgba(5,18,26,.90);border:1px solid rgba(145,190,211,.62);border-radius:12px;box-shadow:0 10px 28px rgba(0,0,0,.42);backdrop-filter:blur(8px)}
+.year-buttons{display:grid;grid-template-columns:repeat(8,minmax(58px,1fr));gap:7px}.year-btn{appearance:none;border:2px solid #6b7f8e;background:#1b2b35;color:#fff;border-radius:999px;padding:8px 5px;font-weight:900;cursor:pointer;font-size:12px}.year-btn:hover{border-color:var(--aqua)}.year-btn.active{background:#fff;color:#0f172a;border-color:#fff;box-shadow:0 0 0 3px rgba(45,212,191,.25)}
+.sliderline{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;margin-top:9px}.sliderwrap{min-width:0}#yearSlider{width:100%;accent-color:var(--aqua);cursor:pointer}.ticks{display:flex;justify-content:space-between;font-size:8px;color:#9fb6c4}.play-btn{border:1px solid var(--aqua);background:#183c3a;color:#d9fffa;border-radius:8px;padding:8px 12px;font-weight:900;cursor:pointer;white-space:nowrap}.readout{text-align:center;margin-top:5px;color:#b9ccd8;font-size:10px}.readout strong{color:#dffcf7}
+@media(max-width:760px){.v3inner{display:block}.brand{display:block;margin-bottom:6px}.stage{min-height:calc(100vh - 86px)}.year-buttons{grid-template-columns:repeat(4,1fr)}.sliderline{grid-template-columns:1fr}.play-btn{justify-self:center}.dc-legend{left:8px;top:8px;right:8px;justify-content:center;gap:8px;font-size:7px;padding:6px}.index-badge{right:8px;top:44px;min-width:108px;padding:7px}.index-badge .value{font-size:20px}.dc-label{display:none}.controls{bottom:6px;width:calc(100vw - 12px);padding:7px}.year-btn{font-size:10px;padding:6px 3px}}
+</style>
+</head>
+<body>
+<nav class="v3bar"><div class="v3inner"><a class="brand" href="v3.html">OGALLALA AQUIFER TRACKER · VERSION 3.3</a><div class="links"><a href="v3.html">V3.3 Home</a><a class="active" href="v3-map-timeline-fullscreen.html">Interactive Timeline</a><a href="data-centers.html">AI Data Centers</a><a href="groundwater-window.html">Groundwater Window</a><a href="v3-my-aquifer.html">My Aquifer</a><a href="sources.html">Sources</a></div></div></nav>
+<main class="stage" id="stage">
+<div id="posterA" class="poster active"></div><div id="posterB" class="poster"></div>
+<div class="index-badge"><div class="label">Tracker Working Index</div><div id="badgeValue" class="value">60</div></div>
+<div id="embeddedFix" class="embedded-fix"><div class="label">Tracker Working Index</div><div class="sub">Relative aquifer condition</div><div id="embeddedValue" class="value"></div><div class="desc">Projection working index — not percent of water remaining</div><div class="mini-track"><div id="embeddedFill" class="fill"></div></div><div id="embeddedFooter" class="footer"></div></div>
+<div id="dcLayer" class="dc-layer"></div>
+<div id="dcLegend" class="dc-legend"><span><i class="tri" style="border-bottom-color:var(--existing)"></i>Existing / Operational</span><span><i class="tri" style="border-bottom-color:var(--construction)"></i>Under Construction</span><span><i class="tri" style="border-bottom-color:var(--proposed)"></i>Proposed</span></div>
+</main>
+<section class="controls" aria-label="Timeline controls">
+<div id="yearButtons" class="year-buttons"><button type="button" class="year-btn" data-year="1950">1950</button><button type="button" class="year-btn" data-year="1980">1980</button><button type="button" class="year-btn active" data-year="2026">2026</button><button type="button" class="year-btn" data-year="2030">2030</button><button type="button" class="year-btn" data-year="2035">2035</button><button type="button" class="year-btn" data-year="2040">2040</button><button type="button" class="year-btn" data-year="2045">2045</button><button type="button" class="year-btn" data-year="2050">2050</button></div>
+<div class="sliderline"><div class="sliderwrap"><input id="yearSlider" type="range" min="0" max="7" step="1" value="2"><div class="ticks"><span>1950</span><span>1980</span><span>2026</span><span>2030</span><span>2035</span><span>2040</span><span>2045</span><span>2050</span></div></div><button type="button" id="playTimeline" class="play-btn">▶ Play Timeline</button></div>
+<div class="readout">Selected year: <strong id="selectedYear">2026</strong> · Tracker Working Index: <strong id="selectedIndex">60</strong></div>
+</section>
+<script>
+const years=[1950,1980,2026,2030,2035,2040,2045,2050];
+const indexByYear={1950:100,1980:85,2026:60,2030:55,2035:50,2040:45,2045:42,2050:40};
+const cropByYear={1950:'0% 0%',1980:'100% 0%',2026:'0% 100%',2030:'100% 100%',2035:'100% 100%',2040:'100% 100%',2045:'100% 100%',2050:'100% 100%'};
+const projectionYears=new Set([2030,2035,2040,2045]);
+const dataCenters=[
+{name:'Amarillo — Duos Edge AI',status:'existing',x:40,y:63},
+{name:'Hereford — Duos Edge AI',status:'existing',x:36,y:68},
+{name:'Lubbock — Duos Edge AI',status:'existing',x:40,y:78},
+{name:'Abernathy — Project Caprock',status:'construction',x:39,y:75},
+{name:'Cheyenne — AI campus',status:'construction',x:26,y:22},
+{name:'Santa Teresa — Project Jupiter',status:'construction',x:25,y:82},
+{name:'Texas Panhandle — proposed campus',status:'proposed',x:43,y:57}
+];
+const buttons=[...document.querySelectorAll('.year-btn')],slider=document.getElementById('yearSlider'),play=document.getElementById('playTimeline'),posterA=document.getElementById('posterA'),posterB=document.getElementById('posterB'),embeddedFix=document.getElementById('embeddedFix'),dcLayer=document.getElementById('dcLayer'),dcLegend=document.getElementById('dcLegend');
+let activePoster=posterA,standbyPoster=posterB,currentIndex=2,running=false,timer=null;
+function trackerColor(v){return v>=80?'#22c55e':v>=60?'#eab308':v>=45?'#f97316':'#991b1b'}
+function statusLabel(status){return status==='existing'?'Existing / Operational':status==='construction'?'Under Construction':'Proposed'}
+function drawDataCenters(year){dcLayer.innerHTML='';const show=year>=2026;dcLegend.style.display=show?'flex':'none';if(!show)return;dataCenters.forEach(d=>{const el=document.createElement('div');el.className='dc '+d.status;el.style.left=d.x+'%';el.style.top=d.y+'%';el.tabIndex=0;el.setAttribute('aria-label',d.name+' — '+statusLabel(d.status));const lab=document.createElement('span');lab.className='dc-label';lab.textContent=d.name+' — '+statusLabel(d.status);el.appendChild(lab);dcLayer.appendChild(el)})}
+function showIndex(i,animate=true){currentIndex=i;const year=years[i],value=indexByYear[year],crop=cropByYear[year];if(animate){standbyPoster.style.backgroundPosition=crop;standbyPoster.classList.add('active');activePoster.classList.remove('active');const t=activePoster;activePoster=standbyPoster;standbyPoster=t}else{activePoster.style.backgroundPosition=crop;activePoster.classList.add('active');standbyPoster.classList.remove('active')}slider.value=String(i);buttons.forEach(b=>b.classList.toggle('active',Number(b.dataset.year)===year));document.getElementById('badgeValue').textContent=value;document.getElementById('selectedYear').textContent=year;document.getElementById('selectedIndex').textContent=value;const needsFix=projectionYears.has(year);embeddedFix.classList.toggle('show',needsFix);if(needsFix){document.getElementById('embeddedValue').textContent=value;document.getElementById('embeddedFill').style.width=value+'%';document.getElementById('embeddedFill').style.background=trackerColor(value);document.getElementById('embeddedFooter').textContent=value+' — '+year+' PROJECTION'}drawDataCenters(year)}
+buttons.forEach((b,i)=>b.addEventListener('click',()=>showIndex(i,true)));
+slider.addEventListener('input',()=>showIndex(Number(slider.value),true));
+play.addEventListener('click',()=>{running=!running;play.textContent=running?'■ Stop Timeline':'▶ Play Timeline';if(!running){if(timer){clearTimeout(timer);timer=null}return}const advance=()=>{if(!running)return;currentIndex=(currentIndex+1)%years.length;showIndex(currentIndex,true);timer=setTimeout(advance,1800)};timer=setTimeout(advance,250)});
+showIndex(2,false);
+</script>
+</body>
+</html>
