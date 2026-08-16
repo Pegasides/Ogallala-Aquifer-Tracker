@@ -28,11 +28,11 @@
 <script>
 (async()=>{
  const assets=[
-  ['.v33-gallery/g2-00.b64','.v33-gallery/g2-01.b64','.v33-gallery/g2-02.b64','.v33-gallery/g2-03.b64'],
-  ['.v33-gallery/g1-00.b64','.v33-gallery/g1-00b.b64','.v33-gallery/g1-01.b64','.v33-gallery/g1-02.b64'],
-  ['.v33-gallery/repair/g3-00-0.b64','.v33-gallery/repair/g3-00-1.b64','.v33-gallery/repair/g3-00-2.b64','.v33-gallery/q10-g3-01.b64','.v33-gallery/repair/g3-02-0.b64','.v33-gallery/repair/g3-02-1.b64','.v33-gallery/repair/g3-02-2.b64','.v33-gallery/q10-g3-03.b64'],
-  ['.v33-gallery/repair/g4-00-0.b64','.v33-gallery/repair/g4-00-1.b64','.v33-gallery/repair/g4-00-2.b64','.v33-gallery/q10-g4-01.b64','.v33-gallery/repair/g4-02-0.b64','.v33-gallery/repair/g4-02-1.b64','.v33-gallery/repair/g4-02-2.b64','.v33-gallery/repair/g4-03-0.b64'],
-  ['.v33-gallery/q10-g5-00.b64','.v33-gallery/repair/g5-01-0.b64','.v33-gallery/repair/g5-01-1.b64','.v33-gallery/repair/g5-01-2.b64','.v33-gallery/q10-g5-02.b64']
+  ['v33-gallery/g2-00.b64','v33-gallery/g2-01.b64','v33-gallery/g2-02.b64','v33-gallery/g2-03.b64'],
+  ['v33-gallery/g1-00.b64','v33-gallery/g1-00b.b64','v33-gallery/g1-01.b64','v33-gallery/g1-02.b64'],
+  ['v33-gallery/repair/g3-00-0.b64','v33-gallery/repair/g3-00-1.b64','v33-gallery/repair/g3-00-2.b64','v33-gallery/q10-g3-01.b64','v33-gallery/repair/g3-02-0.b64','v33-gallery/repair/g3-02-1.b64','v33-gallery/repair/g3-02-2.b64','v33-gallery/q10-g3-03.b64'],
+  ['v33-gallery/repair/g4-00-0.b64','v33-gallery/repair/g4-00-1.b64','v33-gallery/repair/g4-00-2.b64','v33-gallery/q10-g4-01.b64','v33-gallery/repair/g4-02-0.b64','v33-gallery/repair/g4-02-1.b64','v33-gallery/repair/g4-02-2.b64','v33-gallery/repair/g4-03-0.b64'],
+  ['v33-gallery/q10-g5-00.b64','v33-gallery/repair/g5-01-0.b64','v33-gallery/repair/g5-01-1.b64','v33-gallery/repair/g5-01-2.b64','v33-gallery/q10-g5-02.b64']
  ];
  await Promise.all(assets.map(async(paths,i)=>{
   const card=document.querySelector(`[data-gallery-index="${i+1}"]`),img=card.querySelector('img'),status=card.querySelector('.artwork-status');
