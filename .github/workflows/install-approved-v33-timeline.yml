@@ -1,0 +1,38 @@
+name: Install Approved V3.3 Timeline
+
+on:
+  push:
+    paths:
+      - approved-timeline-upload.zip
+      - .github/workflows/install-approved-v33-timeline.yml
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Unpack exact approved year images
+        run: |
+          rm -rf approved-timeline-images
+          mkdir -p approved-timeline-images
+          unzip -q -o approved-timeline-upload.zip -d approved-timeline-images
+          for y in 1950 1980 2026 2030 2035 2040 2045 2050; do
+            test -s "approved-timeline-images/$y.png"
+          done
+          cp v3-map-approved-template.html v3-map.html
+
+      - name: Commit installed timeline
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add approved-timeline-images v3-map.html
+          git rm -f approved-timeline-upload.zip
+          git commit -m "Install exact approved V3.3 timeline masters"
+          git push
