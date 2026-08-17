@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pretty Picture 3 — Live Ogallala Aquifer Timeline</title>
+<style>
+html,body{margin:0;background:#06131d;color:#fff;font-family:Arial,Helvetica,sans-serif}
+*{box-sizing:border-box}
+.wrap{width:min(1000px,100%);margin:0 auto;background:#04111a}
+.stage{position:relative;width:100%;line-height:0}
+.stage img{display:block;width:100%;height:auto;user-select:none;-webkit-user-drag:none}
+.hit{position:absolute;z-index:10;border:0;background:transparent;padding:0;margin:0;cursor:pointer;border-radius:8px;color:transparent;font-size:0}
+.hit:hover{box-shadow:inset 0 0 0 2px rgba(255,255,255,.72);background:rgba(255,255,255,.035)}
+.hit:focus-visible{outline:3px solid #fff;outline-offset:1px}
+.playing{box-shadow:inset 0 0 0 3px rgba(94,234,212,.95),0 0 18px rgba(94,234,212,.35)}
+.status{height:0;overflow:hidden}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="stage" id="stage">
+    <img id="yearImage" src="pretty-picture-3/pretty-picture-3.webp" alt="Ogallala Aquifer Tracker — Pretty Picture 3, 2026">
+
+    <button class="hit yearHit" data-i="0" aria-label="Show 1950" style="left:0.85%;top:77.87%;width:10.35%;height:4.42%"></button>
+    <button class="hit yearHit" data-i="1" aria-label="Show 1980" style="left:11.85%;top:77.87%;width:10.40%;height:4.42%"></button>
+    <button class="hit yearHit" data-i="2" aria-label="Show 2026" style="left:22.95%;top:77.87%;width:10.15%;height:4.42%"></button>
+    <button class="hit yearHit" data-i="3" aria-label="Show 2030" style="left:33.15%;top:77.87%;width:10.15%;height:4.42%"></button>
+    <button class="hit yearHit" data-i="4" aria-label="Show 2035" style="left:43.45%;top:77.87%;width:10.15%;height:4.42%"></button>
+    <button class="hit yearHit" data-i="5" aria-label="Show 2040" style="left:53.80%;top:77.87%;width:10.15%;height:4.42%"></button>
+    <button class="hit yearHit" data-i="6" aria-label="Show 2045" style="left:64.15%;top:77.87%;width:10.15%;height:4.42%"></button>
+    <button class="hit yearHit" data-i="7" aria-label="Show 2050" style="left:74.55%;top:77.87%;width:8.85%;height:4.42%"></button>
+    <button class="hit" id="play" aria-label="Play Timeline" style="left:84.35%;top:77.87%;width:14.15%;height:4.42%"></button>
+  </div>
+  <div class="status" id="status" aria-live="polite">2026</div>
+</main>
+<script>
+const years=[1950,1980,2026,2030,2035,2040,2045,2050];
+const sources={
+  1950:'approved-timeline-images/1950.png',
+  1980:'approved-timeline-images/1980.png',
+  2026:'pretty-picture-3/pretty-picture-3.webp',
+  2030:'approved-timeline-images/2030.png',
+  2035:'approved-timeline-images/2035.png',
+  2040:'approved-timeline-images/2040.png',
+  2045:'approved-timeline-images/2045.png',
+  2050:'approved-timeline-images/2050.png'
+};
+const img=document.getElementById('yearImage');
+const play=document.getElementById('play');
+const status=document.getElementById('status');
+let current=2,running=false,timer=null;
+
+Object.values(sources).forEach(src=>{const p=new Image();p.src=src});
+
+function show(i){
+  current=Math.max(0,Math.min(7,Number(i)));
+  const y=years[current];
+  img.src=sources[y];
+  img.alt='Ogallala Aquifer Tracker timeline — '+y;
+  status.textContent=String(y);
+}
+
+document.querySelectorAll('.yearHit').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    running=false;
+    clearTimeout(timer);
+    play.classList.remove('playing');
+    show(btn.dataset.i);
+  });
+});
+
+play.addEventListener('click',()=>{
+  running=!running;
+  clearTimeout(timer);
+  play.classList.toggle('playing',running);
+  if(!running)return;
+  const advance=()=>{
+    if(!running)return;
+    show((current+1)%years.length);
+    timer=setTimeout(advance,1500);
+  };
+  advance();
+});
+
+show(2);
+</script>
+</body>
+</html>
