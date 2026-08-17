@@ -1,0 +1,1 @@
+Public mirror folder for the exact historical Pretty Picture Two base64 image chunks used by the August 16 interactive timeline. The image chunks themselves are added in the same recovery commit.
