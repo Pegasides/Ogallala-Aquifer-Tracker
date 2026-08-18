@@ -1,0 +1,32 @@
+name: Fix PP5 southern duplicate labels
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-pp5-south-labels.yml'
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove duplicate southern labels and bust cache
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('pretty-picture-5.html')
+          s = p.read_text()
+          old = "if(i===6||i===7){showEl(northTint);showEl(centralTint);showEl(southTint);showEl(northLabels);showEl(centralLabels);showEl(southLabels);}"
+          new = "if(i===6||i===7){showEl(northTint);showEl(centralTint);showEl(southTint);showEl(northLabels);showEl(centralLabels);}"
+          if old not in s:
+              raise SystemExit('Expected 2045/2050 label line not found')
+          s = s.replace(old, new)
+          s = s.replace('20260817-label-safe-2', '20260817-label-safe-3')
+          p.write_text(s)
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add pretty-picture-5.html
+          git rm .github/workflows/fix-pp5-south-labels.yml
+          git commit -m 'Fix duplicate southern labels in 2045 and 2050'
+          git push
