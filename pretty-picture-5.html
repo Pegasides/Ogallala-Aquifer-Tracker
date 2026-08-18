@@ -8,121 +8,129 @@
 *{box-sizing:border-box}
 html,body{margin:0;background:#06131d;font-family:Arial,Helvetica,sans-serif}
 .wrap{width:min(1050px,calc(100% - 18px));margin:auto;padding:10px 0 24px}
-.stage{position:relative;width:100%;background:#02080d;border:1px solid #426075;border-radius:12px;overflow:hidden;box-shadow:0 16px 38px rgba(0,0,0,.38)}
-#timelineImage{display:block;width:100%;height:auto;object-fit:contain;background:#02080d;transition:opacity .16s ease}
-.loading{position:absolute;inset:0;display:grid;place-items:center;text-align:center;background:#07131d;color:#b9ccd8;z-index:30;font-size:14px}.loading strong{color:#5eead4}
-.hot{position:absolute;border:0;background:transparent;cursor:pointer;z-index:20;padding:0;margin:0}
-.hot:focus-visible{outline:2px solid rgba(94,234,212,.85);outline-offset:-2px}
-.year-hot{top:78.15%;height:5.7%;border-radius:6px}
-#y1950{left:1.35%;width:9.8%}
-#y1980{left:11.85%;width:10.15%}
-#y2026{left:22.6%;width:10.2%}
-#y2030{left:33.35%;width:9.55%}
-#y2035{left:43.55%;width:10.15%}
-#y2040{left:54.15%;width:9.7%}
-#y2045{left:64.4%;width:9.8%}
-#y2050{left:74.8%;width:9.25%}
-#playHot{top:78.15%;left:84.65%;width:14.15%;height:5.7%;border-radius:6px}
-#sliderHot{position:absolute;left:2.2%;top:85.1%;width:95.6%;height:8.2%;z-index:19;cursor:ew-resize;touch-action:none;background:transparent}
+.stage{position:relative;width:100%;background:#02080d;border:1px solid #426075;border-radius:12px;overflow:hidden;box-shadow:0 16px 38px rgba(0,0,0,.38);user-select:none;-webkit-user-select:none}
+#timelineImage{display:block;width:100%;height:auto;object-fit:contain;background:#02080d;transition:opacity .12s ease;pointer-events:none}
+.loading{position:absolute;inset:0;display:grid;place-items:center;text-align:center;background:#07131d;color:#b9ccd8;z-index:30;font-size:14px;pointer-events:none}.loading strong{color:#5eead4}
+#controlSurface{position:absolute;left:0;right:0;top:70%;bottom:3%;z-index:20;cursor:pointer;touch-action:none;background:transparent}
+#controlSurface:focus-visible{outline:2px solid rgba(94,234,212,.85);outline-offset:-3px}
 </style>
 </head>
 <body>
 <main class="wrap">
   <section class="stage" id="stage">
     <div class="loading" id="loading"><div><strong>Loading Pretty Picture 5…</strong></div></div>
-    <img id="timelineImage" alt="Ogallala Aquifer Tracker interactive timeline" src="approved-timeline-images/2026.png?v=20260817-built-in-controls">
-
-    <button class="hot year-hot" id="y1950" data-index="0" type="button" aria-label="Show 1950"></button>
-    <button class="hot year-hot" id="y1980" data-index="1" type="button" aria-label="Show 1980"></button>
-    <button class="hot year-hot" id="y2026" data-index="2" type="button" aria-label="Show 2026"></button>
-    <button class="hot year-hot" id="y2030" data-index="3" type="button" aria-label="Show 2030"></button>
-    <button class="hot year-hot" id="y2035" data-index="4" type="button" aria-label="Show 2035"></button>
-    <button class="hot year-hot" id="y2040" data-index="5" type="button" aria-label="Show 2040"></button>
-    <button class="hot year-hot" id="y2045" data-index="6" type="button" aria-label="Show 2045"></button>
-    <button class="hot year-hot" id="y2050" data-index="7" type="button" aria-label="Show 2050"></button>
-    <button class="hot" id="playHot" type="button" aria-label="Play or pause timeline"></button>
-    <div id="sliderHot" role="slider" tabindex="0" aria-label="Timeline slider" aria-valuemin="0" aria-valuemax="7" aria-valuenow="2"></div>
+    <img id="timelineImage" alt="Ogallala Aquifer Tracker interactive timeline" src="approved-timeline-images/2026.png?v=20260817-live3">
+    <div id="controlSurface" role="application" tabindex="0" aria-label="Interactive timeline controls built into the image"></div>
   </section>
 </main>
 <script>
-const years=[1950,1980,2026,2030,2035,2040,2045,2050];
-const indexes=[100,85,60,55,50,45,42,40];
-const sources=years.map(y=>'approved-timeline-images/'+y+'.png?v=20260817-built-in-controls');
-const image=document.getElementById('timelineImage');
-const loading=document.getElementById('loading');
-const yearButtons=[...document.querySelectorAll('.year-hot')];
-const playHot=document.getElementById('playHot');
-const sliderHot=document.getElementById('sliderHot');
-let current=2;
-let timer=null;
-let playing=false;
-let dragging=false;
+(function(){
+  const years=[1950,1980,2026,2030,2035,2040,2045,2050];
+  const indexes=[100,85,60,55,50,45,42,40];
+  const sources=years.map(y=>'approved-timeline-images/'+y+'.png?v=20260817-live3');
+  const image=document.getElementById('timelineImage');
+  const surface=document.getElementById('controlSurface');
+  const loading=document.getElementById('loading');
+  let current=2;
+  let playTimer=null;
+  let previewTimer=null;
+  let previewStep=0;
+  let dragging=false;
+  let playing=false;
 
-function setAria(){
-  sliderHot.setAttribute('aria-valuenow',String(current));
-  sliderHot.setAttribute('aria-valuetext',years[current]+' — Tracker Working Index '+indexes[current]);
-}
+  function cancelPreview(){
+    if(previewTimer){clearTimeout(previewTimer);previewTimer=null;}
+    previewStep=99;
+  }
 
-function show(i){
-  current=Math.max(0,Math.min(7,Number(i)));
-  const next=sources[current];
-  image.style.opacity='.35';
-  const preload=new Image();
-  preload.onload=()=>{
-    image.src=next;
-    image.alt='Ogallala Aquifer Tracker — '+years[current]+' — Tracker Working Index '+indexes[current];
-    requestAnimationFrame(()=>image.style.opacity='1');
-  };
-  preload.onerror=()=>{image.style.opacity='1';};
-  preload.src=next;
-  setAria();
-}
+  function stopPlay(){
+    playing=false;
+    if(playTimer){clearInterval(playTimer);playTimer=null;}
+  }
 
-function stop(){
-  playing=false;
-  if(timer){clearInterval(timer);timer=null;}
-}
+  function show(i){
+    current=Math.max(0,Math.min(7,Number(i)));
+    const next=sources[current];
+    const pre=new Image();
+    image.style.opacity='.25';
+    pre.onload=function(){
+      image.src=next;
+      image.alt='Ogallala Aquifer Tracker — '+years[current]+' — Tracker Working Index '+indexes[current];
+      requestAnimationFrame(function(){image.style.opacity='1';});
+    };
+    pre.onerror=function(){image.style.opacity='1';};
+    pre.src=next;
+    surface.setAttribute('aria-label','Interactive timeline. '+years[current]+', Tracker Working Index '+indexes[current]);
+  }
 
-function togglePlay(){
-  if(playing){stop();return;}
-  playing=true;
-  if(current>=7) show(0);
-  timer=setInterval(()=>{
-    if(current>=7){stop();return;}
-    show(current+1);
-  },1500);
-}
+  function togglePlay(){
+    cancelPreview();
+    if(playing){stopPlay();return;}
+    playing=true;
+    if(current>=7) show(0);
+    playTimer=setInterval(function(){
+      if(current>=7){stopPlay();return;}
+      show(current+1);
+    },1400);
+  }
 
-yearButtons.forEach(b=>b.addEventListener('click',()=>{stop();show(b.dataset.index);}));
-playHot.addEventListener('click',togglePlay);
+  function rel(e){
+    const r=surface.getBoundingClientRect();
+    return {x:Math.max(0,Math.min(1,(e.clientX-r.left)/r.width)),y:Math.max(0,Math.min(1,(e.clientY-r.top)/r.height))};
+  }
 
-function sliderIndexFromPointer(e){
-  const r=sliderHot.getBoundingClientRect();
-  const x=Math.max(0,Math.min(r.width,e.clientX-r.left));
-  return Math.round((x/r.width)*7);
-}
+  function yearFromX(x){
+    return Math.max(0,Math.min(7,Math.floor((x/0.84)*8)));
+  }
 
-sliderHot.addEventListener('pointerdown',e=>{
-  stop();dragging=true;sliderHot.setPointerCapture(e.pointerId);show(sliderIndexFromPointer(e));
-});
-sliderHot.addEventListener('pointermove',e=>{
-  if(dragging) show(sliderIndexFromPointer(e));
-});
-sliderHot.addEventListener('pointerup',e=>{
-  dragging=false;try{sliderHot.releasePointerCapture(e.pointerId);}catch(_){ }
-});
-sliderHot.addEventListener('pointercancel',()=>{dragging=false;});
-sliderHot.addEventListener('keydown',e=>{
-  if(e.key==='ArrowLeft'||e.key==='ArrowDown'){e.preventDefault();stop();show(current-1);}
-  if(e.key==='ArrowRight'||e.key==='ArrowUp'){e.preventDefault();stop();show(current+1);}
-  if(e.key==='Home'){e.preventDefault();stop();show(0);}
-  if(e.key==='End'){e.preventDefault();stop();show(7);}
-});
+  function handlePoint(e,move){
+    const p=rel(e);
+    // The top half of this broad control surface covers the baked-in year buttons and Play Timeline.
+    if(p.y<0.56 && !move){
+      cancelPreview();stopPlay();
+      if(p.x>=0.84){togglePlay();return;}
+      show(yearFromX(p.x));
+      return;
+    }
+    // The lower half covers the baked-in slider. Drag anywhere across it to select a year.
+    if(p.y>=0.42){
+      cancelPreview();stopPlay();
+      show(Math.round(p.x*7));
+    }
+  }
 
-image.addEventListener('load',()=>{if(loading)loading.remove();},{once:true});
-image.addEventListener('error',()=>{if(loading)loading.innerHTML='<div><strong>Timeline image could not be loaded.</strong><br><br>Please refresh the page.</div>';},{once:true});
-sources.forEach(src=>{const p=new Image();p.src=src;});
-setAria();
+  surface.addEventListener('pointerdown',function(e){
+    dragging=true;
+    try{surface.setPointerCapture(e.pointerId);}catch(_){ }
+    handlePoint(e,false);
+  });
+  surface.addEventListener('pointermove',function(e){if(dragging)handlePoint(e,true);});
+  surface.addEventListener('pointerup',function(e){dragging=false;try{surface.releasePointerCapture(e.pointerId);}catch(_){ }});
+  surface.addEventListener('pointercancel',function(){dragging=false;});
+
+  surface.addEventListener('keydown',function(e){
+    cancelPreview();
+    if(e.key==='ArrowLeft'||e.key==='ArrowDown'){e.preventDefault();stopPlay();show(current-1);}
+    if(e.key==='ArrowRight'||e.key==='ArrowUp'){e.preventDefault();stopPlay();show(current+1);}
+    if(e.key==='Home'){e.preventDefault();stopPlay();show(0);}
+    if(e.key==='End'){e.preventDefault();stopPlay();show(7);}
+    if(e.key===' '||e.key==='Enter'){e.preventDefault();togglePlay();}
+  });
+
+  image.addEventListener('load',function(){if(loading)loading.remove();},{once:true});
+  image.addEventListener('error',function(){if(loading)loading.innerHTML='<div><strong>Timeline image could not be loaded.</strong><br><br>Please refresh the page.</div>';},{once:true});
+  sources.forEach(function(src){const p=new Image();p.src=src;});
+
+  // One automatic proof-of-life pass on opening. Any user interaction cancels it.
+  function preview(){
+    if(previewStep===99)return;
+    const seq=[0,1,2,3,4,5,6,7,2];
+    if(previewStep>=seq.length)return;
+    show(seq[previewStep++]);
+    previewTimer=setTimeout(preview,850);
+  }
+  previewTimer=setTimeout(preview,900);
+})();
 </script>
 </body>
 </html>
