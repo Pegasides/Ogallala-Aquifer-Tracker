@@ -10,92 +10,96 @@ html,body{margin:0;background:#06131d;font-family:Arial,Helvetica,sans-serif}
 .wrap{width:min(1050px,calc(100% - 18px));margin:auto;padding:10px 0 24px}
 .stage{position:relative;width:100%;background:#02080d;border:1px solid #426075;border-radius:12px;overflow:hidden;box-shadow:0 16px 38px rgba(0,0,0,.38);user-select:none;-webkit-user-select:none}
 #timelineImage{display:block;width:100%;height:auto;object-fit:contain;background:#02080d;transition:opacity .12s ease;pointer-events:none}
+#visualFixes{position:absolute;inset:0;width:100%;height:100%;z-index:10;pointer-events:none}
+.basin-tint{display:none}
+#northTint,#centralTint{mix-blend-mode:hue}
+#southTint{mix-blend-mode:multiply}
+.restore{display:none;font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:700;fill:#fff;stroke:#07131d;stroke-width:3px;paint-order:stroke;stroke-linejoin:round}
+.restore-dot{fill:#f4f7fa;stroke:#07131d;stroke-width:2px}
+.patch{display:none}
 .loading{position:absolute;inset:0;display:grid;place-items:center;text-align:center;background:#07131d;color:#b9ccd8;z-index:40;font-size:14px;pointer-events:none}.loading strong{color:#5eead4}
 .hot{position:absolute;z-index:20;border:0;background:transparent;padding:0;margin:0;cursor:pointer;border-radius:7px}
 .hot:focus-visible{outline:3px solid rgba(94,234,212,.9);outline-offset:-2px}
 .year-hot,#playHot{top:66.4%;height:5.0%}
-#y1950{left:3.2%;width:9.9%}
-#y1980{left:14.7%;width:10.2%}
-#y2026{left:26.2%;width:10.0%}
-#y2030{left:37.5%;width:10.1%}
-#y2035{left:49.0%;width:10.1%}
-#y2040{left:60.5%;width:10.4%}
-#y2045{left:72.2%;width:9.8%}
-#y2050{left:82.8%;width:6.5%}
-#playHot{left:89.1%;width:9.0%}
+#y1950{left:3.2%;width:9.9%}#y1980{left:14.7%;width:10.2%}#y2026{left:26.2%;width:10.0%}#y2030{left:37.5%;width:10.1%}#y2035{left:49.0%;width:10.1%}#y2040{left:60.5%;width:10.4%}#y2045{left:72.2%;width:9.8%}#y2050{left:82.8%;width:6.5%}#playHot{left:89.1%;width:9.0%}
 #sliderHot{position:absolute;z-index:19;left:2.6%;top:71.5%;width:94.8%;height:5.5%;cursor:ew-resize;touch-action:none;background:transparent;border-radius:9px}
 #sliderHot:focus-visible{outline:3px solid rgba(94,234,212,.9);outline-offset:-2px}
 </style>
 </head>
 <body>
-<main class="wrap">
-  <section class="stage">
-    <div class="loading" id="loading"><div><strong>Loading Pretty Picture 5…</strong></div></div>
-    <img id="timelineImage" alt="Ogallala Aquifer Tracker interactive timeline" src="approved-timeline-images/2026.png?v=20260817-label-safe">
-    <button class="hot year-hot" id="y1950" data-index="0" type="button" aria-label="Show 1950"></button>
-    <button class="hot year-hot" id="y1980" data-index="1" type="button" aria-label="Show 1980"></button>
-    <button class="hot year-hot" id="y2026" data-index="2" type="button" aria-label="Show 2026"></button>
-    <button class="hot year-hot" id="y2030" data-index="3" type="button" aria-label="Show 2030"></button>
-    <button class="hot year-hot" id="y2035" data-index="4" type="button" aria-label="Show 2035"></button>
-    <button class="hot year-hot" id="y2040" data-index="5" type="button" aria-label="Show 2040"></button>
-    <button class="hot year-hot" id="y2045" data-index="6" type="button" aria-label="Show 2045"></button>
-    <button class="hot year-hot" id="y2050" data-index="7" type="button" aria-label="Show 2050"></button>
-    <button class="hot" id="playHot" type="button" aria-label="Play timeline"></button>
-    <div id="sliderHot" role="slider" tabindex="0" aria-label="Timeline slider" aria-valuemin="0" aria-valuemax="7" aria-valuenow="2"></div>
-  </section>
-</main>
+<main class="wrap"><section class="stage">
+<div class="loading" id="loading"><div><strong>Loading Pretty Picture 5…</strong></div></div>
+<img id="timelineImage" alt="Ogallala Aquifer Tracker interactive timeline" src="approved-timeline-images/2026.png?v=20260817-label-safe-2">
+
+<svg id="visualFixes" viewBox="0 0 1448 1086" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+  <path id="northTint" class="basin-tint" fill="#b46b1d" opacity="1" d="M394 210 L398 221 L408 223 L408 230 L418 233 L419 239 L435 243 L444 253 L491 265 L513 264 L515 271 L545 272 L587 285 L636 284 L640 290 L722 299 L747 291 L751 282 L733 245 L734 227 L739 220 L728 209 L728 203 L718 198 L718 189 L710 186 L708 172 L696 166 L697 152 L687 148 L686 141 L675 138 L672 129 L658 127 L655 122 L610 111 L590 111 L582 104 L552 99 L547 94 L509 98 L491 94 L448 105 L447 113 L434 119 L432 138 L422 147 L421 165 L410 172 L409 187 L402 192 Z"/>
+  <path id="centralTint" class="basin-tint" fill="#ef2626" opacity="1" d="M439 249 L442 296 L437 297 L431 310 L432 321 L441 333 L437 355 L446 378 L442 393 L453 407 L453 415 L477 418 L481 423 L586 433 L603 438 L608 444 L633 445 L649 452 L668 450 L703 462 L722 455 L728 438 L737 434 L739 423 L747 421 L742 383 L751 367 L746 353 L750 322 L744 322 L743 315 L735 312 L733 294 L669 295 L665 289 L638 288 L633 283 L582 284 L576 278 L562 279 L539 271 L516 272 L507 263 L491 265 L444 254 Z"/>
+  <path id="southTint" class="basin-tint" fill="#5b1014" opacity=".58" d="M453 416 L450 438 L454 457 L465 462 L470 476 L492 480 L511 501 L529 507 L529 517 L535 519 L535 528 L545 537 L549 579 L561 581 L561 599 L581 608 L584 622 L601 625 L603 638 L616 639 L618 654 L625 663 L656 672 L670 686 L690 686 L691 691 L704 692 L705 696 L722 693 L719 673 L729 669 L729 662 L709 629 L709 579 L719 569 L721 515 L729 490 L721 476 L721 463 L727 458 L694 458 L687 453 L672 453 L667 447 L648 451 L633 444 L607 443 L586 433 L535 430 L528 425 L505 427 L481 423 L472 416 Z"/>
+
+  <g id="northLabels" class="restore">
+    <circle class="restore-dot" cx="471" cy="130" r="5"/><text x="483" y="135">Pine Ridge</text>
+    <circle class="restore-dot" cx="600" cy="137" r="5"/><text x="612" y="142">Valentine</text>
+    <circle class="restore-dot" cx="430" cy="158" r="5"/><text x="442" y="163">Torrington</text>
+    <circle class="restore-dot" cx="417" cy="187" r="5"/><text x="429" y="192">Scottsbluff</text>
+    <circle class="restore-dot" cx="494" cy="214" r="5"/><text x="506" y="219">North Platte</text>
+    <circle class="restore-dot" cx="517" cy="244" r="5"/><text x="529" y="249">Ogallala</text>
+  </g>
+  <g id="centralLabels" class="restore">
+    <circle class="restore-dot" cx="490" cy="300" r="5"/><text x="502" y="305">Colby</text>
+    <circle class="restore-dot" cx="556" cy="341" r="5"/><text x="568" y="346">Garden City</text>
+    <circle class="restore-dot" cx="510" cy="378" r="5"/><text x="522" y="383">Liberal</text>
+    <circle class="restore-dot" cx="620" cy="378" r="5"/><text x="632" y="383">Dodge City</text>
+  </g>
+  <g id="southLabels" class="restore">
+    <circle class="restore-dot" cx="528" cy="445" r="5"/><text x="540" y="450">Guymon</text>
+    <circle class="restore-dot" cx="642" cy="478" r="5"/><text x="654" y="483">Pampa</text>
+    <circle class="restore-dot" cx="593" cy="504" r="5"/><text x="605" y="509">Amarillo</text>
+    <circle class="restore-dot" cx="601" cy="557" r="5"/><text x="613" y="562">Plainview</text>
+    <circle class="restore-dot" cx="616" cy="610" r="5"/><text x="628" y="615">Lubbock</text>
+  </g>
+
+  <g id="patch2035Central" class="patch">
+    <rect x="765" y="312" width="166" height="116" rx="14" fill="#07131d" stroke="#c62828" stroke-width="1.5"/>
+    <text x="848" y="344" text-anchor="middle" fill="#ff3434" font-family="Arial" font-size="16" font-weight="700">CENTRAL BASIN</text>
+    <text x="848" y="376" text-anchor="middle" fill="#ff3434" font-family="Arial" font-size="24" font-weight="700">Critical</text>
+    <text x="848" y="404" text-anchor="middle" fill="#f2f2f2" font-family="Arial" font-size="15">(NE, CO, KS)</text>
+    <rect x="718" y="886" width="322" height="48" fill="#06131d"/>
+    <text x="750" y="918" fill="#ff3434" font-family="Arial" font-size="27" font-weight="700">Central — Critical</text>
+  </g>
+
+  <g id="patch2040South" class="patch">
+    <rect x="759" y="500" width="174" height="116" rx="14" fill="#07131d" stroke="#c62828" stroke-width="1.5"/>
+    <text x="846" y="533" text-anchor="middle" fill="#ff3434" font-family="Arial" font-size="16" font-weight="700">SOUTHERN BASIN</text>
+    <text x="846" y="566" text-anchor="middle" fill="#ff3434" font-family="Arial" font-size="24" font-weight="700">Critical</text>
+    <text x="846" y="594" text-anchor="middle" fill="#f2f2f2" font-family="Arial" font-size="14">(TX Panhandle, OK, NM)</text>
+    <rect x="1055" y="886" width="325" height="48" fill="#06131d"/>
+    <text x="1082" y="918" fill="#ff3434" font-family="Arial" font-size="27" font-weight="700">Southern — Critical</text>
+    <rect x="285" y="654" width="211" height="35" fill="#0759a8"/>
+    <text x="390" y="678" text-anchor="middle" fill="#fff" font-family="Arial" font-size="16" font-weight="700">45 — 2040 PROJECTION</text>
+  </g>
+</svg>
+
+<button class="hot year-hot" id="y1950" data-index="0" type="button" aria-label="Show 1950"></button><button class="hot year-hot" id="y1980" data-index="1" type="button" aria-label="Show 1980"></button><button class="hot year-hot" id="y2026" data-index="2" type="button" aria-label="Show 2026"></button><button class="hot year-hot" id="y2030" data-index="3" type="button" aria-label="Show 2030"></button><button class="hot year-hot" id="y2035" data-index="4" type="button" aria-label="Show 2035"></button><button class="hot year-hot" id="y2040" data-index="5" type="button" aria-label="Show 2040"></button><button class="hot year-hot" id="y2045" data-index="6" type="button" aria-label="Show 2045"></button><button class="hot year-hot" id="y2050" data-index="7" type="button" aria-label="Show 2050"></button><button class="hot" id="playHot" type="button" aria-label="Play timeline"></button><div id="sliderHot" role="slider" tabindex="0" aria-label="Timeline slider" aria-valuemin="0" aria-valuemax="7" aria-valuenow="2"></div>
+</section></main>
 <script>
 (function(){
-  const years=[1950,1980,2026,2030,2035,2040,2045,2050];
-  const indexes=[100,85,60,55,50,45,42,40];
-  const sources=years.map(y=>'approved-timeline-images/'+y+'.png?v=20260817-label-safe');
-  const image=document.getElementById('timelineImage');
-  const loading=document.getElementById('loading');
-  const buttons=[...document.querySelectorAll('.year-hot')];
-  const play=document.getElementById('playHot');
-  const slider=document.getElementById('sliderHot');
-  let current=2;
-  let timer=null;
-  let dragging=false;
-  function updateAria(){
-    slider.setAttribute('aria-valuenow',String(current));
-    slider.setAttribute('aria-valuetext',years[current]+' — Tracker Working Index '+indexes[current]);
-  }
-  function show(i){
-    current=Math.max(0,Math.min(7,Number(i)));
-    const next=sources[current];
-    const pre=new Image();
-    image.style.opacity='.25';
-    pre.onload=function(){
-      image.src=next;
-      image.alt='Ogallala Aquifer Tracker — '+years[current]+' — Tracker Working Index '+indexes[current];
-      requestAnimationFrame(function(){image.style.opacity='1';});
-    };
-    pre.onerror=function(){image.style.opacity='1';};
-    pre.src=next;
-    updateAria();
-  }
-  function stop(){if(timer){clearInterval(timer);timer=null;}}
-  function step(){if(current>=7){stop();return;}show(current+1);}
-  function togglePlay(){if(timer){stop();return;}if(current>=7) show(0); else show(current+1);timer=setInterval(step,1200);}
-  buttons.forEach(function(b){b.addEventListener('click',function(){stop();show(b.dataset.index);});});
-  play.addEventListener('click',togglePlay);
-  function indexFromPointer(e){const r=slider.getBoundingClientRect();const x=Math.max(0,Math.min(r.width,e.clientX-r.left));return Math.round((x/r.width)*7);}
-  slider.addEventListener('pointerdown',function(e){stop();dragging=true;try{slider.setPointerCapture(e.pointerId);}catch(_){ }show(indexFromPointer(e));});
-  slider.addEventListener('pointermove',function(e){if(dragging)show(indexFromPointer(e));});
-  slider.addEventListener('pointerup',function(e){dragging=false;try{slider.releasePointerCapture(e.pointerId);}catch(_){ }});
-  slider.addEventListener('pointercancel',function(){dragging=false;});
-  slider.addEventListener('keydown',function(e){
-    if(e.key==='ArrowLeft'||e.key==='ArrowDown'){e.preventDefault();stop();show(current-1);}
-    if(e.key==='ArrowRight'||e.key==='ArrowUp'){e.preventDefault();stop();show(current+1);}
-    if(e.key==='Home'){e.preventDefault();stop();show(0);}
-    if(e.key==='End'){e.preventDefault();stop();show(7);}
-  });
-  image.addEventListener('load',function(){if(loading)loading.remove();},{once:true});
-  image.addEventListener('error',function(){if(loading)loading.innerHTML='<div><strong>Timeline image could not be loaded.</strong><br><br>Please refresh the page.</div>';},{once:true});
-  sources.forEach(function(src){const p=new Image();p.src=src;});
-  updateAria();
+const years=[1950,1980,2026,2030,2035,2040,2045,2050],indexes=[100,85,60,55,50,45,42,40];
+const sources=years.map(y=>'approved-timeline-images/'+y+'.png?v=20260817-label-safe-2');
+const image=document.getElementById('timelineImage'),loading=document.getElementById('loading'),buttons=[...document.querySelectorAll('.year-hot')],play=document.getElementById('playHot'),slider=document.getElementById('sliderHot');
+const northTint=document.getElementById('northTint'),centralTint=document.getElementById('centralTint'),southTint=document.getElementById('southTint'),northLabels=document.getElementById('northLabels'),centralLabels=document.getElementById('centralLabels'),southLabels=document.getElementById('southLabels'),patch2035=document.getElementById('patch2035Central'),patch2040=document.getElementById('patch2040South');
+let current=2,timer=null,dragging=false;
+function hide(el){el.style.display='none'} function showEl(el){el.style.display='block'}
+function visual(i){[northTint,centralTint,southTint,northLabels,centralLabels,southLabels,patch2035,patch2040].forEach(hide);
+  if(i===4){showEl(centralTint);showEl(centralLabels);showEl(patch2035);}
+  if(i===5){showEl(northTint);showEl(centralTint);showEl(northLabels);showEl(centralLabels);showEl(patch2040);}
+  if(i===6||i===7){showEl(northTint);showEl(centralTint);showEl(southTint);showEl(northLabels);showEl(centralLabels);showEl(southLabels);}
+}
+function updateAria(){slider.setAttribute('aria-valuenow',String(current));slider.setAttribute('aria-valuetext',years[current]+' — Tracker Working Index '+indexes[current]);}
+function select(i){current=Math.max(0,Math.min(7,Number(i)));const next=sources[current];const pre=new Image();image.style.opacity='.25';visual(current);pre.onload=function(){image.src=next;image.alt='Ogallala Aquifer Tracker — '+years[current]+' — Tracker Working Index '+indexes[current];requestAnimationFrame(()=>image.style.opacity='1');};pre.onerror=()=>image.style.opacity='1';pre.src=next;updateAria();}
+function stop(){if(timer){clearInterval(timer);timer=null;}} function step(){if(current>=7){stop();return;}select(current+1);} function togglePlay(){if(timer){stop();return;}if(current>=7)select(0);else select(current+1);timer=setInterval(step,1200);}
+buttons.forEach(b=>b.addEventListener('click',()=>{stop();select(b.dataset.index);}));play.addEventListener('click',togglePlay);
+function indexFromPointer(e){const r=slider.getBoundingClientRect(),x=Math.max(0,Math.min(r.width,e.clientX-r.left));return Math.round((x/r.width)*7);}
+slider.addEventListener('pointerdown',e=>{stop();dragging=true;try{slider.setPointerCapture(e.pointerId)}catch(_){}select(indexFromPointer(e));});slider.addEventListener('pointermove',e=>{if(dragging)select(indexFromPointer(e));});slider.addEventListener('pointerup',e=>{dragging=false;try{slider.releasePointerCapture(e.pointerId)}catch(_){}});slider.addEventListener('pointercancel',()=>dragging=false);slider.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'||e.key==='ArrowDown'){e.preventDefault();stop();select(current-1)}if(e.key==='ArrowRight'||e.key==='ArrowUp'){e.preventDefault();stop();select(current+1)}if(e.key==='Home'){e.preventDefault();stop();select(0)}if(e.key==='End'){e.preventDefault();stop();select(7)}});
+image.addEventListener('load',()=>{if(loading)loading.remove()},{once:true});image.addEventListener('error',()=>{if(loading)loading.innerHTML='<div><strong>Timeline image could not be loaded.</strong><br><br>Please refresh the page.</div>'},{once:true});sources.forEach(src=>{const p=new Image();p.src=src});visual(current);updateAria();
 })();
-</script>
-</body>
-</html>
+</script></body></html>
