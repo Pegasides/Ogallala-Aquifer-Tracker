@@ -3,93 +3,105 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Pretty Picture 5 — Ogallala Aquifer Tracker Preview</title>
+<title>Pretty Picture 5 — Ogallala Aquifer Tracker Live Timeline</title>
 <style>
-:root{--bg:#06131d;--panel:#0b1e2a;--line:#355064;--ink:#eef7fb;--muted:#a9becb;--aqua:#5eead4}
+:root{--bg:#06131d;--panel:#0b1e2a;--line:#355064;--ink:#eef7fb;--muted:#a9becb;--aqua:#5eead4;--blue:#36aeea}
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
-.wrap{width:min(1000px,calc(100% - 18px));margin:auto;padding:9px 0 24px}
-.preview{text-align:center;color:var(--aqua);font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;margin:2px 0 8px}
-.stage{position:relative;width:100%;aspect-ratio:4/3;background:#02080d;border:1px solid #426075;border-radius:12px;overflow:hidden;box-shadow:0 16px 38px rgba(0,0,0,.38)}
-#timelineImage{display:block;width:100%;height:100%;object-fit:contain;background:#02080d}
-.loading{position:absolute;inset:0;display:grid;place-items:center;text-align:center;background:#07131d;color:#b9ccd8;z-index:30}
-.loading strong{color:var(--aqua)}
-.hot{position:absolute;top:78.15%;height:5.7%;border:0;background:transparent;cursor:pointer;z-index:10;border-radius:6px}
-.hot:hover,.hot:focus-visible{outline:2px solid rgba(94,234,212,.75);outline-offset:-2px;background:rgba(94,234,212,.05)}
-.hot.active{outline:2px solid rgba(94,234,212,.34);outline-offset:-2px}
-#y1950{left:1.35%;width:9.8%}
-#y1980{left:11.85%;width:10.15%}
-#y2026{left:22.6%;width:10.2%}
-#y2030{left:33.35%;width:9.55%}
-#y2035{left:43.55%;width:10.15%}
-#y2040{left:54.15%;width:9.7%}
-#y2045{left:64.4%;width:9.8%}
-#y2050{left:74.8%;width:9.25%}
-#playHot{left:84.65%;width:14.15%}
-.controls{margin-top:10px;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:11px 12px}
-#yearSlider{width:100%;accent-color:#36aeea;cursor:pointer}
-.ticks{display:flex;justify-content:space-between;color:#9fb5c3;font-size:10px}
-.status,.help{text-align:center;margin-top:8px;font-size:12px}
-.status strong{color:var(--aqua)}
-.help{color:var(--muted);font-size:11px}
-@media(max-width:700px){.ticks{font-size:8px}.status,.help{font-size:10px}}
+.wrap{width:min(1050px,calc(100% - 18px));margin:auto;padding:10px 0 28px}
+.preview{text-align:center;color:var(--aqua);font-size:12px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;margin:3px 0 8px}
+.live-note{text-align:center;color:#dff7ff;font-size:13px;font-weight:700;margin:0 0 10px}
+.stage{position:relative;width:100%;background:#02080d;border:1px solid #426075;border-radius:12px;overflow:hidden;box-shadow:0 16px 38px rgba(0,0,0,.38)}
+#timelineImage{display:block;width:100%;height:auto;max-height:76vh;object-fit:contain;background:#02080d;transition:opacity .18s ease}
+.loading{position:absolute;inset:0;display:grid;place-items:center;text-align:center;background:#07131d;color:#b9ccd8;z-index:5}.loading strong{color:var(--aqua)}
+.controls{margin-top:12px;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:14px}
+.year-buttons{display:grid;grid-template-columns:repeat(8,1fr);gap:6px;margin-bottom:12px}
+.year-button,.play-button{border:1px solid #4d6f84;background:#102b3a;color:var(--ink);border-radius:8px;padding:10px 5px;font-weight:800;cursor:pointer;font-size:14px}
+.year-button:hover,.year-button:focus-visible,.play-button:hover,.play-button:focus-visible{outline:2px solid rgba(94,234,212,.7);outline-offset:1px;background:#15384a}
+.year-button.active{background:#174b61;border-color:var(--aqua);color:#fff}
+.play-row{display:flex;align-items:center;gap:12px;margin-bottom:12px}.play-button{min-width:170px;background:#123b50;border-color:#4f9bc4}.play-state{font-size:13px;color:var(--muted)}
+#yearSlider{width:100%;accent-color:var(--blue);cursor:pointer}
+.ticks{display:flex;justify-content:space-between;color:#9fb5c3;font-size:10px;padding:0 2px}
+.status{text-align:center;margin-top:9px;font-size:13px}.status strong{color:var(--aqua)}
+.help{text-align:center;margin-top:7px;color:var(--muted);font-size:11px}
+@media(max-width:760px){.year-buttons{grid-template-columns:repeat(4,1fr)}.year-button{font-size:12px}.play-row{flex-direction:column;align-items:stretch}.play-button{width:100%}.ticks{font-size:8px}.status{font-size:11px}}
 </style>
 </head>
 <body>
 <main class="wrap">
-  <div class="preview">Version 3.3 Preview · Pretty Picture 5</div>
+  <div class="preview">Pretty Picture 5 · Live Interactive Timeline</div>
+  <div class="live-note">The controls below the picture are real browser controls — click any year, drag the slider, or press Play Timeline.</div>
   <section class="stage">
-    <div class="loading" id="loading"><div><strong>Loading Pretty Picture 5…</strong><br><br>Preparing the approved timeline images.</div></div>
-    <img id="timelineImage" alt="Pretty Picture 5 interactive Ogallala Aquifer timeline" src="approved-timeline-images/2026.png">
-    <button class="hot" id="y1950" data-index="0" aria-label="Show 1950"></button>
-    <button class="hot" id="y1980" data-index="1" aria-label="Show 1980"></button>
-    <button class="hot" id="y2026" data-index="2" aria-label="Show 2026"></button>
-    <button class="hot" id="y2030" data-index="3" aria-label="Show 2030"></button>
-    <button class="hot" id="y2035" data-index="4" aria-label="Show 2035"></button>
-    <button class="hot" id="y2040" data-index="5" aria-label="Show 2040"></button>
-    <button class="hot" id="y2045" data-index="6" aria-label="Show 2045"></button>
-    <button class="hot" id="y2050" data-index="7" aria-label="Show 2050"></button>
-    <button class="hot" id="playHot" aria-label="Play or pause timeline"></button>
+    <div class="loading" id="loading"><div><strong>Loading approved timeline image…</strong></div></div>
+    <img id="timelineImage" alt="Ogallala Aquifer Tracker interactive timeline" src="approved-timeline-images/2026.png">
   </section>
   <section class="controls">
+    <div class="year-buttons" id="yearButtons"></div>
+    <div class="play-row">
+      <button class="play-button" id="playButton" type="button">▶ Play Timeline</button>
+      <div class="play-state" id="playState">Ready</div>
+    </div>
     <input id="yearSlider" type="range" min="0" max="7" step="1" value="2" aria-label="Timeline year slider">
     <div class="ticks"><span>1950</span><span>1980</span><span>2026</span><span>2030</span><span>2035</span><span>2040</span><span>2045</span><span>2050</span></div>
     <div class="status" id="status"></div>
-    <div class="help">Click a year on the dashboard, drag the slider, or click Play Timeline.</div>
+    <div class="help">Approved anti-bleed images only. Auto-preview runs once when the page opens; any click or slider movement takes manual control.</div>
   </section>
 </main>
 <script>
 const years=[1950,1980,2026,2030,2035,2040,2045,2050];
 const indexes=[100,85,60,55,50,45,42,40];
-const sources=years.map(y=>'approved-timeline-images/'+y+'.png');
+const sources=years.map(y=>'approved-timeline-images/'+y+'.png?v=20260817-live2');
 const image=document.getElementById('timelineImage');
 const slider=document.getElementById('yearSlider');
 const status=document.getElementById('status');
-const buttons=[...document.querySelectorAll('.hot[data-index]')];
-const play=document.getElementById('playHot');
+const yearButtons=document.getElementById('yearButtons');
+const playButton=document.getElementById('playButton');
+const playState=document.getElementById('playState');
 const loading=document.getElementById('loading');
-let current=2,timer=null,playing=false;
+let current=2,timer=null,playing=false,autoTimer=null;
 
-function ui(){
+const buttons=years.map((year,i)=>{
+  const b=document.createElement('button');
+  b.type='button';
+  b.className='year-button';
+  b.textContent=year;
+  b.setAttribute('aria-label','Show '+year);
+  b.addEventListener('click',()=>{cancelAuto();stop();show(i);});
+  yearButtons.appendChild(b);
+  return b;
+});
+
+function updateUI(){
   slider.value=current;
   buttons.forEach((b,i)=>b.classList.toggle('active',i===current));
-  status.innerHTML='Selected year: <strong>'+years[current]+'</strong> · Tracker Working Index: <strong>'+indexes[current]+'</strong>'+(playing?' · <strong>Playing</strong>':'');
+  status.innerHTML='Selected year: <strong>'+years[current]+'</strong> · Tracker Working Index: <strong>'+indexes[current]+'</strong>';
+  playButton.textContent=playing?'❚❚ Pause Timeline':'▶ Play Timeline';
+  playState.textContent=playing?'Playing through the approved images':'Ready';
 }
 
 function show(i){
-  current=Math.max(0,Math.min(7,+i));
-  image.src=sources[current];
-  image.alt='Ogallala Aquifer Tracker — '+years[current]+' — Tracker Working Index '+indexes[current];
-  ui();
+  current=Math.max(0,Math.min(7,Number(i)));
+  image.style.opacity='.25';
+  const next=sources[current];
+  const pre=new Image();
+  pre.onload=()=>{
+    image.src=next;
+    image.alt='Ogallala Aquifer Tracker — '+years[current]+' — Tracker Working Index '+indexes[current];
+    requestAnimationFrame(()=>image.style.opacity='1');
+  };
+  pre.onerror=()=>{image.style.opacity='1';};
+  pre.src=next;
+  updateUI();
 }
 
 function stop(){
   playing=false;
   if(timer){clearInterval(timer);timer=null;}
-  ui();
+  updateUI();
 }
 
-function start(){
+function playFromCurrent(){
+  cancelAuto();
   if(playing){stop();return;}
   playing=true;
   if(current>=7) current=0;
@@ -97,20 +109,26 @@ function start(){
   timer=setInterval(()=>{
     if(current>=7){stop();return;}
     show(current+1);
-  },1500);
+  },1400);
 }
 
-buttons.forEach(b=>b.onclick=()=>{stop();show(b.dataset.index);});
-slider.oninput=()=>{stop();show(slider.value);};
-play.onclick=()=>playing?stop():start();
+function cancelAuto(){
+  if(autoTimer){clearTimeout(autoTimer);autoTimer=null;}
+}
+
+slider.addEventListener('input',()=>{cancelAuto();stop();show(slider.value);});
+playButton.addEventListener('click',playFromCurrent);
 
 image.addEventListener('load',()=>{if(loading) loading.remove();},{once:true});
-image.addEventListener('error',()=>{
-  if(loading) loading.innerHTML='<div><strong>Pretty Picture 5 image could not be loaded.</strong><br><br>Please refresh the page.</div>';
-},{once:true});
+image.addEventListener('error',()=>{if(loading) loading.innerHTML='<div><strong>Timeline image could not be loaded.</strong><br><br>Please refresh this page.</div>';},{once:true});
 
 sources.forEach(src=>{const p=new Image();p.src=src;});
-ui();
+updateUI();
+
+// One automatic demonstration so the page is visibly live as soon as it opens.
+autoTimer=setTimeout(()=>{
+  if(!playing){current=0;updateUI();playing=true;show(0);timer=setInterval(()=>{if(current>=7){stop();return;}show(current+1);},1400);}
+},900);
 </script>
 </body>
 </html>
