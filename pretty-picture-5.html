@@ -29,7 +29,7 @@ html,body{margin:0;background:#06131d;font-family:Arial,Helvetica,sans-serif}
 <body>
 <main class="wrap"><section class="stage">
 <div class="loading" id="loading"><div><strong>Loading Pretty Picture 5…</strong></div></div>
-<img id="timelineImage" alt="Ogallala Aquifer Tracker interactive timeline" src="approved-timeline-images/2026.png?v=20260817-label-safe-2">
+<img id="timelineImage" alt="Ogallala Aquifer Tracker interactive timeline" src="approved-timeline-images/2026.png?v=20260817-label-safe-3">
 
 <svg id="visualFixes" viewBox="0 0 1448 1086" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
   <path id="northTint" class="basin-tint" fill="#b46b1d" opacity="1" d="M394 210 L398 221 L408 223 L408 230 L418 233 L419 239 L435 243 L444 253 L491 265 L513 264 L515 271 L545 272 L587 285 L636 284 L640 290 L722 299 L747 291 L751 282 L733 245 L734 227 L739 220 L728 209 L728 203 L718 198 L718 189 L710 186 L708 172 L696 166 L697 152 L687 148 L686 141 L675 138 L672 129 L658 127 L655 122 L610 111 L590 111 L582 104 L552 99 L547 94 L509 98 L491 94 L448 105 L447 113 L434 119 L432 138 L422 147 L421 165 L410 172 L409 187 L402 192 Z"/>
@@ -84,7 +84,7 @@ html,body{margin:0;background:#06131d;font-family:Arial,Helvetica,sans-serif}
 <script>
 (function(){
 const years=[1950,1980,2026,2030,2035,2040,2045,2050],indexes=[100,85,60,55,50,45,42,40];
-const sources=years.map(y=>'approved-timeline-images/'+y+'.png?v=20260817-label-safe-2');
+const sources=years.map(y=>'approved-timeline-images/'+y+'.png?v=20260817-label-safe-3');
 const image=document.getElementById('timelineImage'),loading=document.getElementById('loading'),buttons=[...document.querySelectorAll('.year-hot')],play=document.getElementById('playHot'),slider=document.getElementById('sliderHot');
 const northTint=document.getElementById('northTint'),centralTint=document.getElementById('centralTint'),southTint=document.getElementById('southTint'),northLabels=document.getElementById('northLabels'),centralLabels=document.getElementById('centralLabels'),southLabels=document.getElementById('southLabels'),patch2035=document.getElementById('patch2035Central'),patch2040=document.getElementById('patch2040South');
 let current=2,timer=null,dragging=false;
@@ -92,7 +92,7 @@ function hide(el){el.style.display='none'} function showEl(el){el.style.display=
 function visual(i){[northTint,centralTint,southTint,northLabels,centralLabels,southLabels,patch2035,patch2040].forEach(hide);
   if(i===4){showEl(centralTint);showEl(centralLabels);showEl(patch2035);}
   if(i===5){showEl(northTint);showEl(centralTint);showEl(northLabels);showEl(centralLabels);showEl(patch2040);}
-  if(i===6||i===7){showEl(northTint);showEl(centralTint);showEl(southTint);showEl(northLabels);showEl(centralLabels);showEl(southLabels);}
+  if(i===6||i===7){showEl(northTint);showEl(centralTint);showEl(southTint);showEl(northLabels);showEl(centralLabels);}
 }
 function updateAria(){slider.setAttribute('aria-valuenow',String(current));slider.setAttribute('aria-valuetext',years[current]+' — Tracker Working Index '+indexes[current]);}
 function select(i){current=Math.max(0,Math.min(7,Number(i)));const next=sources[current];const pre=new Image();image.style.opacity='.25';visual(current);pre.onload=function(){image.src=next;image.alt='Ogallala Aquifer Tracker — '+years[current]+' — Tracker Working Index '+indexes[current];requestAnimationFrame(()=>image.style.opacity='1');};pre.onerror=()=>image.style.opacity='1';pre.src=next;updateAria();}
