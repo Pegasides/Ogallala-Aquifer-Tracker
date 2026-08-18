@@ -10,8 +10,6 @@ html,body{margin:0;background:#06131d;font-family:Arial,Helvetica,sans-serif}
 .wrap{width:min(1050px,calc(100% - 18px));margin:auto;padding:10px 0 24px}
 .stage{position:relative;width:100%;background:#02080d;border:1px solid #426075;border-radius:12px;overflow:hidden;box-shadow:0 16px 38px rgba(0,0,0,.38);user-select:none;-webkit-user-select:none}
 #timelineImage{display:block;width:100%;height:auto;object-fit:contain;background:#02080d;transition:opacity .12s ease;pointer-events:none}
-#basinOverlay{position:absolute;inset:0;width:100%;height:100%;z-index:10;pointer-events:none}
-.basin-color{opacity:0;mix-blend-mode:color;transition:fill .18s ease,opacity .18s ease}
 .loading{position:absolute;inset:0;display:grid;place-items:center;text-align:center;background:#07131d;color:#b9ccd8;z-index:40;font-size:14px;pointer-events:none}.loading strong{color:#5eead4}
 .hot{position:absolute;z-index:20;border:0;background:transparent;padding:0;margin:0;cursor:pointer;border-radius:7px}
 .hot:focus-visible{outline:3px solid rgba(94,234,212,.9);outline-offset:-2px}
@@ -33,14 +31,7 @@ html,body{margin:0;background:#06131d;font-family:Arial,Helvetica,sans-serif}
 <main class="wrap">
   <section class="stage">
     <div class="loading" id="loading"><div><strong>Loading Pretty Picture 5…</strong></div></div>
-    <img id="timelineImage" alt="Ogallala Aquifer Tracker interactive timeline" src="approved-timeline-images/2026.png?v=20260817-basin-colors">
-
-    <svg id="basinOverlay" viewBox="0 0 1448 1086" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-      <path id="northColor" class="basin-color" d="M394 210 L398 221 L408 223 L408 230 L418 233 L419 239 L435 243 L444 253 L491 265 L513 264 L515 271 L545 272 L587 285 L636 284 L640 290 L722 299 L747 291 L751 282 L733 245 L734 227 L739 220 L728 209 L728 203 L718 198 L718 189 L710 186 L708 172 L696 166 L697 152 L687 148 L686 141 L675 138 L672 129 L658 127 L655 122 L610 111 L590 111 L582 104 L552 99 L547 94 L509 98 L491 94 L448 105 L447 113 L434 119 L432 138 L422 147 L421 165 L410 172 L409 187 L402 192 Z"/>
-      <path id="centralColor" class="basin-color" d="M439 249 L442 296 L437 297 L431 310 L432 321 L441 333 L437 355 L446 378 L442 393 L453 407 L453 415 L477 418 L481 423 L586 433 L603 438 L608 444 L633 445 L649 452 L668 450 L703 462 L722 455 L728 438 L737 434 L739 423 L747 421 L742 383 L751 367 L746 353 L750 322 L744 322 L743 315 L735 312 L733 294 L669 295 L665 289 L638 288 L633 283 L582 284 L576 278 L562 279 L539 271 L516 272 L507 263 L491 265 L444 254 Z"/>
-      <path id="southColor" class="basin-color" d="M453 416 L450 438 L454 457 L465 462 L470 476 L492 480 L511 501 L529 507 L529 517 L535 519 L535 528 L545 537 L549 579 L561 581 L561 599 L581 608 L584 622 L601 625 L603 638 L616 639 L618 654 L625 663 L656 672 L670 686 L690 686 L691 691 L704 692 L705 696 L722 693 L719 673 L729 669 L729 662 L709 629 L709 579 L719 569 L721 515 L729 490 L721 476 L721 463 L727 458 L694 458 L687 453 L672 453 L667 447 L648 451 L633 444 L607 443 L586 433 L535 430 L528 425 L505 427 L481 423 L472 416 Z"/>
-    </svg>
-
+    <img id="timelineImage" alt="Ogallala Aquifer Tracker interactive timeline" src="approved-timeline-images/2026.png?v=20260817-label-safe">
     <button class="hot year-hot" id="y1950" data-index="0" type="button" aria-label="Show 1950"></button>
     <button class="hot year-hot" id="y1980" data-index="1" type="button" aria-label="Show 1980"></button>
     <button class="hot year-hot" id="y2026" data-index="2" type="button" aria-label="Show 2026"></button>
@@ -57,60 +48,24 @@ html,body{margin:0;background:#06131d;font-family:Arial,Helvetica,sans-serif}
 (function(){
   const years=[1950,1980,2026,2030,2035,2040,2045,2050];
   const indexes=[100,85,60,55,50,45,42,40];
-  const sources=years.map(y=>'approved-timeline-images/'+y+'.png?v=20260817-basin-colors');
+  const sources=years.map(y=>'approved-timeline-images/'+y+'.png?v=20260817-label-safe');
   const image=document.getElementById('timelineImage');
   const loading=document.getElementById('loading');
   const buttons=[...document.querySelectorAll('.year-hot')];
   const play=document.getElementById('playHot');
   const slider=document.getElementById('sliderHot');
-  const north=document.getElementById('northColor');
-  const central=document.getElementById('centralColor');
-  const south=document.getElementById('southColor');
   let current=2;
   let timer=null;
   let dragging=false;
-
-  const COLORS={
-    stable:'#2F80ED',
-    stressed:'#A8611A',
-    critical:'#C62828',
-    severe:'#6E0F13'
-  };
-
-  function clearBasinColors(){
-    [north,central,south].forEach(function(p){p.style.opacity='0';});
-  }
-
-  function tint(path,color,opacity){
-    path.setAttribute('fill',color);
-    path.style.opacity=String(opacity);
-  }
-
-  function applyBasinColors(i){
-    clearBasinColors();
-    if(i===4){
-      tint(central,COLORS.critical,.93);
-    }else if(i===5){
-      tint(north,COLORS.stressed,.93);
-      tint(central,COLORS.critical,.93);
-    }else if(i===6 || i===7){
-      tint(north,COLORS.stressed,.93);
-      tint(central,COLORS.critical,.93);
-      tint(south,COLORS.severe,.96);
-    }
-  }
-
   function updateAria(){
     slider.setAttribute('aria-valuenow',String(current));
     slider.setAttribute('aria-valuetext',years[current]+' — Tracker Working Index '+indexes[current]);
   }
-
   function show(i){
     current=Math.max(0,Math.min(7,Number(i)));
     const next=sources[current];
     const pre=new Image();
     image.style.opacity='.25';
-    applyBasinColors(current);
     pre.onload=function(){
       image.src=next;
       image.alt='Ogallala Aquifer Tracker — '+years[current]+' — Tracker Working Index '+indexes[current];
@@ -120,44 +75,15 @@ html,body{margin:0;background:#06131d;font-family:Arial,Helvetica,sans-serif}
     pre.src=next;
     updateAria();
   }
-
-  function stop(){
-    if(timer){clearInterval(timer);timer=null;}
-  }
-
-  function step(){
-    if(current>=7){stop();return;}
-    show(current+1);
-  }
-
-  function togglePlay(){
-    if(timer){stop();return;}
-    if(current>=7) show(0); else show(current+1);
-    timer=setInterval(step,1200);
-  }
-
-  buttons.forEach(function(b){
-    b.addEventListener('click',function(){stop();show(b.dataset.index);});
-  });
+  function stop(){if(timer){clearInterval(timer);timer=null;}}
+  function step(){if(current>=7){stop();return;}show(current+1);}
+  function togglePlay(){if(timer){stop();return;}if(current>=7) show(0); else show(current+1);timer=setInterval(step,1200);}
+  buttons.forEach(function(b){b.addEventListener('click',function(){stop();show(b.dataset.index);});});
   play.addEventListener('click',togglePlay);
-
-  function indexFromPointer(e){
-    const r=slider.getBoundingClientRect();
-    const x=Math.max(0,Math.min(r.width,e.clientX-r.left));
-    return Math.round((x/r.width)*7);
-  }
-
-  slider.addEventListener('pointerdown',function(e){
-    stop();dragging=true;
-    try{slider.setPointerCapture(e.pointerId);}catch(_){ }
-    show(indexFromPointer(e));
-  });
-  slider.addEventListener('pointermove',function(e){
-    if(dragging)show(indexFromPointer(e));
-  });
-  slider.addEventListener('pointerup',function(e){
-    dragging=false;try{slider.releasePointerCapture(e.pointerId);}catch(_){ }
-  });
+  function indexFromPointer(e){const r=slider.getBoundingClientRect();const x=Math.max(0,Math.min(r.width,e.clientX-r.left));return Math.round((x/r.width)*7);}
+  slider.addEventListener('pointerdown',function(e){stop();dragging=true;try{slider.setPointerCapture(e.pointerId);}catch(_){ }show(indexFromPointer(e));});
+  slider.addEventListener('pointermove',function(e){if(dragging)show(indexFromPointer(e));});
+  slider.addEventListener('pointerup',function(e){dragging=false;try{slider.releasePointerCapture(e.pointerId);}catch(_){ }});
   slider.addEventListener('pointercancel',function(){dragging=false;});
   slider.addEventListener('keydown',function(e){
     if(e.key==='ArrowLeft'||e.key==='ArrowDown'){e.preventDefault();stop();show(current-1);}
@@ -165,11 +91,9 @@ html,body{margin:0;background:#06131d;font-family:Arial,Helvetica,sans-serif}
     if(e.key==='Home'){e.preventDefault();stop();show(0);}
     if(e.key==='End'){e.preventDefault();stop();show(7);}
   });
-
   image.addEventListener('load',function(){if(loading)loading.remove();},{once:true});
   image.addEventListener('error',function(){if(loading)loading.innerHTML='<div><strong>Timeline image could not be loaded.</strong><br><br>Please refresh the page.</div>';},{once:true});
   sources.forEach(function(src){const p=new Image();p.src=src;});
-  applyBasinColors(current);
   updateAria();
 })();
 </script>
