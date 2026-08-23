@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sources That Inform Our Story — Ogallala Aquifer Tracker V3.2</title>
+<style>
+:root{--night:#06131d;--deep:#0a1d2a;--panel:#0e2636;--panel2:#0b202e;--ink:#f7fbff;--muted:#b8ccd8;--aqua:#5eead4;--blue:#60a5fa;--gold:#f2c66d;--green:#86efac;--line:rgba(188,218,235,.24);--shadow:0 20px 50px rgba(0,0,0,.34)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 50% -20%,#173b50 0,#0a1e2b 38%,#06131d 72%);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.55}a{color:inherit}a:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.v3bar{background:rgba(5,20,30,.97);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}.v3inner{width:min(1180px,calc(100% - 24px));margin:auto;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:9px 0}.brand{font-weight:900;font-size:13px;color:#dffcf7;text-decoration:none;white-space:nowrap}.links{display:flex;gap:7px;align-items:center;flex-wrap:nowrap}.links a{color:#e8f2f6;text-decoration:none;border:1px solid #3b596c;background:#102b3d;border-radius:8px;padding:8px 10px;font-size:11px;font-weight:800;white-space:nowrap}.links a:hover,.links a.active{border-color:var(--aqua);background:#123c43;color:#e7fffb}.links a.data-center-link{border-color:rgba(242,198,109,.78);background:rgba(83,57,15,.55);color:#ffe7ad}.links a.data-center-link:hover{border-color:var(--gold);background:#6b4510;color:#fff1c6}.nav-context{font-size:9px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:#8fb0c1;padding:0 2px;white-space:nowrap}.nav-divider{width:1px;height:26px;background:rgba(188,218,235,.32);margin:0 3px;flex:0 0 auto}.nav-publication{display:inline-flex;align-items:center;min-height:34px;border:1px solid rgba(242,198,109,.56);background:rgba(67,49,18,.38);color:#f6dca0;border-radius:8px;padding:7px 10px;font-size:10px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.poster-shell{width:min(1180px,calc(100% - 32px));margin:32px auto 12px}.poster-frame{border:1px solid rgba(242,198,109,.34);border-radius:18px;overflow:hidden;background:#07131d;box-shadow:var(--shadow)}.poster-frame img{display:block;width:100%;height:auto}.poster-note{margin:10px 4px 0;color:var(--muted);font-size:12px;line-height:1.5}.poster-note strong{color:#fff}
+.wrap{width:min(1180px,calc(100% - 32px));margin:auto;padding:26px 0 58px}.intro{display:grid;grid-template-columns:1.1fr .9fr;gap:16px;margin-bottom:18px}.statement,.method{border:1px solid var(--line);background:linear-gradient(145deg,rgba(15,43,60,.96),rgba(9,29,41,.96));border-radius:16px;padding:22px;box-shadow:var(--shadow)}.statement h2,.method h2,.section-title{font-family:Georgia,"Times New Roman",serif;margin:0 0 10px}.statement p,.method p{color:var(--muted);margin:0}.method strong{color:#fff}.section{margin-top:30px}.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:13px}.section-title{font-size:clamp(1.8rem,4vw,2.7rem)}.section-note{max-width:500px;color:var(--muted);font-size:12px;text-align:right}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.source{border:1px solid var(--line);border-radius:14px;background:linear-gradient(145deg,var(--panel),var(--panel2));padding:18px;box-shadow:0 10px 24px rgba(0,0,0,.19)}.source .eyebrow{color:var(--gold);font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}.source h3{margin:6px 0 5px;font-size:1.05rem}.source p{margin:0 0 12px;color:var(--muted);font-size:13px}.source a{display:inline-flex;text-decoration:none;border:1px solid #416174;background:#102c3e;color:#e9f7fb;border-radius:8px;padding:8px 10px;font-size:11px;font-weight:900}.source a:hover{border-color:var(--aqua);background:#123c43}.states{grid-template-columns:repeat(2,minmax(0,1fr))}.state-card{border-top:3px solid var(--accent,var(--blue))}.state-links{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}.principle{border:1px solid var(--line);background:#0b202e;border-radius:12px;padding:16px}.principle strong{display:block;color:#fff;margin-bottom:4px}.principle span{color:var(--muted);font-size:12px}.integrity{margin-top:30px;border:1px solid rgba(242,198,109,.4);background:linear-gradient(145deg,rgba(63,45,16,.48),rgba(8,29,41,.93));border-radius:18px;padding:26px;text-align:center}.integrity blockquote{font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.7rem,4vw,2.8rem);line-height:1.15;margin:0}.integrity p{color:#d8c9aa;margin:10px auto 0;max-width:760px}footer{border-top:1px solid var(--line);color:#8fa7b5;text-align:center;font-size:11px;padding:26px 16px 40px}
+@media(max-width:860px){.v3inner{display:block}.brand{display:block;margin-bottom:7px;font-size:11px}.links{overflow-x:auto;scrollbar-width:none;padding-bottom:2px}.links::-webkit-scrollbar{display:none}.links a,.nav-context,.nav-publication,.nav-divider{flex:0 0 auto}.links a{min-height:40px;display:inline-flex;align-items:center}.nav-publication{min-height:40px}.intro{grid-template-columns:1fr}.grid,.states{grid-template-columns:1fr}.principles{grid-template-columns:1fr}.section-head{display:block}.section-note{text-align:left;margin-top:6px}}
+@media(max-width:560px){.wrap,.poster-shell{width:calc(100% - 24px)}.poster-shell{margin-top:20px}.statement,.method{padding:18px}.source{padding:16px}.integrity{padding:21px 16px}.poster-frame{border-radius:12px}.poster-note{font-size:11px}}
+</style>
+</head>
+<body>
+<nav class="v3bar" aria-label="Version 3.2 primary navigation">
+  <div class="v3inner">
+    <a class="brand" href="v3.4.html">OGALLALA AQUIFER TRACKER · VERSION 3.2</a>
+    <div class="links">
+      <span class="nav-context">Tracker</span>
+      <a href="v3.4.html">V3.2 Home</a>
+      <a href="v3.4-map.html">Interactive Timeline</a>
+      <a class="data-center-link" href="v3.4-data-centers.html">AI Data Centers</a>
+      <a href="v3.4-groundwater-window.html">Groundwater Window</a>
+      <a href="v3.4-my-aquifer.html">My Aquifer</a>
+      <a class="active" aria-current="page" href="v3.4-sources.html">Sources</a>
+      <span class="nav-divider" aria-hidden="true"></span>
+      <span class="nav-publication" title="Separate publication experience; final Substack destination has not yet been connected">Publication · Substack</span>
+    </div>
+  </div>
+</nav>
+<section class="poster-shell" aria-label="Verified Sources That Inform Our Story poster">
+  <div class="poster-frame">
+    <img src="Ogallala_Aquifer_Tracker_Sources_Poster_V3_1_verified.png" alt="Sources That Inform Our Story poster for the Ogallala Aquifer Tracker, showing national, state, and regional groundwater data partners across the eight-state High Plains aquifer region.">
+  </div>
+  <p class="poster-note"><strong>Verified visual directory:</strong> the verified Version 3.1 poster remains the current visual source directory in Version 3.2. It was corrected against this live directory on August 12, 2026. The live HTML directory below is the controlling record when agency names, programs, or web addresses change.</p>
+</section>
+<main class="wrap">
+  <section class="intro">
+    <div class="statement">
+      <h2>A collaborative effort</h2>
+      <p>No single organization owns the aquifer story. USGS provides basin-scale science and monitoring; state agencies administer water programs and maintain state datasets; local districts and universities add detail that makes regional information useful on the ground.</p>
+    </div>
+    <div class="method">
+      <h2>How the Tracker uses evidence</h2>
+      <p><strong>Measured data, Tracker interpretation, and scenarios are kept separate.</strong> Working indices are communication tools—not percentages of water remaining. Present-day infrastructure is context, not automatic attribution. Future views are labeled scenarios unless a source specifically supports a forecast.</p>
+    </div>
+  </section>
+  <section class="section" aria-labelledby="national-title">
+    <div class="section-head"><h2 class="section-title" id="national-title">National sources</h2><div class="section-note">Primary federal sources used for aquifer extent, water levels, conservation context, demographic context, and climate records.</div></div>
+    <div class="grid">
+      <article class="source"><div class="eyebrow">Groundwater science</div><h3>U.S. Geological Survey — High Plains Water-Level Monitoring Study</h3><p>Aquifer-wide monitoring and water-level change from predevelopment to the present, produced with local, state, and federal cooperators.</p><a href="https://www.usgs.gov/centers/central-plains-water-science-center/science/high-plains-water-level-monitoring-study" target="_blank" rel="noopener">Open USGS study ↗</a></article>
+      <article class="source"><div class="eyebrow">Monitoring network</div><h3>USGS — High Plains Aquifer Groundwater Network</h3><p>Selected wells and annual groundwater-level information contributed by USGS and numerous partner agencies.</p><a href="https://www.usgs.gov/data/high-plains-aquifer-groundwater-network" target="_blank" rel="noopener">Open groundwater network ↗</a></article>
+      <article class="source"><div class="eyebrow">Land stewardship</div><h3>USDA Natural Resources Conservation Service</h3><p>Conservation science, technical standards, and voluntary assistance for soil, water, working lands, and habitat.</p><a href="https://www.nrcs.usda.gov/" target="_blank" rel="noopener">Open NRCS ↗</a></article>
+      <article class="source"><div class="eyebrow">People + communities</div><h3>U.S. Census Bureau — Data and Maps</h3><p>Population, housing, economic, and community data used for geographic and demographic context.</p><a href="https://www.census.gov/data.html" target="_blank" rel="noopener">Open Census data ↗</a></article>
+      <article class="source"><div class="eyebrow">Climate context</div><h3>NOAA / NCEI — Climate Data Online</h3><p>Quality-controlled historical weather and climate records, including precipitation and long-term climate normals.</p><a href="https://www.ncei.noaa.gov/cdo-web/" target="_blank" rel="noopener">Open NOAA climate data ↗</a></article>
+    </div>
+  </section>
+  <section class="section" aria-labelledby="states-title">
+    <div class="section-head"><h2 class="section-title" id="states-title">State & regional partners</h2><div class="section-note">Current official agencies and data partners across the eight-state High Plains aquifer region.</div></div>
+    <div class="grid states">
+      <article class="source state-card" style="--accent:#60a5fa"><div class="eyebrow">Nebraska</div><h3>Water, local management, and university monitoring</h3><p>Nebraska Department of Water, Energy, and Environment; Nebraska Natural Resources Districts; University of Nebraska–Lincoln Conservation and Survey Division.</p><div class="state-links"><a href="https://dwee.nebraska.gov/data/groundwater-data" target="_blank" rel="noopener">DWEE groundwater ↗</a><a href="https://www.nrdnet.org/programs/water" target="_blank" rel="noopener">Nebraska NRDs ↗</a><a href="https://snr.unl.edu/data/water/groundwater/index.aspx" target="_blank" rel="noopener">UNL groundwater ↗</a></div></article>
+      <article class="source state-card" style="--accent:#f2c66d"><div class="eyebrow">Kansas</div><h3>High Plains aquifer science and water administration</h3><p>Kansas Geological Survey and Kansas Department of Agriculture Division of Water Resources.</p><div class="state-links"><a href="https://kgs.ku.edu/high-plains-aquifer" target="_blank" rel="noopener">KGS High Plains aquifer ↗</a><a href="https://www.agriculture.ks.gov/divisions-programs/division-of-water-resources" target="_blank" rel="noopener">Kansas DWR ↗</a></div></article>
+      <article class="source state-card" style="--accent:#86efac"><div class="eyebrow">Colorado</div><h3>Colorado Division of Water Resources</h3><p>Water-right administration, groundwater permitting and enforcement, records, and technical support for eastern Colorado designated basins.</p><div class="state-links"><a href="https://dwr.colorado.gov/services/water-administration" target="_blank" rel="noopener">Colorado DWR ↗</a></div></article>
+      <article class="source state-card" style="--accent:#7dd3fc"><div class="eyebrow">Texas</div><h3>Texas Water Development Board — Groundwater Division</h3><p>Groundwater levels, quality, well records, aquifer studies, regional-scale models, and groundwater planning information.</p><div class="state-links"><a href="https://www.twdb.texas.gov/groundwater/" target="_blank" rel="noopener">TWDB Groundwater ↗</a></div></article>
+      <article class="source state-card" style="--accent:#f59e0b"><div class="eyebrow">Oklahoma</div><h3>Oklahoma Water Resources Board</h3><p>State groundwater data, wells, monitoring resources, standards, and mapping.</p><div class="state-links"><a href="https://www.owrb.ok.gov/maps/pmg/owrbdata_gw.html" target="_blank" rel="noopener">OWRB groundwater data ↗</a></div></article>
+      <article class="source state-card" style="--accent:#c4b5fd"><div class="eyebrow">New Mexico</div><h3>Office of the State Engineer</h3><p>Water-right administration plus statewide groundwater-level monitoring in cooperation with USGS.</p><div class="state-links"><a href="https://www.ose.nm.gov/" target="_blank" rel="noopener">New Mexico OSE ↗</a><a href="https://www.ose.nm.gov/Hydrology/groundWater.php" target="_blank" rel="noopener">Groundwater monitoring ↗</a></div></article>
+      <article class="source state-card" style="--accent:#e9a8c7"><div class="eyebrow">Wyoming</div><h3>Wyoming State Engineer’s Office — Ground Water Division</h3><p>Groundwater permitting, observation-well monitoring, aquifer investigations, records, and water-right administration.</p><div class="state-links"><a href="https://seo.wyo.gov/ground-water" target="_blank" rel="noopener">Wyoming Ground Water ↗</a></div></article>
+      <article class="source state-card" style="--accent:#a7f3d0"><div class="eyebrow">South Dakota</div><h3>Department of Agriculture and Natural Resources</h3><p>Groundwater quality monitoring, data and mapping, environmental programs, and state water-resource information.</p><div class="state-links"><a href="https://danr.sd.gov/Press/DataAndMapping.aspx" target="_blank" rel="noopener">DANR data & mapping ↗</a></div></article>
+    </div>
+  </section>
+  <section class="section" aria-labelledby="principles-title">
+    <div class="section-head"><h2 class="section-title" id="principles-title">Integrity rules</h2><div class="section-note">These rules govern how source material is translated into the Tracker experience.</div></div>
+    <div class="principles">
+      <div class="principle"><strong>Index ≠ percent remaining</strong><span>The 100 / 85 / 60 / 40 values are Tracker comparison indices, not USGS estimates of the percentage of aquifer water left.</span></div>
+      <div class="principle"><strong>Regional ≠ local measurement</strong><span>Broad decline rings and basin conditions are regional context. They are not presented as measurements at a specific city, home, or well.</span></div>
+      <div class="principle"><strong>Context ≠ causation</strong><span>Infrastructure locations may be shown for geographic context. Presence alone is not evidence that a facility caused a nearby groundwater decline.</span></div>
+      <div class="principle"><strong>Scenario ≠ forecast</strong><span>The 2050 view is a Tracker scenario. It is not labeled as a measured future condition or a guaranteed forecast.</span></div>
+      <div class="principle"><strong>Company claim ≠ independent finding</strong><span>Water-use or cooling statements from companies are identified as company statements unless independently measured evidence is available.</span></div>
+      <div class="principle"><strong>Illustration ≠ surveyed profile</strong><span>The Groundwater Window is educational. Its cross-section and illustrative profiles are not presented as literal statewide geology or verified well measurements.</span></div>
+    </div>
+  </section>
+  <section class="integrity">
+    <blockquote>“You cannot borrow from tomorrow’s groundwater.”</blockquote>
+    <p>Credibility means showing what we know, where it came from, what we inferred, and where the evidence stops. The source list will be reviewed as the Tracker evolves.</p>
+  </section>
+</main>
+<footer>Ogallala Aquifer Tracker · Version 3.2 source directory · Verified source record carried forward from August 12, 2026</footer>
+</body>
+</html>
