@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Groundwater Window — Ogallala Aquifer Tracker Version 3.2</title>
+<style>
+:root{--night:#06131d;--ink:#f7fbff;--muted:#b9ccd8;--aqua:#5eead4;--gold:#f2c66d;--line:rgba(188,218,235,.25)}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--night);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+a:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.v3bar{height:58px;background:#071a27;border-bottom:1px solid var(--line);display:flex;align-items:center;position:relative;z-index:5}
+.v3inner{width:min(1180px,calc(100% - 24px));margin:auto;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.brand{font-weight:900;font-size:13px;color:#dffcf7;text-decoration:none;white-space:nowrap}
+.links{display:flex;gap:7px;align-items:center;flex-wrap:nowrap}
+.links a{color:#e8f2f6;text-decoration:none;border:1px solid #3b596c;background:#102b3d;border-radius:8px;padding:8px 10px;font-size:11px;font-weight:800;white-space:nowrap}
+.links a:hover,.links a.active{border-color:var(--aqua);background:#123c43;color:#e7fffb}
+.links a.data-center-link{border-color:rgba(242,198,109,.78);background:rgba(83,57,15,.55);color:#ffe7ad}
+.links a.data-center-link:hover{border-color:var(--gold);background:#6b4510;color:#fff1c6}
+.nav-context{font-size:9px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:#8fb0c1;padding:0 2px;white-space:nowrap}
+.nav-divider{width:1px;height:26px;background:rgba(188,218,235,.32);margin:0 3px;flex:0 0 auto}
+.nav-publication{display:inline-flex;align-items:center;min-height:34px;border:1px solid rgba(242,198,109,.56);background:rgba(67,49,18,.38);color:#f6dca0;border-radius:8px;padding:7px 10px;font-size:10px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.context{min-height:34px;background:#0a202f;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:center;padding:7px 12px;color:var(--muted);font-size:11px;text-align:center}
+.context strong{color:var(--aqua)}
+.frame-wrap{height:calc(100vh - 92px);min-height:560px;background:#06131d}
+iframe{display:block;width:100%;height:100%;border:0;background:#06131d}
+@media(max-width:760px){
+ .v3bar{height:auto;min-height:58px;padding:8px 0}
+ .v3inner{display:block}
+ .brand{display:block;margin-bottom:7px;font-size:11px}
+ .links{overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+ .links::-webkit-scrollbar{display:none}
+ .links a,.nav-context,.nav-publication,.nav-divider{flex:0 0 auto}
+ .links a{min-height:40px;display:inline-flex;align-items:center}
+ .nav-publication{min-height:40px}
+ .context{font-size:10px;line-height:1.35}
+ .frame-wrap{height:calc(100dvh - 116px);min-height:520px}
+}
+</style>
+</head>
+<body>
+<nav class="v3bar" aria-label="Version 3.2 primary navigation">
+  <div class="v3inner">
+    <a class="brand" href="v3.4.html">OGALLALA AQUIFER TRACKER · VERSION 3.2</a>
+    <div class="links">
+      <span class="nav-context">Tracker</span>
+      <a href="v3.4.html">V3.2 Home</a>
+      <a href="v3.4-map.html">Interactive Timeline</a>
+      <a class="data-center-link" href="v3.4-data-centers.html">AI Data Centers</a>
+      <a class="active" aria-current="page" href="v3.4-groundwater-window.html">Groundwater Window</a>
+      <a href="v3.4-my-aquifer.html">My Aquifer</a>
+      <a href="v3.4-sources.html">Sources</a>
+      <span class="nav-divider" aria-hidden="true"></span>
+      <span class="nav-publication" title="Separate publication experience; final Substack destination has not yet been connected">Publication · Substack</span>
+    </div>
+  </div>
+</nav>
+<div class="context"><strong>Groundwater Window:</strong>&nbsp; educational cross-section for the four V3.2 anchor years. Index = comparison scale; cross-section and well profiles = illustrative, not surveyed measurements.</div>
+<div class="frame-wrap">
+  <iframe id="groundwaterFrame" src="groundwater-window-core.html" title="Ogallala Aquifer Groundwater Window educational cross-section"></iframe>
+</div>
+<script>
+const frame=document.getElementById('groundwaterFrame');
+frame.addEventListener('load',()=>{
+  try{
+    const doc=frame.contentDocument;
+    if(!doc)return;
+
+    if(!doc.getElementById('v3-groundwater-refinements')){
+      const style=doc.createElement('style');
+      style.id='v3-groundwater-refinements';
+      style.textContent=`
+        #v3GwIndexCaption{
+          margin:-7px 0 16px;color:#9bb4c2;font-size:11px;font-weight:800;
+          line-height:1.4;text-align:center;text-transform:uppercase;letter-spacing:.04em;
+        }
+        .health-panel .panel-heading{color:#dffcf7}
+        .well-data-grid,.water-change-box{display:none!important}
+        #v3IllustrativeWellNote{
+          margin:4px 0 0;padding:12px;border:1px solid rgba(129,232,255,.28);
+          border-radius:10px;background:rgba(16,96,128,.16);color:#d8f5ff;
+          font-size:.82rem;line-height:1.5;
+        }
+        @media(max-width:650px){
+          .app-shell{padding:8px!important}
+          .topbar{padding:12px!important;gap:10px!important;margin-bottom:10px!important;border-radius:12px!important}
+          .title-group h1{font-size:1.12rem!important;letter-spacing:.06em!important;line-height:1.15!important}
+          .title-group p{font-size:.8rem!important;line-height:1.35!important}
+          .current-year-badge{padding:7px 10px!important;font-size:.78rem!important;min-width:0!important}
+          .dashboard{gap:10px!important}
+          .visualization-panel{min-height:500px!important;border-radius:12px!important}
+          .scene-heading{top:12px!important;left:12px!important;right:12px!important}
+          .scene-heading strong{font-size:.86rem!important;letter-spacing:.04em!important}
+          .scene-heading span{font-size:.72rem!important;line-height:1.35!important;max-width:290px!important}
+          .layer-label{font-size:.63rem!important;padding:4px 6px!important;left:8px!important}
+          .town{font-size:.64rem!important}
+          .water-table::before{font-size:.62rem!important;right:8px!important}
+          .health-panel{padding:14px!important;border-radius:12px!important}
+          .health-score-wrap{width:145px!important;height:145px!important;margin:6px auto 14px!important}
+          .health-score-inner{width:112px!important;height:112px!important}
+          .health-number{font-size:2.2rem!important}
+          .health-word{font-size:.86rem!important}
+          #v3GwIndexCaption{font-size:9px!important;margin:-4px 0 12px!important}
+          .basin-list{gap:7px!important}
+          .health-explanation{font-size:.78rem!important;line-height:1.45!important;margin-top:13px!important;padding:10px!important}
+          .well-instruction{font-size:.75rem!important}
+          .timeline-panel{padding:13px!important;border-radius:12px!important}
+          .year-buttons{gap:7px!important}
+          .year-button{min-height:44px!important;padding:10px 8px!important}
+          .well-card{padding:12px!important;border-radius:12px!important}
+          #v3IllustrativeWellNote{font-size:.76rem!important;padding:10px!important}
+        }
+      `;
+      doc.head.appendChild(style);
+    }
+
+    const scoreWrap=doc.getElementById('healthScoreWrap');
+    if(scoreWrap && !doc.getElementById('v3GwIndexCaption')){
+      const caption=doc.createElement('p');
+      caption.id='v3GwIndexCaption';
+      caption.textContent='Tracker working index · 0–100 comparison scale';
+      scoreWrap.insertAdjacentElement('afterend',caption);
+    }
+
+    const yearLabels={1950:'Baseline',1980:'Early decline',2026:'Present day',2050:'Projection'};
+    const explanations={
+      1950:'1950 is the Tracker predevelopment baseline. The index is 100 for comparison; the cross-section is educational and does not represent a uniform measured aquifer thickness across Nebraska.',
+      1980:'1980 is the early-decline comparison point. The index is 85; basin conditions are regional Tracker context rather than a single statewide groundwater measurement.',
+      2026:'2026 is the present-day comparison point. The index is 60; the illustration does not mean every location has lost the same share or depth of groundwater.',
+      2050:'2050 is a Tracker scenario, not a measured future condition or forecast. The index is 40, and the illustrated water-table shift is a storytelling device rather than a literal statewide projection.'
+    };
+
+    const profileNames=['A','B','C'];
+    const wellButtons=[...doc.querySelectorAll('.well')];
+    const wellLabels=[...doc.querySelectorAll('.well-label')];
+    wellButtons.forEach((button,index)=>button.setAttribute('aria-label','Open illustrative groundwater profile '+profileNames[index]));
+    wellLabels.forEach((label,index)=>label.textContent='Illustrative profile '+profileNames[index]);
+    const wellInstruction=doc.querySelector('.well-instruction');
+    if(wellInstruction)wellInstruction.textContent='Tap any glowing profile marker to see how this educational panel responds to the selected year.';
+
+    const wellCard=doc.getElementById('wellCard');
+    if(wellCard && !doc.getElementById('v3IllustrativeWellNote')){
+      const note=doc.createElement('div');
+      note.id='v3IllustrativeWellNote';
+      note.textContent='Illustrative profile only. Version 3.2 does not assert these placeholder well IDs, coordinates, depths, dates, or timeline values as verified locality-specific measurements. A sourced monitoring-well layer can replace this placeholder in a later data pass.';
+      wellCard.querySelector('.well-card-header')?.insertAdjacentElement('afterend',note);
+    }
+    const wellPanelHeading=wellCard?.querySelector('.panel-heading');
+    if(wellPanelHeading)wellPanelHeading.textContent='Educational Well Profile';
+
+    let activeProfileIndex=0;
+    const sanitizeWellCard=()=>{
+      const title=doc.getElementById('wellTitle');
+      if(title)title.textContent='Illustrative profile '+profileNames[activeProfileIndex];
+      const note=doc.getElementById('v3IllustrativeWellNote');
+      const year=Number((doc.getElementById('currentYearBadge')?.textContent||'').replace(/[^0-9]/g,''));
+      if(note)note.textContent='Illustrative profile only — '+(year||'selected year')+'. This interaction demonstrates how a sourced monitoring-well panel could respond to the timeline; no placeholder ID, coordinate, depth, date, or numeric water-level value is presented here as a verified measurement.';
+    };
+    wellButtons.forEach((button,index)=>button.addEventListener('click',()=>{activeProfileIndex=index;setTimeout(sanitizeWellCard,0)}));
+
+    const applyV3Language=()=>{
+      const year=Number((doc.getElementById('currentYearBadge')?.textContent||'').replace(/[^0-9]/g,''));
+      const healthNumber=doc.getElementById('healthNumber');
+      const value=(healthNumber?.textContent||'').replace(/[^0-9.]/g,'');
+      if(healthNumber&&value&&healthNumber.textContent.trim()!==value)healthNumber.textContent=value;
+      const panelHeading=doc.querySelector('.health-panel .panel-heading');
+      if(panelHeading)panelHeading.textContent='Tracker Working Index';
+      const panelYearNote=doc.getElementById('panelYearNote');
+      if(panelYearNote&&year)panelYearNote.textContent=`Year ${year} · comparison index, not percent water remaining`;
+      const healthWord=doc.getElementById('healthWord');
+      if(healthWord&&yearLabels[year])healthWord.textContent=yearLabels[year];
+      const explanation=doc.getElementById('healthExplanation');
+      if(explanation&&explanations[year])explanation.textContent=explanations[year];
+      sanitizeWellCard();
+    };
+
+    const yearBadge=doc.getElementById('currentYearBadge');
+    if(yearBadge){
+      yearBadge.setAttribute('aria-live','polite');
+      yearBadge.setAttribute('aria-atomic','true');
+      const observer=new MutationObserver(applyV3Language);
+      observer.observe(yearBadge,{childList:true,characterData:true,subtree:true});
+    }
+    const healthNumber=doc.getElementById('healthNumber');
+    if(healthNumber){
+      const observer=new MutationObserver(applyV3Language);
+      observer.observe(healthNumber,{childList:true,characterData:true,subtree:true});
+    }
+
+    doc.querySelector('.year-button[data-index="0"]')?.click();
+    applyV3Language();
+  }catch(e){
+    console.warn('Version 3.2 Groundwater Window wrapper could not apply presentation refinements.',e);
+  }
+});
+</script>
+</body>
+</html>
