@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Groundwater Window — Ogallala Aquifer Tracker Version 3.2</title>
+<title>Groundwater Window — Ogallala Aquifer Tracker Version 3.4</title>
 <style>
 :root{--night:#06131d;--ink:#f7fbff;--muted:#b9ccd8;--aqua:#5eead4;--gold:#f2c66d;--line:rgba(188,218,235,.25)}
 *{box-sizing:border-box}
@@ -39,12 +39,12 @@ iframe{display:block;width:100%;height:100%;border:0;background:#06131d}
 </style>
 </head>
 <body>
-<nav class="v3bar" aria-label="Version 3.2 primary navigation">
+<nav class="v3bar" aria-label="Version 3.4 primary navigation">
   <div class="v3inner">
-    <a class="brand" href="v3.4.html">OGALLALA AQUIFER TRACKER · VERSION 3.2</a>
+    <a class="brand" href="v3.4.html">OGALLALA AQUIFER TRACKER · VERSION 3.4</a>
     <div class="links">
       <span class="nav-context">Tracker</span>
-      <a href="v3.4.html">V3.2 Home</a>
+      <a href="v3.4.html">V3.4 Home</a>
       <a href="v3.4-map.html">Interactive Timeline</a>
       <a class="data-center-link" href="v3.4-data-centers.html">AI Data Centers</a>
       <a class="active" aria-current="page" href="v3.4-groundwater-window.html">Groundwater Window</a>
@@ -55,7 +55,7 @@ iframe{display:block;width:100%;height:100%;border:0;background:#06131d}
     </div>
   </div>
 </nav>
-<div class="context"><strong>Groundwater Window:</strong>&nbsp; educational cross-section for the four V3.2 anchor years. Index = comparison scale; cross-section and well profiles = illustrative, not surveyed measurements.</div>
+<div class="context"><strong>Groundwater Window:</strong>&nbsp; educational cross-section for the four V3.4 anchor years. Index = comparison scale; cross-section and well profiles = illustrative, not surveyed measurements.</div>
 <div class="frame-wrap">
   <iframe id="groundwaterFrame" src="groundwater-window-core.html" title="Ogallala Aquifer Groundwater Window educational cross-section"></iframe>
 </div>
@@ -142,7 +142,7 @@ frame.addEventListener('load',()=>{
     if(wellCard && !doc.getElementById('v3IllustrativeWellNote')){
       const note=doc.createElement('div');
       note.id='v3IllustrativeWellNote';
-      note.textContent='Illustrative profile only. Version 3.2 does not assert these placeholder well IDs, coordinates, depths, dates, or timeline values as verified locality-specific measurements. A sourced monitoring-well layer can replace this placeholder in a later data pass.';
+      note.textContent='Illustrative profile only. Version 3.4 does not assert these placeholder well IDs, coordinates, depths, dates, or timeline values as verified locality-specific measurements. A sourced monitoring-well layer can replace this placeholder in a later data pass.';
       wellCard.querySelector('.well-card-header')?.insertAdjacentElement('afterend',note);
     }
     const wellPanelHeading=wellCard?.querySelector('.panel-heading');
@@ -190,7 +190,7 @@ frame.addEventListener('load',()=>{
     doc.querySelector('.year-button[data-index="0"]')?.click();
     applyV3Language();
   }catch(e){
-    console.warn('Version 3.2 Groundwater Window wrapper could not apply presentation refinements.',e);
+    console.warn('Version 3.4 Groundwater Window wrapper could not apply presentation refinements.',e);
   }
 });
 </script>
