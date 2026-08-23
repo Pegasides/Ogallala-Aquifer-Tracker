@@ -13,6 +13,9 @@
 .section{margin-top:34px}.section-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:14px}.section h2{font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.8rem,4vw,2.8rem);margin:0}.section-head p{margin:0;color:var(--muted);font-size:12px;max-width:520px;text-align:right}.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.profile-slot{min-height:205px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(145deg,#0d2536,#091c29);padding:18px;display:flex;flex-direction:column}.profile-slot .number{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:900}.profile-slot h3{font-family:Georgia,"Times New Roman",serif;margin:8px 0 7px;font-size:1.3rem}.profile-slot p{margin:0;color:var(--muted);font-size:12.5px}.profile-slot .pending{margin-top:auto;padding-top:18px;color:#dffcf7;font-size:11px;font-weight:900}.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.principle{border:1px solid var(--line);border-radius:14px;background:#0b2130;padding:17px}.principle strong{display:block;margin-bottom:5px}.principle span{color:var(--muted);font-size:12px}.cta{margin-top:34px;border:1px solid rgba(242,198,109,.38);background:linear-gradient(145deg,rgba(77,51,13,.52),rgba(9,29,41,.92));border-radius:18px;padding:24px;text-align:center}.cta blockquote{font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.5rem,3.5vw,2.45rem);margin:0}.cta p{margin:10px auto 0;color:#dac9a3;max-width:760px;font-size:13px}footer{border-top:1px solid var(--line);color:#8fa7b5;text-align:center;font-size:11px;padding:26px 16px 38px}
 @media(max-width:900px){.v3inner{display:block}.brand{display:block;margin-bottom:7px;font-size:11px}.links{overflow-x:auto;scrollbar-width:none;padding-bottom:2px}.links::-webkit-scrollbar{display:none}.links a,.nav-context,.nav-publication,.nav-divider{flex:0 0 auto}.links a{min-height:40px;display:inline-flex;align-items:center}.nav-publication{min-height:40px}.hero{grid-template-columns:1fr}.gallery{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:620px){.wrap{width:calc(100% - 24px);padding:30px 0}.hero-copy,.map-stage{padding:18px;border-radius:14px}.status-strip,.gallery,.principles{grid-template-columns:1fr}.section-head{display:block}.section-head p{text-align:left;margin-top:6px}.map-placeholder{min-height:220px}}
+
+.profile-library{border:2px solid rgba(242,198,109,.7);border-radius:18px;background:linear-gradient(145deg,#071a27,#0b2434);overflow:hidden;box-shadow:var(--shadow)}.profile-tabs{display:flex;gap:8px;padding:14px;background:#06131d;border-bottom:1px solid rgba(242,198,109,.35);overflow-x:auto}.profile-tab{border:1px solid #3b596c;border-radius:9px;background:#102b3d;color:#eaf5fa;padding:10px 14px;text-align:left;cursor:pointer;min-width:220px;font-weight:900}.profile-tab span{display:block;margin-top:2px;color:#91adbc;font-size:10px;font-weight:700}.profile-tab[aria-selected="true"]{border-color:var(--gold);background:#5a3b0f;color:#fff1c6}.profile-panel{display:none;padding:18px}.profile-panel.active{display:block}.profile-title-row{display:flex;justify-content:space-between;gap:16px;align-items:end;margin-bottom:12px}.profile-title-row h3{font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.45rem,3vw,2.2rem);margin:0}.aquifer-chip{border:1px solid rgba(94,234,212,.65);border-radius:999px;padding:6px 10px;color:#cffff7;background:rgba(21,91,86,.36);font-size:10px;font-weight:900;text-transform:uppercase;white-space:nowrap}.profile-image-frame{border:1px solid rgba(94,234,212,.38);border-radius:13px;overflow:hidden;background:#020b13;text-align:center}.profile-image-frame img{display:block;width:100%;max-height:900px;object-fit:contain;margin:auto}.profile-below{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}.facility-news,.subscriber-discussion{border:1px solid var(--line);border-radius:13px;background:#091f2e;padding:16px}.profile-below h4{margin:0 0 4px;font-size:1.05rem}.profile-below .subhead{margin:0 0 12px;color:#92adbc;font-size:11px}.news-empty{border-left:3px solid var(--gold);background:rgba(242,198,109,.07);padding:11px 12px;border-radius:7px;color:#d8e4ea;font-size:12px}.discussion-lock{display:inline-block;color:#e5bd63;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}.subscriber-discussion textarea{width:100%;min-height:92px;resize:vertical;border:1px solid #345164;border-radius:8px;background:#06131d;color:#89a2b0;padding:10px;font:inherit}.subscriber-discussion button{margin-top:8px;border:1px solid #536c7b;border-radius:8px;background:#173044;color:#8299a6;padding:9px 12px;font-weight:900;cursor:not-allowed}@media(max-width:760px){.profile-title-row{display:block}.aquifer-chip{display:inline-block;margin-top:8px}.profile-below{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -56,12 +59,28 @@
     <article class="status proposed"><h3><span class="dot"></span>Proposed</h3><p>Announced, planned, or proposed projects that have not yet reached the operational category.</p></article>
   </section>
   <section class="section">
-    <div class="section-head"><h2>Facility profile library</h2><p>Seventeen prepared facility graphics can be loaded here as individual profiles. Each card will carry a status, location, evidence date, source trail, and the image you already approved.</p></div>
-    <div class="gallery" aria-label="Planned facility profile slots">
-      <article class="profile-slot"><div class="number">Profile 01</div><h3>Facility profile</h3><p>Image, location, project status, source date, groundwater context, and a concise public-facing summary.</p><div class="pending">Graphic ready to wire →</div></article>
-      <article class="profile-slot"><div class="number">Profile 02</div><h3>Facility profile</h3><p>The same evidence structure repeats so readers learn how to evaluate every project consistently.</p><div class="pending">Graphic ready to wire →</div></article>
-      <article class="profile-slot"><div class="number">Profile 03</div><h3>Facility profile</h3><p>Status colors will match the map layer: operational, under construction, or proposed.</p><div class="pending">Graphic ready to wire →</div></article>
-      <article class="profile-slot"><div class="number">Profiles 04–17</div><h3>Expandable library</h3><p>The remaining prepared graphics will populate this grid without changing the page architecture.</p><div class="pending">13 additional profiles →</div></article>
+    <div class="section-head"><h2>Facility profile library</h2><p>Two of the approved 19 facility graphics are now loaded. Select a facility tab to open its complete profile image, recent-news area, and subscriber discussion space.</p></div>
+    <div class="profile-library">
+      <div class="profile-tabs" role="tablist" aria-label="Facility profiles">
+        <button class="profile-tab" id="tab-armstrong" role="tab" aria-selected="true" aria-controls="profile-armstrong" data-profile="profile-armstrong">Profile 01 · Google Armstrong County<span>Texas · On/within the aquifer</span></button>
+        <button class="profile-tab" id="tab-dove-creek" role="tab" aria-selected="false" aria-controls="profile-dove-creek" data-profile="profile-dove-creek">Profile 02 · Beacons Dove Creek<span>Reeves County, Texas · Classification noted below</span></button>
+      </div>
+      <article class="profile-panel active" id="profile-armstrong" role="tabpanel" aria-labelledby="tab-armstrong">
+        <div class="profile-title-row"><h3>Google AI Data Center Campus — Armstrong County, Texas</h3><span class="aquifer-chip">On/Within the Aquifer</span></div>
+        <div class="profile-image-frame"><img src="facility-google-armstrong-tx.webp" alt="Google AI Data Center Campus facility profile for Armstrong County, Texas"></div>
+        <div class="profile-below">
+          <section class="facility-news"><h4>Recent Facility News</h4><p class="subhead">Verified reporting and official records specific to this facility will appear here.</p><div class="news-empty">News slot ready. Each story will show its publication, date, headline, direct source link, and a concise nonpartisan summary.</div></section>
+          <section class="subscriber-discussion"><span class="discussion-lock">Subscriber discussion preview</span><h4>Discuss this facility</h4><p class="subhead">Members will be able to share sourced local observations and discuss water, energy, permits, and community impacts.</p><textarea disabled placeholder="Subscriber discussion activates when membership and moderation services are connected."></textarea><button type="button" disabled>Post comment — membership required</button></section>
+        </div>
+      </article>
+      <article class="profile-panel" id="profile-dove-creek" role="tabpanel" aria-labelledby="tab-dove-creek">
+        <div class="profile-title-row"><h3>Beacons Dove Creek — Reeves County, Texas</h3><span class="aquifer-chip">On/Within Aquifer per supplied graphic</span></div>
+        <div class="profile-image-frame"><img src="facility-beacons-dove-creek-reeves-tx.webp" alt="Beacons Dove Creek AI Data Center Campus facility profile for Reeves County, Texas"></div>
+        <div class="profile-below">
+          <section class="facility-news"><h4>Recent Facility News</h4><p class="subhead">Verified reporting and official records specific to this facility will appear here.</p><div class="news-empty">News slot ready. Each story will show its publication, date, headline, direct source link, and a concise nonpartisan summary.</div></section>
+          <section class="subscriber-discussion"><span class="discussion-lock">Subscriber discussion preview</span><h4>Discuss this facility</h4><p class="subhead">Members will be able to share sourced local observations and discuss water, energy, permits, and community impacts.</p><textarea disabled placeholder="Subscriber discussion activates when membership and moderation services are connected."></textarea><button type="button" disabled>Post comment — membership required</button></section>
+        </div>
+      </article>
     </div>
   </section>
   <section class="section">
@@ -78,5 +97,14 @@
   </section>
 </main>
 <footer>Ogallala Aquifer Tracker · Version 3.4 working preview · Data Centers hub</footer>
+<script>
+const profileTabs=[...document.querySelectorAll('.profile-tab')];
+profileTabs.forEach(tab=>tab.addEventListener('click',()=>{
+  profileTabs.forEach(button=>button.setAttribute('aria-selected','false'));
+  document.querySelectorAll('.profile-panel').forEach(panel=>panel.classList.remove('active'));
+  tab.setAttribute('aria-selected','true');
+  document.getElementById(tab.dataset.profile).classList.add('active');
+}));
+</script>
 </body>
 </html>
