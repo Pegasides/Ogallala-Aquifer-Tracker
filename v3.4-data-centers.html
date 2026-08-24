@@ -20,6 +20,8 @@
 .news-list{display:grid;gap:9px}.news-item{display:block;text-decoration:none;border:1px solid #355469;border-radius:9px;background:#071824;padding:11px 12px}.news-item:hover{border-color:var(--gold);background:#0c2a3b}.news-meta{display:block;color:var(--gold);font-size:9px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}.news-item strong{display:block;margin:3px 0;color:#fff;font-size:12.5px;line-height:1.25}.news-item span:last-child{display:block;color:#9fb7c5;font-size:10.5px;line-height:1.3}.verification-alert{margin:0 0 12px;border-left:4px solid var(--amber);border-radius:8px;background:rgba(245,158,11,.1);padding:10px 12px;color:#ffe5b4;font-size:11px}.verification-alert strong{color:#ffd071}
 .library-map{margin-top:34px;border:2px solid rgba(242,198,109,.78);border-radius:18px;overflow:hidden;background:#06131d;box-shadow:var(--shadow)}.library-map-head{display:flex;justify-content:space-between;gap:18px;align-items:center;padding:17px 20px;background:linear-gradient(145deg,#10384a,#0b2736);border-bottom:1px solid rgba(94,234,212,.38)}.library-map-head h2{font-family:Arial,Helvetica,sans-serif;font-size:clamp(1.35rem,3vw,2rem);margin:0}.library-map-head p{margin:4px 0 0;color:#bfe5f2;font-size:12px}.library-map iframe{display:block;width:100%;aspect-ratio:4/3;min-height:520px;border:0;background:#04111a}@media(max-width:760px){.library-map-head{display:block}.library-map iframe{min-height:390px}}
 
+.power-comparison{margin-top:34px;border:2px solid rgba(94,234,212,.58);border-radius:18px;background:linear-gradient(145deg,#081c29,#0b2637);box-shadow:var(--shadow);overflow:hidden}.power-head{padding:20px;border-bottom:1px solid rgba(94,234,212,.28)}.power-head h2{font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.65rem,3.5vw,2.55rem);margin:0 0 7px}.power-head p{margin:0;color:var(--muted);font-size:12.5px;max-width:940px}.power-controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.power-controls button{border:1px solid #41667a;border-radius:8px;background:#102b3d;color:#dff7ff;padding:8px 12px;font:900 11px Arial;cursor:pointer}.power-controls button[aria-pressed="true"]{background:var(--aqua);border-color:var(--aqua);color:#06131d}.power-legend{display:flex;gap:14px;flex-wrap:wrap;padding:12px 20px;border-bottom:1px solid var(--line);color:#b9ccd8;font-size:10.5px}.power-legend span{display:inline-flex;align-items:center;gap:6px}.power-key{width:18px;height:8px;border-radius:999px;background:var(--aqua)}.power-key.context{background:repeating-linear-gradient(135deg,#f2c66d 0 4px,#8a6828 4px 8px)}.power-key.claim{background:repeating-linear-gradient(135deg,#f59e0b 0 3px,transparent 3px 6px);border:1px solid #f59e0b}.power-key.nd{background:#294251}.power-axis{display:grid;grid-template-columns:minmax(220px,2fr) minmax(320px,5fr) minmax(112px,1fr);gap:12px;align-items:end;padding:13px 20px 7px;color:#8fa9b8;font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.08em}.power-axis-scale{display:flex;justify-content:space-between}.power-rows{padding:0 20px 18px}.power-row{display:grid;grid-template-columns:minmax(220px,2fr) minmax(320px,5fr) minmax(112px,1fr);gap:12px;align-items:center;min-height:53px;border-top:1px solid rgba(188,218,235,.12);cursor:pointer}.power-row:hover{background:rgba(94,234,212,.045)}.power-name strong{display:block;font-size:11.5px;color:#fff}.power-name span{display:block;font-size:9.5px;color:#8fa9b8}.power-track{position:relative;height:17px;border-radius:999px;background:rgba(188,218,235,.11);overflow:visible}.power-bar{position:absolute;left:0;top:0;height:17px;min-width:4px;border-radius:999px;background:linear-gradient(90deg,#27c9b4,#5eead4);box-shadow:0 0 10px rgba(94,234,212,.2)}.power-bar.context{background:repeating-linear-gradient(135deg,#f2c66d 0 6px,#8a6828 6px 12px)}.power-bar.claim{background:repeating-linear-gradient(135deg,#f59e0b 0 5px,rgba(245,158,11,.18) 5px 10px);border:1px solid #f59e0b}.power-bar.nd{width:100%!important;min-width:0;background:linear-gradient(90deg,rgba(41,66,81,.7),rgba(41,66,81,.14));box-shadow:none}.power-value{font-size:10px;font-weight:900;color:#dffcf7;text-align:right}.power-value small{display:block;color:#8fa9b8;font-size:8.5px;font-weight:700;line-height:1.15}.power-note{margin:0 20px 18px;border-left:4px solid var(--gold);border-radius:8px;background:rgba(242,198,109,.08);padding:11px 13px;color:#d9e7ed;font-size:10.5px;line-height:1.45}.power-sources{padding:0 20px 20px;color:#91adbc;font-size:10px}.power-sources a{color:var(--aqua)}@media(max-width:760px){.power-axis{display:none}.power-row{grid-template-columns:1fr;gap:5px;padding:10px 0}.power-track{height:15px}.power-bar{height:15px}.power-value{text-align:left}.power-rows{padding:0 14px 14px}.power-head,.power-legend{padding-left:14px;padding-right:14px}}
+
 </style>
 </head>
 <body>
@@ -57,6 +59,16 @@
   <section class="library-map" aria-labelledby="library-map-title">
     <div class="library-map-head"><div><h2 id="library-map-title">Explore the AI Data Centers on the Aquifer</h2><p>2050 view · Select a data-center marker to open its corresponding facility profile, current updates, and subscriber discussion.</p></div></div>
     <iframe id="facilityMap" src="v3.4-map.html?mode=library&amp;year=2050" title="Interactive 2050 Ogallala Aquifer data-center map"></iframe>
+  </section>
+  <section class="power-comparison" aria-labelledby="power-comparison-title">
+    <div class="power-head"><h2 id="power-comparison-title">How large are the power requirements?</h2><p>All 17 loaded facility profiles appear below. Every reported figure is converted to megawatts. “Small facilities visible” uses a logarithmic width so tens of megawatts can be seen beside gigawatt projects; “actual scale” restores direct proportional size.</p>
+      <div class="power-controls" role="group" aria-label="Power graph scale"><button id="powerLogButton" type="button" aria-pressed="true">Small facilities visible</button><button id="powerLinearButton" type="button" aria-pressed="false">Actual scale</button></div>
+    </div>
+    <div class="power-legend"><span><i class="power-key"></i>Documented or announced facility load</span><span><i class="power-key context"></i>Power-supply or campus envelope—not verified load</span><span><i class="power-key claim"></i>Unverified profile claim</span><span><i class="power-key nd"></i>Demand not publicly disclosed</span></div>
+    <div class="power-axis"><span>Facility profile</span><span class="power-axis-scale"><b id="powerAxisStart">1 MW</b><b id="powerAxisMid">100 MW</b><b id="powerAxisEnd">17,000 MW</b></span><span>Reported figure</span></div>
+    <div class="power-rows" id="powerRows" role="list" aria-label="Comparison of reported data-center power figures"></div>
+    <p class="power-note"><strong>How to read this:</strong> megawatts measure instantaneous power, not annual energy. A renewable-energy contract or proposed onsite power plant is not automatically the facility’s electrical demand. Those supporting-supply figures are hatched and labeled separately. “Not disclosed” is unknown—not zero. Project Matador’s 17,000-MW campus vision, for example, is distinct from its currently reported 222-MW TensorWave lease.</p>
+    <div class="power-sources">Key supporting records: <a href="https://fermiamerica.com/" target="_blank" rel="noopener">Fermi America</a> · <a href="https://www.laramiecountywy.gov/Press-Release/Tall-GrassCrusoe-Energy-and-Data-Center-In-Southern-Laramie-County" target="_blank" rel="noopener">Laramie County</a> · <a href="https://vantage-dc.com/news/vantage-data-centers-unveils-plans-for-frontier-a-25b-mega-campus-in-texas-to-meet-unprecedented-ai-demand/" target="_blank" rel="noopener">Vantage</a> · <a href="https://www.powerhousedata.com/news/powerhouse-and-provident-rewrite-the-data-center-playbook-with-new-texas-hyperscale-campus" target="_blank" rel="noopener">PowerHouse</a> · <a href="https://aligneddc.com/press-release/aligned-breaks-ground-on-project-caprock/" target="_blank" rel="noopener">Aligned Caprock comparison</a>. Each facility profile below retains its complete source trail.</div>
   </section>
   <section class="section" id="facility-library">
     <div class="section-head"><h2>Facility profile library</h2><p>Seventeen of the approved 19 facility graphics are now loaded. Select a facility tab to open its complete profile image, recent-news area, and subscriber discussion space. The interactive map provides exact geographic context.</p></div>
@@ -329,6 +341,36 @@
 </main>
 <footer>Ogallala Aquifer Tracker · Version 3.4 working preview · Data Centers hub</footer>
 <script>
+const powerProfiles=[
+ {profile:'profile-armstrong',name:'01 · Google Armstrong County',place:'Texas',mw:933,kind:'context',label:'933 MW',detail:'Proposed onsite gas generation; campus load not separately disclosed'},
+ {profile:'profile-dove-creek',name:'02 · Beacons Dove Creek',place:'Texas',mw:2409,kind:'context',label:'2,409 MW',detail:'Proposed dedicated power-plant capacity; data-center load undisclosed'},
+ {profile:'profile-beltline',name:'03 · Oklahoma Beltline',place:'Oklahoma',mw:1000,kind:'load',label:'1,000 MW',detail:'Reported proposed campus demand'},
+ {profile:'profile-cheyenne',name:'04 · Microsoft Cheyenne',place:'Wyoming',mw:35,kind:'load',label:'35 MW',detail:'Documented existing load approaching 35 MW in 2016; new expansion undisclosed'},
+ {profile:'profile-jade',name:'05 · Crusoe Project Jade',place:'Wyoming',mw:1800,kind:'load',label:'1,800 MW',detail:'Announced initial demand; earlier concept described expansion toward 10,000 MW'},
+ {profile:'profile-duos-amarillo',name:'06 · Duos Edge AI Amarillo',place:'Texas',mw:null,kind:'nd',label:'Not disclosed',detail:'Official deployment records do not publish electrical demand'},
+ {profile:'profile-nebraska-sites',name:'07 · Nebraska Proposed Sites',place:'Nebraska',mw:null,kind:'nd',label:'Not disclosed',detail:'Multi-site profile; no single comparable demand figure'},
+ {profile:'profile-matador',name:'08 · Project Matador',place:'Texas',mw:17000,kind:'context',label:'17,000 MW',detail:'Current advertised power-and-AI campus vision; separate TensorWave lease is 222 MW'},
+ {profile:'profile-triple-oak',name:'09 · Triple Oak Home Range',place:'Kansas',mw:400,kind:'context',label:'400 MW',detail:'Approved solar-project capacity; prospective data-center demand is not contracted'},
+ {profile:'profile-unnamed-panhandle',name:'10 · Unnamed Texas Panhandle',place:'Texas',mw:1100,kind:'claim',label:'≈1,100 MW',detail:'Midpoint of an unverified 1.0–1.2 GW profile claim; identity remains unresolved'},
+ {profile:'profile-vantage-frontier',name:'11 · Vantage Frontier',place:'Texas',mw:1400,kind:'load',label:'1,400 MW',detail:'Official planned campus capacity'},
+ {profile:'profile-meta-sarpy',name:'12 · Meta Sarpy County',place:'Nebraska',mw:320,kind:'context',label:'320 MW',detail:'New Meta-supported renewable capacity—not a disclosed facility load'},
+ {profile:'profile-meta-los-lunas',name:'13 · Meta Los Lunas',place:'New Mexico',mw:885,kind:'context',label:'885 MW',detail:'Supported renewable-energy figure—not a disclosed facility load'},
+ {profile:'profile-powerhouse-grand-prairie',name:'14 · PowerHouse Grand Prairie',place:'Texas',mw:1800,kind:'load',label:'1,800 MW',detail:'Announced full-campus capacity; initial ERCOT tranche is 500 MW'},
+ {profile:'profile-project-jupiter',name:'15 · Project Jupiter',place:'New Mexico',mw:900,kind:'context',label:'700–900 MW',detail:'Reported dedicated microgrid range; shown at its 900-MW upper bound'},
+ {profile:'profile-tesla-cortex',name:'16 · Tesla Cortex / Giga Texas',place:'Texas',mw:500,kind:'load',label:'>500 MW',detail:'Potential expansion; initial reported power-and-cooling requirement was 130 MW'},
+ {profile:'profile-meta-tulsa',name:'17 · Meta Tulsa / Anthem',place:'Oklahoma',mw:1500,kind:'context',label:'1,500 MW',detail:'Clean-energy contracts added to the grid—not disclosed facility demand'}
+];
+const powerMax=Math.max(...powerProfiles.filter(d=>d.mw!==null).map(d=>d.mw));
+let powerScale='log';
+function powerWidth(mw){if(mw===null)return 100;if(powerScale==='linear')return Math.max(.5,mw/powerMax*100);return Math.max(2,Math.log10(mw+1)/Math.log10(powerMax+1)*100)}
+function renderPowerRows(){
+ const host=document.getElementById('powerRows');if(!host)return;
+ host.innerHTML=powerProfiles.map(d=>'<div class="power-row" role="listitem" tabindex="0" data-profile="'+d.profile+'" aria-label="'+d.name+', '+d.label+'. '+d.detail+'"><div class="power-name"><strong>'+d.name+'</strong><span>'+d.place+'</span></div><div class="power-track" aria-hidden="true"><i class="power-bar '+d.kind+'" style="width:'+powerWidth(d.mw).toFixed(2)+'%"></i></div><div class="power-value">'+d.label+'<small>'+d.detail+'</small></div></div>').join('');
+ host.querySelectorAll('.power-row').forEach(row=>{const open=()=>openFacilityProfile(row.dataset.profile,true);row.addEventListener('click',open);row.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();open()}})});
+ document.getElementById('powerAxisStart').textContent=powerScale==='linear'?'0 MW':'1 MW';
+ document.getElementById('powerAxisMid').textContent=powerScale==='linear'?'8,500 MW':'100 MW';
+ document.getElementById('powerAxisEnd').textContent='17,000 MW';
+}
 const profileTabs=[...document.querySelectorAll('.profile-tab')];
 const profilePending=document.getElementById('profilePending'),profilePendingTitle=document.getElementById('profilePendingTitle'),profilePendingDetail=document.getElementById('profilePendingDetail');
 function openFacilityProfile(profileId,shouldScroll=true){
@@ -352,6 +394,9 @@ window.addEventListener('message',event=>{
   profilePending.hidden=false;
   document.getElementById('facility-library').scrollIntoView({behavior:'smooth',block:'start'});
 });
+document.getElementById('powerLogButton').addEventListener('click',()=>{powerScale='log';document.getElementById('powerLogButton').setAttribute('aria-pressed','true');document.getElementById('powerLinearButton').setAttribute('aria-pressed','false');renderPowerRows()});
+document.getElementById('powerLinearButton').addEventListener('click',()=>{powerScale='linear';document.getElementById('powerLinearButton').setAttribute('aria-pressed','true');document.getElementById('powerLogButton').setAttribute('aria-pressed','false');renderPowerRows()});
+renderPowerRows();
 </script>
 </body>
 </html>
