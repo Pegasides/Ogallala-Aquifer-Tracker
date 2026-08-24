@@ -395,6 +395,8 @@ function openWellProfile(index){
  document.getElementById('monitoring-profile-library').scrollIntoView({behavior:'auto',block:'start'});
 }
 profileTabs.forEach(tab=>tab.addEventListener('click',()=>openWellProfile(tab.dataset.index)));
+const requestedWell=new URLSearchParams(window.location.search).get('well');
+if(requestedWell!==null&&requestedWell!==''&&!Number.isNaN(Number(requestedWell))){openWellProfile(Number(requestedWell));}
 function openPendingProfile(name){
  profileTabs.forEach(tab=>tab.setAttribute('aria-selected','false'));
  alliancePanel.hidden=true;grandIslandPanel.hidden=true;northPlattePanel.hidden=true;ogallalaPanel.hidden=true;if(pendingWellMessage){pendingWellMessage.hidden=false;
