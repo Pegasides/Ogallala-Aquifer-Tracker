@@ -173,7 +173,7 @@ iframe{display:block;width:100%;height:100%;border:0;background:#06131d}
 <button class="profile-tab" id="well-tab-2" type="button" role="tab" aria-selected="false" data-index="2" data-unit="north unit"><strong>03 · North Platte, NE</strong><span>North Platte profile available</span></button>
 <button class="profile-tab" id="well-tab-3" type="button" role="tab" aria-selected="false" data-index="3" data-unit="north unit"><strong>04 · Ogallala, NE</strong><span>Ogallala profile available</span></button>
 <button class="profile-tab" id="well-tab-4" type="button" role="tab" aria-selected="false" data-index="4" data-unit="north unit"><strong>05 · Scottsbluff, NE</strong><span>Scottsbluff profile available</span></button>
-<button class="profile-tab pending" id="well-tab-5" type="button" role="tab" aria-selected="false" data-index="5" data-unit="north unit"><strong>06 · Pine Ridge, SD</strong><span>Profile queued</span></button>
+<button class="profile-tab" id="well-tab-5" type="button" role="tab" aria-selected="false" data-index="5" data-unit="north unit"><strong>06 · Pine Ridge, SD</strong><span>Pine Ridge profile available</span></button>
 <button class="profile-tab pending" id="well-tab-6" type="button" role="tab" aria-selected="false" data-index="6" data-unit="north unit"><strong>07 · Martin, SD</strong><span>Profile queued</span></button>
 <button class="profile-tab pending" id="well-tab-7" type="button" role="tab" aria-selected="false" data-index="7" data-unit="north unit"><strong>08 · Torrington, WY</strong><span>Profile queued</span></button>
 <button class="profile-tab pending" id="well-tab-8" type="button" role="tab" aria-selected="false" data-index="8" data-unit="north unit"><strong>09 · Pine Bluffs, WY</strong><span>Profile queued</span></button>
@@ -358,6 +358,26 @@ iframe{display:block;width:100%;height:100%;border:0;background:#06131d}
       <p><a href="https://www.scottsbluff.org/departments/water/water_source___quality.php" target="_blank" rel="noopener">City of Scottsbluff official water source and quality page</a> · <a href="https://www.scottsbluff.org/departments/water/City%20of%20Scottsbluff%20Water%20Quality%20Report%202025.pdf" target="_blank" rel="noopener">City of Scottsbluff 2025 Water Quality Report</a> · <a href="https://www.epa.gov/ground-water-and-drinking-water/national-primary-drinking-water-regulations" target="_blank" rel="noopener">EPA primary drinking-water standards</a> · <a href="https://www.epa.gov/sdwa/secondary-drinking-water-standards-guidance-nuisance-chemicals" target="_blank" rel="noopener">EPA secondary standards</a></p>
     </section>
   </article>
+  <article class="well-profile" id="pine-ridge-profile" role="tabpanel" aria-labelledby="pineRidgeProfileTitle" hidden>
+    <div class="profile-hero"><strong>Pine Ridge Monitoring Well · Northern Unit</strong></div><span class="profile-kicker">Northern Unit · Profile 6 of 28</span>
+    <h2 id="pineRidgeProfileTitle">Pine Ridge Monitoring Well</h2>
+    <p class="profile-subtitle">Oglala Lakota County, South Dakota · High Plains Aquifer / Arikaree Formation · Oglala Sioux Tribe</p>
+    <div class="profile-grid" style="grid-template-columns:1fr"><section class="profile-card">
+      <h3>Verified 1989–2025 annual groundwater-level record</h3>
+      <p><strong>Well depth:</strong> 180 feet · <strong>Record:</strong> 37 approved, non-estimated annual measurements. A larger depth-to-water value means the water table is farther underground.</p>
+      <div class="hydrograph-frame" id="pineRidgeHydrograph" role="img" aria-label="Pine Ridge monitoring-well annual groundwater-level graph"></div>
+      <p><a href="https://waterdata.usgs.gov/monitoring-location/USGS-430027102311801/" target="_blank" rel="noopener">Source: U.S. Geological Survey · OST Shallow North well</a> · <a href="https://api.waterdata.usgs.gov/ogcapi/v0/collections/field-measurements/items?monitoring_location_id=USGS-430027102311801&amp;parameter_code=72019&amp;f=json&amp;limit=10000" target="_blank" rel="noopener">USGS field-measurement record</a></p>
+      <div class="profile-note"><strong>USGS monitoring well 430027102311801:</strong> approximately 2 miles southeast of Pine Ridge. The 180-foot OST Shallow North well monitors the unconfined Arikaree Formation within the High Plains aquifer. One approved, non-estimated static measurement per year is shown, selected nearest April 1 when available. The first 1987–1988 readings were excluded because USGS identifies their method as estimated/report-observed; no replacement values were invented. Retrieved August 24, 2026.</div>
+    </section></div>
+    <section class="quality-panel government-quality" aria-labelledby="pineRidgeQualityTitle">
+      <h3 id="pineRidgeQualityTitle">Government water-quality data · Pine Ridge Water System</h3>
+      <p>Tribal community drinking-water information for EPA public water system <strong>084690475</strong>. These values are <strong>not samples from the OST Shallow North monitoring well</strong>.</p>
+      <div class="quality-list"><div class="quality-row"><span>Lead · 2023</span><b>0 mg/L</b><small>EPA-reported 90th percentile · action level: 0.015 mg/L</small><span class="mcl-track" aria-hidden="true"><i style="width:0%"></i></span><em>Below action level</em></div><div class="quality-row"><span>Lead · 2022</span><b>0 mg/L</b><small>EPA-reported 90th percentile · action level: 0.015 mg/L</small><span class="mcl-track" aria-hidden="true"><i style="width:0%"></i></span><em>Below action level</em></div><div class="quality-row"><span>Lead · 2021</span><b>0.001 mg/L</b><small>EPA-reported 90th percentile · 6.7% of 0.015 mg/L action level</small><span class="mcl-track" aria-hidden="true"><i style="width:6.7%"></i></span><em>Below action level</em></div></div>
+      <section class="federal-guidelines" aria-labelledby="pineRidgeFederalGuidelines"><h4 id="pineRidgeFederalGuidelines">EPA compliance context</h4><p>Lead and copper use federal action levels rather than Maximum Contaminant Levels. EPA ECHO identifies Pine Ridge as an active tribal-government community water system supplied by groundwater, serving 7,482 people. Its current EPA search flags show no active health-based, monitoring/reporting, public-notice, or other violation.</p><table class="guideline-table"><thead><tr><th>Reporting year</th><th>Lead 90th percentile</th><th>EPA action level</th><th>Comparison</th></tr></thead><tbody><tr><td>2023</td><td>0 mg/L</td><td>0.015 mg/L</td><td>Below action level</td></tr><tr><td>2022</td><td>0 mg/L</td><td>0.015 mg/L</td><td>Below action level</td></tr><tr><td>2021</td><td>0.001 mg/L</td><td>0.015 mg/L</td><td>Below action level</td></tr></tbody></table></section>
+      <p class="mcl-explainer"><strong>Important distinction:</strong> Pine Ridge is a tribal public water system overseen through EPA Region 8. State or municipal reports for similarly named communities elsewhere are not used here.</p>
+      <p><a href="https://echo.epa.gov/detailed-facility-report?fid=110012355913" target="_blank" rel="noopener">EPA ECHO detailed report · Pine Ridge Water System</a> · <a href="https://www.epa.gov/region8-waterops" target="_blank" rel="noopener">EPA Region 8 tribal drinking-water program</a> · <a href="https://www.epa.gov/ground-water-and-drinking-water/basic-information-about-lead-drinking-water" target="_blank" rel="noopener">EPA lead in drinking water</a></p>
+    </section>
+  </article>
 </section>
 
 </main>
@@ -449,12 +469,28 @@ function renderScottsbluffChart(){
 }
 renderScottsbluffChart();
 
+
+const pineRidgeAnnualData=[{year:1989,depth:43.01},{year:1990,depth:42.80},{year:1991,depth:42.79},{year:1992,depth:42.97},{year:1993,depth:42.97},{year:1994,depth:42.82},{year:1995,depth:42.74},{year:1996,depth:42.38},{year:1997,depth:42.02},{year:1998,depth:41.28},{year:1999,depth:40.55},{year:2000,depth:38.84},{year:2001,depth:37.99},{year:2002,depth:38.29},{year:2003,depth:39.21},{year:2004,depth:39.51},{year:2005,depth:40.30},{year:2006,depth:42.37},{year:2007,depth:42.69},{year:2008,depth:43.32},{year:2009,depth:44.00},{year:2010,depth:43.26},{year:2011,depth:42.50},{year:2012,depth:42.16},{year:2013,depth:42.41},{year:2014,depth:43.25},{year:2015,depth:42.71},{year:2016,depth:39.55},{year:2017,depth:39.49},{year:2018,depth:40.00},{year:2019,depth:40.77},{year:2020,depth:41.16},{year:2021,depth:41.54},{year:2022,depth:42.92},{year:2023,depth:44.00},{year:2024,depth:44.70},{year:2025,depth:45.50}];
+function renderPineRidgeChart(){
+ const host=document.getElementById('pineRidgeHydrograph');if(!host)return;
+ const data=pineRidgeAnnualData,W=760,H=390,L=72,R=24,T=28,B=58,min=36,max=47;
+ const x=d=>L+(d.year-1989)/(2025-1989)*(W-L-R),y=d=>T+(d.depth-min)/(max-min)*(H-T-B);
+ const ticks=[];for(let v=min;v<=max;v+=2)ticks.push('<line class="chart-grid" x1="'+L+'" y1="'+y({depth:v})+'" x2="'+(W-R)+'" y2="'+y({depth:v})+'"/><text class="chart-label" x="18" y="'+(y({depth:v})+4)+'">'+v+' ft</text>');
+ const yearTicks=[1989,1995,2000,2005,2010,2015,2020,2025].map(year=>'<text class="chart-label" text-anchor="middle" x="'+x({year})+'" y="'+(H-25)+'">'+year+'</text>').join('');
+ const circles=data.map(d=>'<circle class="chart-point" cx="'+x(d)+'" cy="'+y(d)+'" r="3"><title>'+d.year+': '+d.depth.toFixed(2)+' ft below land surface</title></circle>').join('');
+ const line='<polyline class="chart-line" points="'+data.map(d=>x(d).toFixed(1)+','+y(d).toFixed(1)).join(' ')+'"/>';
+ const first=data[0],latest=data[data.length-1],change=(latest.depth-first.depth).toFixed(2);
+ host.setAttribute('aria-label','1989 to 2025 Pine Ridge OST Shallow North well graph showing approved non-estimated annual depth to water');
+ host.innerHTML='<svg viewBox="0 0 '+W+' '+H+'" aria-hidden="true">'+ticks.join('')+'<line class="chart-axis" x1="'+L+'" y1="'+T+'" x2="'+L+'" y2="'+(H-B)+'"/><line class="chart-axis" x1="'+L+'" y1="'+(H-B)+'" x2="'+(W-R)+'" y2="'+(H-B)+'"/>'+line+circles+yearTicks+'<text class="chart-callout" x="'+Math.max(L,x(latest)-132)+'" y="'+Math.max(T+14,y(latest)-12)+'">'+latest.depth.toFixed(2)+' ft in '+latest.year+'</text><text class="chart-label" text-anchor="middle" x="'+(W/2)+'" y="'+(H-4)+'">Depth to water below land surface · one approved non-estimated measurement per year</text></svg><div class="trend-context"><strong>1989–2025:</strong> '+first.depth.toFixed(2)+' ft → '+latest.depth.toFixed(2)+' ft below land surface · <strong>'+change+' ft deeper overall</strong>. The record also shows substantial multi-year rises and declines, so the endpoints do not describe every intervening year.</div>';
+}
+renderPineRidgeChart();
+
 const wellNames=["Alliance, NE","Grand Island, NE","North Platte, NE","Ogallala, NE","Scottsbluff, NE","Pine Ridge, SD","Martin, SD","Torrington, WY","Pine Bluffs, WY","Yuma, CO","Garden City, KS","Colby, KS","Dodge City, KS","Goodland, KS","Liberal, KS","Burlington, CO","Wray, CO","Tucumcari, NM","Amarillo, TX","Lubbock, TX","Plainview, TX","Dalhart, TX","Pampa, TX","Guymon, OK","Beaver, OK","Boise City, OK","Clovis, NM","Portales, NM"];
-const profileTabs=[...document.querySelectorAll('.profile-tab')],alliancePanel=document.getElementById('alliance-profile'),grandIslandPanel=document.getElementById('grand-island-profile'),northPlattePanel=document.getElementById('north-platte-profile'),ogallalaPanel=document.getElementById('ogallala-profile'),scottsbluffPanel=document.getElementById('scottsbluff-profile'),pendingWellMessage=document.getElementById('pendingWellMessage');
+const profileTabs=[...document.querySelectorAll('.profile-tab')],alliancePanel=document.getElementById('alliance-profile'),grandIslandPanel=document.getElementById('grand-island-profile'),northPlattePanel=document.getElementById('north-platte-profile'),ogallalaPanel=document.getElementById('ogallala-profile'),scottsbluffPanel=document.getElementById('scottsbluff-profile'),pineRidgePanel=document.getElementById('pine-ridge-profile'),pendingWellMessage=document.getElementById('pendingWellMessage');
 function openWellProfile(index){
  index=Number(index);profileTabs.forEach((tab,i)=>tab.setAttribute('aria-selected',i===index?'true':'false'));
- alliancePanel.hidden=index!==0;grandIslandPanel.hidden=index!==1;northPlattePanel.hidden=index!==2;ogallalaPanel.hidden=index!==3;scottsbluffPanel.hidden=index!==4;
- if(index===0||index===1||index===2||index===3||index===4){if(pendingWellMessage)pendingWellMessage.hidden=true;}
+ alliancePanel.hidden=index!==0;grandIslandPanel.hidden=index!==1;northPlattePanel.hidden=index!==2;ogallalaPanel.hidden=index!==3;scottsbluffPanel.hidden=index!==4;pineRidgePanel.hidden=index!==5;
+ if(index===0||index===1||index===2||index===3||index===4||index===5){if(pendingWellMessage)pendingWellMessage.hidden=true;}
  else if(pendingWellMessage){pendingWellMessage.hidden=false;pendingWellMessage.innerHTML='<strong>'+wellNames[index]+'</strong><br>Profile '+(index+1)+' of 28 is connected to the library and queued for its sourced groundwater graph and nearby municipal water-quality panel.';}
  document.getElementById('monitoring-profile-library').scrollIntoView({behavior:'auto',block:'start'});
 }
@@ -463,7 +499,7 @@ const requestedWell=new URLSearchParams(window.location.search).get('well');
 if(requestedWell!==null&&requestedWell!==''&&!Number.isNaN(Number(requestedWell))){openWellProfile(Number(requestedWell));}
 function openPendingProfile(name){
  profileTabs.forEach(tab=>tab.setAttribute('aria-selected','false'));
- alliancePanel.hidden=true;grandIslandPanel.hidden=true;northPlattePanel.hidden=true;ogallalaPanel.hidden=true;scottsbluffPanel.hidden=true;if(pendingWellMessage){pendingWellMessage.hidden=false;
+ alliancePanel.hidden=true;grandIslandPanel.hidden=true;northPlattePanel.hidden=true;ogallalaPanel.hidden=true;scottsbluffPanel.hidden=true;pineRidgePanel.hidden=true;if(pendingWellMessage){pendingWellMessage.hidden=false;
  pendingWellMessage.innerHTML='<strong>'+name+'</strong><br>This monitoring location is connected to the library and queued for its sourced 40-year groundwater graph and nearby municipal water-quality panel.';}
  document.getElementById('monitoring-profile-library').scrollIntoView({behavior:'auto',block:'start'});
 }
