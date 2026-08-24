@@ -44,6 +44,15 @@ iframe{display:block;width:100%;height:100%;border:0;background:#06131d}
  .section-heading p{font-size:12px}
  .frame-wrap{height:720px;min-height:520px}
 }
+
+.profile-library{margin:0 0 24px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,#0d2536,#091c29);overflow:hidden;box-shadow:0 18px 48px rgba(0,0,0,.26)}
+.profile-tabs{display:flex;gap:8px;padding:14px;border-bottom:1px solid var(--line);overflow-x:auto}
+.profile-tab{border:1px solid var(--aqua);background:#123c43;color:#e7fffb;border-radius:9px;padding:10px 14px;font-weight:900;cursor:pointer;white-space:nowrap}
+.well-profile{padding:20px}.profile-kicker{color:var(--gold);font-size:10px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}.well-profile h2{margin:6px 0 4px;font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.7rem,3.5vw,2.7rem)}.profile-subtitle{margin:0 0 16px;color:var(--muted);font-size:13px}
+.profile-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:14px}.profile-card{border:1px solid var(--line);border-radius:14px;background:#071a27;padding:16px}.profile-card h3{margin:0 0 8px;color:#dffcf7;font-size:1rem}.profile-card p{margin:6px 0;color:var(--muted);font-size:12.5px;line-height:1.5}.profile-card strong{color:#fff}.profile-card a{color:var(--aqua)}
+.hydrograph-frame{height:430px;border:1px solid rgba(94,234,212,.3);border-radius:10px;overflow:hidden;background:#fff}.hydrograph-frame object{width:100%;height:100%;display:block}.quality-list{display:grid;gap:8px;margin-top:10px}.quality-row{display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:8px;font-size:12px;color:var(--muted)}.quality-row b{color:#fff}.profile-note{margin-top:12px;padding:10px 12px;border-left:4px solid var(--aqua);background:rgba(94,234,212,.08);color:#dffcf7;font-size:12px;line-height:1.5}.discussion-preview{margin-top:14px;border:1px dashed rgba(242,198,109,.5);border-radius:12px;padding:14px;color:var(--muted);font-size:12px}.discussion-preview strong{display:block;color:#f6dca0;margin-bottom:4px}
+@media(max-width:820px){.profile-grid{grid-template-columns:1fr}.hydrograph-frame{height:360px}.well-profile{padding:14px}}
+
 </style>
 </head>
 <body>
@@ -72,6 +81,46 @@ iframe{display:block;width:100%;height:100%;border:0;background:#06131d}
   <h1>Monitoring Well Profile Library</h1>
   <p>This section will hold one sourced profile for each of the 28 monitoring communities, including 10-, 20-, and 30-year groundwater-level history and the closest available water-quality records.</p>
 </section>
+
+<section class="profile-library" id="monitoring-profile-library" aria-labelledby="allianceProfileTitle">
+  <div class="profile-tabs" role="tablist" aria-label="Monitoring well profiles">
+    <button class="profile-tab" type="button" role="tab" aria-selected="true">01 · Alliance, Nebraska</button>
+  </div>
+  <article class="well-profile" role="tabpanel">
+    <span class="profile-kicker">Northern Unit · Profile 1 of 28</span>
+    <h2 id="allianceProfileTitle">Alliance Recorder Well</h2>
+    <p class="profile-subtitle">Box Butte County, Nebraska · High Plains Aquifer · UNL Conservation and Survey Division</p>
+    <div class="profile-grid">
+      <section class="profile-card">
+        <h3>Groundwater depth history</h3>
+        <p><strong>What changes:</strong> depth to water below land surface. A larger depth means the water table is farther underground.</p>
+        <div class="hydrograph-frame">
+          <object data="https://snr.unl.edu/csd-esic/GWMapArchives/GWReports/GW_Level_Report_2012.pdf#page=19" type="application/pdf" aria-label="Official Nebraska groundwater report containing the Alliance Recorder Well long-term hydrograph">
+            <p>The embedded report could not be displayed. <a href="https://snr.unl.edu/csd-esic/GWMapArchives/GWReports/GW_Level_Report_2012.pdf" target="_blank" rel="noopener">Open the official long-term hydrograph.</a></p>
+          </object>
+        </div>
+        <p><a href="https://snr.unl.edu/csd-esic/GWMapArchives/GWReports/GW_Level_Report_2012.pdf" target="_blank" rel="noopener">Open the official Nebraska report in a new tab</a></p>
+        <div class="profile-note"><strong>Total physical well depth:</strong> not currently reported on the public profile. This does not prevent interpretation of the measured depth-to-water trend.</div>
+      </section>
+      <aside class="profile-card">
+        <h3>Alliance municipal water quality · 2025</h3>
+        <p>Nearby community drinking-water results from the City of Alliance. These values are <strong>not samples from the Alliance Recorder Well</strong>.</p>
+        <div class="quality-list">
+          <div class="quality-row"><span>Nitrate–nitrite</span><b>5.23 ppm</b></div>
+          <div class="quality-row"><span>Arsenic</span><b>5.47 ppb</b></div>
+          <div class="quality-row"><span>Selenium</span><b>4.27 ppb</b></div>
+        </div>
+        <p><a href="https://www.cityofalliance.net/531/Water-Quality" target="_blank" rel="noopener">City of Alliance 2025 Annual Water Quality Report</a></p>
+        <h3 style="margin-top:18px">Profile summary</h3>
+        <p><strong>Historical coverage:</strong> approximately the 1930s to present.</p>
+        <p><strong>Published trend:</strong> long-term decline associated with intensive irrigation development in Box Butte County.</p>
+        <p><strong>Current telemetry:</strong> temporarily unavailable after the last verified transmission on August 8, 2026.</p>
+        <div class="discussion-preview"><strong>Subscriber discussion preview</strong>Members will be able to discuss local well observations, City water-quality reports, conservation measures, and sourced updates when membership and moderation services are connected.</div>
+      </aside>
+    </div>
+  </article>
+</section>
+
 <div class="frame-wrap">
   <iframe id="groundwaterFrame" src="groundwater-window-core.html" title="Ogallala Aquifer Monitoring Well Library educational cross-section"></iframe>
 </div>
