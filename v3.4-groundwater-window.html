@@ -165,12 +165,12 @@ iframe{display:block;width:100%;height:100%;border:0;background:#06131d}
 </figure>
 <section class="section-heading">
   <h1>Monitoring Well Profile Library</h1>
-  <p>This section will hold one sourced profile for each of the 28 monitoring communities, including 10-, 20-, and 30-year groundwater-level history and the closest available water-quality records.</p>
+  <p>This section will hold one sourced profile for each of the 28 monitoring communities, including the longest reliable groundwater-level history available and the closest available water-quality records.</p>
 </section>
 
 <section class="profile-library" id="monitoring-profile-library" aria-labelledby="allianceProfileTitle">
   <div class="profile-tabs" role="tablist" aria-label="28 monitoring well profiles"><button class="profile-tab" id="well-tab-0" type="button" role="tab" aria-selected="true" data-index="0" data-unit="north unit"><strong>01 · Alliance, NE</strong><span>Alliance profile available</span></button>
-<button class="profile-tab pending" id="well-tab-1" type="button" role="tab" aria-selected="false" data-index="1" data-unit="north unit"><strong>02 · Grand Island, NE</strong><span>Profile queued</span></button>
+<button class="profile-tab" id="well-tab-1" type="button" role="tab" aria-selected="false" data-index="1" data-unit="north unit"><strong>02 · Grand Island, NE</strong><span>Grand Island profile available</span></button>
 <button class="profile-tab pending" id="well-tab-2" type="button" role="tab" aria-selected="false" data-index="2" data-unit="north unit"><strong>03 · North Platte, NE</strong><span>Profile queued</span></button>
 <button class="profile-tab pending" id="well-tab-3" type="button" role="tab" aria-selected="false" data-index="3" data-unit="north unit"><strong>04 · Ogallala, NE</strong><span>Profile queued</span></button>
 <button class="profile-tab pending" id="well-tab-4" type="button" role="tab" aria-selected="false" data-index="4" data-unit="north unit"><strong>05 · Scottsbluff, NE</strong><span>Profile queued</span></button>
@@ -236,6 +236,44 @@ iframe{display:block;width:100%;height:100%;border:0;background:#06131d}
           <p><a href="https://www.cityofalliance.net/531/Water-Quality" target="_blank" rel="noopener">City of Alliance Annual Water Quality Report</a> · <a href="https://www.epa.gov/ground-water-and-drinking-water/national-primary-drinking-water-regulations" target="_blank" rel="noopener">EPA federal drinking-water standards</a></p>
         </section>
   </article>
+  <article class="well-profile" id="grand-island-profile" role="tabpanel" aria-labelledby="grandIslandProfileTitle" hidden>
+    <div class="profile-hero"><strong>Grand Island Monitoring Well · Northern Unit</strong></div><span class="profile-kicker">Northern Unit · Profile 2 of 28</span>
+    <h2 id="grandIslandProfileTitle">Grand Island Monitoring Well</h2>
+    <p class="profile-subtitle">Merrick County, Nebraska · High Plains Aquifer · USGS / Central Platte Natural Resources District</p>
+    <div class="profile-grid" style="grid-template-columns:1fr">
+      <section class="profile-card">
+        <h3>Grand Island water-table history</h3>
+        <p><strong>Well depth:</strong> 30 feet · <strong>Measured quantity:</strong> depth to water below land surface. A larger value means the water table is farther underground.</p>
+        <div class="hydrograph-frame" id="grandIslandHydrograph" role="img" aria-label="Grand Island monitoring-well depth-to-water graph for the complete available record"></div>
+        <p class="trend-context"><strong>Complete available record:</strong> the selected annual measurement changed from 8.19 feet below land surface in 1999 to 7.85 feet in 2026—0.34 feet shallower overall. The record fluctuates seasonally but does not show the long-term systemic decline documented at Alliance.</p>
+        <p><a href="https://waterdata.usgs.gov/monitoring-location/USGS-405227098165601/" target="_blank" rel="noopener">Source: USGS Water Data for the Nation · Site 405227098165601</a></p>
+        <div class="profile-note"><strong>Monitoring well 11N 8W31CCCA1:</strong> 30-foot physical depth · High Plains aquifer · constructed in 1999 · annual approved static measurement selected nearest March 20 when available. Because this well began in 1999, a 40-year graph cannot be supported; no earlier values are estimated.</div>
+      </section>
+    </div>
+    <section class="quality-panel government-quality" aria-labelledby="grandIslandQualityTitle">
+      <h3 id="grandIslandQualityTitle">Government water-quality data · City of Grand Island · 2025</h3>
+      <p>Nearby community drinking-water results. These values are <strong>not samples from the Grand Island monitoring well</strong>.</p>
+      <div class="quality-list">
+        <div class="quality-row"><span>Nitrate</span><b>2.81 ppm</b><small>EPA MCL: 10 ppm · 28.1% of limit</small><span class="mcl-track" aria-hidden="true"><i style="width:28.1%"></i></span><em>Below federal MCL</em></div>
+        <div class="quality-row"><span>Arsenic</span><b>3.6 ppb</b><small>EPA MCL: 10 ppb · 36% of limit · sampled 2023</small><span class="mcl-track" aria-hidden="true"><i style="width:36%"></i></span><em>Below federal MCL</em></div>
+        <div class="quality-row"><span>Uranium</span><b>28.4 ppb</b><small>EPA MCL: 30 ppb · 94.7% of limit</small><span class="mcl-track" aria-hidden="true"><i style="width:94.7%"></i></span><em>See official violation notice below</em></div>
+      </div>
+      <section class="federal-guidelines" aria-labelledby="grandIslandFederalGuidelines">
+        <h4 id="grandIslandFederalGuidelines">Federal drinking-water guidelines</h4>
+        <p>EPA Maximum Contaminant Levels are enforceable limits for public water systems. Grand Island’s municipal results are compared directly with those federal limits below.</p>
+        <table class="guideline-table">
+          <thead><tr><th>Contaminant</th><th>Grand Island result</th><th>Federal EPA limit</th><th>Comparison</th></tr></thead>
+          <tbody>
+            <tr><td>Nitrate</td><td>2.81 ppm</td><td>10 ppm</td><td>Below limit</td></tr>
+            <tr><td>Arsenic</td><td>3.6 ppb</td><td>10 ppb</td><td>Below limit</td></tr>
+            <tr><td>Uranium</td><td>28.4 ppb</td><td>30 ppb</td><td>Violation notice—see below</td></tr>
+          </tbody>
+        </table>
+      </section>
+      <p class="mcl-explainer"><strong>Grand Island’s 2025 uranium notice:</strong> the City reported a 32-ppb running annual average at Reed Well during the third quarter, above the 30-ppb MCL. The City states that no customers received water above the MCL and that Reed Well was taken out of service indefinitely. The table’s 28.4-ppb amount detected is the value reported in the regulated-substances table.</p>
+      <p><a href="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/5042/Giud/5ec3a762-5ef9-4e20-af14-5a0208a93fa7/2025-Annual-Water-Quality-Report.pdf?disposition=inline" target="_blank" rel="noopener">City of Grand Island 2025 Annual Water Quality Report</a> · <a href="https://www.epa.gov/ground-water-and-drinking-water/national-primary-drinking-water-regulations" target="_blank" rel="noopener">EPA federal drinking-water standards</a></p>
+    </section>
+  </article>
 </section>
 
 </main>
@@ -258,12 +296,30 @@ function renderAllianceChart(years=40){
 }
 renderAllianceChart(40);
 
+const grandIslandSpringData=[{year:1999,depth:8.19},{year:2000,depth:7.14},{year:2001,depth:7.36},{year:2002,depth:7.63},{year:2003,depth:7.47},{year:2004,depth:10.89},{year:2005,depth:8.51},{year:2006,depth:7.88},{year:2007,depth:7.63},{year:2008,depth:8.16},{year:2009,depth:8.64},{year:2010,depth:7.16},{year:2011,depth:6.94},{year:2012,depth:7.38},{year:2013,depth:8.05},{year:2014,depth:7.34},{year:2015,depth:8.21},{year:2016,depth:7.26},{year:2017,depth:6.46},{year:2018,depth:6.46},{year:2019,depth:7.43},{year:2020,depth:7.35},{year:2021,depth:7.94},{year:2022,depth:7.56},{year:2023,depth:7.60},{year:2024,depth:6.42},{year:2025,depth:7.08},{year:2026,depth:7.85}];
+function renderGrandIslandChart(){
+ const host=document.getElementById('grandIslandHydrograph');if(!host)return;
+ const data=grandIslandSpringData,latest=data[data.length-1],W=760,H=390,L=72,R=24,T=28,B=58;
+ const min=Math.floor(Math.min(...data.map(d=>d.depth))),max=Math.ceil(Math.max(...data.map(d=>d.depth)));
+ const x=d=>L+(d.year-data[0].year)/(latest.year-data[0].year)*(W-L-R);
+ const y=d=>T+(d.depth-min)/(max-min)*(H-T-B);
+ const pts=data.map(d=>x(d).toFixed(1)+','+y(d).toFixed(1)).join(' ');
+ const ticks=[];for(let v=min;v<=max;v+=1)ticks.push('<line class="chart-grid" x1="'+L+'" y1="'+y({depth:v})+'" x2="'+(W-R)+'" y2="'+y({depth:v})+'"/><text class="chart-label" x="8" y="'+(y({depth:v})+4)+'">'+v+' ft</text>');
+ const yearTicks=data.filter((d,i)=>i===0||i===data.length-1||d.year%5===0).map(d=>'<text class="chart-label" text-anchor="middle" x="'+x(d)+'" y="'+(H-25)+'">'+d.year+'</text>').join('');
+ const circles=data.map(d=>'<circle class="chart-point" cx="'+x(d)+'" cy="'+y(d)+'" r="3"><title>'+d.year+': '+d.depth.toFixed(2)+' ft below land surface</title></circle>').join('');
+ const change=(latest.depth-data[0].depth).toFixed(2),direction=Number(change)<0?Math.abs(Number(change)).toFixed(2)+' ft shallower':change+' ft deeper';
+ host.setAttribute('aria-label',data[0].year+' to '+latest.year+' Grand Island monitoring-well graph showing the water table '+direction);
+ host.innerHTML='<svg viewBox="0 0 '+W+' '+H+'" aria-hidden="true">'+ticks.join('')+'<line class="chart-axis" x1="'+L+'" y1="'+T+'" x2="'+L+'" y2="'+(H-B)+'"/><line class="chart-axis" x1="'+L+'" y1="'+(H-B)+'" x2="'+(W-R)+'" y2="'+(H-B)+'"/><polyline class="chart-line" points="'+pts+'"/>'+circles+yearTicks+'<text class="chart-callout" x="'+(x(latest)-128)+'" y="'+(y(latest)-12)+'">'+latest.depth.toFixed(2)+' ft in '+latest.year+'</text><text class="chart-label" text-anchor="middle" x="'+(W/2)+'" y="'+(H-4)+'">Depth to water below land surface · annual approved static measurements</text></svg><div class="trend-context"><strong>'+data[0].year+'–'+latest.year+':</strong> '+data[0].depth.toFixed(2)+' ft → '+latest.depth.toFixed(2)+' ft below land surface · <strong>'+direction+'</strong></div>';
+}
+renderGrandIslandChart();
+
 const wellNames=["Alliance, NE","Grand Island, NE","North Platte, NE","Ogallala, NE","Scottsbluff, NE","Pine Ridge, SD","Martin, SD","Torrington, WY","Pine Bluffs, WY","Yuma, CO","Garden City, KS","Colby, KS","Dodge City, KS","Goodland, KS","Liberal, KS","Burlington, CO","Wray, CO","Tucumcari, NM","Amarillo, TX","Lubbock, TX","Plainview, TX","Dalhart, TX","Pampa, TX","Guymon, OK","Beaver, OK","Boise City, OK","Clovis, NM","Portales, NM"];
-const profileTabs=[...document.querySelectorAll('.profile-tab')],alliancePanel=document.querySelector('.well-profile'),pendingWellMessage=document.getElementById('pendingWellMessage');
+const profileTabs=[...document.querySelectorAll('.profile-tab')],alliancePanel=document.getElementById('alliance-profile'),grandIslandPanel=document.getElementById('grand-island-profile'),pendingWellMessage=document.getElementById('pendingWellMessage');
 function openWellProfile(index){
  index=Number(index);profileTabs.forEach((tab,i)=>tab.setAttribute('aria-selected',i===index?'true':'false'));
- if(index===0){alliancePanel.hidden=false;if(pendingWellMessage)pendingWellMessage.hidden=true;}
- else{alliancePanel.hidden=true;if(pendingWellMessage){pendingWellMessage.hidden=false;pendingWellMessage.innerHTML='<strong>'+wellNames[index]+'</strong><br>Profile '+(index+1)+' of 28 is connected to the library and queued for its sourced groundwater graph and nearby municipal water-quality panel.';}}
+ alliancePanel.hidden=index!==0;grandIslandPanel.hidden=index!==1;
+ if(index===0||index===1){if(pendingWellMessage)pendingWellMessage.hidden=true;}
+ else if(pendingWellMessage){pendingWellMessage.hidden=false;pendingWellMessage.innerHTML='<strong>'+wellNames[index]+'</strong><br>Profile '+(index+1)+' of 28 is connected to the library and queued for its sourced groundwater graph and nearby municipal water-quality panel.';}
  document.getElementById('monitoring-profile-library').scrollIntoView({behavior:'auto',block:'start'});
 }
 profileTabs.forEach(tab=>tab.addEventListener('click',()=>openWellProfile(tab.dataset.index)));
