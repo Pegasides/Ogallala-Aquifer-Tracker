@@ -205,7 +205,7 @@ function openWellProfile(index){
  index=Number(index);profileTabs.forEach((tab,i)=>tab.setAttribute('aria-selected',i===index?'true':'false'));
  if(index===0){alliancePanel.hidden=false;pendingWellMessage.hidden=true;}
  else{alliancePanel.hidden=true;pendingWellMessage.hidden=false;pendingWellMessage.innerHTML='<strong>'+wellNames[index]+'</strong><br>Profile '+(index+1)+' of 28 is connected to the library and queued for its sourced groundwater graph and nearby municipal water-quality panel.';}
- document.getElementById('monitoring-profile-library').scrollIntoView({behavior:'smooth',block:'start'});
+ document.getElementById('monitoring-profile-library').scrollIntoView({behavior:'auto',block:'start'});
 }
 profileTabs.forEach(tab=>tab.addEventListener('click',()=>openWellProfile(tab.dataset.index)));
 document.querySelectorAll('.well-marker').forEach(marker=>marker.addEventListener('click',()=>openWellProfile(marker.dataset.well)));
