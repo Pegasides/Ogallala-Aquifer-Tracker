@@ -53,6 +53,21 @@ iframe{display:block;width:100%;height:100%;border:0;background:#06131d}
 .hydrograph-frame{height:430px;border:1px solid rgba(94,234,212,.3);border-radius:10px;overflow:hidden;background:#fff}.hydrograph-frame object{width:100%;height:100%;display:block}.quality-list{display:grid;gap:8px;margin-top:10px}.quality-row{display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:8px;font-size:12px;color:var(--muted)}.quality-row b{color:#fff}.profile-note{margin-top:12px;padding:10px 12px;border-left:4px solid var(--aqua);background:rgba(94,234,212,.08);color:#dffcf7;font-size:12px;line-height:1.5}.discussion-preview{margin-top:14px;border:1px dashed rgba(242,198,109,.5);border-radius:12px;padding:14px;color:var(--muted);font-size:12px}.discussion-preview strong{display:block;color:#f6dca0;margin-bottom:4px}
 @media(max-width:820px){.profile-grid{grid-template-columns:1fr}.hydrograph-frame{height:360px}.well-profile{padding:14px}}
 
+
+.monitoring-map{position:relative}.monitoring-map .map-image-wrap{position:relative}
+.well-marker{position:absolute;width:12px;height:12px;border:2px solid #fff;border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 0 3px rgba(94,234,212,.25),0 0 12px currentColor;cursor:pointer;z-index:3;padding:0}
+.well-marker.north{background:#2388ff;color:#2388ff}.well-marker.central{background:#f59e0b;color:#f59e0b}.well-marker.south{background:#ef4444;color:#ef4444}
+.well-marker:hover,.well-marker:focus-visible{width:17px;height:17px;z-index:5}.marker-count{position:absolute;left:2%;bottom:2.4%;z-index:4;border:1px solid var(--aqua);background:rgba(6,19,29,.92);color:#e7fffb;border-radius:9px;padding:7px 10px;font-size:10px;font-weight:900;letter-spacing:.07em;text-transform:uppercase}
+.profile-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;overflow:visible}
+.profile-tab{min-height:118px;text-align:left;display:flex;flex-direction:column;justify-content:end;position:relative;overflow:hidden;background:linear-gradient(180deg,rgba(6,19,29,.1),rgba(6,19,29,.96)),url('v3-windmill-hero.jpg') center/cover;border-color:rgba(188,218,235,.38)}
+.profile-tab::before{content:attr(data-unit);position:absolute;top:8px;left:9px;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:#dffcf7;background:rgba(6,19,29,.78);padding:4px 6px;border-radius:5px}
+.profile-tab strong{font-size:13px}.profile-tab span{font-size:9px;color:#b9ccd8;margin-top:2px}.profile-tab[aria-selected="true"]{border:2px solid var(--gold);box-shadow:0 0 0 2px rgba(242,198,109,.15)}
+.profile-tab.pending{background:linear-gradient(145deg,#102b3d,#071a27);opacity:.78}
+.profile-hero{height:210px;border-radius:12px;margin:0 0 16px;background:linear-gradient(90deg,rgba(6,19,29,.88),rgba(6,19,29,.18)),url('v3-windmill-hero.jpg') center/cover;display:flex;align-items:end;padding:18px;border:1px solid rgba(94,234,212,.3)}
+.profile-hero strong{font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.4rem,3vw,2.2rem);text-shadow:0 2px 8px #000}
+.pending-message{margin:0 20px 20px;border:1px dashed rgba(94,234,212,.38);border-radius:12px;padding:16px;color:var(--muted);font-size:12px}
+@media(max-width:900px){.profile-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:520px){.profile-tabs{grid-template-columns:1fr}.profile-tab{min-height:88px}.well-marker{width:10px;height:10px}}
+
 </style>
 </head>
 <body>
@@ -75,7 +90,34 @@ iframe{display:block;width:100%;height:100%;border:0;background:#06131d}
 <div class="context"><strong>Monitoring Well Library:</strong>&nbsp; 28 monitoring communities across three basins, with historical water-level and available water-quality profiles to be added below.</div>
 <main class="library-shell">
 <figure class="monitoring-map">
-  <img src="monitoring-well-library-2050-v2.png" alt="2050 Ogallala Aquifer monitoring community map and 28-community directory with AI data-center markers removed">
+  <div class="map-image-wrap"><img src="monitoring-well-library-2050-v2.png" alt="2050 Ogallala Aquifer monitoring map with 28 clickable community well markers"><button class="well-marker north" style="left:34.71%;top:11.43%" type="button" data-well="0" aria-label="Open monitoring profile for Alliance, NE" title="Alliance, NE"></button>
+<button class="well-marker north" style="left:51.97%;top:17.00%" type="button" data-well="1" aria-label="Open monitoring profile for Grand Island, NE" title="Grand Island, NE"></button>
+<button class="well-marker north" style="left:42.75%;top:16.00%" type="button" data-well="2" aria-label="Open monitoring profile for North Platte, NE" title="North Platte, NE"></button>
+<button class="well-marker north" style="left:39.09%;top:16.05%" type="button" data-well="3" aria-label="Open monitoring profile for Ogallala, NE" title="Ogallala, NE"></button>
+<button class="well-marker north" style="left:31.70%;top:12.52%" type="button" data-well="4" aria-label="Open monitoring profile for Scottsbluff, NE" title="Scottsbluff, NE"></button>
+<button class="well-marker north" style="left:35.89%;top:6.99%" type="button" data-well="5" aria-label="Open monitoring profile for Pine Ridge, SD" title="Pine Ridge, SD"></button>
+<button class="well-marker north" style="left:39.05%;top:6.33%" type="button" data-well="6" aria-label="Open monitoring profile for Martin, SD" title="Martin, SD"></button>
+<button class="well-marker north" style="left:29.72%;top:11.62%" type="button" data-well="7" aria-label="Open monitoring profile for Torrington, WY" title="Torrington, WY"></button>
+<button class="well-marker north" style="left:30.14%;top:15.81%" type="button" data-well="8" aria-label="Open monitoring profile for Pine Bluffs, WY" title="Pine Bluffs, WY"></button>
+<button class="well-marker north" style="left:35.28%;top:20.86%" type="button" data-well="9" aria-label="Open monitoring profile for Yuma, CO" title="Yuma, CO"></button>
+<button class="well-marker central" style="left:42.33%;top:31.11%" type="button" data-well="10" aria-label="Open monitoring profile for Garden City, KS" title="Garden City, KS"></button>
+<button class="well-marker central" style="left:41.64%;top:24.30%" type="button" data-well="11" aria-label="Open monitoring profile for Colby, KS" title="Colby, KS"></button>
+<button class="well-marker central" style="left:45.57%;top:32.16%" type="button" data-well="12" aria-label="Open monitoring profile for Dodge City, KS" title="Dodge City, KS"></button>
+<button class="well-marker central" style="left:39.13%;top:24.53%" type="button" data-well="13" aria-label="Open monitoring profile for Goodland, KS" title="Goodland, KS"></button>
+<button class="well-marker central" style="left:42.14%;top:35.54%" type="button" data-well="14" aria-label="Open monitoring profile for Liberal, KS" title="Liberal, KS"></button>
+<button class="well-marker central" style="left:37.00%;top:24.72%" type="button" data-well="15" aria-label="Open monitoring profile for Burlington, CO" title="Burlington, CO"></button>
+<button class="well-marker central" style="left:37.19%;top:21.05%" type="button" data-well="16" aria-label="Open monitoring profile for Wray, CO" title="Wray, CO"></button>
+<button class="well-marker central" style="left:31.47%;top:44.46%" type="button" data-well="17" aria-label="Open monitoring profile for Tucumcari, NM" title="Tucumcari, NM"></button>
+<button class="well-marker south" style="left:38.67%;top:44.22%" type="button" data-well="18" aria-label="Open monitoring profile for Amarillo, TX" title="Amarillo, TX"></button>
+<button class="well-marker south" style="left:38.60%;top:52.04%" type="button" data-well="19" aria-label="Open monitoring profile for Lubbock, TX" title="Lubbock, TX"></button>
+<button class="well-marker south" style="left:39.13%;top:49.18%" type="button" data-well="20" aria-label="Open monitoring profile for Plainview, TX" title="Plainview, TX"></button>
+<button class="well-marker south" style="left:36.08%;top:40.21%" type="button" data-well="21" aria-label="Open monitoring profile for Dalhart, TX" title="Dalhart, TX"></button>
+<button class="well-marker south" style="left:41.99%;top:42.69%" type="button" data-well="22" aria-label="Open monitoring profile for Pampa, TX" title="Pampa, TX"></button>
+<button class="well-marker south" style="left:40.00%;top:37.26%" type="button" data-well="23" aria-label="Open monitoring profile for Guymon, OK" title="Guymon, OK"></button>
+<button class="well-marker south" style="left:43.66%;top:36.64%" type="button" data-well="24" aria-label="Open monitoring profile for Beaver, OK" title="Beaver, OK"></button>
+<button class="well-marker south" style="left:36.08%;top:37.02%" type="button" data-well="25" aria-label="Open monitoring profile for Boise City, OK" title="Boise City, OK"></button>
+<button class="well-marker south" style="left:33.45%;top:48.13%" type="button" data-well="26" aria-label="Open monitoring profile for Clovis, NM" title="Clovis, NM"></button>
+<button class="well-marker south" style="left:32.96%;top:49.13%" type="button" data-well="27" aria-label="Open monitoring profile for Portales, NM" title="Portales, NM"></button><span class="marker-count">28 monitoring locations · click a dot</span></div>
 </figure>
 <section class="section-heading">
   <h1>Monitoring Well Profile Library</h1>
@@ -83,11 +125,35 @@ iframe{display:block;width:100%;height:100%;border:0;background:#06131d}
 </section>
 
 <section class="profile-library" id="monitoring-profile-library" aria-labelledby="allianceProfileTitle">
-  <div class="profile-tabs" role="tablist" aria-label="Monitoring well profiles">
-    <button class="profile-tab" type="button" role="tab" aria-selected="true">01 · Alliance, Nebraska</button>
-  </div>
-  <article class="well-profile" role="tabpanel">
-    <span class="profile-kicker">Northern Unit · Profile 1 of 28</span>
+  <div class="profile-tabs" role="tablist" aria-label="28 monitoring well profiles"><button class="profile-tab" id="well-tab-0" type="button" role="tab" aria-selected="true" data-index="0" data-unit="north unit"><strong>01 · Alliance, NE</strong><span>Alliance profile available</span></button>
+<button class="profile-tab pending" id="well-tab-1" type="button" role="tab" aria-selected="false" data-index="1" data-unit="north unit"><strong>02 · Grand Island, NE</strong><span>Profile queued</span></button>
+<button class="profile-tab pending" id="well-tab-2" type="button" role="tab" aria-selected="false" data-index="2" data-unit="north unit"><strong>03 · North Platte, NE</strong><span>Profile queued</span></button>
+<button class="profile-tab pending" id="well-tab-3" type="button" role="tab" aria-selected="false" data-index="3" data-unit="north unit"><strong>04 · Ogallala, NE</strong><span>Profile queued</span></button>
+<button class="profile-tab pending" id="well-tab-4" type="button" role="tab" aria-selected="false" data-index="4" data-unit="north unit"><strong>05 · Scottsbluff, NE</strong><span>Profile queued</span></button>
+<button class="profile-tab pending" id="well-tab-5" type="button" role="tab" aria-selected="false" data-index="5" data-unit="north unit"><strong>06 · Pine Ridge, SD</strong><span>Profile queued</span></button>
+<button class="profile-tab pending" id="well-tab-6" type="button" role="tab" aria-selected="false" data-index="6" data-unit="north unit"><strong>07 · Martin, SD</strong><span>Profile queued</span></button>
+<button class="profile-tab pending" id="well-tab-7" type="button" role="tab" aria-selected="false" data-index="7" data-unit="north unit"><strong>08 · Torrington, WY</strong><span>Profile queued</span></button>
+<button class="profile-tab pending" id="well-tab-8" type="button" role="tab" aria-selected="false" data-index="8" data-unit="north unit"><strong>09 · Pine Bluffs, WY</strong><span>Profile queued</span></button>
+<button class="profile-tab pending" id="well-tab-9" type="button" role="tab" aria-selected="false" data-index="9" data-unit="north unit"><strong>10 · Yuma, CO</strong><span>Profile queued</span></button>
+<button class="profile-tab pending" id="well-tab-10" type="button" role="tab" aria-selected="false" data-index="10" data-unit="central unit"><strong>11 · Garden City, KS</strong><span>Profile queued</span></button>
+<button class="profile-tab pending" id="well-tab-11" type="button" role="tab" aria-selected="false" data-index="11" data-unit="central unit"><strong>12 · Colby, KS</strong><span>Profile queued</span></button>
+<button class="profile-tab pending" id="well-tab-12" type="button" role="tab" aria-selected="false" data-index="12" data-unit="central unit"><strong>13 · Dodge City, KS</strong><span>Profile queued</span></button>
+<button class="profile-tab pending" id="well-tab-13" type="button" role="tab" aria-selected="false" data-index="13" data-unit="central unit"><strong>14 · Goodland, KS</strong><span>Profile queued</span></button>
+<button class="profile-tab pending" id="well-tab-14" type="button" role="tab" aria-selected="false" data-index="14" data-unit="central unit"><strong>15 · Liberal, KS</strong><span>Profile queued</span></button>
+<button class="profile-tab pending" id="well-tab-15" type="button" role="tab" aria-selected="false" data-index="15" data-unit="central unit"><strong>16 · Burlington, CO</strong><span>Profile queued</span></button>
+<button class="profile-tab pending" id="well-tab-16" type="button" role="tab" aria-selected="false" data-index="16" data-unit="central unit"><strong>17 · Wray, CO</strong><span>Profile queued</span></button>
+<button class="profile-tab pending" id="well-tab-17" type="button" role="tab" aria-selected="false" data-index="17" data-unit="central unit"><strong>18 · Tucumcari, NM</strong><span>Profile queued</span></button>
+<button class="profile-tab pending" id="well-tab-18" type="button" role="tab" aria-selected="false" data-index="18" data-unit="south unit"><strong>19 · Amarillo, TX</strong><span>Profile queued</span></button>
+<button class="profile-tab pending" id="well-tab-19" type="button" role="tab" aria-selected="false" data-index="19" data-unit="south unit"><strong>20 · Lubbock, TX</strong><span>Profile queued</span></button>
+<button class="profile-tab pending" id="well-tab-20" type="button" role="tab" aria-selected="false" data-index="20" data-unit="south unit"><strong>21 · Plainview, TX</strong><span>Profile queued</span></button>
+<button class="profile-tab pending" id="well-tab-21" type="button" role="tab" aria-selected="false" data-index="21" data-unit="south unit"><strong>22 · Dalhart, TX</strong><span>Profile queued</span></button>
+<button class="profile-tab pending" id="well-tab-22" type="button" role="tab" aria-selected="false" data-index="22" data-unit="south unit"><strong>23 · Pampa, TX</strong><span>Profile queued</span></button>
+<button class="profile-tab pending" id="well-tab-23" type="button" role="tab" aria-selected="false" data-index="23" data-unit="south unit"><strong>24 · Guymon, OK</strong><span>Profile queued</span></button>
+<button class="profile-tab pending" id="well-tab-24" type="button" role="tab" aria-selected="false" data-index="24" data-unit="south unit"><strong>25 · Beaver, OK</strong><span>Profile queued</span></button>
+<button class="profile-tab pending" id="well-tab-25" type="button" role="tab" aria-selected="false" data-index="25" data-unit="south unit"><strong>26 · Boise City, OK</strong><span>Profile queued</span></button>
+<button class="profile-tab pending" id="well-tab-26" type="button" role="tab" aria-selected="false" data-index="26" data-unit="south unit"><strong>27 · Clovis, NM</strong><span>Profile queued</span></button>
+<button class="profile-tab pending" id="well-tab-27" type="button" role="tab" aria-selected="false" data-index="27" data-unit="south unit"><strong>28 · Portales, NM</strong><span>Profile queued</span></button></div><article class="well-profile" role="tabpanel">
+    <div class="profile-hero"><strong>Alliance Recorder Well · Northern Unit</strong></div><span class="profile-kicker">Northern Unit · Profile 1 of 28</span>
     <h2 id="allianceProfileTitle">Alliance Recorder Well</h2>
     <p class="profile-subtitle">Box Butte County, Nebraska · High Plains Aquifer · UNL Conservation and Survey Division</p>
     <div class="profile-grid">
@@ -259,6 +325,18 @@ frame.addEventListener('load',()=>{
     console.warn('Version 3.4 Monitoring Well Library wrapper could not apply presentation refinements.',e);
   }
 });
+</script>
+<script>
+const wellNames=["Alliance, NE","Grand Island, NE","North Platte, NE","Ogallala, NE","Scottsbluff, NE","Pine Ridge, SD","Martin, SD","Torrington, WY","Pine Bluffs, WY","Yuma, CO","Garden City, KS","Colby, KS","Dodge City, KS","Goodland, KS","Liberal, KS","Burlington, CO","Wray, CO","Tucumcari, NM","Amarillo, TX","Lubbock, TX","Plainview, TX","Dalhart, TX","Pampa, TX","Guymon, OK","Beaver, OK","Boise City, OK","Clovis, NM","Portales, NM"];
+const profileTabs=[...document.querySelectorAll('.profile-tab')],alliancePanel=document.querySelector('.well-profile'),pendingWellMessage=document.getElementById('pendingWellMessage');
+function openWellProfile(index){
+ index=Number(index);profileTabs.forEach((tab,i)=>tab.setAttribute('aria-selected',i===index?'true':'false'));
+ if(index===0){alliancePanel.hidden=false;pendingWellMessage.hidden=true;}
+ else{alliancePanel.hidden=true;pendingWellMessage.hidden=false;pendingWellMessage.innerHTML='<strong>'+wellNames[index]+'</strong><br>Profile '+(index+1)+' of 28 is connected to the library and queued for its sourced groundwater graph and nearby municipal water-quality panel.';}
+ document.getElementById('monitoring-profile-library').scrollIntoView({behavior:'smooth',block:'start'});
+}
+profileTabs.forEach(tab=>tab.addEventListener('click',()=>openWellProfile(tab.dataset.index)));
+document.querySelectorAll('.well-marker').forEach(marker=>marker.addEventListener('click',()=>openWellProfile(marker.dataset.well)));
 </script>
 </body>
 </html>
