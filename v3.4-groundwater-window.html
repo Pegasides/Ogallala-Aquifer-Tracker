@@ -174,7 +174,7 @@ iframe{display:block;width:100%;height:100%;border:0;background:#06131d}
 <button class="profile-tab" id="well-tab-3" type="button" role="tab" aria-selected="false" data-index="3" data-unit="north unit"><strong>04 · Ogallala, NE</strong><span>Ogallala profile available</span></button>
 <button class="profile-tab" id="well-tab-4" type="button" role="tab" aria-selected="false" data-index="4" data-unit="north unit"><strong>05 · Scottsbluff, NE</strong><span>Scottsbluff profile available</span></button>
 <button class="profile-tab" id="well-tab-5" type="button" role="tab" aria-selected="false" data-index="5" data-unit="north unit"><strong>06 · Pine Ridge, SD</strong><span>Pine Ridge profile available</span></button>
-<button class="profile-tab pending" id="well-tab-6" type="button" role="tab" aria-selected="false" data-index="6" data-unit="north unit"><strong>07 · Martin, SD</strong><span>Profile queued</span></button>
+<button class="profile-tab" id="well-tab-6" type="button" role="tab" aria-selected="false" data-index="6" data-unit="north unit"><strong>07 · Martin, SD</strong><span>Martin profile available</span></button>
 <button class="profile-tab pending" id="well-tab-7" type="button" role="tab" aria-selected="false" data-index="7" data-unit="north unit"><strong>08 · Torrington, WY</strong><span>Profile queued</span></button>
 <button class="profile-tab pending" id="well-tab-8" type="button" role="tab" aria-selected="false" data-index="8" data-unit="north unit"><strong>09 · Pine Bluffs, WY</strong><span>Profile queued</span></button>
 <button class="profile-tab pending" id="well-tab-9" type="button" role="tab" aria-selected="false" data-index="9" data-unit="north unit"><strong>10 · Yuma, CO</strong><span>Profile queued</span></button>
@@ -378,6 +378,26 @@ iframe{display:block;width:100%;height:100%;border:0;background:#06131d}
       <p><a href="https://echo.epa.gov/detailed-facility-report?fid=110012355913" target="_blank" rel="noopener">EPA ECHO detailed report · Pine Ridge Water System</a> · <a href="https://www.epa.gov/region8-waterops" target="_blank" rel="noopener">EPA Region 8 tribal drinking-water program</a> · <a href="https://www.epa.gov/ground-water-and-drinking-water/basic-information-about-lead-drinking-water" target="_blank" rel="noopener">EPA lead in drinking water</a></p>
     </section>
   </article>
+  <article class="well-profile" id="martin-profile" role="tabpanel" aria-labelledby="martinProfileTitle" hidden>
+    <div class="profile-hero"><strong>Martin Monitoring Well · Northern Unit</strong></div><span class="profile-kicker">Northern Unit · Profile 7 of 28</span>
+    <h2 id="martinProfileTitle">Martin Monitoring Well</h2>
+    <p class="profile-subtitle">Bennett County, South Dakota · High Plains Aquifer / Arikaree Formation</p>
+    <div class="profile-grid" style="grid-template-columns:1fr"><section class="profile-card">
+      <h3>Verified 1984–2023 groundwater-level record</h3>
+      <p><strong>Well depth:</strong> 345 feet · <strong>Record:</strong> 40 approved annual observations. A larger depth-to-water value means the water table is farther underground.</p>
+      <div class="hydrograph-frame" id="martinHydrograph" role="img" aria-label="Martin monitoring-well annual groundwater-level graph"></div>
+      <p><a href="https://waterdata.usgs.gov/monitoring-location/USGS-430715101444701/" target="_blank" rel="noopener">Source: U.S. Geological Survey · Bennett County well BT-76E</a> · <a href="https://api.waterdata.usgs.gov/ogcapi/v0/collections/field-measurements/items?monitoring_location_id=USGS-430715101444701&amp;parameter_code=72019&amp;f=json&amp;limit=10000" target="_blank" rel="noopener">USGS field-measurement record</a></p>
+      <div class="profile-note"><strong>USGS monitoring well 430715101444701:</strong> approximately 4 miles south of Martin. The 345-foot BT-76E well monitors the unconfined Arikaree Formation within the High Plains aquifer. One approved reported observation per year is shown, selected nearest April 1 when available. USGS labels this historical series “estimated, reported, or observed”; the tracker preserves that official method description and does not interpolate or manufacture values. Newer 2023–2025 electric-tape readings remain provisional and are not used. Retrieved August 24, 2026.</div>
+    </section></div>
+    <section class="quality-panel government-quality" aria-labelledby="martinQualityTitle">
+      <h3 id="martinQualityTitle">Government water-quality data · City of Martin</h3>
+      <p>Municipal drinking-water results from South Dakota's official 2024 report. These values are <strong>not samples from monitoring well BT-76E</strong>.</p>
+      <div class="quality-list"><div class="quality-row"><span>Arsenic</span><b>10.00 ppb</b><small>Highest detected · EPA MCL: 10 ppb · 100% of limit · tested August 6, 2024</small><span class="mcl-track" aria-hidden="true"><i style="width:100%"></i></span><em>At federal MCL</em></div><div class="quality-row"><span>Nitrate as nitrogen</span><b>0.9 ppm</b><small>Highest detected · EPA MCL: 10 ppm · 9% of limit · tested August 28, 2024</small><span class="mcl-track" aria-hidden="true"><i style="width:9%"></i></span><em>Below federal MCL</em></div><div class="quality-row"><span>Fluoride</span><b>0.78 ppm</b><small>Highest detected · EPA MCL: 4 ppm · 19.5% of limit · tested June 12, 2024</small><span class="mcl-track" aria-hidden="true"><i style="width:19.5%"></i></span><em>Below federal MCL</em></div></div>
+      <section class="federal-guidelines" aria-labelledby="martinFederalGuidelines"><h4 id="martinFederalGuidelines">Federal drinking-water comparisons</h4><p>Martin's official report states that the system meets EPA standards and specifically notes that arsenic is present at a low level. The reported arsenic result equals the federal Maximum Contaminant Level, so it is shown here at 100% rather than described as below the limit.</p><table class="guideline-table"><thead><tr><th>Contaminant</th><th>Martin result</th><th>Federal benchmark</th><th>Comparison</th></tr></thead><tbody><tr><td>Arsenic</td><td>10.00 ppb</td><td>10 ppb MCL</td><td>At limit</td></tr><tr><td>Nitrate as nitrogen</td><td>0.9 ppm</td><td>10 ppm MCL</td><td>Below limit</td></tr><tr><td>Fluoride</td><td>0.78 ppm</td><td>4 ppm MCL</td><td>Below limit</td></tr></tbody></table></section>
+      <p class="mcl-explainer"><strong>Municipal supply context:</strong> the City reports serving more than 985 customers with an average of 238,000 gallons per day from local groundwater wells. South Dakota rated the source-water susceptibility as medium, and Martin received the Secretary's Award after fourteen consecutive years of safe drinking water.</p>
+      <p><a href="https://danr.sd.gov/OfficeOfWater/DrinkingWater/docs/WaterSystemMap/DWQPDFs/0202ccr.pdf" target="_blank" rel="noopener">South Dakota DANR · City of Martin 2024 Drinking Water Report</a> · <a href="https://www.epa.gov/ground-water-and-drinking-water/national-primary-drinking-water-regulations" target="_blank" rel="noopener">EPA primary drinking-water standards</a></p>
+    </section>
+  </article>
 </section>
 
 </main>
@@ -485,12 +505,28 @@ function renderPineRidgeChart(){
 }
 renderPineRidgeChart();
 
+
+const martinAnnualData=[{year:1984,depth:54.80},{year:1985,depth:55.50},{year:1986,depth:56.20},{year:1987,depth:55.80},{year:1988,depth:56.10},{year:1989,depth:56.00},{year:1990,depth:56.70},{year:1991,depth:56.90},{year:1992,depth:56.40},{year:1993,depth:56.20},{year:1994,depth:55.90},{year:1995,depth:55.70},{year:1996,depth:54.70},{year:1997,depth:54.60},{year:1998,depth:53.70},{year:1999,depth:53.10},{year:2000,depth:52.30},{year:2001,depth:52.40},{year:2002,depth:52.40},{year:2003,depth:53.30},{year:2004,depth:54.20},{year:2005,depth:55.50},{year:2006,depth:56.00},{year:2007,depth:56.70},{year:2008,depth:57.30},{year:2009,depth:57.30},{year:2010,depth:57.30},{year:2011,depth:57.20},{year:2012,depth:58.00},{year:2013,depth:58.40},{year:2014,depth:58.50},{year:2015,depth:58.70},{year:2016,depth:57.58},{year:2017,depth:56.80},{year:2018,depth:56.63},{year:2019,depth:55.73},{year:2020,depth:54.62},{year:2021,depth:54.54},{year:2022,depth:56.00},{year:2023,depth:56.72}];
+function renderMartinChart(){
+ const host=document.getElementById('martinHydrograph');if(!host)return;
+ const data=martinAnnualData,W=760,H=390,L=72,R=24,T=28,B=58,min=51,max=60;
+ const x=d=>L+(d.year-1984)/(2023-1984)*(W-L-R),y=d=>T+(d.depth-min)/(max-min)*(H-T-B);
+ const ticks=[];for(let v=52;v<=60;v+=2)ticks.push('<line class="chart-grid" x1="'+L+'" y1="'+y({depth:v})+'" x2="'+(W-R)+'" y2="'+y({depth:v})+'"/><text class="chart-label" x="18" y="'+(y({depth:v})+4)+'">'+v+' ft</text>');
+ const yearTicks=[1984,1990,1995,2000,2005,2010,2015,2020,2023].map(year=>'<text class="chart-label" text-anchor="middle" x="'+x({year})+'" y="'+(H-25)+'">'+year+'</text>').join('');
+ const circles=data.map(d=>'<circle class="chart-point" cx="'+x(d)+'" cy="'+y(d)+'" r="3"><title>'+d.year+': '+d.depth.toFixed(2)+' ft below land surface</title></circle>').join('');
+ const line='<polyline class="chart-line" points="'+data.map(d=>x(d).toFixed(1)+','+y(d).toFixed(1)).join(' ')+'"/>';
+ const first=data[0],latest=data[data.length-1],change=(latest.depth-first.depth).toFixed(2);
+ host.setAttribute('aria-label','1984 to 2023 Martin BT-76E graph showing one approved reported depth-to-water observation per year');
+ host.innerHTML='<svg viewBox="0 0 '+W+' '+H+'" aria-hidden="true">'+ticks.join('')+'<line class="chart-axis" x1="'+L+'" y1="'+T+'" x2="'+L+'" y2="'+(H-B)+'"/><line class="chart-axis" x1="'+L+'" y1="'+(H-B)+'" x2="'+(W-R)+'" y2="'+(H-B)+'"/>'+line+circles+yearTicks+'<text class="chart-callout" x="'+Math.max(L,x(latest)-132)+'" y="'+Math.max(T+14,y(latest)-12)+'">'+latest.depth.toFixed(2)+' ft in '+latest.year+'</text><text class="chart-label" text-anchor="middle" x="'+(W/2)+'" y="'+(H-4)+'">Depth to water below land surface · one approved reported observation per year</text></svg><div class="trend-context"><strong>1984–2023:</strong> '+first.depth.toFixed(2)+' ft → '+latest.depth.toFixed(2)+' ft below land surface · <strong>'+change+' ft deeper overall</strong>. The full 40-year line shows pronounced recovery and decline cycles rather than a steady one-direction trend.</div>';
+}
+renderMartinChart();
+
 const wellNames=["Alliance, NE","Grand Island, NE","North Platte, NE","Ogallala, NE","Scottsbluff, NE","Pine Ridge, SD","Martin, SD","Torrington, WY","Pine Bluffs, WY","Yuma, CO","Garden City, KS","Colby, KS","Dodge City, KS","Goodland, KS","Liberal, KS","Burlington, CO","Wray, CO","Tucumcari, NM","Amarillo, TX","Lubbock, TX","Plainview, TX","Dalhart, TX","Pampa, TX","Guymon, OK","Beaver, OK","Boise City, OK","Clovis, NM","Portales, NM"];
-const profileTabs=[...document.querySelectorAll('.profile-tab')],alliancePanel=document.getElementById('alliance-profile'),grandIslandPanel=document.getElementById('grand-island-profile'),northPlattePanel=document.getElementById('north-platte-profile'),ogallalaPanel=document.getElementById('ogallala-profile'),scottsbluffPanel=document.getElementById('scottsbluff-profile'),pineRidgePanel=document.getElementById('pine-ridge-profile'),pendingWellMessage=document.getElementById('pendingWellMessage');
+const profileTabs=[...document.querySelectorAll('.profile-tab')],alliancePanel=document.getElementById('alliance-profile'),grandIslandPanel=document.getElementById('grand-island-profile'),northPlattePanel=document.getElementById('north-platte-profile'),ogallalaPanel=document.getElementById('ogallala-profile'),scottsbluffPanel=document.getElementById('scottsbluff-profile'),pineRidgePanel=document.getElementById('pine-ridge-profile'),martinPanel=document.getElementById('martin-profile'),pendingWellMessage=document.getElementById('pendingWellMessage');
 function openWellProfile(index){
  index=Number(index);profileTabs.forEach((tab,i)=>tab.setAttribute('aria-selected',i===index?'true':'false'));
- alliancePanel.hidden=index!==0;grandIslandPanel.hidden=index!==1;northPlattePanel.hidden=index!==2;ogallalaPanel.hidden=index!==3;scottsbluffPanel.hidden=index!==4;pineRidgePanel.hidden=index!==5;
- if(index===0||index===1||index===2||index===3||index===4||index===5){if(pendingWellMessage)pendingWellMessage.hidden=true;}
+ alliancePanel.hidden=index!==0;grandIslandPanel.hidden=index!==1;northPlattePanel.hidden=index!==2;ogallalaPanel.hidden=index!==3;scottsbluffPanel.hidden=index!==4;pineRidgePanel.hidden=index!==5;martinPanel.hidden=index!==6;
+ if(index===0||index===1||index===2||index===3||index===4||index===5||index===6){if(pendingWellMessage)pendingWellMessage.hidden=true;}
  else if(pendingWellMessage){pendingWellMessage.hidden=false;pendingWellMessage.innerHTML='<strong>'+wellNames[index]+'</strong><br>Profile '+(index+1)+' of 28 is connected to the library and queued for its sourced groundwater graph and nearby municipal water-quality panel.';}
  document.getElementById('monitoring-profile-library').scrollIntoView({behavior:'auto',block:'start'});
 }
@@ -499,7 +535,7 @@ const requestedWell=new URLSearchParams(window.location.search).get('well');
 if(requestedWell!==null&&requestedWell!==''&&!Number.isNaN(Number(requestedWell))){openWellProfile(Number(requestedWell));}
 function openPendingProfile(name){
  profileTabs.forEach(tab=>tab.setAttribute('aria-selected','false'));
- alliancePanel.hidden=true;grandIslandPanel.hidden=true;northPlattePanel.hidden=true;ogallalaPanel.hidden=true;scottsbluffPanel.hidden=true;pineRidgePanel.hidden=true;if(pendingWellMessage){pendingWellMessage.hidden=false;
+ alliancePanel.hidden=true;grandIslandPanel.hidden=true;northPlattePanel.hidden=true;ogallalaPanel.hidden=true;scottsbluffPanel.hidden=true;pineRidgePanel.hidden=true;martinPanel.hidden=true;if(pendingWellMessage){pendingWellMessage.hidden=false;
  pendingWellMessage.innerHTML='<strong>'+name+'</strong><br>This monitoring location is connected to the library and queued for its sourced 40-year groundwater graph and nearby municipal water-quality panel.';}
  document.getElementById('monitoring-profile-library').scrollIntoView({behavior:'auto',block:'start'});
 }
