@@ -176,7 +176,7 @@ iframe{display:block;width:100%;height:100%;border:0;background:#06131d}
 <button class="profile-tab" id="well-tab-6" type="button" role="tab" aria-selected="false" data-index="6" data-unit="north unit"><strong>07 · Martin, SD</strong><span>Martin profile available</span></button>
 <button class="profile-tab" id="well-tab-7" type="button" role="tab" aria-selected="false" data-index="7" data-unit="north unit"><strong>08 · Torrington, WY</strong><span>Torrington profile available</span></button>
 <button class="profile-tab" id="well-tab-8" type="button" role="tab" aria-selected="false" data-index="8" data-unit="north unit"><strong>09 · Pine Bluffs, WY</strong><span>Pine Bluffs profile available</span></button>
-<button class="profile-tab pending" id="well-tab-9" type="button" role="tab" aria-selected="false" data-index="9" data-unit="north unit"><strong>10 · Yuma, CO</strong><span>Profile queued</span></button>
+<button class="profile-tab" id="well-tab-9" type="button" role="tab" aria-selected="false" data-index="9" data-unit="north unit"><strong>10 · Yuma, CO</strong><span>Yuma profile available</span></button>
 <button class="profile-tab pending" id="well-tab-10" type="button" role="tab" aria-selected="false" data-index="10" data-unit="central unit"><strong>11 · Garden City, KS</strong><span>Profile queued</span></button>
 <button class="profile-tab pending" id="well-tab-11" type="button" role="tab" aria-selected="false" data-index="11" data-unit="central unit"><strong>12 · Colby, KS</strong><span>Profile queued</span></button>
 <button class="profile-tab pending" id="well-tab-12" type="button" role="tab" aria-selected="false" data-index="12" data-unit="central unit"><strong>13 · Dodge City, KS</strong><span>Profile queued</span></button>
@@ -437,6 +437,26 @@ iframe{display:block;width:100%;height:100%;border:0;background:#06131d}
       <p><a href="https://www.pinebluffswy.gov/media/496" target="_blank" rel="noopener">Town of Pine Bluffs · 2023 Annual Drinking Water Quality Report</a> · <a href="https://www.pinebluffswy.gov/media/3496" target="_blank" rel="noopener">Town of Pine Bluffs · 2025 Annual Water Quality Report</a> · <a href="https://www.epa.gov/ground-water-and-drinking-water/national-primary-drinking-water-regulations" target="_blank" rel="noopener">EPA primary drinking-water standards</a></p>
     </section>
   </article>
+  <article class="well-profile" id="yuma-profile" role="tabpanel" aria-labelledby="yumaProfileTitle" hidden>
+    <div class="profile-hero"><strong>Yuma Monitoring Well · Northern Unit</strong></div><span class="profile-kicker">Northern Unit · Profile 10 of 28</span>
+    <h2 id="yumaProfileTitle">Yuma Monitoring Well</h2>
+    <p class="profile-subtitle">Yuma County, Colorado · High Plains Aquifer / Ogallala Formation</p>
+    <div class="profile-grid" style="grid-template-columns:1fr"><section class="profile-card">
+      <h3>Verified 1986–2025 groundwater-level window</h3>
+      <p><strong>Well depth:</strong> 248 feet · <strong>Record:</strong> 38 official static observations in the 40-year window. A larger depth-to-water value means the water table is farther underground.</p>
+      <div class="hydrograph-frame" id="yumaHydrograph" role="img" aria-label="Colorado DWR NHP-CY-009 annual groundwater-level graph from 1986 through 2025"></div>
+      <p><a href="https://www.usgs.gov/apps/ngwmn/provider/CODWR/site/576/" target="_blank" rel="noopener">Source: Colorado DWR site NHP-CY-009 · USGS National Ground-Water Monitoring Network</a> · <a href="https://www.usgs.gov/apps/ngwmn/ngwmn_cache/direct/flatXML/waterlevel/CODWR/576" target="_blank" rel="noopener">Official water-level measurements</a></p>
+      <div class="profile-note"><strong>Colorado DWR NHP-CY-009 · site 576:</strong> approximately 14 miles east-southeast of Yuma at 40.050553, −102.487158. The 248-foot well is unconfined and completed in the Ogallala Formation; NGWMN classifies it in the national High Plains aquifer. The graph preserves every official manual measurement in the 1986–2025 window. No readings are published for 1986, 1997, or 2002, so those years remain visible gaps and no value is invented or interpolated. Retrieved August 24, 2026.</div>
+    </section></div>
+    <section class="quality-panel government-quality" aria-labelledby="yumaQualityTitle">
+      <h3 id="yumaQualityTitle">Government water-quality data · City of Yuma</h3>
+      <p>Municipal drinking-water results from Colorado’s official 2026 report covering calendar year 2025. These values are <strong>not samples from monitoring well NHP-CY-009</strong>.</p>
+      <div class="quality-list"><div class="quality-row"><span>Arsenic</span><b>8.83 ppb</b><small>2025 average; range 8–9 ppb · EPA MCL: 10 ppb · 88.3% of limit</small><span class="mcl-track" aria-hidden="true"><i style="width:88.3%"></i></span><em>Below federal MCL; no violation</em></div><div class="quality-row"><span>Nitrate as nitrogen</span><b>3.32 ppm</b><small>2025 average; range 2.1–4.3 ppm · EPA MCL: 10 ppm · 33.2% of limit</small><span class="mcl-track" aria-hidden="true"><i style="width:33.2%"></i></span><em>Below federal MCL; no violation</em></div><div class="quality-row"><span>Combined uranium</span><b>7 ppb</b><small>2025 average; range 6.7–7.2 ppb · EPA MCL: 30 ppb · 23.3% of limit</small><span class="mcl-track" aria-hidden="true"><i style="width:23.3%"></i></span><em>Below federal MCL; no violation</em></div></div>
+      <section class="federal-guidelines" aria-labelledby="yumaFederalGuidelines"><h4 id="yumaFederalGuidelines">Federal drinking-water comparisons</h4><p>The official report lists no MCL violation for arsenic, nitrate, or uranium. It specifically notes that Yuma’s water meets the arsenic standard while containing low levels of naturally occurring arsenic.</p><table class="guideline-table"><thead><tr><th>Contaminant</th><th>Yuma 2025 average</th><th>Federal benchmark</th><th>Comparison</th></tr></thead><tbody><tr><td>Arsenic</td><td>8.83 ppb</td><td>10 ppb MCL</td><td>Below limit</td></tr><tr><td>Nitrate as nitrogen</td><td>3.32 ppm</td><td>10 ppm MCL</td><td>Below limit</td></tr><tr><td>Combined uranium</td><td>7 ppb</td><td>30 ppb MCL</td><td>Below limit</td></tr></tbody></table></section>
+      <p class="mcl-explainer"><strong>Municipal supply context:</strong> The City report identifies seven groundwater wells—Koenig, Hamrick, Hansen Park, Mitchell, West Grade School, Fairgrounds, and Shop—as Yuma’s drinking-water sources.</p>
+      <p><a href="https://wqcdcompliance.com/ccr" target="_blank" rel="noopener">Colorado official Consumer Confidence Report portal · Yuma City of, CO0163020</a> · <a href="https://drive.google.com/uc?export=download&amp;id=14owRsIBcv-69LmNMOw09RHMYAq9DXt8T" target="_blank" rel="noopener">Yuma 2026 Drinking Water Quality Report</a> · <a href="https://www.epa.gov/ground-water-and-drinking-water/national-primary-drinking-water-regulations" target="_blank" rel="noopener">EPA primary drinking-water standards</a></p>
+    </section>
+  </article>
 </section>
 
 </main>
@@ -590,12 +610,27 @@ function renderPineBluffsChart(){
 }
 renderPineBluffsChart();
 
+
+const yumaAnnualData=[{year:1987,depth:65.60},{year:1988,depth:64.79},{year:1989,depth:67.05},{year:1990,depth:68.43},{year:1991,depth:70.12},{year:1992,depth:70.57},{year:1993,depth:69.32},{year:1994,depth:70.09},{year:1995,depth:71.78},{year:1996,depth:72.42},{year:1996.99,label:'1996-12-30',depth:73.55},{year:1998,depth:74.10},{year:1999,depth:75.80},{year:2000,depth:77.10},{year:2001,depth:78.90},{year:2003,depth:85.80},{year:2004,depth:85.20},{year:2005,depth:86.50},{year:2006,depth:88.30},{year:2007,depth:90.00},{year:2008,depth:91.40},{year:2009,depth:91.20},{year:2010,depth:96.40},{year:2011,depth:96.30},{year:2012,depth:97.50},{year:2013,depth:99.50},{year:2014,depth:100.60},{year:2015,depth:100.90},{year:2016,depth:100.80},{year:2017,depth:101.30},{year:2018,depth:105.60},{year:2019,depth:105.20},{year:2020,depth:107.00},{year:2021,depth:108.00},{year:2022,depth:110.60},{year:2023,depth:111.00},{year:2024,depth:113.30},{year:2025,depth:115.60}];
+function renderYumaChart(){
+ const host=document.getElementById('yumaHydrograph');if(!host)return;
+ const data=yumaAnnualData,W=760,H=390,L=76,R=24,T=28,B=62,min=60,max=120,start=1986,end=2025;
+ const x=d=>L+(d.year-start)/(end-start)*(W-L-R),y=d=>T+(d.depth-min)/(max-min)*(H-T-B);
+ const ticks=[];for(let v=min;v<=max;v+=10)ticks.push('<line class="chart-grid" x1="'+L+'" y1="'+y({depth:v})+'" x2="'+(W-R)+'" y2="'+y({depth:v})+'"/><text class="chart-label" x="12" y="'+(y({depth:v})+4)+'">'+v+' ft</text>');
+ const yearTicks=[1986,1990,1995,2000,2005,2010,2015,2020,2025].map(v=>'<text class="chart-label" text-anchor="middle" x="'+x({year:v})+'" y="'+(H-29)+'">'+v+'</text>').join('');
+ const segments=[];let current=[];data.forEach((d,i)=>{if(i&&d.year-data[i-1].year>1.1){if(current.length>1)segments.push(current);current=[];}current.push(d);});if(current.length>1)segments.push(current);
+ const lines=segments.map(seg=>'<polyline class="chart-line" points="'+seg.map(d=>x(d).toFixed(1)+','+y(d).toFixed(1)).join(' ')+'"/>').join('');
+ const circles=data.map(d=>'<circle class="chart-point" cx="'+x(d)+'" cy="'+y(d)+'" r="4"><title>'+(d.label||Math.floor(d.year))+': '+d.depth.toFixed(2)+' ft below land surface</title></circle>').join('');
+ host.innerHTML='<svg viewBox="0 0 '+W+' '+H+'" aria-hidden="true">'+ticks.join('')+'<line class="chart-axis" x1="'+L+'" y1="'+T+'" x2="'+L+'" y2="'+(H-B)+'"/><line class="chart-axis" x1="'+L+'" y1="'+(H-B)+'" x2="'+(W-R)+'" y2="'+(H-B)+'"/>'+lines+circles+yearTicks+'<text x="24" y="'+(T+150)+'" fill="#f7fbff" font-size="12" transform="rotate(-90 24 '+(T+150)+')">Depth below land surface (ft) · deeper is lower</text><text x="'+((L+W-R)/2)+'" y="'+(H-8)+'" fill="#b9ccd8" font-size="11" text-anchor="middle">Gold dots are official manual measurements; 1986, 1997 and 2002 remain gaps</text></svg><div class="trend-context"><strong>1987–2025:</strong> 65.60 ft → 115.60 ft below land surface · <strong>50.00 ft deeper overall</strong>. The graph preserves the state record’s missing years and does not imply a perfectly steady decline.</div>';
+}
+renderYumaChart();
+
 const wellNames=["Alliance, NE","Grand Island, NE","North Platte, NE","Ogallala, NE","Scottsbluff, NE","Pine Ridge, SD","Martin, SD","Torrington, WY","Pine Bluffs, WY","Yuma, CO","Garden City, KS","Colby, KS","Dodge City, KS","Goodland, KS","Liberal, KS","Burlington, CO","Wray, CO","Tucumcari, NM","Amarillo, TX","Lubbock, TX","Plainview, TX","Dalhart, TX","Pampa, TX","Guymon, OK","Beaver, OK","Boise City, OK","Clovis, NM","Portales, NM"];
-const profileTabs=[...document.querySelectorAll('.profile-tab')],alliancePanel=document.getElementById('alliance-profile'),grandIslandPanel=document.getElementById('grand-island-profile'),northPlattePanel=document.getElementById('north-platte-profile'),ogallalaPanel=document.getElementById('ogallala-profile'),scottsbluffPanel=document.getElementById('scottsbluff-profile'),pineRidgePanel=document.getElementById('pine-ridge-profile'),martinPanel=document.getElementById('martin-profile'),torringtonPanel=document.getElementById('torrington-profile'),pineBluffsPanel=document.getElementById('pine-bluffs-profile'),pendingWellMessage=document.getElementById('pendingWellMessage');
+const profileTabs=[...document.querySelectorAll('.profile-tab')],alliancePanel=document.getElementById('alliance-profile'),grandIslandPanel=document.getElementById('grand-island-profile'),northPlattePanel=document.getElementById('north-platte-profile'),ogallalaPanel=document.getElementById('ogallala-profile'),scottsbluffPanel=document.getElementById('scottsbluff-profile'),pineRidgePanel=document.getElementById('pine-ridge-profile'),martinPanel=document.getElementById('martin-profile'),torringtonPanel=document.getElementById('torrington-profile'),pineBluffsPanel=document.getElementById('pine-bluffs-profile'),yumaPanel=document.getElementById('yuma-profile'),pendingWellMessage=document.getElementById('pendingWellMessage');
 function openWellProfile(index){
  index=Number(index);profileTabs.forEach((tab,i)=>tab.setAttribute('aria-selected',i===index?'true':'false'));
- alliancePanel.hidden=index!==0;grandIslandPanel.hidden=index!==1;northPlattePanel.hidden=index!==2;ogallalaPanel.hidden=index!==3;scottsbluffPanel.hidden=index!==4;pineRidgePanel.hidden=index!==5;martinPanel.hidden=index!==6;torringtonPanel.hidden=index!==7;pineBluffsPanel.hidden=index!==8;
- if(index===0||index===1||index===2||index===3||index===4||index===5||index===6||index===7||index===8){if(pendingWellMessage)pendingWellMessage.hidden=true;}
+ alliancePanel.hidden=index!==0;grandIslandPanel.hidden=index!==1;northPlattePanel.hidden=index!==2;ogallalaPanel.hidden=index!==3;scottsbluffPanel.hidden=index!==4;pineRidgePanel.hidden=index!==5;martinPanel.hidden=index!==6;torringtonPanel.hidden=index!==7;pineBluffsPanel.hidden=index!==8;yumaPanel.hidden=index!==9;
+ if(index===0||index===1||index===2||index===3||index===4||index===5||index===6||index===7||index===8||index===9){if(pendingWellMessage)pendingWellMessage.hidden=true;}
  else if(pendingWellMessage){pendingWellMessage.hidden=false;pendingWellMessage.innerHTML='<strong>'+wellNames[index]+'</strong><br>Profile '+(index+1)+' of 28 is connected to the library and queued for its sourced groundwater graph and nearby municipal water-quality panel.';}
  document.getElementById('monitoring-profile-library').scrollIntoView({behavior:'auto',block:'start'});
 }
@@ -604,7 +639,7 @@ const requestedWell=new URLSearchParams(window.location.search).get('well');
 if(requestedWell!==null&&requestedWell!==''&&!Number.isNaN(Number(requestedWell))){openWellProfile(Number(requestedWell));}
 function openPendingProfile(name){
  profileTabs.forEach(tab=>tab.setAttribute('aria-selected','false'));
- alliancePanel.hidden=true;grandIslandPanel.hidden=true;northPlattePanel.hidden=true;ogallalaPanel.hidden=true;scottsbluffPanel.hidden=true;pineRidgePanel.hidden=true;martinPanel.hidden=true;torringtonPanel.hidden=true;pineBluffsPanel.hidden=true;if(pendingWellMessage){pendingWellMessage.hidden=false;
+ alliancePanel.hidden=true;grandIslandPanel.hidden=true;northPlattePanel.hidden=true;ogallalaPanel.hidden=true;scottsbluffPanel.hidden=true;pineRidgePanel.hidden=true;martinPanel.hidden=true;torringtonPanel.hidden=true;pineBluffsPanel.hidden=true;yumaPanel.hidden=true;if(pendingWellMessage){pendingWellMessage.hidden=false;
  pendingWellMessage.innerHTML='<strong>'+name+'</strong><br>This monitoring location is connected to the library and queued for its sourced 40-year groundwater graph and nearby municipal water-quality panel.';}
  document.getElementById('monitoring-profile-library').scrollIntoView({behavior:'auto',block:'start'});
 }
