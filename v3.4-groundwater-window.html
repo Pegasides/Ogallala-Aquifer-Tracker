@@ -20,7 +20,13 @@ a:focus-visible{outline:3px solid #fff;outline-offset:3px}
 .nav-publication{display:inline-flex;align-items:center;min-height:34px;border:1px solid rgba(242,198,109,.56);background:rgba(67,49,18,.38);color:#f6dca0;border-radius:8px;padding:7px 10px;font-size:10px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
 .context{min-height:34px;background:#0a202f;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:center;padding:7px 12px;color:var(--muted);font-size:11px;text-align:center}
 .context strong{color:var(--aqua)}
-.frame-wrap{height:calc(100vh - 92px);min-height:560px;background:#06131d}
+.library-shell{width:min(1480px,calc(100% - 24px));margin:18px auto 28px}
+.monitoring-map{margin:0 0 24px;border:2px solid var(--gold);border-radius:18px;overflow:hidden;background:#071a27;box-shadow:0 18px 48px rgba(0,0,0,.3)}
+.monitoring-map img{display:block;width:100%;height:auto}
+.section-heading{margin:0 0 12px;padding:0 4px}
+.section-heading h1{margin:0 0 6px;color:#f7fbff;font-size:clamp(24px,3vw,42px)}
+.section-heading p{margin:0;color:var(--muted);font-size:14px;line-height:1.5}
+.frame-wrap{height:820px;min-height:560px;background:#06131d;border:1px solid var(--line);border-radius:16px;overflow:hidden}
 iframe{display:block;width:100%;height:100%;border:0;background:#06131d}
 @media(max-width:760px){
  .v3bar{height:auto;min-height:58px;padding:8px 0}
@@ -32,7 +38,11 @@ iframe{display:block;width:100%;height:100%;border:0;background:#06131d}
  .links a{min-height:40px;display:inline-flex;align-items:center}
  .nav-publication{min-height:40px}
  .context{font-size:10px;line-height:1.35}
- .frame-wrap{height:calc(100dvh - 116px);min-height:520px}
+ .library-shell{width:min(100% - 12px,1480px);margin-top:8px}
+ .monitoring-map{border-radius:12px;margin-bottom:18px}
+ .section-heading h1{font-size:22px}
+ .section-heading p{font-size:12px}
+ .frame-wrap{height:720px;min-height:520px}
 }
 </style>
 </head>
@@ -53,10 +63,19 @@ iframe{display:block;width:100%;height:100%;border:0;background:#06131d}
     </div>
   </div>
 </nav>
-<div class="context"><strong>Monitoring Well Library:</strong>&nbsp; educational groundwater window and cross-section for the four V3.4 anchor years. Index = comparison scale; cross-section and well profiles = illustrative, not surveyed measurements.</div>
+<div class="context"><strong>Monitoring Well Library:</strong>&nbsp; 28 monitoring communities across three basins, with historical water-level and available water-quality profiles to be added below.</div>
+<main class="library-shell">
+<figure class="monitoring-map">
+  <img src="monitoring-well-library-2050.png" alt="2050 Ogallala Aquifer monitoring community map and 28-community directory with AI data-center markers removed">
+</figure>
+<section class="section-heading">
+  <h1>Monitoring Well Profile Library</h1>
+  <p>This section will hold one sourced profile for each of the 28 monitoring communities, including 10-, 20-, and 30-year groundwater-level history and the closest available water-quality records.</p>
+</section>
 <div class="frame-wrap">
   <iframe id="groundwaterFrame" src="groundwater-window-core.html" title="Ogallala Aquifer Monitoring Well Library educational cross-section"></iframe>
 </div>
+</main>
 <script>
 const frame=document.getElementById('groundwaterFrame');
 frame.addEventListener('load',()=>{
