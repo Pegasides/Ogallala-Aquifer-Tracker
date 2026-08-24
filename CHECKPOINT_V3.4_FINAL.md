@@ -46,7 +46,25 @@
 - Preserve government links and station identifiers.
 - Maintain missing years as gaps rather than estimates.
 
-## Approved live page
+## Data Center Watch addition
+
+- Nationwide Data Center Watch is added between Interactive Timeline and AI Data Centers.
+- Visual daily edition standard is three to four consequential United States stories.
+- Article cards preserve headline, publication, date, location, controversy category, concise factual summary, source-label distinctions, original link, and available lead imagery.
+- August 23, 2026 history includes The New York Times, POLITICO/Yahoo, Reuters, and Associated Press coverage.
+- The POLITICO/Yahoo “Abbott explains data center pivot” article is preserved with its supplied article image.
+- Daily morning search is scheduled in America/Denver time for new U.S. reporting.
+- Permanent article-history structure is established.
+
+## Approved live pages
+
+Monitoring Well Library:
+https://pegasides.github.io/Ogallala-Aquifer-Tracker/v3.4-groundwater-window.html
+
+Data Center Watch:
+https://pegasides.github.io/Ogallala-Aquifer-Tracker/v3.4-data-center-watch.html
+
+## Approved primary live page
 
 https://pegasides.github.io/Ogallala-Aquifer-Tracker/v3.4-groundwater-window.html
 
@@ -54,8 +72,8 @@ https://pegasides.github.io/Ogallala-Aquifer-Tracker/v3.4-groundwater-window.htm
 
 `monitoring-well-library-2050-v3-pine-ridge-clean.png`
 
-## Final approved page commit before checkpoint renewal
+## Final approved content commit before checkpoint renewal
 
-`613206544c3515c07bb6768a30faa7c6e95eb6c9`
+`43e07ff8f416eb5a35ba9c9a758655f2238b8842`
 
-This checkpoint is the authoritative starting point for completing the remaining 26 Monitoring Well Library profiles.
+This checkpoint is the authoritative Version 3.4 Final starting point for completing the remaining 26 Monitoring Well Library profiles and continuing the Data Center Watch history.
