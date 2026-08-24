@@ -26,6 +26,46 @@
 - The cleaned map is placed at the top of the Monitoring Well Library page.
 - The existing educational groundwater cross-section remains below it as a foundation for the future sourced profiles.
 
+## Data-center map-to-library wiring — preserve this functionality
+
+The Version 3.4 AI Data Center page has an embedded 2050 facility map directly above the Facility Profile Library. This is not merely a decorative map.
+
+- **All 19 data-center marker records are connected to the Facility Profile Library.**
+- Selecting a marker sends an `openFacilityProfile` message from `v3.4-map.html` to `v3.4-data-centers.html`.
+- The parent page scrolls directly to `#facility-library`.
+- When the marker has a completed `profile` ID, the correct facility tab is selected and its profile image, current news/government records, evidence notes, and subscriber-discussion area are opened.
+- When a marker does not yet have a completed profile image, it still lands inside the library and displays a facility-specific **profile image awaiting upload** notice. It must never fail silently or merely open the top of the page.
+- The library currently contains **17 full facility profile tabs**, while the map contains **19 marker records**. The map and the library are intentionally related but are not a one-for-one count because some profiles represent grouped/multiple facilities and some mapped facilities still await individual supplied artwork.
+
+### Marker records currently opening completed profile tabs
+
+1. Duos Edge AI — Amarillo → `profile-duos-amarillo`
+2. Microsoft — Cheyenne campuses → `profile-cheyenne`
+3. Meta — Sarpy Campus → `profile-meta-sarpy`
+4. Project Matador — Fermi America → `profile-matador`
+5. Google–Crusoe Goodnight / Project Llano → `profile-armstrong`
+6. Meta — Tulsa → `profile-meta-tulsa`
+7. Vantage Frontier → `profile-vantage-frontier`
+8. Project Jade / Cheyenne AI Factory → `profile-jade`
+9. Microsoft — Cheyenne expansion → `profile-cheyenne`
+10. Beltline → `profile-beltline`
+
+### Marker records currently opening facility-specific pending-library notices
+
+1. Duos Edge AI — Hereford
+2. Duos Edge AI — Lubbock
+3. Duos Edge AI — Dumas
+4. Google — Haskell campuses (two physical campuses represented by one marker)
+5. Google–Intersect Meitner
+6. Project Caprock — Aligned
+7. Meta — Cheyenne
+8. Google — Wilbarger County campus
+9. Black Pearl — Cipher / AWS conversion
+
+### Non-negotiable integration rule
+
+Every future data-center profile added to the library must be assigned a stable HTML profile ID and that ID must be added to the corresponding map marker record. After each addition, test the marker from the embedded map and confirm that it scrolls to and opens the correct facility—not another profile and not only the general library section. Preserve coordinates and status logic while adding the profile link.
+
 ## Important upload correction
 
 The first large monitoring-map upload was truncated/damaged even though the page HTML was correct. It was replaced with a new uncached asset:
@@ -47,6 +87,7 @@ The first large monitoring-map upload was truncated/damaged even though the page
 - `ca2d579a2fc242679d94ca7b0c2c83eca1fd574a` — standardized AI tab and renamed Monitoring Well Library.
 - `09b2cb64d0893d83f8163b8413a9c5c81a313b44` — added the Monitoring Well Library landing map and profile-library section.
 - `9f7146d5fb3230b70dda32bd1d57755429b53682` — replaced the damaged map upload with the verified `-v2` image.
+- `dc21fc89c34b3d11001f9ad98ac2a87a4729a48f` — published this continuity checkpoint before the data-center wiring section was added.
 
 ## Exact next task
 
