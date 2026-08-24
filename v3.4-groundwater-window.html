@@ -273,6 +273,44 @@ iframe{display:block;width:100%;height:100%;border:0;background:#06131d}
       <p><a href="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/5042/Giud/5ec3a762-5ef9-4e20-af14-5a0208a93fa7/2025-Annual-Water-Quality-Report.pdf?disposition=inline" target="_blank" rel="noopener">City of Grand Island 2025 Annual Water Quality Report</a> · <a href="https://www.epa.gov/ground-water-and-drinking-water/national-primary-drinking-water-regulations" target="_blank" rel="noopener">EPA federal drinking-water standards</a></p>
     </section>
   </article>
+  <article class="well-profile" id="north-platte-profile" role="tabpanel" aria-labelledby="northPlatteProfileTitle" hidden>
+    <div class="profile-hero"><strong>North Platte Monitoring Well · Northern Unit</strong></div><span class="profile-kicker">Northern Unit · Profile 3 of 28</span>
+    <h2 id="northPlatteProfileTitle">North Platte Monitoring Well</h2>
+    <p class="profile-subtitle">Lincoln County, Nebraska · High Plains Aquifer / Ogallala Formation · U.S. Geological Survey</p>
+    <div class="profile-grid" style="grid-template-columns:1fr">
+      <section class="profile-card">
+        <h3>North Platte water-table history</h3>
+        <p><strong>Well depth:</strong> 760 feet · <strong>Measured quantity:</strong> depth to water below land surface. A larger value means the water table is farther underground.</p>
+        <div class="hydrograph-frame" id="northPlatteHydrograph" role="img" aria-label="North Platte monitoring-well depth-to-water graph for the complete available record"></div>
+        <p class="trend-context"><strong>Long-term result:</strong> the selected spring measurement increased from 237.21 feet below land surface in 1978 to 245.05 feet in 2021—a documented 7.84-foot increase in depth to water. The line shows spring conditions to reduce seasonal pumping distortion.</p>
+        <p><a href="https://waterdata.usgs.gov/monitoring-location/USGS-405744100403701/" target="_blank" rel="noopener">Source: USGS Water Data for the Nation · Site 405744100403701</a></p>
+        <div class="profile-note"><strong>Monitoring well 12N 29W31CCB 1 North Platte:</strong> 760-foot physical depth · High Plains aquifer / Ogallala Formation · constructed in 1978 · approved static measurement nearest March 20 selected for each year when available. Missing years remain gaps rather than being estimated; the published USGS record ends in 2021.</div>
+      </section>
+    </div>
+    <section class="quality-panel government-quality" aria-labelledby="northPlatteQualityTitle">
+      <h3 id="northPlatteQualityTitle">Government water-quality data · City of North Platte · 2025</h3>
+      <p>Nearby community drinking-water results. These values are <strong>not samples from the North Platte monitoring well</strong>.</p>
+      <div class="quality-list">
+        <div class="quality-row"><span>Nitrate–nitrite</span><b>6.37 ppm</b><small>EPA MCL: 10 ppm · 63.7% of limit</small><span class="mcl-track" aria-hidden="true"><i style="width:63.7%"></i></span><em>Below federal MCL</em></div>
+        <div class="quality-row"><span>Arsenic</span><b>5.97 ppb</b><small>EPA MCL: 10 ppb · 59.7% of limit</small><span class="mcl-track" aria-hidden="true"><i style="width:59.7%"></i></span><em>Below federal MCL</em></div>
+        <div class="quality-row"><span>Uranium</span><b>24.9 ppb</b><small>EPA MCL: 30 ppb · 83% of limit · sampled 2023</small><span class="mcl-track" aria-hidden="true"><i style="width:83%"></i></span><em>Below federal MCL</em></div>
+      </div>
+      <section class="federal-guidelines" aria-labelledby="northPlatteFederalGuidelines">
+        <h4 id="northPlatteFederalGuidelines">Federal drinking-water guidelines</h4>
+        <p>EPA Maximum Contaminant Levels are enforceable limits for public water systems. North Platte’s reported municipal results are compared directly with those federal limits below.</p>
+        <table class="guideline-table">
+          <thead><tr><th>Contaminant</th><th>North Platte result</th><th>Federal EPA limit</th><th>Comparison</th></tr></thead>
+          <tbody>
+            <tr><td>Nitrate–nitrite</td><td>6.37 ppm</td><td>10 ppm</td><td>Below limit</td></tr>
+            <tr><td>Arsenic</td><td>5.97 ppb</td><td>10 ppb</td><td>Below limit</td></tr>
+            <tr><td>Uranium</td><td>24.9 ppb</td><td>30 ppb</td><td>Below limit</td></tr>
+          </tbody>
+        </table>
+      </section>
+      <p class="mcl-explainer"><strong>Official 2025 finding:</strong> the City reported that no drinking-water violations occurred during calendar year 2025. Three November coliform samples triggered a required Level 1 assessment; the City completed the assessment and reported that no corrective actions were required.</p>
+      <p><a href="https://northplattene.gov/Archive/ViewFile/Item/70" target="_blank" rel="noopener">City of North Platte 2025 Annual Water Quality Report</a> · <a href="https://www.epa.gov/ground-water-and-drinking-water/national-primary-drinking-water-regulations" target="_blank" rel="noopener">EPA federal drinking-water standards</a></p>
+    </section>
+  </article>
 </section>
 
 </main>
@@ -312,19 +350,34 @@ function renderGrandIslandChart(){
 }
 renderGrandIslandChart();
 
+const northPlatteSpringData=[{year:1978,depth:237.21},{year:1979,depth:238.52},{year:1980,depth:237.97},{year:1981,depth:237.47},{year:1983,depth:239.02},{year:1985,depth:238.98},{year:1986,depth:239.30},{year:1987,depth:238.45},{year:1988,depth:237.96},{year:1989,depth:236.82},{year:1990,depth:236.97},{year:1991,depth:237.88},{year:1992,depth:237.70},{year:1993,depth:238.88},{year:1994,depth:236.10},{year:1995,depth:236.17},{year:1996,depth:237.01},{year:1997,depth:236.61},{year:1998,depth:237.08},{year:1999,depth:237.47},{year:2000,depth:236.84},{year:2001,depth:237.59},{year:2002,depth:238.32},{year:2003,depth:240.85},{year:2004,depth:242.00},{year:2005,depth:242.16},{year:2006,depth:241.71},{year:2007,depth:242.66},{year:2008,depth:244.79},{year:2009,depth:244.03},{year:2010,depth:244.90},{year:2011,depth:244.59},{year:2012,depth:243.64},{year:2013,depth:247.13},{year:2014,depth:245.75},{year:2015,depth:245.48},{year:2016,depth:245.88},{year:2017,depth:246.11},{year:2018,depth:247.92},{year:2019,depth:246.37},{year:2020,depth:243.76},{year:2021,depth:245.05}];
+function renderNorthPlatteChart(){
+ const host=document.getElementById('northPlatteHydrograph');if(!host)return;
+ const data=northPlatteSpringData,latest=data[data.length-1],W=760,H=390,L=72,R=24,T=28,B=58,min=235,max=250;
+ const x=d=>L+(d.year-data[0].year)/(latest.year-data[0].year)*(W-L-R),y=d=>T+(d.depth-min)/(max-min)*(H-T-B);
+ const pts=data.map(d=>x(d).toFixed(1)+','+y(d).toFixed(1)).join(' ');
+ const ticks=[];for(let v=min;v<=max;v+=5)ticks.push('<line class="chart-grid" x1="'+L+'" y1="'+y({depth:v})+'" x2="'+(W-R)+'" y2="'+y({depth:v})+'"/><text class="chart-label" x="8" y="'+(y({depth:v})+4)+'">'+v+' ft</text>');
+ const yearTicks=data.filter((d,i)=>i===0||i===data.length-1||d.year%5===0).map(d=>'<text class="chart-label" text-anchor="middle" x="'+x(d)+'" y="'+(H-25)+'">'+d.year+'</text>').join('');
+ const circles=data.map(d=>'<circle class="chart-point" cx="'+x(d)+'" cy="'+y(d)+'" r="3"><title>'+d.year+': '+d.depth.toFixed(2)+' ft below land surface</title></circle>').join('');
+ const change=(latest.depth-data[0].depth).toFixed(2);
+ host.setAttribute('aria-label',data[0].year+' to '+latest.year+' North Platte monitoring-well graph showing depth to water increasing '+change+' feet');
+ host.innerHTML='<svg viewBox="0 0 '+W+' '+H+'" aria-hidden="true">'+ticks.join('')+'<line class="chart-axis" x1="'+L+'" y1="'+T+'" x2="'+L+'" y2="'+(H-B)+'"/><line class="chart-axis" x1="'+L+'" y1="'+(H-B)+'" x2="'+(W-R)+'" y2="'+(H-B)+'"/><polyline class="chart-line" points="'+pts+'"/>'+circles+yearTicks+'<text class="chart-callout" x="'+(x(latest)-128)+'" y="'+(y(latest)-12)+'">'+latest.depth.toFixed(2)+' ft in '+latest.year+'</text><text class="chart-label" text-anchor="middle" x="'+(W/2)+'" y="'+(H-4)+'">Depth to water below land surface · annual spring measurements</text></svg><div class="trend-context"><strong>'+data[0].year+'–'+latest.year+':</strong> '+data[0].depth.toFixed(2)+' ft → '+latest.depth.toFixed(2)+' ft below land surface · <strong>'+change+' ft deeper</strong></div>';
+}
+renderNorthPlatteChart();
+
 const wellNames=["Alliance, NE","Grand Island, NE","North Platte, NE","Ogallala, NE","Scottsbluff, NE","Pine Ridge, SD","Martin, SD","Torrington, WY","Pine Bluffs, WY","Yuma, CO","Garden City, KS","Colby, KS","Dodge City, KS","Goodland, KS","Liberal, KS","Burlington, CO","Wray, CO","Tucumcari, NM","Amarillo, TX","Lubbock, TX","Plainview, TX","Dalhart, TX","Pampa, TX","Guymon, OK","Beaver, OK","Boise City, OK","Clovis, NM","Portales, NM"];
-const profileTabs=[...document.querySelectorAll('.profile-tab')],alliancePanel=document.getElementById('alliance-profile'),grandIslandPanel=document.getElementById('grand-island-profile'),pendingWellMessage=document.getElementById('pendingWellMessage');
+const profileTabs=[...document.querySelectorAll('.profile-tab')],alliancePanel=document.getElementById('alliance-profile'),grandIslandPanel=document.getElementById('grand-island-profile'),northPlattePanel=document.getElementById('north-platte-profile'),pendingWellMessage=document.getElementById('pendingWellMessage');
 function openWellProfile(index){
  index=Number(index);profileTabs.forEach((tab,i)=>tab.setAttribute('aria-selected',i===index?'true':'false'));
- alliancePanel.hidden=index!==0;grandIslandPanel.hidden=index!==1;
- if(index===0||index===1){if(pendingWellMessage)pendingWellMessage.hidden=true;}
+ alliancePanel.hidden=index!==0;grandIslandPanel.hidden=index!==1;northPlattePanel.hidden=index!==2;
+ if(index===0||index===1||index===2){if(pendingWellMessage)pendingWellMessage.hidden=true;}
  else if(pendingWellMessage){pendingWellMessage.hidden=false;pendingWellMessage.innerHTML='<strong>'+wellNames[index]+'</strong><br>Profile '+(index+1)+' of 28 is connected to the library and queued for its sourced groundwater graph and nearby municipal water-quality panel.';}
  document.getElementById('monitoring-profile-library').scrollIntoView({behavior:'auto',block:'start'});
 }
 profileTabs.forEach(tab=>tab.addEventListener('click',()=>openWellProfile(tab.dataset.index)));
 function openPendingProfile(name){
  profileTabs.forEach(tab=>tab.setAttribute('aria-selected','false'));
- alliancePanel.hidden=true;if(pendingWellMessage){pendingWellMessage.hidden=false;
+ alliancePanel.hidden=true;grandIslandPanel.hidden=true;northPlattePanel.hidden=true;if(pendingWellMessage){pendingWellMessage.hidden=false;
  pendingWellMessage.innerHTML='<strong>'+name+'</strong><br>This monitoring location is connected to the library and queued for its sourced 40-year groundwater graph and nearby municipal water-quality panel.';}
  document.getElementById('monitoring-profile-library').scrollIntoView({behavior:'auto',block:'start'});
 }
