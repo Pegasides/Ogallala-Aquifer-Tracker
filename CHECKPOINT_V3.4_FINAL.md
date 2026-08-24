@@ -38,6 +38,17 @@
 - Explicit explanation that municipal samples are not monitoring-well samples.
 - No values are estimated before the well’s 1999 construction date.
 
+### North Platte, Nebraska
+- USGS station 405744100403701 (12N 29W31CCB 1 North Platte).
+- 760-foot physical well depth in the High Plains aquifer / Ogallala Formation.
+- Complete reliable government record graphed from 1978–2021 using approved static spring measurements.
+- Documented change: 237.21 feet below land surface in 1978 to 245.05 feet in 2021, or 7.84 feet deeper.
+- City of North Platte 2025 municipal water-quality results.
+- Federal EPA comparisons for nitrate–nitrite, arsenic, and uranium.
+- Official city finding that no drinking-water violations occurred in calendar year 2025.
+- Monitoring-well and municipal-water data are explicitly labeled as separate sources.
+- Map dot and 28-community directory entry open the North Platte profile directly.
+
 ## Accuracy rules
 
 - Use the longest reliable government record available; never invent missing years.
@@ -74,6 +85,6 @@ https://pegasides.github.io/Ogallala-Aquifer-Tracker/v3.4-groundwater-window.htm
 
 ## Final approved content commit before checkpoint renewal
 
-`43e07ff8f416eb5a35ba9c9a758655f2238b8842`
+`93a17184176d63b472e2fad321e1cb83175bb31b`
 
-This checkpoint is the authoritative Version 3.4 Final starting point for completing the remaining 26 Monitoring Well Library profiles and continuing the Data Center Watch history.
+This checkpoint is the authoritative Version 3.4 Final starting point for completing the remaining 25 Monitoring Well Library profiles and continuing the Data Center Watch history.
