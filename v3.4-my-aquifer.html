@@ -11,20 +11,5 @@
 </head>
 <body>
 <nav class="v3bar" aria-label="Version 3.4 primary navigation"><div class="v3inner"><a class="brand" href="v3.4-home.html">OGALLALA AQUIFER TRACKER · VERSION 3.4</a><div class="links"><span class="nav-context">Tracker</span><a href="v3.4-home.html">V3.4 Home</a><a href="v3.4-map.html">Interactive Timeline</a><a href="v3.4-data-center-watch.html">Data Center Watch</a><a href="v3.4-data-centers.html">AI Data Centers</a><a href="v3.4-groundwater-window.html">Monitoring Well Library</a><a class="active" aria-current="page" href="v3.4-my-aquifer.html">My Aquifer</a><a class="yard-link" href="v3.4-yard-savings.html">Yard Savings</a><a href="v3.4-community-toolkit.html">Community Action Toolkit</a><a href="v3.4-sources.html">Sources</a><span class="nav-divider" aria-hidden="true"></span><span class="nav-publication" title="Separate publication experience; final Substack destination has not yet been connected">Publication · Substack</span></div></div></nav>
-<div class="frame-wrap"><iframe id="myAquiferFrame" src="my-aquifer-v33-core.html" title="My Aquifer subscriber experience"></iframe></div>
-<script>
-const frame=document.getElementById('myAquiferFrame');
-frame.addEventListener('load',()=>{
-  try{
-    const doc=frame.contentDocument;if(!doc)return;
-    const innerHeader=doc.querySelector('header');const innerNav=doc.querySelector('.tracker-nav');if(innerHeader)innerHeader.style.display='none';if(innerNav)innerNav.style.display='none';
-    const banner=doc.querySelector('.pilot-banner');if(banner)banner.textContent='VERSION 3.4 SUBSCRIBER VIEW — Alliance pilot · local evidence + practical household tools';
-    if(!doc.getElementById('v3-3-my-aquifer-scale')){const style=doc.createElement('style');style.id='v3-3-my-aquifer-scale';style.textContent=`html{background:#243442}body{zoom:.9;width:111.111%;margin:0}.shell{max-width:1120px;padding-top:18px}@media(max-width:620px){body{zoom:1;width:100%}.shell{padding-top:14px}}`;doc.head.appendChild(style)}
-    const yardEyebrow=[...doc.querySelectorAll('.eyebrow')].find(el=>el.textContent.trim().toLowerCase()==='try your own yard');
-    const oldCalc=yardEyebrow?.closest('.note-box');
-    if(oldCalc){oldCalc.innerHTML=`<p class="eyebrow">NEW · V3.4 HOUSEHOLD SAVINGS TOOL</p><h4>Your Yard Savings Calculator</h4><p class="context-note"><strong>Now anchored to the subscriber's economics.</strong> Use the standard Alliance estimate or enter your own winter and summer water-only bills. The new calculator separates monthly summer savings, annual cash savings, water volume, power/fuel, lawn inputs and time.</p><div class="metric-grid"><div class="metric good"><strong>Standard Estimate</strong><span>500 · 1,000 · 2,500 · 5,000 sq. ft. or custom</span></div><div class="metric good"><strong>Use My Actual Bill</strong><span>Winter baseline + summer water-only bill + lawn share</span></div><div class="metric good"><strong>Monthly + Annual</strong><span>Six-month season by default; assumptions are editable</span></div></div><p class="context-note"><strong>Example:</strong> a $100 winter water bill and $200 summer water bill can show about $100/month of seasonal water-bill opportunity when the full irrigated lawn is converted and the irrigation-reduction setting is 100%.</p><div class="card-actions"><a class="action-btn primary" target="_top" href="v3.4-yard-savings.html">Open Yard Savings Calculator</a></div>`;}
-  }catch(error){console.error('Unable to apply V3.4 My Aquifer presentation:',error)}
-});
-</script>
 </body>
 </html>
