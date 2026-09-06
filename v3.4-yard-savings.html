@@ -17,113 +17,75 @@
 .method{margin-top:14px;padding:18px}.method h3{margin:2px 0 8px}.method li{color:#b9cbd4;font-size:12px;margin-bottom:8px}.method ul{padding-left:18px}.sources{display:flex;gap:10px;flex-wrap:wrap}.sources a{color:#c8f8ef;font-size:11px}.warning{margin-top:12px;border-left:3px solid var(--gold);background:#2b2617;color:#ffeeb8;padding:11px 12px;border-radius:7px;font-size:12px}
 @media(max-width:900px){.metrics{grid-template-columns:repeat(2,1fr)}.hero{display:block}.badge{display:inline-block;margin-top:12px}.navin{display:block}.links{overflow-x:auto;justify-content:flex-start;padding-top:7px}.resulthead{display:block}.assumption{text-align:left;margin-top:6px}}
 @media(max-width:620px){.presetrow,.grid2,.metrics,.modebar{grid-template-columns:1fr}.wrap{width:min(100% - 16px,1050px)}.section,.results{padding:15px}}
+.scenario{padding:22px;margin-bottom:16px}.scenario h2{margin:4px 0 10px;font-size:1.55rem}.scenario>p{color:#c8d8e0}.scenario-table th span{font-size:10px;color:var(--muted)}.scenario-table th:first-child,.scenario-table td:first-child{text-align:left}.scenario-table th:last-child,.scenario-table td:last-child{text-align:left}.total-row td{background:rgba(40,220,195,.12);color:#e5fff9}.savings-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}.saving-card{background:#0a2431;border:1px solid #3a596b;border-radius:12px;padding:16px}.saving-card h3{margin:0 0 13px;color:#fff}.saving-card p{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid #294858;padding:8px 0;margin:0;color:#b9ccd5;font-size:12px}.saving-card p strong{color:#fff;text-align:right}.saving-card .net{display:block;border:0;border-left:3px solid var(--teal);background:#092f35;margin-top:12px;padding:11px}.saving-card .net span,.saving-card .net strong{display:block}.saving-card .net strong{color:var(--teal);font-size:1.15rem;text-align:left;margin-top:4px}@media(max-width:800px){.savings-grid{grid-template-columns:1fr}.scenario-table{min-width:760px}}
 </style>
 </head>
 <body>
 <nav class="nav"><div class="navin"><a class="brand" href="v3.4-home.html">OGALLALA AQUIFER TRACKER · VERSION 3.4</a><div class="links"><a href="v3.4-home.html">V3.4 Home</a><a href="v3.4-map.html">Interactive Timeline</a><a href="v3.4-data-center-watch.html">Data Center Watch</a><a href="v3.4-data-centers.html">AI Data Centers</a><a href="v3.4-groundwater-window.html">Monitoring Well Library</a><a href="v3.4-my-aquifer.html?v=20260905-habitat">My Aquifer</a><a class="active" href="v3.4-yard-savings.html">Yard Savings</a><a href="v3.4-community-toolkit.html">Community Action Toolkit</a><a href="v3.4-sources.html">Sources</a></div></div></nav>
 <main class="wrap">
-<section class="hero"><div><div class="eyebrow">Alliance subscriber tool · household water economics</div><h1>Your Yard Savings Calculator</h1><p>See what replacing irrigated turf with established native wildflowers or other water-wise landscaping could mean for your <strong>water use</strong> and <strong>water bill</strong>.</p></div><div class="badge">Simple estimate after establishment</div></section>
-
-<div class="panel modebar" role="tablist" aria-label="Calculator mode">
-<button class="mode active" id="standardTab" role="tab" aria-selected="true">Standard Estimate<small>Choose the lawn area you may replace</small></button>
-<button class="mode" id="actualTab" role="tab" aria-selected="false">Use My Actual Bill<small>Use your winter and summer water-only bills</small></button>
-</div>
-
-<section class="panel section" id="standardPanel">
-<div class="eyebrow">Step 1</div><h2>How much irrigated turf would you replace?</h2><p class="lead">Choose a common size or enter your own conversion area.</p>
-<div class="presetrow"><button class="preset" data-size="500">500 sq. ft.</button><button class="preset active" data-size="1000">1,000 sq. ft.</button><button class="preset" data-size="2500">2,500 sq. ft.</button><button class="preset" data-size="5000">5,000 sq. ft.</button></div>
-<div class="field"><label for="stdSqft">Custom conversion area (sq. ft.)</label><input id="stdSqft" type="number" min="1" step="1" value="1000"></div>
-<details class="advanced"><summary>Adjust the estimate</summary><div class="grid2"><div class="field"><label for="seasonMonths">Active watering months each year</label><input id="seasonMonths" type="number" min="1" max="12" value="6"></div><div class="field"><label for="reductionPct">Irrigation reduction after establishment: <span id="reductionLabel" class="value">90%</span></label><input id="reductionPct" type="range" min="50" max="100" step="5" value="90"></div></div></details>
+<section class="hero">
+  <div>
+    <div class="eyebrow">Alliance subscriber tool · household economics</div>
+    <h1>Your Yard Savings Calculator</h1>
+    <p>A real-world seasonal comparison between traditional turf grass and established native Nebraska grasses.</p>
+  </div>
+  <div class="badge">Scenario B · Fully Loaded</div>
 </section>
 
-<section class="panel section hidden" id="actualPanel">
-<div class="eyebrow">Step 1</div><h2>Use your own water-only bills</h2><p class="lead">Enter only the water portion—not garbage, sewer or electricity. The difference between a typical summer and winter bill gives a simple estimate of seasonal outdoor-water spending.</p>
-<div class="grid2"><div class="field"><label for="winterBill">Typical winter water-only bill ($/month)</label><input id="winterBill" type="number" min="0" step="0.01" placeholder="Example: 40"></div><div class="field"><label for="summerBill">Typical summer water-only bill ($/month)</label><input id="summerBill" type="number" min="0" step="0.01" placeholder="Example: 90"></div><div class="field"><label for="totalLawn">Total irrigated lawn (sq. ft.)</label><input id="totalLawn" type="number" min="1" step="1" placeholder="Example: 2500"></div><div class="field"><label for="actualConvert">Area you may replace (sq. ft.)</label><input id="actualConvert" type="number" min="1" step="1" placeholder="Example: 1000"></div><div class="field"><label for="actualSeason">Active watering months each year</label><input id="actualSeason" type="number" min="1" max="12" value="6"></div><div class="field"><label for="actualReduction">Irrigation reduction after establishment: <span id="actualReductionLabel" class="value">90%</span></label><input id="actualReduction" type="range" min="50" max="100" step="5" value="90"></div></div>
-<div id="actualWarning" class="warning hidden"></div>
+<section class="panel scenario">
+  <div class="eyebrow">Definition</div>
+  <h2>Scenario B (The Real-World Model)</h2>
+  <p>In Alliance, Nebraska, a typical household easily fills up the city's lower utility tier (Block 1) just through normal indoor living like showers, laundry, and dishes. Under <strong>Scenario B</strong>, because your indoor life already consumes that baseline tier, <strong>100% of your outdoor lawn watering is added on top and billed at the elevated Block 2 rate of $1.759 per CCF.</strong></p>
 </section>
 
-<section class="panel results">
-<div class="resulthead"><div><div class="eyebrow">Step 2 · Your estimate</div><h2 id="resultTitle">Estimate for 1,000 sq. ft.</h2></div><div class="assumption" id="resultAssumption">Alliance municipal water · 6-month season · 90% irrigation reduction</div></div>
-<div class="metrics">
-<div class="metric"><div class="label">Water saved</div><strong id="waterGallons">2,428–3,642</strong><span>gallons per active month</span></div>
-<div class="metric cash"><div class="label">Water bill saved</div><strong id="monthlyCash">$5.05–$13.17</strong><span>per active month</span></div>
-<div class="metric cash"><div class="label">Annual water-bill savings</div><strong id="annualCash">$30–$79</strong><span id="annualCashSub">6 active months</span></div>
-<div class="metric time"><div class="label">Mowing time avoided</div><strong id="annualTime">8.0 hours</strong><span>per season · simple planning estimate</span></div>
-</div>
-<p class="interpretation" id="interpretation">A 1,000-square-foot conversion could save roughly 2,428–3,642 gallons during each active watering month after establishment.</p>
-<div class="tablewrap"><table class="compare"><thead><tr><th>Conversion area</th><th>Water saved / month</th><th>Water bill / month</th><th>Annual water-bill savings</th></tr></thead><tbody id="comparisonBody"></tbody></table></div>
-<p class="tiny">Comparison uses Alliance urban residential water rates, a six-month watering season and the selected irrigation-reduction setting. Fixed meter charges are not treated as avoidable.</p>
+<section class="panel scenario">
+  <div class="eyebrow">The Fully Loaded Scenario B Budget</div>
+  <h2>The true seasonal cost of turf grass</h2>
+  <p>A true calculation of turf grass must include the total structural overhead. When you add chemical treatments, equipment fuel, and pipeline maintenance to the Scenario B water costs, the seasonal totals look like this:</p>
+  <div class="tablewrap">
+    <table class="compare scenario-table">
+      <thead>
+        <tr><th>Expense Category</th><th>Low-End Estimate<br><span>(DIY / Minimal Repairs)</span></th><th>High-End Estimate<br><span>(Heavy Treatment / Pipe Burst)</span></th><th>Cost Type</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Scenario B Water Volume</strong></td><td>$31.75</td><td>$47.60</td><td>Variable Volumetric Rate</td></tr>
+        <tr><td><strong>Chemical Fertilizers</strong></td><td>$40.00</td><td>$75.00</td><td>Materials/Retail</td></tr>
+        <tr><td><strong>Herbicides &amp; Weed Prevention</strong></td><td>$35.00</td><td>$65.00</td><td>Materials/Retail</td></tr>
+        <tr><td><strong>Mower Fuel &amp; Equipment Tuning</strong></td><td>$30.00</td><td>$50.00</td><td>Blades, Oil, Gas</td></tr>
+        <tr><td><strong>Sprinkler Pipe Repairs &amp; Tuning</strong></td><td>$60.00</td><td>$210.00</td><td>Fittings, Blowouts, Heads</td></tr>
+        <tr class="total-row"><td><strong>Total Fully Loaded Season Cost</strong></td><td><strong>$196.75</strong></td><td><strong>$447.60</strong></td><td><strong>Per 1,000 Square Feet</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
 </section>
 
-<section class="panel method"><div class="eyebrow">Step 3 · How it works</div><h3>Simple, visible assumptions</h3><ul><li><strong>Water volume:</strong> One inch of water across 1,000 sq. ft. is approximately 623 gallons. The planning range uses 1.0–1.5 inches per week and 4.33 weeks per month.</li><li><strong>Alliance water rates:</strong> Urban residential usage rates currently range from $1.557 to $2.706 per 100 cubic feet; 100 cubic feet equals 748 gallons. The calculator does not count the fixed meter charge as savings.</li><li><strong>Actual Bill mode:</strong> The seasonal water amount is the summer water-only bill minus the winter water-only bill. Savings are adjusted for the share of lawn converted and the selected irrigation reduction.</li><li><strong>Time:</strong> The secondary time estimate assumes four mowings per active month and about 20 minutes per 1,000 sq. ft. It does not depend on mower type and is not included in dollar savings.</li></ul><div class="sources"><a target="_blank" rel="noopener" href="https://www.cityofalliance.net/219/Water-Billing">City of Alliance — Water Billing ↗</a><a target="_blank" rel="noopener" href="https://www.cityofalliance.net/DocumentCenter/View/5067">City of Alliance — Current Rate Sheet ↗</a></div><p class="tiny">Planning tool for subscriber education. Weather, soil, sprinkler efficiency, household use and native-plant establishment can materially change results.</p></section>
+<section class="panel scenario">
+  <div class="eyebrow">Total Cost Savings by Yard Size</div>
+  <h2>What the transition can save</h2>
+  <p>Because established native Nebraska grasses can survive almost entirely on natural rainfall and do not require chemical treatments, switching away from turf grass wipes out your fully loaded Scenario B baseline.</p>
+  <p>When you scale this transition across different yard sizes, your <strong>net seasonal savings</strong>—calculated by subtracting the minimal native grass upkeep of $30–$120 from the fully loaded turf costs above—multiply significantly:</p>
+
+  <div class="savings-grid">
+    <article class="saving-card">
+      <h3>1,000 Square Feet</h3>
+      <p><span>Traditional Turf Cost</span><strong>$196.75–$447.60</strong></p>
+      <p><span>Native Grass Upkeep</span><strong>$30.00–$50.00</strong></p>
+      <p class="net"><span>Net Seasonal Savings</span><strong>$166.75 to $397.60</strong></p>
+    </article>
+    <article class="saving-card">
+      <h3>2,500 Square Feet</h3>
+      <p><span>Traditional Turf Cost</span><strong>$441.88–$1,069.00</strong></p>
+      <p><span>Native Grass Upkeep</span><strong>$45.00–$75.00</strong></p>
+      <p class="net"><span>Net Seasonal Savings</span><strong>$416.88 to $994.00</strong></p>
+    </article>
+    <article class="saving-card">
+      <h3>5,000 Square Feet</h3>
+      <p><span>Traditional Turf Cost</span><strong>$858.75–$2,108.00</strong></p>
+      <p><span>Native Grass Upkeep</span><strong>$55.00–$120.00</strong></p>
+      <p class="net"><span>Net Seasonal Savings</span><strong>$833.75 to $1,988.00</strong></p>
+    </article>
+  </div>
+</section>
 </main>
-<script>
-const $=id=>document.getElementById(id);
-const number=(id,fallback=0)=>{const n=Number($(id).value);return Number.isFinite(n)?n:fallback};
-const money=n=>'$'+Math.max(0,n).toFixed(2);
-const money0=n=>'$'+Math.round(Math.max(0,n)).toLocaleString();
-const whole=n=>Math.round(Math.max(0,n)).toLocaleString();
-const WATER_LOW=1.557,WATER_HIGH=2.706,GALLONS_PER_CCF=748,GALLONS_PER_INCH_SQFT=.623,WEEKS_PER_MONTH=4.33;
-let mode='standard';
-
-function waterEstimate(sqft,reduction){
- const lowGallons=sqft*GALLONS_PER_INCH_SQFT*WEEKS_PER_MONTH*1.0*reduction;
- const highGallons=sqft*GALLONS_PER_INCH_SQFT*WEEKS_PER_MONTH*1.5*reduction;
- return{lowGallons,highGallons,lowCash:(lowGallons/GALLONS_PER_CCF)*WATER_LOW,highCash:(highGallons/GALLONS_PER_CCF)*WATER_HIGH};
-}
-function standardResult(){
- const sqft=Math.max(1,number('stdSqft',1000));
- const reduction=number('reductionPct',90)/100;
- const months=Math.max(1,Math.min(12,number('seasonMonths',6)));
- const water=waterEstimate(sqft,reduction);
- return{mode:'standard',sqft,reduction,months,...water,annualLow:water.lowCash*months,annualHigh:water.highCash*months,time:(sqft/1000)*(20/60)*4*months};
-}
-function actualResult(){
- const winter=Math.max(0,number('winterBill',0)),summer=Math.max(0,number('summerBill',0));
- const total=Math.max(1,number('totalLawn',1)),sqft=Math.max(1,number('actualConvert',1));
- const reduction=number('actualReduction',90)/100,months=Math.max(1,Math.min(12,number('actualSeason',6)));
- const share=Math.min(1,sqft/total),seasonal=Math.max(0,summer-winter),monthly=seasonal*share*reduction;
- const water=waterEstimate(sqft,reduction);
- let warning='';
- if(summer>0&&summer<=winter)warning='Your summer water-only bill is not higher than your winter bill, so this method finds no seasonal outdoor-water amount.';
- if(sqft>total)warning+=(warning?' ':'')+'The conversion area is larger than the total lawn; the estimate caps the converted share at 100%.';
- $('actualWarning').textContent=warning;$('actualWarning').classList.toggle('hidden',!warning);
- return{mode:'actual',sqft,reduction,months,...water,lowCash:monthly,highCash:monthly,annualLow:monthly*months,annualHigh:monthly*months,time:(sqft/1000)*(20/60)*4*months,seasonal,share};
-}
-function renderComparison(reduction,months,activeSize){
- const body=$('comparisonBody');body.innerHTML='';
- [500,1000,2500,5000].forEach(size=>{
-   const w=waterEstimate(size,reduction),row=document.createElement('tr');
-   if(mode==='standard'&&Math.round(activeSize)===size)row.className='active';
-   row.innerHTML='<td>'+whole(size)+' sq. ft.</td><td>'+whole(w.lowGallons)+'–'+whole(w.highGallons)+' gal</td><td>'+money(w.lowCash)+'–'+money(w.highCash)+'</td><td>'+money0(w.lowCash*months)+'–'+money0(w.highCash*months)+'</td>';
-   body.appendChild(row);
- });
-}
-function render(r){
- $('resultTitle').textContent=(r.mode==='actual'?'Actual-bill estimate for ':'Estimate for ')+whole(r.sqft)+' sq. ft.';
- $('resultAssumption').textContent=(r.mode==='actual'?('Your bills · '+Math.round(r.share*100)+'% lawn share'):'Alliance municipal water')+' · '+r.months+'-month season · '+Math.round(r.reduction*100)+'% irrigation reduction';
- $('waterGallons').textContent=whole(r.lowGallons)+'–'+whole(r.highGallons);
- $('monthlyCash').textContent=r.lowCash===r.highCash?money(r.lowCash):money(r.lowCash)+'–'+money(r.highCash);
- $('annualCash').textContent=r.annualLow===r.annualHigh?money0(r.annualLow):money0(r.annualLow)+'–'+money0(r.annualHigh);
- $('annualCashSub').textContent=r.months+' active months';
- $('annualTime').textContent=r.time.toFixed(1)+' hours';
- $('interpretation').innerHTML=r.mode==='actual'?'Your summer-minus-winter water signal is <strong>'+money(r.seasonal)+'/month</strong>. The estimate applies the converted share of lawn and your irrigation-reduction setting.':'A <strong>'+whole(r.sqft)+'-square-foot</strong> conversion could save roughly <strong>'+whole(r.lowGallons)+'–'+whole(r.highGallons)+' gallons</strong> during each active watering month after establishment.';
- renderComparison(r.reduction,r.months,r.sqft);
-}
-function calculate(){render(mode==='standard'?standardResult():actualResult())}
-function setMode(next){
- mode=next;const standard=next==='standard';
- $('standardPanel').classList.toggle('hidden',!standard);$('actualPanel').classList.toggle('hidden',standard);
- $('standardTab').classList.toggle('active',standard);$('actualTab').classList.toggle('active',!standard);
- $('standardTab').setAttribute('aria-selected',standard);$('actualTab').setAttribute('aria-selected',!standard);calculate();
-}
-$('standardTab').onclick=()=>setMode('standard');$('actualTab').onclick=()=>setMode('actual');
-document.querySelectorAll('.preset').forEach(button=>button.onclick=()=>{document.querySelectorAll('.preset').forEach(x=>x.classList.remove('active'));button.classList.add('active');$('stdSqft').value=button.dataset.size;calculate()});
-$('stdSqft').addEventListener('input',()=>{document.querySelectorAll('.preset').forEach(x=>x.classList.toggle('active',Number(x.dataset.size)===Number($('stdSqft').value)));calculate()});
-$('reductionPct').oninput=()=>{$('reductionLabel').textContent=$('reductionPct').value+'%';calculate()};
-$('actualReduction').oninput=()=>{$('actualReductionLabel').textContent=$('actualReduction').value+'%';calculate()};
-document.querySelectorAll('input').forEach(input=>{if(!['stdSqft','reductionPct','actualReduction'].includes(input.id))input.addEventListener('input',calculate)});
-calculate();
-</script>
 </body>
 </html>
