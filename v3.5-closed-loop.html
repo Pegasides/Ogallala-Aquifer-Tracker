@@ -146,6 +146,14 @@
       }
       .links::-webkit-scrollbar { display: none; }
     }
+    /* Keep the complete tracker navigation visible on laptop and mobile widths. */
+    .nav-inner { width: calc(100% - 16px); max-width: none; margin-left: 8px; margin-right: 8px; justify-content: flex-start; }
+    .links { justify-content: flex-start; }
+    @media (max-width: 1250px) {
+      .nav-inner { display: block; }
+      .brand { display: block; margin-bottom: 7px; }
+      .links { display: flex; flex-wrap: wrap; overflow: visible; padding: 0 0 7px; }
+    }
   </style>
 </head>
 <body>
