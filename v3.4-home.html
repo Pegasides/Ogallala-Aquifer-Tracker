@@ -1,126 +1,15 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Ogallala Aquifer Tracker — Version 3.5</title>
-<style>
-:root{--night:#07131d;--deep:#0c2030;--ink:#f7fbff;--muted:#bfd1dd;--aqua:#5eead4;--gold:#f2c66d;--line:rgba(188,218,235,.25);--shadow:0 22px 56px rgba(0,0,0,.38)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(180deg,#06121b 0%,#0a1d2a 48%,#07131d 100%);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.5}a{color:inherit}a:focus-visible{outline:3px solid #fff;outline-offset:3px}
-.hero{position:relative;background:#07131d;border-bottom:1px solid rgba(242,198,109,.35)}.hero img{display:block;width:70%;margin:0 auto;height:auto;max-height:82vh;object-fit:contain;background:#07131d}.hero-badge{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);z-index:2;background:rgba(3,15,24,.88);border:1px solid rgba(94,234,212,.75);color:#cffff7;border-radius:999px;padding:7px 12px;font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
-.navbar{position:sticky;top:0;z-index:30;background:rgba(4,18,27,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}.nav-inner{width:min(1240px,calc(100% - 32px));margin:auto;display:flex;gap:12px;align-items:center;justify-content:space-between;padding:9px 0}.brand{text-decoration:none;font-weight:900;font-size:13px;color:#dffcf7;white-space:nowrap}.nav-links{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end;align-items:center}.nav-links a{text-decoration:none;color:#e4eef3;border:1px solid #345164;background:#102736;border-radius:8px;padding:8px 10px;font-size:11px;font-weight:800}.nav-links a:hover,.nav-links a.active{border-color:var(--aqua);background:#123c43;color:#e7fffb}.nav-links a.data-center-link{border-color:rgba(242,198,109,.78);background:rgba(83,57,15,.55);color:#ffe7ad}.nav-links a.data-center-link:hover{border-color:var(--gold);background:#6b4510;color:#fff1c6}.nav-links a.calculator-link{border-color:rgba(94,234,212,.72);background:rgba(21,91,86,.42);color:#d5fff8}.nav-links a.calculator-link:hover{border-color:var(--aqua);background:#14645c;color:#effffb}.nav-context{font-size:9px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:#8fb0c1;padding:0 2px}.nav-divider{width:1px;height:26px;background:rgba(188,218,235,.32);margin:0 3px}.nav-publication{display:inline-flex;align-items:center;min-height:34px;border:1px solid rgba(242,198,109,.56);background:rgba(67,49,18,.38);color:#f6dca0;border-radius:8px;padding:7px 10px;font-size:10px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
-.gallery{width:70%;max-width:1078px;margin:0 auto;padding:26px 0 48px}.gallery-intro{text-align:center;padding:12px 16px 24px}.gallery-intro h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.8rem,3.7vw,3rem);margin:0 0 8px}.gallery-intro p{margin:0 auto;max-width:820px;color:var(--muted);font-size:.96rem}.artwork{margin:0 0 24px;border:2px solid #d7aa45;border-radius:18px;overflow:hidden;background:#06131d;box-shadow:var(--shadow)}.artwork img{display:block;width:100%;height:auto;background:#06131d}footer{border-top:1px solid var(--line);color:#9eb3bf;text-align:center;font-size:11px;padding:24px 16px 36px}
-@media(max-width:900px){.hero img{width:100%}.nav-inner{display:block;padding:8px 0}.brand{display:block;margin-bottom:6px;font-size:11px}.nav-links{display:flex;flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;padding-bottom:2px;scrollbar-width:none}.nav-links::-webkit-scrollbar{display:none}.nav-links a,.nav-context,.nav-publication,.nav-divider{flex:0 0 auto}.nav-links a{min-height:40px;display:inline-flex;align-items:center}.gallery{width:calc(100% - 18px);padding-top:14px}.artwork{border-radius:12px;margin-bottom:14px}}
-@media(max-width:560px){.hero-badge{bottom:8px;font-size:9px;padding:5px 9px}.nav-inner{width:calc(100% - 24px)}.nav-links a{padding:9px 10px}.nav-context{font-size:8px}.nav-publication{min-height:40px}.gallery-intro{padding:9px 8px 16px}.gallery-intro h1{font-size:1.65rem}.gallery-intro p{font-size:.9rem}}
-
-.timeline-teaser{margin:24px 0;border:2px solid #d7aa45;border-radius:16px;overflow:hidden;background:#04111a;box-shadow:var(--shadow)}.timeline-teaser-head{display:flex;justify-content:space-between;gap:18px;align-items:center;padding:16px 20px;background:linear-gradient(90deg,#092738,#10384a);border-bottom:1px solid rgba(94,234,212,.38)}.timeline-teaser h2{margin:0;color:#fff;font-size:clamp(20px,2.4vw,34px)}.timeline-teaser p{margin:4px 0 0;color:#bfd1dd}.timeline-teaser a{display:inline-block;white-space:nowrap;text-decoration:none;background:#0c6fbf;border:1px solid #63b8ff;border-radius:9px;padding:10px 14px;font-weight:800}.timeline-teaser iframe{display:block;width:100%;aspect-ratio:4/3;border:0;background:#04111a}@media(max-width:720px){.timeline-teaser-head{display:block}.timeline-teaser a{margin-top:12px}.timeline-teaser iframe{aspect-ratio:3/4}}
-
-.subscriber-pitch{margin:0 0 24px;border:2px solid #d7aa45;border-radius:18px;background:radial-gradient(circle at 84% 12%,rgba(20,105,164,.24),transparent 34%),linear-gradient(145deg,#020b13,#061825 58%,#03111b);box-shadow:0 0 0 1px rgba(255,226,150,.28),0 22px 56px rgba(0,0,0,.46),0 0 24px rgba(215,170,69,.16);padding:clamp(28px,5vw,64px)}.subscriber-pitch-inner{max-width:900px;margin:0 auto}.subscriber-pitch h2{margin:0 0 24px;font-family:Georgia,"Times New Roman",serif;font-size:clamp(28px,4vw,50px);line-height:1.12;color:#fff}.subscriber-pitch .welcome{font-size:clamp(16px,1.8vw,20px);color:#d9e8f0}.subscriber-pitch p{margin:0 0 18px;color:#d1e0e8;font-size:clamp(15px,1.55vw,18px);line-height:1.65}.subscriber-pitch h3{margin:28px 0 12px;color:var(--gold);font-size:clamp(18px,2vw,24px)}.subscriber-benefits{margin:0 0 28px;padding-left:24px}.subscriber-benefits li{margin:0 0 14px;padding-left:5px;color:#d1e0e8;font-size:clamp(15px,1.5vw,18px);line-height:1.55}.subscriber-benefits li::marker{color:var(--aqua)}.subscriber-signoff{margin-top:30px;padding-top:22px;border-top:1px solid rgba(242,198,109,.35)}.subscriber-signoff p{margin:0 0 4px}.subscriber-signoff strong{color:#fff}.subscriber-signoff em{color:#9fc0d0}
-
-.news-dispatch{margin:0 0 24px;border:2px solid #d7aa45;border-radius:18px;background:radial-gradient(circle at 85% 12%,rgba(25,107,158,.25),transparent 33%),linear-gradient(145deg,#020b13,#061825 58%,#03111b);box-shadow:0 0 0 1px rgba(255,226,150,.24),0 22px 56px rgba(0,0,0,.46),0 0 24px rgba(215,170,69,.14);padding:clamp(28px,4.5vw,52px)}.dispatch-kicker{color:#e5bd63;font-size:clamp(10px,.9vw,14px);font-weight:900;letter-spacing:.16em;text-transform:uppercase}.news-dispatch h2{margin:7px 0 5px;font-family:Georgia,"Times New Roman",serif;font-size:clamp(23px,2.8vw,36px);line-height:1.12}.dispatch-deck{margin:0 0 22px;color:#bcd4e1;font-size:clamp(12px,1.1vw,15px)}.dispatch-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.dispatch-card{display:block;text-decoration:none;background:rgba(5,24,37,.86);border:1px solid rgba(79,190,241,.55);border-radius:11px;padding:13px 15px;transition:.18s ease}.dispatch-card:hover{transform:translateY(-2px);border-color:#e5bd63;background:#0a2b3f}.dispatch-meta{display:flex;gap:8px;align-items:center;color:#e5bd63;font-size:clamp(9px,.75vw,12px);font-weight:900;text-transform:uppercase;letter-spacing:.07em}.dispatch-card h3{margin:6px 0 4px;font-size:clamp(13px,1.15vw,17px);line-height:1.2;color:#fff}.dispatch-card p{margin:0;color:#bcd4e1;font-size:clamp(10px,.82vw,12px);line-height:1.4}.dispatch-card.featured{grid-column:1/-1}.dispatch-foot{margin:18px 0 0;color:#80a4b7;font-size:clamp(10px,.8vw,12px);text-align:right}.dispatch-foot a{color:#bffbf1;font-weight:900;text-decoration:none}.dispatch-foot a:hover{text-decoration:underline}@media(max-width:900px){.news-dispatch{padding:24px 18px}.dispatch-grid{grid-template-columns:1fr}.dispatch-card.featured{grid-column:auto}}
-
-.subscribe-cta{margin:0 0 24px;border:2px solid #d7aa45;border-radius:18px;background:radial-gradient(circle at 50% 0,rgba(242,198,109,.14),transparent 48%),linear-gradient(145deg,#04111a,#0a2635);box-shadow:var(--shadow);padding:34px 24px;text-align:center}.subscribe-cta h2{margin:0 0 8px;font-family:Georgia,"Times New Roman",serif;font-size:clamp(24px,3vw,38px);color:#fff}.subscribe-cta p{max-width:720px;margin:0 auto 20px;color:var(--muted);font-size:clamp(14px,1.5vw,17px)}.subscribe-button{display:inline-block;text-decoration:none;background:linear-gradient(180deg,#f5d47f,#d7a537);color:#07131d;border:1px solid #ffe8a8;border-radius:10px;padding:14px 22px;font-size:clamp(15px,1.6vw,18px);font-weight:900;box-shadow:0 10px 28px rgba(0,0,0,.34);transition:transform .18s ease,box-shadow .18s ease}.subscribe-button:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(0,0,0,.42)}.subscribe-note{display:block;margin-top:12px;color:#8fb0c1;font-size:11px}
-
-/* Keep the complete tracker navigation visible on laptop and mobile widths. */
-.nav-inner{width:calc(100% - 16px);max-width:none;margin-left:8px;margin-right:8px;justify-content:flex-start}.nav-links{justify-content:flex-start}@media(max-width:1250px){.nav-inner{display:block}.brand{display:block;margin-bottom:7px}.nav-links{display:flex;flex-wrap:wrap;overflow:visible;padding:0 0 7px}}
-</style>
+<meta name="robots" content="noindex">
+<meta http-equiv="refresh" content="0; url=v3.5-home.html">
+<link rel="canonical" href="https://ogallalatracker.com/v3.5-home.html">
+<script>location.replace('v3.5-home.html');</script>
 </head>
-<body id="top">
-<section class="hero" aria-label="Ogallala Aquifer Tracker Version 3.5 title image"><img src="v3-5-hero-clean.webp" alt="Ogallala Aquifer Tracker over a Nebraska prairie sunset with a traditional windmill"><span class="hero-badge">Version 3.5</span></section>
-<div class="navbar"><div class="nav-inner"><a class="brand" href="#top">OGALLALA AQUIFER TRACKER · V3.5</a></div></div>
-<main class="gallery" id="story-gallery">
-<section class="subscriber-pitch" id="subscriber-pitch" aria-labelledby="subscriber-pitch-title">
-<div class="subscriber-pitch-inner">
-<h2 id="subscriber-pitch-title">Are we borrowing from tomorrow&rsquo;s groundwater to power today&rsquo;s algorithms?</h2>
-<p class="welcome">Welcome to the <strong>Ogallala Aquifer Tracker</strong>&mdash;a Toolbox designed to keep the public informed using credible data from local, state, and federal agencies and a set of tools to assist those who demand accountability from data centers. We give you the exact tools you need to track Aquifer strain and take a deep dive into the health of our basin including a forecast out to 2050.</p>
-<h3>As a subscriber, your toolbox includes full access to:</h3>
-<ul class="subscriber-benefits">
-<li><strong>The Interactive Timeline:</strong> Watch the aquifer&rsquo;s progression from a stable 1950 baseline to a projected, critical 2050 status.</li>
-<li><strong>The Data Center Watch Log:</strong> Monitor 17 operational, under-construction, and proposed data center facilities across the High Plains region.</li>
-<li><strong>The Monitoring Well Library:</strong> Explore 28 distinct community profiles mapping real-world water table declines and drinking water quality.</li>
-<li><strong>Community Advocacy Guidelines:</strong> Access actionable frameworks and standards you can share with local, state, and federal representatives to demand accountability.</li>
-<li><strong>The Daily Dispatch:</strong> Review a single, curated feed of public filings, local policies, and news developments without any newsletter clutter.</li>
-<li><strong>The Native Yard Calculator:</strong> Instantly estimate the concrete water and cost savings of swapping a standard green lawn for native plants.</li>
-<li><strong>Subscriber Community Forums:</strong> Exchange ideas, technical concepts, and regional observations in an active online comment space.</li>
-</ul>
-<p>My goal is simple: to spur open, public discussion grounded in hard data about our precious Aquifer. You would honor me by subscribing to the platform and joining this effort. I remain incredibly grateful for your patronage and support.</p>
-<div class="subscriber-signoff">
-<p>Thank you,</p>
-<p><strong>Quinn</strong></p>
-<p><em>Creator &amp; Developer, Ogallala Aquifer Tracker</em></p>
-</div>
-</div>
-</section>
-<header class="gallery-intro"><h1>The Ogallala story, told visually.</h1><p>Five connected views move from the groundwater beneath us, to the aquifer overview, to emerging infrastructure pressure, a real-world example, and the trusted sources behind the Tracker.</p></header>
-<figure class="artwork"><img src="v33-gallery-images/01-groundwater-window.avif" alt="Groundwater Window showing the Ogallala Aquifer beneath Nebraska"></figure>
-<figure class="artwork"><img src="v33-gallery-images/02-aquifer-overview.avif" alt="Ogallala Aquifer Tracker overview showing the three basin health zones, communities, and four key timeframes"></figure>
-<section class="timeline-teaser" aria-labelledby="timeline-teaser-title"><div class="timeline-teaser-head"><div><h2 id="timeline-teaser-title">Explore the AI Data Centers on the Aquifer</h2><p>See operational, under-construction, and proposed facilities across the 2030–2050 timeline.</p></div></div><iframe src="v3.4-map.html?mode=teaser" title="Ogallala Aquifer Tracker Version 3.5 interactive timeline with AI data-center locations" loading="lazy"></iframe></section>
-<figure class="artwork"><img src="v33-gallery-images/03-ai-data-center-impact.avif" alt="AI Data Center Impact on the Ogallala Aquifer educational cross-section"></figure>
-<figure class="artwork"><img src="v33-gallery-images/04-cheyenne-example.avif" alt="Real example of AI data center impact on the Ogallala Aquifer near Cheyenne, Wyoming"></figure>
-<figure class="artwork"><img src="v33-gallery-images/05-sources.avif" alt="Sources That Inform Our Story — sources poster for the Ogallala Aquifer Tracker"></figure>
-
-<section class="news-dispatch" id="daily-dispatch" aria-labelledby="dispatch-title">
-<div class="dispatch-kicker" id="dispatch-kicker">Subscriber Daily Dispatch · Refreshed September 9, 2026</div>
-<h2 id="dispatch-title">As a subscriber, you receive daily updates on data-center stories.</h2>
-<p class="dispatch-deck">The five newest sourced stories from Data Center Watch, shown here automatically as the reading list is refreshed.</p>
-<div class="dispatch-grid" id="dispatch-grid">
-<a class="dispatch-card featured" href="https://www.reuters.com/business/energy/us-power-use-beat-record-highs-2026-2027-ai-use-surges-eia-says-2026-09-09/" target="_blank" rel="noopener"><span class="dispatch-meta">Reuters · September 9, 2026</span><h3>U.S. Power Use Expected to Reach New Records as AI Demand Rises</h3><p>EIA forecasts record electricity use in 2026 and 2027, with AI-intensive data centers among the demand drivers.</p></a>
-<a class="dispatch-card" href="https://www.ourmidland.com/news/article/michigan-data-center-town-hall-saginaw-questions-22423228.php" target="_blank" rel="noopener"><span class="dispatch-meta">Midland Daily News · September 9, 2026</span><h3>Michigan Town Hall Focuses on Tax Breaks, Local Control and Data-Center Impacts</h3><p>A public forum examines tax incentives, environmental effects, local authority, employment and transparency.</p></a>
-<a class="dispatch-card" href="https://www.wvxu.org/environment/2026-09-01/ohio-supreme-court-trenton-vote-data-center-ban" target="_blank" rel="noopener"><span class="dispatch-meta">WVXU · September 4, 2026</span><h3>Trenton Data-Center Ban Advances to the November Ballot</h3><p>A resident-proposed charter amendment will go before voters after an Ohio Supreme Court ruling.</p></a>
-<a class="dispatch-card" href="https://www.wfdd.org/politics-government/2026-09-04/report-challenges-tax-revenue-projections-for-stokes-county-data-center" target="_blank" rel="noopener"><span class="dispatch-meta">WFDD · September 4, 2026</span><h3>Stokes County Report Challenges Project Delta’s Tax Projections</h3><p>Competing tax estimates rest on substantially different assumptions about the project’s eventual investment.</p></a>
-<a class="dispatch-card" href="https://klrd.gov/2026/09/01/data-centers-overview-of-state-policies-and-regulatory-considerations/" target="_blank" rel="noopener"><span class="dispatch-meta">Kansas Legislative Research Department · September 1, 2026</span><h3>Data Centers: State Policies and Regulatory Considerations</h3><p>Kansas legislative researchers review water, power, tax and community policy questions across several states.</p></a>
-</div>
-<p class="dispatch-foot">Current feed · Dates and status preserved</p>
-</section>
-<section class="subscribe-cta" id="subscribe" aria-labelledby="subscribe-title">
-<h2 id="subscribe-title">Follow the aquifer. Understand what changes next.</h2>
-<p>Become an Ogallala Aquifer Tracker subscriber for continued research, sourced reporting, interactive maps, monitoring-well profiles, and data-center updates.</p>
-<a class="subscribe-button" href="https://buy.stripe.com/00w5kCgzL0aT3Ca2Fa38400" target="_blank" rel="noopener">Become a Subscriber — $35 Every 3 Months</a>
-<span class="subscribe-note">Secure checkout powered by Stripe · Taxes may apply</span>
-</section>
-</main>
-<footer>Version 3.5 · Pretty Picture 5 is the current Interactive Timeline master · Yard Savings Calculator is a separate V3.5 tool · Gallery sequence and hard-save checkpoints remain preserved.</footer>
-<script>
-(function(){
-  var grid=document.getElementById('dispatch-grid');
-  var kicker=document.getElementById('dispatch-kicker');
-  if(!grid||!window.fetch||!window.DOMParser)return;
-  fetch('v3.4-data-center-watch.html',{cache:'no-store'}).then(function(response){
-    if(!response.ok)throw new Error('Dispatch source unavailable');
-    return response.text();
-  }).then(function(markup){
-    var source=new DOMParser().parseFromString(markup,'text/html');
-    var stories=Array.prototype.slice.call(source.querySelectorAll('article.story'),0,5);
-    if(!stories.length)return;
-    var cards=stories.map(function(story,index){
-      var link=story.querySelector('.read[href]');
-      var meta=story.querySelector('.story-source');
-      var title=story.querySelector('h3');
-      var summary=story.querySelector('p');
-      if(!link||!meta||!title||!summary)return null;
-      var card=document.createElement('a');
-      card.className='dispatch-card'+(index===0?' featured':'');
-      card.href=link.href;
-      card.target='_blank';
-      card.rel='noopener';
-      var metaText=document.createElement('span');
-      metaText.className='dispatch-meta';
-      metaText.textContent=meta.textContent.trim();
-      var heading=document.createElement('h3');
-      heading.textContent=title.textContent.trim();
-      var deck=document.createElement('p');
-      var fullSummary=summary.textContent.trim();
-      deck.textContent=fullSummary.length>190?fullSummary.slice(0,187).trimEnd()+'…':fullSummary;
-      card.append(metaText,heading,deck);
-      return card;
-    }).filter(Boolean);
-    if(cards.length)grid.replaceChildren.apply(grid,cards);
-    var refresh=source.querySelector('.daily-note');
-    if(refresh)kicker.textContent='Subscriber Daily Dispatch · '+refresh.textContent.trim().replace(/^Refreshed\s*/i,'Refreshed ');
-  }).catch(function(){
-    /* The current static cards remain visible if the source cannot be loaded. */
-  });
-})();
-</script>
+<body>
+<p>Opening <a href="v3.5-home.html">Ogallala Aquifer Tracker Version 3.5</a>…</p>
 </body>
 </html>
