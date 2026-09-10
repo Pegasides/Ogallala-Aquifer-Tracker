@@ -5,7 +5,7 @@ workers_dev = true
 keep_vars = true
 
 [vars]
-STRIPE_PRICE_ID = "price_1UDtXDAhqvqGsdlQGboki05S"
+STRIPE_PRICE_ID = "price_1U8Px2AMeVp81lSLgQYvoSZR"
 
 [observability]
 enabled = true
