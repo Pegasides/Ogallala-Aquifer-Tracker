@@ -2,6 +2,7 @@ const DEFAULT_PRICE_ID = "price_1UDtXDAhqvqGsdlQGboki05S";
 const LIVE_PRICE_ID = "price_1U8Px2AMeVp81lSLgQYvoSZR";
 const SESSION_COOKIE = "ogallala_member";
 const SESSION_SECONDS = 60 * 60 * 24 * 30;
+const LOGIN_LINK_SECONDS = 60 * 15;
 const ALLOWED_STATUSES = new Set(["active", "trialing"]);
 
 export default {
@@ -19,6 +20,15 @@ export default {
     }
     if (request.method === "GET" && url.pathname === "/members") {
       return showMembers(request, env);
+    }
+    if (request.method === "GET" && url.pathname === "/login") {
+      return htmlResponse(signInPage());
+    }
+    if (request.method === "POST" && url.pathname === "/login") {
+      return requestSignIn(request, env);
+    }
+    if (request.method === "GET" && url.pathname === "/login/verify") {
+      return verifySignIn(request, env);
     }
     if (request.method === "POST" && url.pathname === "/logout") {
       return redirectWithCookie(new URL("/", url), expiredSessionCookie());
@@ -77,14 +87,14 @@ async function completeCheckout(request, env) {
   const checkout = await response.json();
   const subscription = checkout.subscription;
   const subscriptionId = typeof subscription === "string" ? subscription : subscription?.id;
-  let status = typeof subscription === "object" ? subscription?.status : null;
+  let subscriptionRecord = typeof subscription === "object" ? subscription : null;
   const customerId = typeof checkout.customer === "string" ? checkout.customer : checkout.customer?.id;
 
   if (checkout.status !== "complete" || !subscriptionId || !customerId) {
     return htmlResponse(accessProblemPage("This checkout has not been completed."), 403);
   }
 
-  if (!status) {
+  if (!subscriptionRecord) {
     const subscriptionResponse = await stripeRequest(
       env,
       `/v1/subscriptions/${encodeURIComponent(subscriptionId)}`
@@ -92,10 +102,10 @@ async function completeCheckout(request, env) {
     if (!subscriptionResponse.ok) {
       return htmlResponse(accessProblemPage("We could not verify the membership."), 502);
     }
-    status = (await subscriptionResponse.json()).status;
+    subscriptionRecord = await subscriptionResponse.json();
   }
 
-  if (!ALLOWED_STATUSES.has(status)) {
+  if (!subscriptionGrantsAccess(subscriptionRecord, env)) {
     return htmlResponse(accessProblemPage("This membership is not active."), 403);
   }
 
@@ -178,12 +188,183 @@ async function showMembers(request, env) {
   const subscription = await response.json();
   if (
     subscription.customer !== session.customer ||
-    !ALLOWED_STATUSES.has(subscription.status)
+    !subscriptionGrantsAccess(subscription, env)
   ) {
     return htmlResponse(inactivePage(), 403, { "Set-Cookie": expiredSessionCookie() });
   }
 
   return htmlResponse(memberDashboard(subscription));
+}
+
+async function requestSignIn(request, env) {
+  if (!stripeKey(env) || !env.RESEND_API_KEY) return htmlResponse(setupPage(), 503);
+
+  const form = await request.formData();
+  const email = normalizeEmail(form.get("email"));
+  if (!email) return htmlResponse(checkEmailPage());
+
+  if (await loginRequestRecentlyMade(request, email)) {
+    return htmlResponse(checkEmailPage());
+  }
+
+  try {
+    const membership = await findActiveMembership(env, email);
+    if (membership) {
+      const origin = new URL(request.url).origin;
+      const token = await createLoginToken(env, {
+        customer: membership.customer,
+        subscription: membership.subscription,
+        email
+      });
+      await sendSignInEmail({ env, email, origin, token });
+    }
+  } catch (error) {
+    console.error("Subscriber sign-in request could not be completed.", error);
+  }
+
+  return htmlResponse(checkEmailPage());
+}
+
+async function verifySignIn(request, env) {
+  if (!stripeKey(env)) return htmlResponse(setupPage(), 503);
+
+  const token = new URL(request.url).searchParams.get("token");
+  const login = token ? await readLoginToken(env, token) : null;
+  if (!login) {
+    return htmlResponse(expiredLinkPage(), 403);
+  }
+
+  const response = await stripeRequest(
+    env,
+    `/v1/subscriptions/${encodeURIComponent(login.subscription)}`
+  );
+  if (!response.ok) {
+    return htmlResponse(accessProblemPage("We could not check your membership right now."), 502);
+  }
+
+  const subscription = await response.json();
+  if (
+    subscription.customer !== login.customer ||
+    !subscriptionGrantsAccess(subscription, env)
+  ) {
+    return htmlResponse(inactivePage(), 403, { "Set-Cookie": expiredSessionCookie() });
+  }
+
+  const cookie = await createSessionCookie(env, {
+    customer: login.customer,
+    subscription: login.subscription
+  });
+  return redirectWithCookie(new URL("/members", request.url), cookie);
+}
+
+async function findActiveMembership(env, email) {
+  const customerResponse = await stripeRequest(
+    env,
+    `/v1/customers?email=${encodeURIComponent(email)}&limit=10`
+  );
+  if (!customerResponse.ok) throw new Error("Stripe customer lookup failed.");
+
+  const customers = (await customerResponse.json()).data || [];
+  for (const customer of customers) {
+    const subscriptionResponse = await stripeRequest(
+      env,
+      `/v1/subscriptions?customer=${encodeURIComponent(customer.id)}&status=all&limit=100`
+    );
+    if (!subscriptionResponse.ok) continue;
+    const subscriptions = (await subscriptionResponse.json()).data || [];
+    const active = subscriptions.find((subscription) => subscriptionGrantsAccess(subscription, env));
+    if (active) return { customer: customer.id, subscription: active.id };
+  }
+  return null;
+}
+
+async function createLoginToken(env, member) {
+  const now = Math.floor(Date.now() / 1000);
+  const payload = encodeBase64Url(JSON.stringify({
+    ...member,
+    purpose: "member-login",
+    nonce: crypto.randomUUID(),
+    issued: now,
+    expires: now + LOGIN_LINK_SECONDS
+  }));
+  const signature = await sign(payload, stripeKey(env));
+  return `${payload}.${signature}`;
+}
+
+async function readLoginToken(env, token) {
+  const separator = token.lastIndexOf(".");
+  if (separator < 1) return null;
+  const payload = token.slice(0, separator);
+  const provided = token.slice(separator + 1);
+  const expected = await sign(payload, stripeKey(env));
+  if (!constantTimeEqual(provided, expected)) return null;
+
+  try {
+    const login = JSON.parse(decodeBase64Url(payload));
+    const now = Math.floor(Date.now() / 1000);
+    if (
+      login.purpose !== "member-login" ||
+      !login.customer ||
+      !login.subscription ||
+      !login.email ||
+      !login.nonce ||
+      login.expires <= now ||
+      login.issued > now + 60
+    ) return null;
+    return login;
+  } catch {
+    return null;
+  }
+}
+
+async function sendSignInEmail({ env, email, origin, token }) {
+  const loginUrl = `${origin}/login/verify?token=${encodeURIComponent(token)}`;
+  const nonce = JSON.parse(decodeBase64Url(token.slice(0, token.lastIndexOf(".")))).nonce;
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${env.RESEND_API_KEY}`,
+      "Content-Type": "application/json",
+      "Idempotency-Key": `ogallala-login-${nonce}`
+    },
+    body: JSON.stringify({
+      from: "Ogallala Aquifer Tracker <welcome@members.ogallalatracker.com>",
+      to: [email],
+      subject: "Your secure Ogallala Tracker sign-in link",
+      html: `
+        <div style="font-family:Arial,Helvetica,sans-serif;line-height:1.6;color:#17201c;max-width:620px;margin:auto">
+          <p style="color:#80652f;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase">Ogallala Aquifer Tracker · Subscriber Access</p>
+          <h1 style="font-family:Georgia,serif;color:#07110f">Your secure sign-in link</h1>
+          <p>Use the button below to enter your subscriber portal. This link expires in 15 minutes.</p>
+          <p><a href="${escapeHtml(loginUrl)}" style="display:inline-block;padding:14px 20px;border-radius:8px;background:#173c27;color:#fff;text-decoration:none;font-weight:700">Open the Subscriber Portal</a></p>
+          <p style="font-size:13px;color:#5c6761">If you did not request this email, you can safely ignore it.</p>
+        </div>`,
+      text: `Use this secure link to enter the Ogallala Aquifer Tracker subscriber portal. It expires in 15 minutes:\n\n${loginUrl}\n\nIf you did not request this email, you can safely ignore it.`
+    })
+  });
+  if (!response.ok) throw new Error("Resend rejected the sign-in email.");
+}
+
+async function loginRequestRecentlyMade(request, email) {
+  if (typeof caches === "undefined") return false;
+  try {
+    const ip = request.headers.get("CF-Connecting-IP") || "unknown";
+    const digest = await crypto.subtle.digest(
+      "SHA-256",
+      new TextEncoder().encode(`${ip}:${email.toLowerCase()}`)
+    );
+    const key = encodeBase64Url(new Uint8Array(digest));
+    const cache = caches.default;
+    const cacheRequest = new Request(`${new URL(request.url).origin}/__login-rate/${key}`);
+    if (await cache.match(cacheRequest)) return true;
+    await cache.put(cacheRequest, new Response("1", {
+      headers: { "Cache-Control": "public, max-age=60" }
+    }));
+    return false;
+  } catch (error) {
+    console.error("Sign-in rate limit cache was unavailable.", error);
+    return false;
+  }
 }
 
 async function stripeRequest(env, path, options = {}) {
@@ -273,6 +454,22 @@ function parseCookies(header) {
   }));
 }
 
+function normalizeEmail(value) {
+  const email = typeof value === "string" ? value.trim() : "";
+  if (email.length < 3 || email.length > 320) return null;
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/u.test(email)) return null;
+  return email;
+}
+
+function subscriptionGrantsAccess(subscription, env) {
+  const trackerPrice = env.STRIPE_PRICE_ID || DEFAULT_PRICE_ID;
+  return Boolean(
+    subscription &&
+    ALLOWED_STATUSES.has(subscription.status) &&
+    subscription.items?.data?.some((item) => item.price?.id === trackerPrice)
+  );
+}
+
 function stripeKey(env) {
   const priceId = env.STRIPE_PRICE_ID || DEFAULT_PRICE_ID;
   return priceId === LIVE_PRICE_ID ? env.STRIPE_LIVE_SECRET_KEY : env.STRIPE_SECRET_KEY;
@@ -316,7 +513,11 @@ function layout(content, wide = false) {
     .price { margin: 28px 0 8px; color: #fff; font-size: 30px; font-weight: 700; }
     .trial { margin: 0 0 28px; color: #d6bb75; font-weight: 700; }
     button, .button { display: inline-block; width: 100%; padding: 16px 22px; border: 0; border-radius: 9px; color: #07110f; background: #d6bb75; font-size: 17px; font-weight: 800; text-align: center; text-decoration: none; cursor: pointer; }
-    button.secondary { color: #f7f3e8; background: transparent; border: 1px solid #8d7445; }
+    .secondary { color: #f7f3e8; background: transparent; border: 1px solid #8d7445; }
+    .divider { margin: 24px 0 14px; color: #aeb8b2; font-size: 14px; text-align: center; }
+    label { display: block; margin: 24px 0 8px; color: #f7f3e8; font-weight: 700; }
+    input[type="email"] { width: 100%; padding: 15px 16px; border: 1px solid #718178; border-radius: 8px; color: #07110f; background: #fff; font-size: 17px; }
+    input[type="email"]:focus { outline: 3px solid #d6bb75; outline-offset: 2px; }
     .fine { margin: 18px 0 0; color: #aeb8b2; font-size: 13px; }
     .verified { display: inline-block; margin: 0 0 22px; padding: 8px 12px; border-radius: 99px; color: #bff2ca; background: #173c27; font-size: 14px; font-weight: 800; }
     .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 28px 0; }
@@ -340,6 +541,8 @@ function homePage() {
     <p class="trial">Your first seven days are free.</p>
     <a class="button" href="/checkout">Start My 7-Day Free Trial</a>
     <p class="fine">A payment method is required. You will not be charged until the trial ends. Cancel before then to avoid a charge.</p>
+    <div class="divider">Already a subscriber?</div>
+    <a class="button secondary" href="/login">Email Me a Secure Sign-In Link</a>
   `);
 }
 
@@ -379,10 +582,35 @@ function memberDashboard(subscription) {
 function signInPage() {
   return layout(`
     <p class="eyebrow">Subscriber sign-in</p>
-    <h1>Secure access required</h1>
-    <p>This browser does not have a verified subscriber session yet.</p>
-    <a class="button" href="/">Return to Membership</a>
-    <p class="fine">Returning-subscriber email access is the next activation step.</p>
+    <h1>Return to the Tracker</h1>
+    <p>Enter the email address used for your subscription. We will email you a secure sign-in link.</p>
+    <form method="post" action="/login">
+      <label for="email">Subscription email</label>
+      <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="320">
+      <button type="submit" style="margin-top:16px">Send My Sign-In Link</button>
+    </form>
+    <a class="button secondary" style="margin-top:14px" href="/">Return to Membership</a>
+    <p class="fine">For your privacy, the page gives the same response whether or not an email address is registered.</p>
+  `);
+}
+
+function checkEmailPage() {
+  return layout(`
+    <p class="eyebrow">Secure sign-in</p>
+    <h1>Check your email</h1>
+    <p>If that address belongs to an active subscriber or free trial, a secure sign-in link is on its way.</p>
+    <p class="trial">The link expires in 15 minutes.</p>
+    <a class="button" href="/login">Try Another Email</a>
+    <a class="button secondary" style="margin-top:14px" href="/">Return to Membership</a>
+  `);
+}
+
+function expiredLinkPage() {
+  return layout(`
+    <p class="eyebrow">Secure sign-in</p>
+    <h1>This link is invalid or has expired.</h1>
+    <p>Request a fresh sign-in email to continue.</p>
+    <a class="button" href="/login">Send a New Sign-In Link</a>
   `);
 }
 
