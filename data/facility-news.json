@@ -1,0 +1,231 @@
+{
+  "generatedAt": "2026-09-10T05:43:45Z",
+  "policy": "Automated candidates must match facility-specific identity and location terms. Curated evidence remains visible if no current match is found.",
+  "profiles": {
+    "profile-armstrong": {
+      "label": "Google–Crusoe Goodnight / Project Llano",
+      "checkedAt": "2026-09-10T05:43:45Z",
+      "items": [
+        {
+          "title": "Crusoe plans $1 billion expansion of Google-linked data center ‘Project Llano’ - Blockspace Media",
+          "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNUFJYdHlZUDdFYlpFcWx5WHlId2lZaDVMQl96TURzclFLT1VwWUxkWE5JVEF5Y243UGZDTDhsZGdRTW5iT0Voa1Q0OWI2YnlvX0lDNDJCZ2Y2Q0s5N3RkaVVfQTQ1YmxrYVVRb3htUWpDR2pDZlpEemNIU3JwZkZxMzFUZW5KV0U?oc=5",
+          "source": "Blockspace Media",
+          "publishedAt": "2026-07-31T07:00:00Z"
+        },
+        {
+          "title": "Crusoe files for two more data centers at Goodnight Campus in Armstrong County, Texas - Data Center Dynamics",
+          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPcGJjaDMzVzkwX0RsdXhCUlBmYl9wVzBMQWtrSkhMa0Q1OUN5cjl5cGo5TUk5S2ZGTkJTLXFhWWJzMTNQMmJYNlh6MWFaWHkxQ0g0c2FXSUtBdEJ0TU03M1JnVENmWVA2S2JiVnRFSDFzVkhIVmVaaWhUUVRJTVRWMFVMR1U1dzlDbVZ4S095eVd3WDUtU3QwcFQxSnVIdDJ5N2xiQWNWbGUzU3FmSTFVZnJZYXg1S1ZfV19TY21KbVBrWDRUMGxR?oc=5",
+          "source": "Data Center Dynamics",
+          "publishedAt": "2026-07-30T07:00:00Z"
+        },
+        {
+          "title": "$29bn+ Goodnight Data Center in Armstrong, Texas Expands as Crusoe Files Two More Data Centers - Construction Review",
+          "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOV2hENVlvQTFKejNvZmltek14YmhOak9QbWpJQ0VpYTVibDdkSklaN0RneEQ3eDFwOTVLSEZQY1ZCdjUxdHdIUGw1cGRYVmFMWFpna25LSWpmTFp4dXlzNzYyN0lkT1d6MjY4NllUWU56dzNnNDFuRkJmT3hIY3A1VWhNZC1PX2ZDamlCbWtiNnlBcUI4UXFTYTFLZzg3bFR0WXI0ZWM0Tjd2a3VDYkV1SUtGZUFvcnREV3lXd0szYnhjSS1KMGFMaQ?oc=5",
+          "source": "Construction Review",
+          "publishedAt": "2026-07-30T07:00:00Z"
+        }
+      ]
+    },
+    "profile-dove-creek": {
+      "label": "Beacon Dove Creek",
+      "checkedAt": "2026-09-10T05:43:45Z",
+      "items": [
+        {
+          "title": "Dozens gather to discuss proposed Dove Creek data center - Yahoo",
+          "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOcDdLYV9lZFF4UEtmMFFRTHhtbUItbXdCdXNyOXNUdkdUczFJWDlRdkVqblBwbmhrMEVYcXM3d2R6bGdueVYzeDJwSkdmcllXMWRPQm94djhIUVdVc3ozLUZKTVlJRHVULWVjb3FGTTU1VjdUdUxNbTU2VG1heXFwblJtMno2VWliZGsyVHhBc1BoRWM?oc=5",
+          "source": "Yahoo",
+          "publishedAt": "2026-08-13T07:00:00Z"
+        },
+        {
+          "title": "Darby calls for clarity from Beacon Data Centers, requests public TCEQ meeting - Yahoo",
+          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOcUszcWhKNUlFcWlxcnRXRktVdU8xUF9qMmVFOTNLYlRvVUxoMmdDMWh0UENOQlQ4cEJUUHNuY3AtR2xOVjdyMTB4d3JzTElvNDJUX1FjV2dyaW1KTDBZV0hlSFFZZHpvSU5LZU9JUHVERVBpRjJpZEVRYmtNSG15aWlJUWF5YXlwYUJKVzdBOVZvaUZXS0E?oc=5",
+          "source": "Yahoo",
+          "publishedAt": "2026-08-11T07:00:00Z"
+        },
+        {
+          "title": "Darby Reacts to Dove Creek Data Center TCEQ Permit App - sanangelolive.com",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPOG0tLUZhcmo2aFlSNnFxdU1qa0NpRFJ6cHhlWGFCMFV2cFBjWk1mLXozMkdIVW9hbi13UzhvMTJaNlFpbG9ZSTc5c1dXU1pkY1hkZmVnNmg5d2JyalhEdUM1TXRWVkJmVG5YcWk5cHFOd0cxOTJ5RUlndnBKbFhxQV90b1AxVndLcFI0UVUyMWtVUkpGdzNUa2h1ek5OWHFKYXJNcmtXNA?oc=5",
+          "source": "sanangelolive.com",
+          "publishedAt": "2026-08-10T07:00:00Z"
+        }
+      ]
+    },
+    "profile-beltline": {
+      "label": "Beltline Energy",
+      "checkedAt": "2026-09-10T05:43:45Z",
+      "items": []
+    },
+    "profile-cheyenne": {
+      "label": "Microsoft Cheyenne",
+      "checkedAt": "2026-09-10T05:43:45Z",
+      "items": [
+        {
+          "title": "Meta Spills Wastewater in Wyoming. A Week Later, Senator Lummis Sells Land to Microsoft for Another Data Center - Yahoo",
+          "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOMVNJLURQa1NieXB6ZHJ5T0xPdHU3QVNrM19XazJCRU4tS2NsWndSdFdzdVMtZTZJMmtaU25UZlIwendkRkZmeURDSms3eDdqYmpjRmwyU1JfNUdwWDFSUjNnWnVpemt6cGxEZ3VheUNGN1JxanpkTlIxal83eE1MWTZ1Mnk2bGkwcEVQdFplXzZXdDA?oc=5",
+          "source": "Yahoo",
+          "publishedAt": "2026-09-02T16:33:11Z"
+        }
+      ]
+    },
+    "profile-jade": {
+      "label": "Project Jade / Project Tembo",
+      "checkedAt": "2026-09-10T05:43:45Z",
+      "items": []
+    },
+    "profile-duos-amarillo": {
+      "label": "Duos Edge AI Amarillo",
+      "checkedAt": "2026-09-10T05:43:45Z",
+      "items": []
+    },
+    "profile-nebraska-sites": {
+      "label": "Nebraska proposed data-center sites",
+      "checkedAt": "2026-09-10T05:43:45Z",
+      "items": [
+        {
+          "title": "Winnebago Tribe of Nebraska offers information on proposed data center project - FOX Carolina News",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPMHM1WWZwTzE0eXd2bHVDdk5oSTl5U0p5MTVRVkJGLW9wSDNxcGxTc2NTS1NKa3NNMU9IMDRlbzJ3czNoTGJicWx6WUhXeWZWcG9DTU1fREpLencxcmVEZXVnU2xfRC1ldFFXUW53UU1rVGo0R1Nwa0dQSWl6b2FkMDI3NURVaEVRcUdUY2JUT1VTTlo1Q0dNUFk2OTFEUThNM05LVldHcW1yYVRrdkFhY3g1aHliWHF3ZWc?oc=5",
+          "source": "FOX Carolina News",
+          "publishedAt": "2026-09-10T04:06:00Z"
+        },
+        {
+          "title": "Winnebago Tribe of Nebraska offers information on proposed data center project - KTIV",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOT2tBZmxfbjJLbkdaUk05aXhBWjRCRGtqS2o1ZENzMjk5QmRKU1l6QVBKSjRIN0N0Z2dxbGhma24ycFg0aFlQVU9GT0I0MUhIb1RhZkh2X1BGaWh2MG9JTWF6aTg1V1p3ZlBaRzR3RWNyX1J5T29EbllBajNWLWZteUhiSzhRTmxTZFRFUXlSeHVNWERkSG9YdWZEX3FsZU5zNlJCZ1c1VHk1ZXdTaUhiRQ?oc=5",
+          "source": "KTIV",
+          "publishedAt": "2026-09-10T04:06:00Z"
+        },
+        {
+          "title": "Winnebago Tribe of Nebraska offers information on proposed data center project - FOX5 Vegas",
+          "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPc2lkR3V6MmxYaFJVVmtHTTlMYmVNNlZCSnk5OVkwQV9VbTV6VkhHNldWMnRWd2xFZ1RtamZmd2RTN3hNYXg4NWJOeDE2bzRXOXp1b3VZclBISmZXY0s5SHF0VXdnSGNyM3JnTFlwaWRjQ1I5d0pGX0l3aWJSaTVlQ1M3OXBVX2p0ak14MzVnME81cG1vN1hBLVdWU0lPc1Ntclc4V21naWZUUUlpSWlJRGZIY3F1dDQ?oc=5",
+          "source": "FOX5 Vegas",
+          "publishedAt": "2026-09-10T04:06:00Z"
+        }
+      ]
+    },
+    "profile-matador": {
+      "label": "Fermi America Project Matador",
+      "checkedAt": "2026-09-10T05:43:45Z",
+      "items": [
+        {
+          "title": "Fermi announced $6.5 billion lease for massive AI campus at Amarillo - Oklahoma Energy Today",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPUDJSaDRjRml2YWd2THdMbXJIRzdRUWowTGV6T3lSX2dlR20xRnJ2OGJuaVJmVjRaTGdRZmJ5QUFBZEQ1bjlaYWFDWW5VWjkxNjI0NzdwckJZUHJ1b25jdUx0bm1YdFpGXzlqM3huZUd4NFN2eEJZVldxZ0lYN05yRVpUOFNxay0yNU1tYzNCajluQnJtNDFVdTBCdEZZbzctbVE0Wg?oc=5",
+          "source": "Oklahoma Energy Today",
+          "publishedAt": "2026-08-12T07:00:00Z"
+        },
+        {
+          "title": "Fermi announces $6.5B lease agreement at Project Matador AI campus - Amarillo Globe-News",
+          "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxPSUdCTDhES2ZwVTB2c1RqNnRmX2FnWVd0Q3V2em9jNXN6dG9VXzA0OVl6TUpXQlFLTXM0UU15NldxS2NoSnc2c3RVS1ZaSWl6WmZST0hCZ1ZiQXRIZFZCY0hZZjVxUmRob25hWjVMU3RyT1p0ZmVSeEtmc0JIMlpkNnJQVk5wSHo2VmFBYlBJOGxCNTVrNjR6bF9XMzN3UXZqU3BPdXVISnZxTnBvb1VoZWFVWEsyWHBhdWRpbTZqcU9CNTBIbUF3eE9aZGUxRWxMc0wyTzZKSmpmbk5fSHBnTkdEMC0yT0RGVzVHdGFB?oc=5",
+          "source": "Amarillo Globe-News",
+          "publishedAt": "2026-08-11T07:00:00Z"
+        },
+        {
+          "title": "Fermi signs agreement with TensorWave for up to 650MW of data center capacity at Project Matador site - Data Center Dynamics",
+          "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxNbVFDYkhkUmJ0MlhjWGNtME9DNDZlQ29wRVhLY1c1N0VqdmN1cmlVbTU5Z3FGcTQ0UzhULUlHVWJtd3V1ZnZfRlZnVDlPR0FENmV3ZFZYVy1uUGJQNWdtRW1zTUhWVHN5OGFLOHlzdDBHbjl1WDdWNG1TTnJpUUFXSHB6a2xsY2FHRmJyTE1mRU8tZF9ab0lxZUNBM0JvakhNeWhYMEh5UERPWHB3TDRaZVNMTlBXR1Q1dHo5UDVPcXVjX2ttMFY1MlZMSEowcGUxTkVyZkg3M3ZGSTlSQ3c?oc=5",
+          "source": "Data Center Dynamics",
+          "publishedAt": "2026-08-11T07:00:00Z"
+        }
+      ]
+    },
+    "profile-triple-oak": {
+      "label": "Triple Oak Home Range",
+      "checkedAt": "2026-09-10T05:43:45Z",
+      "items": []
+    },
+    "profile-unnamed-panhandle": {
+      "label": "Texas Panhandle data-center proposals",
+      "checkedAt": "2026-09-10T05:43:45Z",
+      "items": [
+        {
+          "title": "InfraTech Capital Advances $2.7 Billion Data Center Investment Initiative in Texas Panhandle - Business Wire",
+          "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOdG1xX3o0MEtFWGtrQmVXOWNfUVNNRTFIQ3lvRVdRY1doY1dEdGU4RFlHSXZOUndRQ1VHYUNkXy05Mzg2NldDelNyemd5U1o3VFhDeHQ2NE51cGRMYzBYeFZYanBzTVF4SFU1TDdYNzJaMmcxal80dG01OXVWbWlYUlh4a0E1YUVXdFZPc2NwdGFBODlVb3dWaFV2Qjc4eVBfcHgzYVVjaEdnSzRiUXVGelN5MjNfcGRzamY2bS0tNUdWZEc4T3BzYzI1SzBkam9OYUtQRlRkTWE5R1FYT3M2MmMtWnVkUQ?oc=5",
+          "source": "Business Wire",
+          "publishedAt": "2026-08-18T07:00:00Z"
+        },
+        {
+          "title": "Proposed $2.7 billion data center announced for Carson County - KFDA | NewsChannel 10 | Amarillo Texas",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxORHJsSndZUjUweDVwb2RIczRxcE5hbTd6bDYtWlRxUTA5MU5haG5UUVNWNXNyN2xXTWFENE1iM1Q5cVAxcFIwQUtKeEVxTmZfSlB4UWx4TUR5TjBCZXFFSWx3bVE3bDE3czFrU005Q1Bpc1lsallERjZKNEw1bkhoVmpod0tQS2xCelpHc194UWFwXy1Fb1JvR3FiVTdlUdIBsgFBVV95cUxOQXVHVEhMX1BHa25jQTBtUVYySENsRG84ZE41YUxmVlhZTldLdC1PYkVvY3l3NjhsMTZieE90eEFCLW1DWENYdWgtYXhLZ3VNWHI3OGRBWWlJZDFwTnc3anhPNjBRZVFBVzFhdlNFUFYzZTUyT2dubFEtWDF3bThzanVzQk1BOU9wOTRiMHBxRG1DQWhlSHBOdFM3MWEtQkJtdmxza21LN3lrYjl1dU9zZ21B?oc=5",
+          "source": "KFDA | NewsChannel 10 | Amarillo Texas",
+          "publishedAt": "2026-08-18T07:00:00Z"
+        },
+        {
+          "title": "Democratic gubernatorial nominee Gina Hinojosa visits Texas Panhandle data center site - KVII",
+          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNOGVlX0RlWnNIbmVObkhNOGY2WVVpSmlyRWlsQVZqNy1KM0UxcmlpT3hRMWF1S3A4NGlQNzBYNkpMclQwc2k2ZlR5a1huNzN2OVU3TEJFSS1LeXpXd0p5Yy1UWkU5Rkp0RXJiNFJCQzN1V0ljZ2VhYjNGZjVFa0NPYV9Oc3NKNHRZRTdSS2tWZnpMSk9tNTVWLVNYb1UwRXhrY0E4eGQ0dklFazhhSFFnelkxbzI3eTlaTVpSLTNwNXExenBlOFFWOUxn?oc=5",
+          "source": "KVII",
+          "publishedAt": "2026-07-31T01:27:09Z"
+        }
+      ]
+    },
+    "profile-vantage-frontier": {
+      "label": "Vantage Frontier",
+      "checkedAt": "2026-09-10T05:43:45Z",
+      "items": []
+    },
+    "profile-meta-sarpy": {
+      "label": "Meta Sarpy County",
+      "checkedAt": "2026-09-10T05:43:45Z",
+      "items": []
+    },
+    "profile-meta-los-lunas": {
+      "label": "Meta Los Lunas",
+      "checkedAt": "2026-09-10T05:43:45Z",
+      "items": []
+    },
+    "profile-powerhouse-grand-prairie": {
+      "label": "PowerHouse Grand Prairie",
+      "checkedAt": "2026-09-10T05:43:45Z",
+      "items": []
+    },
+    "profile-project-jupiter": {
+      "label": "Project Jupiter Santa Teresa",
+      "checkedAt": "2026-09-10T05:43:45Z",
+      "items": [
+        {
+          "title": "Doña Ana County Commissioners to appoint representatives to Project Jupiter Community Monitoring Committee - KVIA",
+          "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPOTlETHRfNFpsS3ZtTGVWUkJWZk5hSXh5NWdOSGw2Qy1lX29UNGVnNmQ5TnRQei1aUFhMclFFZ3Qzczl2WkJLR1ZSM3dwcC1qS2Q0S2tvam5oTGF3aVk4Y3Q0dFN6empaWXlOeUtzajVYaUVmNHhEM1J6akpxTk14SXI1UFFtTkt1SFFoYll2bUw1ZENoMkI3cThmSFN0Z2xDTkt0WkNOcUF5ejRBN2V3aF84WDB4aVdCUk1hRElZUGVWTlVHclVNXzRQRkNNOE83ZmczWkVMUQ?oc=5",
+          "source": "KVIA",
+          "publishedAt": "2026-09-08T21:58:51Z"
+        },
+        {
+          "title": "Oracle offers $1 million for carbon emission research on Project Jupiter in New Mexico - KRQE",
+          "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOWWYtOUE5WnF5ODdFcTNvSlZvZWFTZ29TYXBYMFFiUmFlcjFnUHkzWnVSZjRQSEhlZE9EWUpncTNydm1DMWZuU2dLc1V3QjJjVUFCWmRCdHk1eS16dHVEZHNjbXVQRkJzYlVnZFRRdk5zTnZ0NmdLN3VueHF2MC04eU1nOXRRaFR1ZGp5NXJFSUFlSHBOcEctZDlHMW03MWlaZmo3Y1MtOWVYaFVrWjVOY0xDRFg0Z3BqOGVKb1JqNlowMkJTakHSAcYBQVVfeXFMTllmLTlBOVpxeTg3RXEzb0pWb2VhU2dvU2FwWDBRYlJhZXIxZ1B5M1p1UmY0UEhIZWRPRFlKZ3EzcnZtQzFmblNnS3NVd0IyY1VBQlpkQnR5NXktenR1RGRzY211UEZCc2JVZ2RUUXZOc052dDZnSzd1bnhxdjAtOHlNZzl0UWhUdWRqeTVyRUlBZUhwTnBHLWQ5RzFtNzFpWmZqN2NTLTllWGhVa1o1TmNMQ0RYNGdwajhlSm9SajZaMDJCU2pB?oc=5",
+          "source": "KRQE",
+          "publishedAt": "2026-09-08T14:06:46Z"
+        },
+        {
+          "title": "Doña Ana County to hear Oracle, Bloom Energy update on Project Jupiter data center - KFOX",
+          "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPWExvcUxPUXlVRExvb3lBNVE3djBPcXNyenMwRWlPbWlOUWc3b2ZGLUZNZWtwbHhyYXpSLXdiNXJneERmM2JmbHd3ZnNmT3o5eVA4RGZIU2tuNlMzYl92NzNlaDVDZi13MmVncEk1WXNveDhfWXNyaVRUQ2U3dUJfUTVaNFpvb1o0Y2hfTXhTME5sTlRSTTNKSVNJQUNHMGxHYVJsYm9uWE5lVzNPUDdhdXBZLVlkLUg3?oc=5",
+          "source": "KFOX",
+          "publishedAt": "2026-09-07T11:10:17Z"
+        }
+      ]
+    },
+    "profile-tesla-cortex": {
+      "label": "Tesla Cortex / Giga Texas",
+      "checkedAt": "2026-09-10T05:43:45Z",
+      "items": [
+        {
+          "title": "Tesla advances Austin chip facility as Musk's Texas Terafab takes shape - Austin American-Statesman",
+          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQZ2ZnNlUxZTNLRlZOX2JwZ19Ud2dMQmJlMHk2ZEVxUDhVRzVvZXFQTzJHUml5R1ZSbFpaYVZVS3J6dTVrT09TUHp2TWI5S01mT2VKajNaWFhhLThfU1FSS2hsOVFWZHVKamt2Y3RfSW9WOElaRGVtY3RVaGstaUh3OVR1dHRYdWVjT0lQdDlFZVhycGJSZDNleXVB?oc=5",
+          "source": "Austin American-Statesman",
+          "publishedAt": "2026-09-01T09:02:59Z"
+        },
+        {
+          "title": "Gigafactory from above: Tesla's Texas compound is more than meets the eye - Austin American-Statesman",
+          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1OdTRvamJkY1pBUkQ5d1dqWVgtUWdYSnRKSmF3NXlKOGJWZ1BMcjhuOXZzeTZHWUZIbVRneW1XX2RoMTduN2VmZzFTS29zT0JMYy1kam9FQngwN3ZIanNtcklWa3d6eXB3X2V0TVhka1lONzR0?oc=5",
+          "source": "Austin American-Statesman",
+          "publishedAt": "2026-08-17T07:00:00Z"
+        },
+        {
+          "title": "Giga Texas Expansion: Optimus Factory and Cortex 2 Rising - BASENOR - Tesla Accessories",
+          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOVTNmMmN0ZFBSYVlmZnUwRG9tWmFMTHVycVJ5NzEwMXFZa0wtOUN2bTZmTXFqZWttNklubDVuMHlkZHl4VVhGVjk5MEFfS0hoT0VXSC1sNEM3RXNkd3lXX0tFbTlrYnptbjlPOHVPclYxMl9lMnRfVGdKMTVPM1dFRXFhMWlZN1F6YVo1VU5aMDZ0MUZRLVE?oc=5",
+          "source": "BASENOR - Tesla Accessories",
+          "publishedAt": "2026-07-29T07:00:00Z"
+        }
+      ]
+    },
+    "profile-meta-tulsa": {
+      "label": "Meta Tulsa / Project Anthem",
+      "checkedAt": "2026-09-10T05:43:45Z",
+      "items": []
+    }
+  }
+}

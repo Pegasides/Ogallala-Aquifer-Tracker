@@ -1,0 +1,32 @@
+{
+  "lookbackDays": 45,
+  "maxItemsPerProfile": 3,
+  "profiles": [
+    {"id":"profile-armstrong","label":"Google–Crusoe Goodnight / Project Llano","query":"(Goodnight OR Llano) Armstrong County data center","requiredAny":[["goodnight","llano","armstrong"],["data center","datacenter","google","crusoe"]]},
+    {"id":"profile-dove-creek","label":"Beacon Dove Creek","query":"Beacon Dove Creek data center San Angelo","requiredAny":[["dove creek","beacon"],["data center","datacenter","san angelo","tom green"]]},
+    {"id":"profile-beltline","label":"Beltline Energy","query":"Beltline data center Yukon Oklahoma","requiredAny":[["beltline"],["data center","datacenter","yukon","oklahoma"]]},
+    {"id":"profile-cheyenne","label":"Microsoft Cheyenne","query":"Microsoft Cheyenne Wyoming data center","requiredAny":[["microsoft"],["cheyenne","wyoming"],["data center","datacenter"]]},
+    {"id":"profile-jade","label":"Project Jade / Project Tembo","query":"(Project Jade OR Project Tembo) Cheyenne data center","requiredAny":[["project jade","project tembo","crusoe","jupiter star"],["cheyenne","laramie","wyoming"]]},
+    {"id":"profile-duos-amarillo","label":"Duos Edge AI Amarillo","query":"Duos Edge AI Amarillo data center","requiredAny":[["duos"],["amarillo","potter county"]]},
+    {"id":"news-duos-hereford","label":"Duos Edge AI Hereford","query":"Duos Edge AI Hereford Texas data center","requiredAny":[["duos"],["hereford","deaf smith"]]},
+    {"id":"news-duos-lubbock","label":"Duos Edge AI Lubbock","query":"Duos Edge AI Lubbock data center","requiredAny":[["duos"],["lubbock"]]},
+    {"id":"news-duos-dumas","label":"Duos Edge AI Dumas","query":"Duos Edge AI Dumas Texas data center","requiredAny":[["duos"],["dumas","moore county"]]},
+    {"id":"profile-nebraska-sites","label":"Nebraska proposed data-center sites","query":"Nebraska proposed data center","requiredAny":[["nebraska"],["data center","datacenter"]]},
+    {"id":"profile-matador","label":"Fermi America Project Matador","query":"Fermi Project Matador data center Amarillo","requiredAny":[["fermi","matador"],["data center","datacenter","amarillo","carson"]]},
+    {"id":"profile-triple-oak","label":"Triple Oak Home Range","query":"Triple Oak Home Range Kansas data center","requiredAny":[["triple oak","home range"],["kansas","finney","kearny"]]},
+    {"id":"profile-unnamed-panhandle","label":"Texas Panhandle data-center proposals","query":"Texas Panhandle data center Amarillo","requiredAny":[["texas panhandle","amarillo","potter","carson"],["data center","datacenter"]]},
+    {"id":"news-google-haskell","label":"Google Haskell County campuses","query":"Google Haskell County Texas data center","requiredAny":[["google"],["haskell"]]},
+    {"id":"news-google-meitner","label":"Google–Intersect Meitner","query":"Google Intersect Meitner Texas data center","requiredAny":[["meitner","intersect"],["google","data center","datacenter"]]},
+    {"id":"news-caprock","label":"Aligned Project Caprock","query":"Aligned Project Caprock Abernathy data center","requiredAny":[["aligned","caprock"],["abernathy","hale county","texas"]]},
+    {"id":"news-meta-cheyenne","label":"Meta Cheyenne","query":"Meta Cheyenne Wyoming data center","requiredAny":[["meta"],["cheyenne","wyoming"],["data center","datacenter"]]},
+    {"id":"profile-vantage-frontier","label":"Vantage Frontier","query":"Vantage Frontier Shackelford County data center","requiredAny":[["vantage","frontier"],["shackelford","abilene","texas"]]},
+    {"id":"profile-meta-sarpy","label":"Meta Sarpy County","query":"Meta Sarpy County Nebraska data center","requiredAny":[["meta"],["sarpy","papillion","springfield","nebraska"],["data center","datacenter"]]},
+    {"id":"profile-meta-los-lunas","label":"Meta Los Lunas","query":"Meta Los Lunas New Mexico data center","requiredAny":[["meta"],["los lunas","valencia","new mexico"],["data center","datacenter"]]},
+    {"id":"profile-powerhouse-grand-prairie","label":"PowerHouse Grand Prairie","query":"PowerHouse Grand Prairie Ellis County data center","requiredAny":[["powerhouse","grand prairie"],["ellis county","texas","data center","datacenter"]]},
+    {"id":"profile-project-jupiter","label":"Project Jupiter Santa Teresa","query":"Project Jupiter Santa Teresa New Mexico data center","requiredAny":[["project jupiter","borderplex","stack infrastructure"],["santa teresa","doña ana","dona ana","new mexico"]]},
+    {"id":"profile-tesla-cortex","label":"Tesla Cortex / Giga Texas","query":"Tesla Cortex Giga Texas AI data center","requiredAny":[["tesla","cortex","giga texas"],["austin","texas","data center","datacenter","ai"]]},
+    {"id":"profile-meta-tulsa","label":"Meta Tulsa / Project Anthem","query":"Meta Project Anthem Tulsa data center","requiredAny":[["meta","project anthem"],["tulsa","oklahoma"],["data center","datacenter"]]},
+    {"id":"news-google-wilbarger","label":"Google Wilbarger County","query":"Google Wilbarger County Texas data center","requiredAny":[["google"],["wilbarger"]]},
+    {"id":"news-black-pearl","label":"Black Pearl Cipher / AWS","query":"Black Pearl Cipher AWS Winkler County data center","requiredAny":[["black pearl","cipher"],["aws","winkler","texas","data center","datacenter"]]}
+  ]
+}
