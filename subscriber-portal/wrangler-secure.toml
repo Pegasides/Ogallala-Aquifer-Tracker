@@ -1,0 +1,11 @@
+name = "ogallala-subscriber-portal"
+main = "src/secure-index.js"
+compatibility_date = "2026-09-10"
+workers_dev = true
+keep_vars = true
+
+[vars]
+STRIPE_PRICE_ID = "price_1UDtXDAhqvqGsdlQGboki05S"
+
+[observability]
+enabled = true
