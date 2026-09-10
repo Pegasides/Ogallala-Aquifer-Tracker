@@ -262,7 +262,7 @@ function layout(content, wide = false) {
     .card { display: block; min-height: 135px; padding: 22px; border: 1px solid #42534b; border-radius: 12px; color: inherit; background: #0b1713; text-decoration: none; }
     .card:hover, .card:focus-visible { border-color: #d6bb75; background: #12231d; outline: none; }
     .card p { margin: 0; color: #afbbb5; font-size: 15px; line-height: 1.45; }
-    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
     @media (max-width: 650px) { main { padding: 28px 22px; } .grid, .actions { grid-template-columns: 1fr; } }
   </style>
 </head>
@@ -306,10 +306,11 @@ function memberDashboard(subscription) {
       <a class="card" href="https://ogallalatracker.com/v3.4-community-toolkit.html"><h2>Community Tools</h2><p>Closed-loop, infrastructure and household planning resources.</p></a>
     </section>
     <div class="actions">
+      <a class="button" href="https://billing.stripe.com/p/login/00w5kCgzL0aT3Ca2Fa38400">Manage Billing</a>
       <a class="button" href="/members">Refresh Membership</a>
       <form method="post" action="/logout"><button class="secondary" type="submit">Sign Out</button></form>
     </div>
-    <p class="fine">This secure test doorway is active. Subscriber documents will be connected after access testing is complete.</p>
+    <p class="fine">Subscriber access is active. Use Manage Billing to update payment information, review invoices or cancel your subscription.</p>
   `, true);
 }
 
