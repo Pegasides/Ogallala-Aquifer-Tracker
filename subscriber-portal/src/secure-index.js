@@ -10,7 +10,7 @@ export default {
     if (request.method === "GET" && url.pathname === "/") {
       return htmlResponse(homePage());
     }
-    if (request.method === "POST" && url.pathname === "/checkout") {
+    if ((request.method === "GET" || request.method === "POST") && url.pathname === "/checkout") {
       return createCheckout(request, env);
     }
     if (request.method === "GET" && url.pathname === "/welcome") {
@@ -270,7 +270,7 @@ function homePage() {
     <p>Follow the aquifer, monitoring wells, AI data centers and the decisions shaping the High Plains.</p>
     <p class="price">$35 every three months</p>
     <p class="trial">Your first seven days are free.</p>
-    <form method="post" action="/checkout"><button type="submit">Start My 7-Day Free Trial</button></form>
+    <a class="button" href="/checkout">Start My 7-Day Free Trial</a>
     <p class="fine">A payment method is required. You will not be charged until the trial ends. Cancel before then to avoid a charge.</p>
   `);
 }
