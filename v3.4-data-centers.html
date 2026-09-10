@@ -19,6 +19,7 @@
 
 
 .news-list{display:grid;gap:9px}.news-item{display:block;text-decoration:none;border:1px solid #355469;border-radius:9px;background:#071824;padding:11px 12px}.news-item:hover{border-color:var(--gold);background:#0c2a3b}.news-meta{display:block;color:var(--gold);font-size:9px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}.news-item strong{display:block;margin:3px 0;color:#fff;font-size:12.5px;line-height:1.25}.news-item span:last-child{display:block;color:#9fb7c5;font-size:10.5px;line-height:1.3}.verification-alert{margin:0 0 12px;border-left:4px solid var(--amber);border-radius:8px;background:rgba(245,158,11,.1);padding:10px 12px;color:#ffe5b4;font-size:11px}.verification-alert strong{color:#ffd071}
+.daily-news{margin:0 0 14px;padding:12px;border:1px solid rgba(94,234,212,.38);border-radius:10px;background:rgba(94,234,212,.055)}.profile-pending .daily-news{margin:12px 0 0}.daily-news[hidden]{display:none}.daily-news-head{display:flex;justify-content:space-between;gap:10px;align-items:baseline;margin-bottom:8px}.daily-news-head strong{color:#b9fff4;font-size:11px;text-transform:uppercase;letter-spacing:.08em}.daily-news-head time{color:#8faab8;font-size:9px}.daily-news .news-list{gap:7px}.daily-news-empty{margin:0;color:#9fb7c5;font-size:10.5px;line-height:1.35}
 .library-map{margin-top:34px;border:2px solid rgba(242,198,109,.78);border-radius:18px;overflow:hidden;background:#06131d;box-shadow:var(--shadow)}.library-map-head{display:flex;justify-content:space-between;gap:18px;align-items:center;padding:17px 20px;background:linear-gradient(145deg,#10384a,#0b2736);border-bottom:1px solid rgba(94,234,212,.38)}.library-map-head h2{font-family:Arial,Helvetica,sans-serif;font-size:clamp(1.35rem,3vw,2rem);margin:0}.library-map-head p{margin:4px 0 0;color:#bfe5f2;font-size:12px}.library-map iframe{display:block;width:100%;aspect-ratio:4/3;min-height:520px;border:0;background:#04111a}@media(max-width:760px){.library-map-head{display:block}.library-map iframe{min-height:390px}}
 
 .power-comparison{margin-top:34px;border:2px solid rgba(94,234,212,.58);border-radius:18px;background:linear-gradient(145deg,#081c29,#0b2637);box-shadow:var(--shadow);overflow:hidden}.power-head{padding:20px;border-bottom:1px solid rgba(94,234,212,.28)}.power-head h2{font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.65rem,3.5vw,2.55rem);margin:0 0 7px}.power-head p{margin:0;color:var(--muted);font-size:12.5px;max-width:940px}.power-controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.power-controls button{border:1px solid #41667a;border-radius:8px;background:#102b3d;color:#dff7ff;padding:8px 12px;font:900 11px Arial;cursor:pointer}.power-controls button[aria-pressed="true"]{background:var(--aqua);border-color:var(--aqua);color:#06131d}.power-legend{display:flex;gap:14px;flex-wrap:wrap;padding:12px 20px;border-bottom:1px solid var(--line);color:#b9ccd8;font-size:10.5px}.power-legend span{display:inline-flex;align-items:center;gap:6px}.power-key{width:18px;height:8px;border-radius:999px;background:var(--aqua)}.power-key.context{background:repeating-linear-gradient(135deg,#f2c66d 0 4px,#8a6828 4px 8px)}.power-key.claim{background:repeating-linear-gradient(135deg,#f59e0b 0 3px,transparent 3px 6px);border:1px solid #f59e0b}.power-key.nd{background:#294251}.power-axis{display:grid;grid-template-columns:minmax(220px,2fr) minmax(320px,5fr) minmax(112px,1fr);gap:12px;align-items:end;padding:13px 20px 7px;color:#8fa9b8;font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.08em}.power-axis-scale{display:flex;justify-content:space-between}.power-rows{padding:0 20px 18px}.power-row{display:grid;grid-template-columns:minmax(220px,2fr) minmax(320px,5fr) minmax(112px,1fr);gap:12px;align-items:center;min-height:53px;border-top:1px solid rgba(188,218,235,.12);cursor:pointer}.power-row:hover{background:rgba(94,234,212,.045)}.power-name strong{display:block;font-size:11.5px;color:#fff}.power-name span{display:block;font-size:9.5px;color:#8fa9b8}.power-track{position:relative;height:17px;border-radius:999px;background:rgba(188,218,235,.11);overflow:visible}.power-bar{position:absolute;left:0;top:0;height:17px;min-width:4px;border-radius:999px;background:linear-gradient(90deg,#27c9b4,#5eead4);box-shadow:0 0 10px rgba(94,234,212,.2)}.power-bar.context{background:repeating-linear-gradient(135deg,#f2c66d 0 6px,#8a6828 6px 12px)}.power-bar.claim{background:repeating-linear-gradient(135deg,#f59e0b 0 5px,rgba(245,158,11,.18) 5px 10px);border:1px solid #f59e0b}.power-bar.nd{width:100%!important;min-width:0;background:linear-gradient(90deg,rgba(41,66,81,.7),rgba(41,66,81,.14));box-shadow:none}.power-value{font-size:10px;font-weight:900;color:#dffcf7;text-align:right}.power-value small{display:block;color:#8fa9b8;font-size:8.5px;font-weight:700;line-height:1.15}.power-note{margin:0 20px 18px;border-left:4px solid var(--gold);border-radius:8px;background:rgba(242,198,109,.08);padding:11px 13px;color:#d9e7ed;font-size:10.5px;line-height:1.45}.power-sources{padding:0 20px 20px;color:#91adbc;font-size:10px}.power-sources a{color:var(--aqua)}@media(max-width:760px){.power-axis{display:none}.power-row{grid-template-columns:1fr;gap:5px;padding:10px 0}.power-track{height:15px}.power-bar{height:15px}.power-value{text-align:left}.power-rows{padding:0 14px 14px}.power-head,.power-legend{padding-left:14px;padding-right:14px}}
@@ -367,9 +368,11 @@ function renderPowerRows(){
 }
 const profileTabs=[...document.querySelectorAll('.profile-tab')];
 const profilePending=document.getElementById('profilePending'),profilePendingTitle=document.getElementById('profilePendingTitle'),profilePendingDetail=document.getElementById('profilePendingDetail');
+let dailyFacilityProfiles={},currentPendingNewsId=null;
 function openFacilityProfile(profileId,shouldScroll=true){
   const panel=document.getElementById(profileId),tab=document.querySelector('[data-profile="'+profileId+'"]');
   if(!panel||!tab)return;
+  currentPendingNewsId=null;
   profilePending.hidden=true;
   profileTabs.forEach(button=>button.setAttribute('aria-selected','false'));
   document.querySelectorAll('.profile-panel').forEach(panel=>panel.classList.remove('active'));
@@ -385,12 +388,90 @@ window.addEventListener('message',event=>{
   document.querySelectorAll('.profile-panel').forEach(panel=>panel.classList.remove('active'));
   profilePendingTitle.textContent=event.data.name+' — profile image awaiting upload';
   profilePendingDetail.textContent=event.data.place+' · '+event.data.status+' · '+event.data.relation+'. This marker is now connected to the library; its full facility image, current government/news updates, and discussion area will appear here when that profile is added.';
+  currentPendingNewsId=event.data.newsProfile||null;
+  showPendingDailyNews();
   profilePending.hidden=false;
   document.getElementById('facility-library').scrollIntoView({behavior:'smooth',block:'start'});
 });
+function displayNewsDate(value){
+  if(!value)return '';
+  const date=new Date(value);
+  return Number.isNaN(date.getTime())?'':date.toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'});
+}
+function buildDailyNews(profile,emptyText='No newer facility-specific report matched today. The reviewed sources below remain available.'){
+  if(!profile?.checkedAt)return null;
+  const daily=document.createElement('section');
+  daily.className='daily-news';
+  daily.setAttribute('aria-label','Daily facility news update');
+  const head=document.createElement('div');
+  head.className='daily-news-head';
+  const heading=document.createElement('strong');
+  heading.textContent='Latest Daily Updates';
+  const checked=document.createElement('time');
+  checked.dateTime=profile.checkedAt;
+  checked.textContent='Checked '+displayNewsDate(profile.checkedAt);
+  head.append(heading,checked);
+  daily.append(head);
+  if(profile.items?.length){
+    const list=document.createElement('div');
+    list.className='news-list';
+    profile.items.forEach(item=>{
+      const link=document.createElement('a');
+      link.className='news-item';
+      link.href=item.url;
+      link.target='_blank';
+      link.rel='noopener';
+      const meta=document.createElement('span');
+      meta.className='news-meta';
+      meta.textContent=[displayNewsDate(item.publishedAt),item.source].filter(Boolean).join(' · ');
+      const title=document.createElement('strong');
+      title.textContent=item.title;
+      const note=document.createElement('span');
+      note.textContent='Open the newest matched report for this facility.';
+      link.append(meta,title,note);
+      list.append(link);
+    });
+    daily.append(list);
+  }else{
+    const empty=document.createElement('p');
+    empty.className='daily-news-empty';
+    empty.textContent=emptyText;
+    daily.append(empty);
+  }
+  return daily;
+}
+function addDailyNews(panel,profile){
+  const host=panel.querySelector('.facility-news');
+  const daily=buildDailyNews(profile);
+  if(!host||!daily)return;
+  const staticList=host.querySelector('.news-list');
+  host.insertBefore(daily,staticList||null);
+}
+function showPendingDailyNews(){
+  profilePending.querySelector('.daily-news')?.remove();
+  const daily=buildDailyNews(dailyFacilityProfiles[currentPendingNewsId],'No newer report matched this map location today.');
+  if(daily)profilePending.append(daily);
+}
+async function loadDailyFacilityNews(){
+  try{
+    const day=new Date().toISOString().slice(0,10);
+    const response=await fetch('data/facility-news.json?day='+day,{cache:'no-store'});
+    if(!response.ok)throw new Error('Facility news feed unavailable');
+    const feed=await response.json();
+    dailyFacilityProfiles=feed.profiles||{};
+    Object.entries(dailyFacilityProfiles).forEach(([profileId,profile])=>{
+      const panel=document.getElementById(profileId);
+      if(panel)addDailyNews(panel,profile);
+    });
+    if(currentPendingNewsId)showPendingDailyNews();
+  }catch(error){
+    console.warn('Daily facility news did not load; reviewed sources remain visible.',error);
+  }
+}
 document.getElementById('powerLogButton').addEventListener('click',()=>{powerScale='log';document.getElementById('powerLogButton').setAttribute('aria-pressed','true');document.getElementById('powerLinearButton').setAttribute('aria-pressed','false');renderPowerRows()});
 document.getElementById('powerLinearButton').addEventListener('click',()=>{powerScale='linear';document.getElementById('powerLinearButton').setAttribute('aria-pressed','true');document.getElementById('powerLogButton').setAttribute('aria-pressed','false');renderPowerRows()});
 renderPowerRows();
+loadDailyFacilityNews();
 </script>
 </body>
 </html>
