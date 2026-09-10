@@ -253,7 +253,8 @@ function layout(content, wide = false) {
     .fine { margin: 18px 0 0; color: #aeb8b2; font-size: 13px; }
     .verified { display: inline-block; margin: 0 0 22px; padding: 8px 12px; border-radius: 99px; color: #bff2ca; background: #173c27; font-size: 14px; font-weight: 800; }
     .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 28px 0; }
-    .card { min-height: 135px; padding: 22px; border: 1px solid #42534b; border-radius: 12px; background: #0b1713; }
+    .card { display: block; min-height: 135px; padding: 22px; border: 1px solid #42534b; border-radius: 12px; color: inherit; background: #0b1713; text-decoration: none; }
+    .card:hover, .card:focus-visible { border-color: #d6bb75; background: #12231d; outline: none; }
     .card p { margin: 0; color: #afbbb5; font-size: 15px; line-height: 1.45; }
     .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     @media (max-width: 650px) { main { padding: 28px 22px; } .grid, .actions { grid-template-columns: 1fr; } }
@@ -293,10 +294,10 @@ function memberDashboard(subscription) {
     <h1>Your Ogallala Tracker</h1>
     <p>Subscriber access has been confirmed directly with Stripe.</p>
     <section class="grid" aria-label="Subscriber resources">
-      <article class="card"><h2>Interactive Timeline</h2><p>Aquifer conditions and projections from 1950 through 2050.</p></article>
-      <article class="card"><h2>Data Center Watch</h2><p>The sourced daily reading list and facility developments.</p></article>
-      <article class="card"><h2>Monitoring Wells</h2><p>Community well records, trends and reference profiles.</p></article>
-      <article class="card"><h2>Community Tools</h2><p>Closed-loop, infrastructure and household planning resources.</p></article>
+      <a class="card" href="https://ogallalatracker.com/v3.4-map.html"><h2>Interactive Timeline</h2><p>Aquifer conditions and projections from 1950 through 2050.</p></a>
+      <a class="card" href="https://ogallalatracker.com/v3.4-data-center-watch.html"><h2>Data Center Watch</h2><p>The sourced daily reading list and facility developments.</p></a>
+      <a class="card" href="https://ogallalatracker.com/v3.4-groundwater-window.html"><h2>Monitoring Wells</h2><p>Community well records, trends and reference profiles.</p></a>
+      <a class="card" href="https://ogallalatracker.com/v3.4-community-toolkit.html"><h2>Community Tools</h2><p>Closed-loop, infrastructure and household planning resources.</p></a>
     </section>
     <div class="actions">
       <a class="button" href="/members">Refresh Membership</a>
