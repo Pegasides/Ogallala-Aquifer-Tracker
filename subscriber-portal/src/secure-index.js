@@ -99,11 +99,63 @@ async function completeCheckout(request, env) {
     return htmlResponse(accessProblemPage("This membership is not active."), 403);
   }
 
+  const email = checkout.customer_details?.email || checkout.customer_email;
+  let welcomeEmailSent = false;
+  if (email && env.RESEND_API_KEY) {
+    try {
+      welcomeEmailSent = await sendWelcomeEmail({
+        env,
+        email,
+        name: checkout.customer_details?.name,
+        origin: new URL(request.url).origin,
+        sessionId
+      });
+    } catch (error) {
+      console.error("Subscriber welcome email could not be sent.", error);
+    }
+  }
+
   const cookie = await createSessionCookie(env, {
     customer: customerId,
     subscription: subscriptionId
   });
-  return htmlResponse(welcomePage(), 200, { "Set-Cookie": cookie });
+  return htmlResponse(welcomePage(welcomeEmailSent), 200, { "Set-Cookie": cookie });
+}
+
+async function sendWelcomeEmail({ env, email, name, origin, sessionId }) {
+  const greeting = name ? `Hello ${escapeHtml(name)},` : "Hello,";
+  const portalUrl = `${origin}/members`;
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${env.RESEND_API_KEY}`,
+      "Content-Type": "application/json",
+      "Idempotency-Key": `ogallala-welcome-${sessionId}`
+    },
+    body: JSON.stringify({
+      from: "Ogallala Aquifer Tracker <welcome@members.ogallalatracker.com>",
+      to: [email],
+      subject: "Welcome to the Ogallala Aquifer Tracker",
+      html: `
+        <div style="font-family:Arial,Helvetica,sans-serif;line-height:1.6;color:#17201c;max-width:620px;margin:auto">
+          <p style="color:#80652f;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase">Ogallala Aquifer Tracker · Version 3.5</p>
+          <h1 style="font-family:Georgia,serif;color:#07110f">Welcome to the Tracker</h1>
+          <p>${greeting}</p>
+          <p>Your seven-day free trial has started. After the trial, your membership is $35 every three months unless you cancel.</p>
+          <p>Your subscription includes the interactive aquifer timeline, Data Center Watch, monitoring-well profiles, daily dispatches and community tools.</p>
+          <p><a href="${escapeHtml(portalUrl)}" style="display:inline-block;padding:14px 20px;border-radius:8px;background:#173c27;color:#fff;text-decoration:none;font-weight:700">Open the Subscriber Portal</a></p>
+          <p style="font-size:13px;color:#5c6761">You can manage payment information, invoices or cancellation from the Manage Billing button inside the subscriber portal.</p>
+          <p>Thank you for supporting clear, sourced information about the Ogallala Aquifer.</p>
+        </div>`,
+      text: `${name ? `Hello ${name},` : "Hello,"}\n\nYour seven-day free trial has started. After the trial, your membership is $35 every three months unless you cancel.\n\nOpen the Subscriber Portal: ${portalUrl}\n\nYou can manage payment information, invoices or cancellation from the Manage Billing button inside the subscriber portal.\n\nThank you for supporting clear, sourced information about the Ogallala Aquifer.`
+    })
+  });
+
+  if (!response.ok) {
+    console.error("Resend rejected the welcome email.", await response.text());
+    return false;
+  }
+  return true;
 }
 
 async function showMembers(request, env) {
@@ -226,6 +278,15 @@ function stripeKey(env) {
   return priceId === LIVE_PRICE_ID ? env.STRIPE_LIVE_SECRET_KEY : env.STRIPE_SECRET_KEY;
 }
 
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
 function expiredSessionCookie() {
   return `${SESSION_COOKIE}=; Max-Age=0; Path=/; HttpOnly; Secure; SameSite=Lax`;
 }
@@ -282,12 +343,13 @@ function homePage() {
   `);
 }
 
-function welcomePage() {
+function welcomePage(emailSent = false) {
   return layout(`
     <p class="eyebrow">Membership started</p>
     <span class="verified">Stripe membership verified</span>
     <h1>Welcome to the Tracker</h1>
     <p>Your seven-day free trial has started, and your secure subscriber session is ready.</p>
+    ${emailSent ? '<p class="trial">Your welcome email is on its way.</p>' : ""}
     <a class="button" href="/members">Enter Subscriber Portal</a>
   `);
 }
