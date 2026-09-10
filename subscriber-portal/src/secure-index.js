@@ -1,4 +1,5 @@
 const DEFAULT_PRICE_ID = "price_1UDtXDAhqvqGsdlQGboki05S";
+const LIVE_PRICE_ID = "price_1U8Px2AMeVp81lSLgQYvoSZR";
 const SESSION_COOKIE = "ogallala_member";
 const SESSION_SECONDS = 60 * 60 * 24 * 30;
 const ALLOWED_STATUSES = new Set(["active", "trialing"]);
@@ -28,7 +29,7 @@ export default {
 };
 
 async function createCheckout(request, env) {
-  if (!env.STRIPE_SECRET_KEY) return htmlResponse(setupPage(), 503);
+  if (!stripeKey(env)) return htmlResponse(setupPage(), 503);
 
   const origin = new URL(request.url).origin;
   const form = new URLSearchParams();
@@ -57,7 +58,7 @@ async function createCheckout(request, env) {
 }
 
 async function completeCheckout(request, env) {
-  if (!env.STRIPE_SECRET_KEY) return htmlResponse(setupPage(), 503);
+  if (!stripeKey(env)) return htmlResponse(setupPage(), 503);
 
   const sessionId = new URL(request.url).searchParams.get("session_id");
   if (!sessionId || !sessionId.startsWith("cs_")) {
@@ -106,7 +107,7 @@ async function completeCheckout(request, env) {
 }
 
 async function showMembers(request, env) {
-  if (!env.STRIPE_SECRET_KEY) return htmlResponse(setupPage(), 503);
+  if (!stripeKey(env)) return htmlResponse(setupPage(), 503);
 
   const session = await readSession(request, env);
   if (!session) {
@@ -137,7 +138,7 @@ async function stripeRequest(env, path, options = {}) {
   return fetch(`https://api.stripe.com${path}`, {
     ...options,
     headers: {
-      Authorization: `Bearer ${env.STRIPE_SECRET_KEY}`,
+      Authorization: `Bearer ${stripeKey(env)}`,
       ...(options.body ? { "Content-Type": "application/x-www-form-urlencoded" } : {}),
       ...(options.headers || {})
     }
@@ -151,7 +152,7 @@ async function createSessionCookie(env, member) {
     issued: now,
     expires: now + SESSION_SECONDS
   }));
-  const signature = await sign(payload, env.STRIPE_SECRET_KEY);
+  const signature = await sign(payload, stripeKey(env));
   return `${SESSION_COOKIE}=${payload}.${signature}; Max-Age=${SESSION_SECONDS}; Path=/; HttpOnly; Secure; SameSite=Lax`;
 }
 
@@ -164,7 +165,7 @@ async function readSession(request, env) {
   if (separator < 1) return null;
   const payload = value.slice(0, separator);
   const provided = value.slice(separator + 1);
-  const expected = await sign(payload, env.STRIPE_SECRET_KEY);
+  const expected = await sign(payload, stripeKey(env));
   if (!constantTimeEqual(provided, expected)) return null;
 
   try {
@@ -218,6 +219,11 @@ function parseCookies(header) {
     if (separator < 0) return [part.trim(), ""];
     return [part.slice(0, separator).trim(), part.slice(separator + 1).trim()];
   }));
+}
+
+function stripeKey(env) {
+  const priceId = env.STRIPE_PRICE_ID || DEFAULT_PRICE_ID;
+  return priceId === LIVE_PRICE_ID ? env.STRIPE_LIVE_SECRET_KEY : env.STRIPE_SECRET_KEY;
 }
 
 function expiredSessionCookie() {
