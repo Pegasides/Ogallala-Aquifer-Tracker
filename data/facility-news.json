@@ -1,34 +1,22 @@
 {
-  "generatedAt": "2026-09-12T15:33:33Z",
+  "generatedAt": "2026-09-13T16:19:15Z",
   "policy": "Automated candidates must match facility-specific identity and location terms. Curated evidence remains visible if no current match is found.",
   "profiles": {
     "profile-armstrong": {
       "label": "Google–Crusoe Goodnight / Project Llano",
-      "checkedAt": "2026-09-12T15:33:33Z",
+      "checkedAt": "2026-09-13T16:19:15Z",
       "items": [
         {
-          "title": "Crusoe plans $1 billion expansion of Google-linked data center ‘Project Llano’ - blockspace.media",
+          "title": "Crusoe plans $1 billion expansion of Google-linked data center ‘Project Llano’ - Blockspace Media",
           "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNUFJYdHlZUDdFYlpFcWx5WHlId2lZaDVMQl96TURzclFLT1VwWUxkWE5JVEF5Y243UGZDTDhsZGdRTW5iT0Voa1Q0OWI2YnlvX0lDNDJCZ2Y2Q0s5N3RkaVVfQTQ1YmxrYVVRb3htUWpDR2pDZlpEemNIU3JwZkZxMzFUZW5KV0U?oc=5",
-          "source": "blockspace.media",
+          "source": "Blockspace Media",
           "publishedAt": "2026-07-31T07:00:00Z"
-        },
-        {
-          "title": "Crusoe files for two more data centers at Goodnight Campus in Armstrong County, Texas - Data Center Dynamics",
-          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPcGJjaDMzVzkwX0RsdXhCUlBmYl9wVzBMQWtrSkhMa0Q1OUN5cjl5cGo5TUk5S2ZGTkJTLXFhWWJzMTNQMmJYNlh6MWFaWHkxQ0g0c2FXSUtBdEJ0TU03M1JnVENmWVA2S2JiVnRFSDFzVkhIVmVaaWhUUVRJTVRWMFVMR1U1dzlDbVZ4S095eVd3WDUtU3QwcFQxSnVIdDJ5N2xiQWNWbGUzU3FmSTFVZnJZYXg1S1ZfV19TY21KbVBrWDRUMGxR?oc=5",
-          "source": "Data Center Dynamics",
-          "publishedAt": "2026-07-30T07:00:00Z"
-        },
-        {
-          "title": "$29bn+ Goodnight Data Center in Armstrong, Texas Expands as Crusoe Files Two More Data Centers - Construction Review",
-          "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOV2hENVlvQTFKejNvZmltek14YmhOak9QbWpJQ0VpYTVibDdkSklaN0RneEQ3eDFwOTVLSEZQY1ZCdjUxdHdIUGw1cGRYVmFMWFpna25LSWpmTFp4dXlzNzYyN0lkT1d6MjY4NllUWU56dzNnNDFuRkJmT3hIY3A1VWhNZC1PX2ZDamlCbWtiNnlBcUI4UXFTYTFLZzg3bFR0WXI0ZWM0Tjd2a3VDYkV1SUtGZUFvcnREV3lXd0szYnhjSS1KMGFMaQ?oc=5",
-          "source": "Construction Review",
-          "publishedAt": "2026-07-30T07:00:00Z"
         }
       ]
     },
     "profile-dove-creek": {
       "label": "Beacon Dove Creek",
-      "checkedAt": "2026-09-12T15:33:33Z",
+      "checkedAt": "2026-09-13T16:19:15Z",
       "items": [
         {
           "title": "Dozens gather to discuss proposed Dove Creek data center - Yahoo",
@@ -52,29 +40,29 @@
     },
     "profile-beltline": {
       "label": "Beltline Energy",
-      "checkedAt": "2026-09-12T15:33:33Z",
+      "checkedAt": "2026-09-13T16:19:15Z",
       "items": []
     },
     "profile-cheyenne": {
       "label": "Microsoft Cheyenne",
-      "checkedAt": "2026-09-12T15:33:33Z",
+      "checkedAt": "2026-09-13T16:19:15Z",
       "items": [
         {
           "title": "Meta Spills Wastewater in Wyoming. A Week Later, Senator Lummis Sells Land to Microsoft for Another Data Center - Yahoo",
           "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOMVNJLURQa1NieXB6ZHJ5T0xPdHU3QVNrM19XazJCRU4tS2NsWndSdFdzdVMtZTZJMmtaU25UZlIwendkRkZmeURDSms3eDdqYmpjRmwyU1JfNUdwWDFSUjNnWnVpemt6cGxEZ3VheUNGN1JxanpkTlIxal83eE1MWTZ1Mnk2bGkwcEVQdFplXzZXdDA?oc=5",
           "source": "Yahoo",
-          "publishedAt": "2026-09-02T16:33:11Z"
+          "publishedAt": "2026-09-02T07:00:00Z"
         }
       ]
     },
     "profile-jade": {
       "label": "Project Jade / Project Tembo",
-      "checkedAt": "2026-09-12T15:33:33Z",
+      "checkedAt": "2026-09-13T16:19:15Z",
       "items": [
         {
-          "title": "Google, stepping in for Crusoe, pitches 700-acre data center campus to Laramie County - county17.com",
+          "title": "Google, stepping in for Crusoe, pitches 700-acre data center campus to Laramie County - County 17",
           "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPaXVtVkZQSGtFcHlwWGFnQmY3enRVUFk0WHpBaXIwdFY0TGhJWWNXaUlMMk5qZUVTUzVFZGhPaVpJc0xFbnVFanlBMEVRVTdlVlIwaWhmZUZQNmNKMzRhTUJkVGJfRlhfd0wwZ2ptb0oyN2FtT2V2aXJUTmFneDlzREZkU3BIS3hDMG9jOV9qa1lvaFhhUGF1UXAxUjZab2JPZjVweHI4TkxGNzJ4bnk1NmIyOVZIeGh0aF8yZGQtcVM4UWJPZlo1Tg?oc=5",
-          "source": "county17.com",
+          "source": "County 17",
           "publishedAt": "2026-09-11T13:04:48Z"
         },
         {
@@ -93,17 +81,17 @@
     },
     "profile-duos-amarillo": {
       "label": "Duos Edge AI Amarillo",
-      "checkedAt": "2026-09-12T15:33:33Z",
+      "checkedAt": "2026-09-13T16:19:15Z",
       "items": []
     },
     "news-duos-hereford": {
       "label": "Duos Edge AI Hereford",
-      "checkedAt": "2026-09-12T15:33:33Z",
+      "checkedAt": "2026-09-13T16:19:15Z",
       "items": []
     },
     "news-duos-lubbock": {
       "label": "Duos Edge AI Lubbock",
-      "checkedAt": "2026-09-12T15:33:33Z",
+      "checkedAt": "2026-09-13T16:19:15Z",
       "items": [
         {
           "title": "Duos Edge AI to Host Lubbock Edge Data Center Open House - Yahoo Finance",
@@ -115,7 +103,7 @@
     },
     "news-duos-dumas": {
       "label": "Duos Edge AI Dumas",
-      "checkedAt": "2026-09-12T15:33:33Z",
+      "checkedAt": "2026-09-13T16:19:15Z",
       "items": [
         {
           "title": "Duos Edge AI to Host Dumas Edge Data Center Open House - Stocktwits",
@@ -127,12 +115,12 @@
     },
     "profile-nebraska-sites": {
       "label": "Nebraska proposed data-center sites",
-      "checkedAt": "2026-09-12T15:33:33Z",
+      "checkedAt": "2026-09-13T16:19:15Z",
       "items": [
         {
-          "title": "Lancaster County halts plans for data center moratorium - Nebraska Public Media",
+          "title": "Lancaster County halts plans for data center moratorium - nebraskapublicmedia.org",
           "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPd2lXdXBTd3JZeURGdGVUTG5lR1Q4cXpRaVM4NFJFWDVYQ1lzd3M0bEtXZ3Y0VUM0bUItSXFHazF6M0p5M0JySzZzdUFhbS1Zb1NYMWRhZm9rVEd0dE9oQ0ViX05zdEVEX0pMRTRvVml5RllTb1l3QjA0WW1NNl8xQUEyTFc1bFowVlQ3eWd0S25ibEluRk9wSjRENDg2VUp5bXN2UzBqdDU1VWY5YXNN?oc=5",
-          "source": "Nebraska Public Media",
+          "source": "nebraskapublicmedia.org",
           "publishedAt": "2026-09-10T16:51:56Z"
         },
         {
@@ -151,7 +139,7 @@
     },
     "profile-matador": {
       "label": "Fermi America Project Matador",
-      "checkedAt": "2026-09-12T15:33:33Z",
+      "checkedAt": "2026-09-13T16:19:15Z",
       "items": [
         {
           "title": "Fermi announced $6.5 billion lease for massive AI campus at Amarillo - Oklahoma Energy Today",
@@ -160,9 +148,9 @@
           "publishedAt": "2026-08-12T07:00:00Z"
         },
         {
-          "title": "Fermi announces $6.5B lease agreement at Project Matador AI campus - amarillo.com",
+          "title": "Fermi announces $6.5B lease agreement at Project Matador AI campus - Amarillo Globe-News",
           "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxPSUdCTDhES2ZwVTB2c1RqNnRmX2FnWVd0Q3V2em9jNXN6dG9VXzA0OVl6TUpXQlFLTXM0UU15NldxS2NoSnc2c3RVS1ZaSWl6WmZST0hCZ1ZiQXRIZFZCY0hZZjVxUmRob25hWjVMU3RyT1p0ZmVSeEtmc0JIMlpkNnJQVk5wSHo2VmFBYlBJOGxCNTVrNjR6bF9XMzN3UXZqU3BPdXVISnZxTnBvb1VoZWFVWEsyWHBhdWRpbTZqcU9CNTBIbUF3eE9aZGUxRWxMc0wyTzZKSmpmbk5fSHBnTkdEMC0yT0RGVzVHdGFB?oc=5",
-          "source": "amarillo.com",
+          "source": "Amarillo Globe-News",
           "publishedAt": "2026-08-11T07:00:00Z"
         },
         {
@@ -175,18 +163,18 @@
     },
     "profile-triple-oak": {
       "label": "Triple Oak Home Range",
-      "checkedAt": "2026-09-12T15:33:33Z",
+      "checkedAt": "2026-09-13T16:19:15Z",
       "items": []
     },
     "profile-unnamed-panhandle": {
       "label": "Texas Panhandle data-center proposals",
-      "checkedAt": "2026-09-12T15:33:33Z",
+      "checkedAt": "2026-09-13T16:19:15Z",
       "items": [
         {
-          "title": "Fight over data centers shifts into overdrive as midterms get closer - abc7amarillo.com",
-          "url": "https://news.google.com/rss/articles/CBMioAJBVV95cUxPaWw2SVJ5NjhoV2dwZm1ic0FjWDVnY1kwMGs3NE1CN1V3ai11UlZoc0V2VDg4bk51RUl3bWRYTG5qRi1VeVpLODVpMkpFR2NiTGE1clJ1bzhXX1k1cEJTYlFrOWo1TWlCanA2MTEyeWhLVjB1WFZIZVlWNWR5NklEblp5OUJVNTVWVFdXVXVwNEdhTjk4S1ZUVGhUdU5YZ0xTdjRCR3JJUFJ2bXZIZUNuVWtVVFRMYnJJamtScWxFN0R5Zk50UFNWQ29WVzdVeGtKX3RSbUtNdWtKTTY2WEYzM2NwQUJMV3BNQk1HYVBaMDkyVm0zeC1VSlpkSWN3MmlDVDlhX1p3NzItU1p6UUxCbHNfRDlyLTJnT05GcHJXT2k?oc=5",
-          "source": "abc7amarillo.com",
-          "publishedAt": "2026-08-24T07:00:00Z"
+          "title": "InfraTech Capital Eyes $2.7B Amarillo Data Center Campus - Yahoo Finance",
+          "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQNmNLWnFZdFFKdGN2Q1JxRWdqeHhFR3paMmVVeFY1S0hIU25QN1hvYkJmeUQ3OVFxX3FyWUtnQWl2c3BxMnpnRXJuQ3daRnhmNEVObnZtTk1URkZ2QlhzQVV2ekRzUXhUZW9WZ2RydzRMOEM4NlItZ0h3YW4yd3l2X1JkeTlvUW53ZTZUQTVHMmJIT1U?oc=5",
+          "source": "Yahoo Finance",
+          "publishedAt": "2026-08-21T07:00:00Z"
         },
         {
           "title": "InfraTech Capital Advances $2.7 Billion Data Center Investment Initiative in Texas Panhandle - Business Wire",
@@ -204,54 +192,54 @@
     },
     "news-google-haskell": {
       "label": "Google Haskell County campuses",
-      "checkedAt": "2026-09-12T15:33:33Z",
+      "checkedAt": "2026-09-13T16:19:15Z",
       "items": []
     },
     "news-google-meitner": {
       "label": "Google–Intersect Meitner",
-      "checkedAt": "2026-09-12T15:33:33Z",
+      "checkedAt": "2026-09-13T16:19:15Z",
       "items": []
     },
     "news-caprock": {
       "label": "Aligned Project Caprock",
-      "checkedAt": "2026-09-12T15:33:33Z",
+      "checkedAt": "2026-09-13T16:19:15Z",
       "items": []
     },
     "news-meta-cheyenne": {
       "label": "Meta Cheyenne",
-      "checkedAt": "2026-09-12T15:33:33Z",
+      "checkedAt": "2026-09-13T16:19:15Z",
       "items": [
         {
           "title": "Meta Spills Wastewater in Wyoming. A Week Later, Senator Lummis Sells Land to Microsoft for Another Data Center - Yahoo",
           "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOMVNJLURQa1NieXB6ZHJ5T0xPdHU3QVNrM19XazJCRU4tS2NsWndSdFdzdVMtZTZJMmtaU25UZlIwendkRkZmeURDSms3eDdqYmpjRmwyU1JfNUdwWDFSUjNnWnVpemt6cGxEZ3VheUNGN1JxanpkTlIxal83eE1MWTZ1Mnk2bGkwcEVQdFplXzZXdDA?oc=5",
           "source": "Yahoo",
-          "publishedAt": "2026-09-02T16:33:11Z"
+          "publishedAt": "2026-09-02T07:00:00Z"
         }
       ]
     },
     "profile-vantage-frontier": {
       "label": "Vantage Frontier",
-      "checkedAt": "2026-09-12T15:33:33Z",
+      "checkedAt": "2026-09-13T16:19:15Z",
       "items": []
     },
     "profile-meta-sarpy": {
       "label": "Meta Sarpy County",
-      "checkedAt": "2026-09-12T15:33:33Z",
+      "checkedAt": "2026-09-13T16:19:15Z",
       "items": []
     },
     "profile-meta-los-lunas": {
       "label": "Meta Los Lunas",
-      "checkedAt": "2026-09-12T15:33:33Z",
+      "checkedAt": "2026-09-13T16:19:15Z",
       "items": []
     },
     "profile-powerhouse-grand-prairie": {
       "label": "PowerHouse Grand Prairie",
-      "checkedAt": "2026-09-12T15:33:33Z",
+      "checkedAt": "2026-09-13T16:19:15Z",
       "items": []
     },
     "profile-project-jupiter": {
       "label": "Project Jupiter Santa Teresa",
-      "checkedAt": "2026-09-12T15:33:33Z",
+      "checkedAt": "2026-09-13T16:19:15Z",
       "items": [
         {
           "title": "Project Jupiter in New Mexico: A Would-be Fossil Fuel Polluter for Decades to Come - earthworks.org",
@@ -275,7 +263,7 @@
     },
     "profile-tesla-cortex": {
       "label": "Tesla Cortex / Giga Texas",
-      "checkedAt": "2026-09-12T15:33:33Z",
+      "checkedAt": "2026-09-13T16:19:15Z",
       "items": [
         {
           "title": "Tesla advances Austin chip facility as Musk's Texas Terafab takes shape - Austin American-Statesman",
@@ -293,17 +281,17 @@
     },
     "profile-meta-tulsa": {
       "label": "Meta Tulsa / Project Anthem",
-      "checkedAt": "2026-09-12T15:33:33Z",
+      "checkedAt": "2026-09-13T16:19:15Z",
       "items": []
     },
     "news-google-wilbarger": {
       "label": "Google Wilbarger County",
-      "checkedAt": "2026-09-12T15:33:33Z",
+      "checkedAt": "2026-09-13T16:19:15Z",
       "items": []
     },
     "news-black-pearl": {
       "label": "Black Pearl Cipher / AWS",
-      "checkedAt": "2026-09-12T15:33:33Z",
+      "checkedAt": "2026-09-13T16:19:15Z",
       "items": [
         {
           "title": "Cipher Turns to Natural Gas for Data Center Power Expansion - Natural Gas Intelligence",
