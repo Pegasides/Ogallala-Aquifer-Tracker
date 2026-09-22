@@ -1,16 +1,35 @@
 {
-  "generatedAt": "2026-09-21T18:13:01Z",
+  "generatedAt": "2026-09-22T14:08:21.028Z",
   "policy": "Automated candidates must match facility-specific identity and location terms. Curated evidence remains visible if no current match is found.",
   "profiles": {
     "profile-armstrong": {
       "label": "Google–Crusoe Goodnight / Project Llano",
-      "checkedAt": "2026-09-21T18:13:01Z",
-      "items": []
+      "checkedAt": "2026-09-22T14:08:21.028Z",
+      "items": [
+        {
+          "publishedAt": "2026-09-21T07:00:00Z",
+          "source": "Office of the Texas Governor",
+          "title": "Texas pauses new data-center permits; no site-specific effect identified",
+          "url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits"
+        },
+        {
+          "publishedAt": "2026-09-20T07:00:00Z",
+          "source": "KFDA NewsChannel 10",
+          "title": "Crusoe and Google announce Armstrong County community open house",
+          "url": "https://www.newschannel10.com/video/2026/09/21/crusoe-google-host-community-open-house-about-claude-data-center-project/"
+        }
+      ]
     },
     "profile-dove-creek": {
       "label": "Beacon Dove Creek",
-      "checkedAt": "2026-09-21T18:13:01Z",
+      "checkedAt": "2026-09-22T14:08:21.028Z",
       "items": [
+        {
+          "publishedAt": "2026-09-21T07:00:00Z",
+          "source": "Office of the Texas Governor",
+          "title": "Texas pauses new data-center permits; no site-specific effect identified",
+          "url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits"
+        },
         {
           "title": "Dozens gather to discuss proposed Dove Creek data center - Yahoo",
           "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOcDdLYV9lZFF4UEtmMFFRTHhtbUItbXdCdXNyOXNUdkdUczFJWDlRdkVqblBwbmhrMEVYcXM3d2R6bGdueVYzeDJwSkdmcllXMWRPQm94djhIUVdVc3ozLUZKTVlJRHVULWVjb3FGTTU1VjdUdUxNbTU2VG1heXFwblJtMno2VWliZGsyVHhBc1BoRWM?oc=5",
@@ -21,12 +40,12 @@
     },
     "profile-beltline": {
       "label": "Beltline Energy",
-      "checkedAt": "2026-09-21T18:13:01Z",
+      "checkedAt": "2026-09-22T14:08:21.028Z",
       "items": []
     },
     "profile-cheyenne": {
       "label": "Microsoft Cheyenne",
-      "checkedAt": "2026-09-21T18:13:01Z",
+      "checkedAt": "2026-09-22T14:08:21.028Z",
       "items": [
         {
           "title": "Meta Spills Wastewater in Wyoming. A Week Later, Senator Lummis Sells Land to Microsoft for Another Data Center - Yahoo",
@@ -38,7 +57,7 @@
     },
     "profile-jade": {
       "label": "Project Jade / Project Tembo",
-      "checkedAt": "2026-09-21T18:13:01Z",
+      "checkedAt": "2026-09-22T14:08:21.028Z",
       "items": [
         {
           "title": "Google Project Tembo: Wyoming’s $50B AI Data Center - FourWeekMBA",
@@ -62,27 +81,55 @@
     },
     "profile-duos-amarillo": {
       "label": "Duos Edge AI Amarillo",
-      "checkedAt": "2026-09-21T18:13:01Z",
-      "items": []
+      "checkedAt": "2026-09-22T14:08:21.028Z",
+      "items": [
+        {
+          "publishedAt": "2026-09-21T07:00:00Z",
+          "source": "Office of the Texas Governor",
+          "title": "Texas pauses new data-center permits; no site-specific effect identified",
+          "url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits"
+        }
+      ]
     },
     "news-duos-hereford": {
       "label": "Duos Edge AI Hereford",
-      "checkedAt": "2026-09-21T18:13:01Z",
-      "items": []
+      "checkedAt": "2026-09-22T14:08:21.028Z",
+      "items": [
+        {
+          "publishedAt": "2026-09-21T07:00:00Z",
+          "source": "Office of the Texas Governor",
+          "title": "Texas pauses new data-center permits; no site-specific effect identified",
+          "url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits"
+        }
+      ]
     },
     "news-duos-lubbock": {
       "label": "Duos Edge AI Lubbock",
-      "checkedAt": "2026-09-21T18:13:01Z",
-      "items": []
+      "checkedAt": "2026-09-22T14:08:21.028Z",
+      "items": [
+        {
+          "publishedAt": "2026-09-21T07:00:00Z",
+          "source": "Office of the Texas Governor",
+          "title": "Texas pauses new data-center permits; no site-specific effect identified",
+          "url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits"
+        }
+      ]
     },
     "news-duos-dumas": {
       "label": "Duos Edge AI Dumas",
-      "checkedAt": "2026-09-21T18:13:01Z",
-      "items": []
+      "checkedAt": "2026-09-22T14:08:21.028Z",
+      "items": [
+        {
+          "publishedAt": "2026-09-21T07:00:00Z",
+          "source": "Office of the Texas Governor",
+          "title": "Texas pauses new data-center permits; no site-specific effect identified",
+          "url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits"
+        }
+      ]
     },
     "profile-nebraska-sites": {
       "label": "Nebraska proposed data-center sites",
-      "checkedAt": "2026-09-21T18:13:01Z",
+      "checkedAt": "2026-09-22T14:08:21.028Z",
       "items": [
         {
           "title": "Lancaster County halts plans for data center moratorium - Nebraska Public Media",
@@ -106,19 +153,19 @@
     },
     "profile-matador": {
       "label": "Fermi America Project Matador",
-      "checkedAt": "2026-09-21T18:13:01Z",
+      "checkedAt": "2026-09-22T14:08:21.028Z",
       "items": [
         {
-          "title": "Fermi announced $6.5 billion lease for massive AI campus at Amarillo - okenergytoday.com",
-          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPUDJSaDRjRml2YWd2THdMbXJIRzdRUWowTGV6T3lSX2dlR20xRnJ2OGJuaVJmVjRaTGdRZmJ5QUFBZEQ1bjlaYWFDWW5VWjkxNjI0NzdwckJZUHJ1b25jdUx0bm1YdFpGXzlqM3huZUd4NFN2eEJZVldxZ0lYN05yRVpUOFNxay0yNU1tYzNCajluQnJtNDFVdTBCdEZZbzctbVE0Wg?oc=5",
-          "source": "okenergytoday.com",
-          "publishedAt": "2026-08-12T07:00:00Z"
+          "publishedAt": "2026-09-21T07:00:00Z",
+          "source": "Office of the Texas Governor",
+          "title": "Texas pauses new data-center permits; no site-specific effect identified",
+          "url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits"
         },
         {
-          "title": "Fermi announces $6.5B lease agreement at Project Matador AI campus - Amarillo Globe-News",
-          "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxPSUdCTDhES2ZwVTB2c1RqNnRmX2FnWVd0Q3V2em9jNXN6dG9VXzA0OVl6TUpXQlFLTXM0UU15NldxS2NoSnc2c3RVS1ZaSWl6WmZST0hCZ1ZiQXRIZFZCY0hZZjVxUmRob25hWjVMU3RyT1p0ZmVSeEtmc0JIMlpkNnJQVk5wSHo2VmFBYlBJOGxCNTVrNjR6bF9XMzN3UXZqU3BPdXVISnZxTnBvb1VoZWFVWEsyWHBhdWRpbTZqcU9CNTBIbUF3eE9aZGUxRWxMc0wyTzZKSmpmbk5fSHBnTkdEMC0yT0RGVzVHdGFB?oc=5",
-          "source": "Amarillo Globe-News",
-          "publishedAt": "2026-08-11T07:00:00Z"
+          "publishedAt": "2026-09-18T07:00:00Z",
+          "source": "Fermi America",
+          "title": "Three gas turbines arrive at Project Matador; installation and operation not announced",
+          "url": "https://fermiamerica.com/first-power-generation-assets-arrive-at-project-matador/"
         },
         {
           "title": "Fermi signs agreement with TensorWave for up to 650MW of data center capacity at Project Matador site - Data Center Dynamics",
@@ -130,37 +177,37 @@
     },
     "profile-triple-oak": {
       "label": "Triple Oak Home Range",
-      "checkedAt": "2026-09-21T18:13:01Z",
+      "checkedAt": "2026-09-22T14:08:21.028Z",
       "items": []
     },
     "profile-unnamed-panhandle": {
       "label": "Texas Panhandle data-center proposals",
-      "checkedAt": "2026-09-21T18:13:01Z",
+      "checkedAt": "2026-09-22T14:08:21.028Z",
       "items": [
         {
-          "title": "Crusoe, Google to host community open house about Claude data center project - KFDA | NewsChannel 10 | Amarillo Texas",
-          "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPeGJxSUFFMkp0U29JYTN5QmZoYmJ5NUUyUUI3SkY1cUlhc3pHNmY2LXdqaUFuRW0wWDFRNEVsY1laNGhaVTU3X0lDeGpnbk44UnRvUUNRWEVBM29hcXAtZ2NzN3lBUmdXRmVUMmtWRWJCX09zWVQzT2RtdGM3NVVRcFhveGVwY0QzVEhKZEpGaFQyZXlmU1MtZHJBUnZfbzRuT3NKS2FnQ1YzZTVybHdWM0pYemtLNmdVUWhxb0RtWVdhMDVacFBfbVkxd29xcENL?oc=5",
-          "source": "KFDA | NewsChannel 10 | Amarillo Texas",
-          "publishedAt": "2026-09-21T02:56:54Z"
+          "publishedAt": "2026-09-21T07:00:00Z",
+          "source": "Office of the Texas Governor",
+          "title": "Texas pauses new data-center permits; no site-specific effect identified",
+          "url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits"
         },
         {
           "title": "InfraTech Capital Advances $2.7 Billion Data Center Investment Initiative in Texas Panhandle - Business Wire",
           "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOdG1xX3o0MEtFWGtrQmVXOWNfUVNNRTFIQ3lvRVdRY1doY1dEdGU4RFlHSXZOUndRQ1VHYUNkXy05Mzg2NldDelNyemd5U1o3VFhDeHQ2NE51cGRMYzBYeFZYanBzTVF4SFU1TDdYNzJaMmcxal80dG01OXVWbWlYUlh4a0E1YUVXdFZPc2NwdGFBODlVb3dWaFV2Qjc4eVBfcHgzYVVjaEdnSzRiUXVGelN5MjNfcGRzamY2bS0tNUdWZEc4T3BzYzI1SzBkam9OYUtQRlRkTWE5R1FYT3M2MmMtWnVkUQ?oc=5",
           "source": "Business Wire",
           "publishedAt": "2026-08-18T07:00:00Z"
-        },
-        {
-          "title": "Proposed $2.7 billion data center announced for Carson County - KFDA | NewsChannel 10 | Amarillo Texas",
-          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxORHJsSndZUjUweDVwb2RIczRxcE5hbTd6bDYtWlRxUTA5MU5haG5UUVNWNXNyN2xXTWFENE1iM1Q5cVAxcFIwQUtKeEVxTmZfSlB4UWx4TUR5TjBCZXFFSWx3bVE3bDE3czFrU005Q1Bpc1lsallERjZKNEw1bkhoVmpod0tQS2xCelpHc194UWFwXy1Fb1JvR3FiVTdlUdIBsgFBVV95cUxOQXVHVEhMX1BHa25jQTBtUVYySENsRG84ZE41YUxmVlhZTldLdC1PYkVvY3l3NjhsMTZieE90eEFCLW1DWENYdWgtYXhLZ3VNWHI3OGRBWWlJZDFwTnc3anhPNjBRZVFBVzFhdlNFUFYzZTUyT2dubFEtWDF3bThzanVzQk1BOU9wOTRiMHBxRG1DQWhlSHBOdFM3MWEtQkJtdmxza21LN3lrYjl1dU9zZ21B?oc=5",
-          "source": "KFDA | NewsChannel 10 | Amarillo Texas",
-          "publishedAt": "2026-08-18T07:00:00Z"
         }
       ]
     },
     "news-google-haskell": {
       "label": "Google Haskell County campuses",
-      "checkedAt": "2026-09-21T18:13:01Z",
+      "checkedAt": "2026-09-22T14:08:21.028Z",
       "items": [
+        {
+          "publishedAt": "2026-09-21T07:00:00Z",
+          "source": "Office of the Texas Governor",
+          "title": "Texas pauses new data-center permits; no site-specific effect identified",
+          "url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits"
+        },
         {
           "title": "WATCH Google gives over $6 million to Haskell-Stamford nonprofits - USA Today",
           "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQMnZfYzdoM01WLWVDWHAtbVBjalZmb2h5VGw3b3BiNTREclZaS3pJMnNHdEhOQk1uU2NTcktUcnFNQk8xQnRCN2lheHJrbm1PdWRWb1pUcGRxLW5TUWlnOEh0VzlNVG5JS3NwUkJsYTBkTk9tUmtibDliU3NkSVJqQkFWLWt4TmFkeGVYMzFSeFpzY05qek0wZlcya0VQUmlsWnNWY0xseE9iY0R0cjlaaERYUkFBTEFHWWQ0Vk1VY09tX1U?oc=5",
@@ -171,17 +218,31 @@
     },
     "news-google-meitner": {
       "label": "Google–Intersect Meitner",
-      "checkedAt": "2026-09-21T18:13:01Z",
-      "items": []
+      "checkedAt": "2026-09-22T14:08:21.028Z",
+      "items": [
+        {
+          "publishedAt": "2026-09-21T07:00:00Z",
+          "source": "Office of the Texas Governor",
+          "title": "Texas pauses new data-center permits; no site-specific effect identified",
+          "url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits"
+        }
+      ]
     },
     "news-caprock": {
       "label": "Aligned Project Caprock",
-      "checkedAt": "2026-09-21T18:13:01Z",
-      "items": []
+      "checkedAt": "2026-09-22T14:08:21.028Z",
+      "items": [
+        {
+          "publishedAt": "2026-09-21T07:00:00Z",
+          "source": "Office of the Texas Governor",
+          "title": "Texas pauses new data-center permits; no site-specific effect identified",
+          "url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits"
+        }
+      ]
     },
     "news-meta-cheyenne": {
       "label": "Meta Cheyenne",
-      "checkedAt": "2026-09-21T18:13:01Z",
+      "checkedAt": "2026-09-22T14:08:21.028Z",
       "items": [
         {
           "title": "Meta Spills Wastewater in Wyoming. A Week Later, Senator Lummis Sells Land to Microsoft for Another Data Center - Yahoo",
@@ -193,27 +254,41 @@
     },
     "profile-vantage-frontier": {
       "label": "Vantage Frontier",
-      "checkedAt": "2026-09-21T18:13:01Z",
-      "items": []
+      "checkedAt": "2026-09-22T14:08:21.028Z",
+      "items": [
+        {
+          "publishedAt": "2026-09-21T07:00:00Z",
+          "source": "Office of the Texas Governor",
+          "title": "Texas pauses new data-center permits; no site-specific effect identified",
+          "url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits"
+        }
+      ]
     },
     "profile-meta-sarpy": {
       "label": "Meta Sarpy County",
-      "checkedAt": "2026-09-21T18:13:01Z",
+      "checkedAt": "2026-09-22T14:08:21.028Z",
       "items": []
     },
     "profile-meta-los-lunas": {
       "label": "Meta Los Lunas",
-      "checkedAt": "2026-09-21T18:13:01Z",
+      "checkedAt": "2026-09-22T14:08:21.028Z",
       "items": []
     },
     "profile-powerhouse-grand-prairie": {
       "label": "PowerHouse Grand Prairie",
-      "checkedAt": "2026-09-21T18:13:01Z",
-      "items": []
+      "checkedAt": "2026-09-22T14:08:21.028Z",
+      "items": [
+        {
+          "publishedAt": "2026-09-21T07:00:00Z",
+          "source": "Office of the Texas Governor",
+          "title": "Texas pauses new data-center permits; no site-specific effect identified",
+          "url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits"
+        }
+      ]
     },
     "profile-project-jupiter": {
       "label": "Project Jupiter Santa Teresa",
-      "checkedAt": "2026-09-21T18:13:01Z",
+      "checkedAt": "2026-09-22T14:08:21.028Z",
       "items": [
         {
           "title": "New Mexico Supreme Court allows Project Jupiter permit proceedings to advance - Santa Fe New Mexican",
@@ -237,42 +312,43 @@
     },
     "profile-tesla-cortex": {
       "label": "Tesla Cortex / Giga Texas",
-      "checkedAt": "2026-09-21T18:13:01Z",
+      "checkedAt": "2026-09-22T14:08:21.028Z",
       "items": [
         {
-          "title": "Forget AI Hyperscalers: Tesla May Own the Most Valuable AI Application - AOL.com",
-          "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOSDMyLXZJZFJGWGZ2NTFzXzdtMU5kMEVWMDN4T2tnTEFJNVhiQkRpb2phZHZ1R1NmWUZmWUhwUzQ2UUdSUUtrdGZwbUhlZ3EwTDFhM1RUSEFYbDFVcDF6TXB5N3U1RnE2OVhyMlpXeVRVZmlJeEtkak9zek9zWU9YV0x3?oc=5",
-          "source": "AOL.com",
-          "publishedAt": "2026-09-18T12:36:41Z"
-        },
-        {
-          "title": "Tesla advances Austin chip facility as Musk's Texas Terafab takes shape - Austin American-Statesman",
-          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQZ2ZnNlUxZTNLRlZOX2JwZ19Ud2dMQmJlMHk2ZEVxUDhVRzVvZXFQTzJHUml5R1ZSbFpaYVZVS3J6dTVrT09TUHp2TWI5S01mT2VKajNaWFhhLThfU1FSS2hsOVFWZHVKamt2Y3RfSW9WOElaRGVtY3RVaGstaUh3OVR1dHRYdWVjT0lQdDlFZVhycGJSZDNleXVB?oc=5",
-          "source": "Austin American-Statesman",
-          "publishedAt": "2026-09-01T07:00:00Z"
-        },
-        {
-          "title": "Tesla files for 3 new semiconductor facilities at Giga Texas campus - Yahoo Finance",
-          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQN1Q5WEhRS19yVTd6bWd6NldJREtSNE9TYWRIcENTeHZsM1lNOW5mVzlKQkNBU0RNZktXVkphNElvTDVqR0RwODBHbEp2Ylc3cll1SDJDbGxqVnc5UUl1ZWdkTTVSWVlDTm9zNkVzdzFacTh5bWlvNmo1M0tLQkJVUmhteHFUVDlkMk9jSkY4MVNBaUVUVFB0aDBLeE1DVjdT?oc=5",
-          "source": "Yahoo Finance",
-          "publishedAt": "2026-08-27T07:00:00Z"
+          "publishedAt": "2026-09-21T07:00:00Z",
+          "source": "Office of the Texas Governor",
+          "title": "Texas pauses new data-center permits; no site-specific effect identified",
+          "url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits"
         }
       ]
     },
     "profile-meta-tulsa": {
       "label": "Meta Tulsa / Project Anthem",
-      "checkedAt": "2026-09-21T18:13:01Z",
+      "checkedAt": "2026-09-22T14:08:21.028Z",
       "items": []
     },
     "news-google-wilbarger": {
       "label": "Google Wilbarger County",
-      "checkedAt": "2026-09-21T18:13:01Z",
-      "items": []
+      "checkedAt": "2026-09-22T14:08:21.028Z",
+      "items": [
+        {
+          "publishedAt": "2026-09-21T07:00:00Z",
+          "source": "Office of the Texas Governor",
+          "title": "Texas pauses new data-center permits; no site-specific effect identified",
+          "url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits"
+        }
+      ]
     },
     "news-black-pearl": {
       "label": "Black Pearl Cipher / AWS",
-      "checkedAt": "2026-09-21T18:13:01Z",
+      "checkedAt": "2026-09-22T14:08:21.028Z",
       "items": [
+        {
+          "publishedAt": "2026-09-21T07:00:00Z",
+          "source": "Office of the Texas Governor",
+          "title": "Texas pauses new data-center permits; no site-specific effect identified",
+          "url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits"
+        },
         {
           "title": "Cipher Turns to Natural Gas for Data Center Power Expansion - Natural Gas Intelligence",
           "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNbkxzQzNILUZnbndvbXBTRmF6SzFlbXRzQ3M5VEJweE1CY281T3B5QV9CUjZ6dFdHOEpwTGJBdHhYZWhNREIzdWN2ZGV0eVZFZVZHemtnMXVPZlk0cXlMcW53NU94VEU1ZWRzMDZOeFhiZTJ6NFNjdXM4N29WS0dXR1ktZnI4VHZCd1NfU05tY0dpNDV5V2FRYw?oc=5",
