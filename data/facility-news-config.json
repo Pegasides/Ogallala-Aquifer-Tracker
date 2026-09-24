@@ -2,7 +2,7 @@
   "lookbackDays": 45,
   "maxItemsPerProfile": 3,
   "profiles": [
-    {"id":"profile-armstrong","label":"Google–Crusoe Goodnight / Project Llano","query":"(Goodnight OR Llano) Armstrong County data center","requiredAny":[["goodnight","llano","armstrong"],["data center","datacenter","google","crusoe"]]},
+    {"id":"profile-armstrong","label":"Google–Crusoe Goodnight / Project Llano","query":"(Goodnight OR Llano) Armstrong County data center","requiredAny":[["goodnight","llano","armstrong"],["data center","datacenter","google","crusoe"]],"curatedItems":[{"title":"Open house held as data center impact concerns grow in Armstrong County - KVII","url":"https://abc7amarillo.com/news/local/open-house-held-as-data-center-impact-concerns-grow-in-armstrong-county-project-llano-google-crusoe","source":"KVII","publishedAt":"2026-09-23T03:57:00Z"}]},
     {"id":"profile-dove-creek","label":"Beacon Dove Creek","query":"Beacon Dove Creek data center San Angelo","requiredAny":[["dove creek","beacon"],["data center","datacenter","san angelo","tom green"]]},
     {"id":"profile-beltline","label":"Beltline Energy","query":"Beltline data center Yukon Oklahoma","requiredAny":[["beltline"],["data center","datacenter","yukon","oklahoma"]]},
     {"id":"profile-cheyenne","label":"Microsoft Cheyenne","query":"Microsoft Cheyenne Wyoming data center","requiredAny":[["microsoft"],["cheyenne","wyoming"],["data center","datacenter"]]},
