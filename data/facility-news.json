@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-09-24T14:05:30Z",
+  "generatedAt": "2026-09-24T17:13:05Z",
   "policy": "Automated candidates must match facility-specific identity and location terms. Curated evidence remains visible if no current match is found.",
   "profiles": {
     "profile-armstrong": {
       "label": "Google–Crusoe Goodnight / Project Llano",
-      "checkedAt": "2026-09-24T14:05:30Z",
+      "checkedAt": "2026-09-24T17:13:05Z",
       "items": [
         {
           "title": "Open house held as data center impact concerns grow in Armstrong County - KVII",
@@ -16,7 +16,7 @@
     },
     "profile-dove-creek": {
       "label": "Beacon Dove Creek",
-      "checkedAt": "2026-09-23T17:02:29Z",
+      "checkedAt": "2026-09-24T17:13:05Z",
       "items": [
         {
           "title": "Dozens gather to discuss proposed Dove Creek data center - Yahoo",
@@ -28,12 +28,12 @@
     },
     "profile-beltline": {
       "label": "Beltline Energy",
-      "checkedAt": "2026-09-23T17:02:29Z",
+      "checkedAt": "2026-09-24T17:13:05Z",
       "items": []
     },
     "profile-cheyenne": {
       "label": "Microsoft Cheyenne",
-      "checkedAt": "2026-09-23T17:02:29Z",
+      "checkedAt": "2026-09-24T17:13:05Z",
       "items": [
         {
           "title": "Meta Spills Wastewater in Wyoming. A Week Later, Senator Lummis Sells Land to Microsoft for Another Data Center - Yahoo",
@@ -45,7 +45,7 @@
     },
     "profile-jade": {
       "label": "Project Jade / Project Tembo",
-      "checkedAt": "2026-09-23T17:02:29Z",
+      "checkedAt": "2026-09-24T17:13:05Z",
       "items": [
         {
           "title": "Google Project Tembo: Wyoming’s $50B AI Data Center - FourWeekMBA",
@@ -55,59 +55,59 @@
         },
         {
           "title": "Google outlines $17B Project Tembo data center campus planned for Laramie County - WyomingNews.com",
-          "url": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxOeExRTXpwUFFOazJIQ2dPQU13dlpjQTIzczdYcjBpMWxNcHF6M3J5Y0FuY0pFakQ1LWdmUGZsMWl2UlZ6SG83dmtjbEY3MXdVR1E5ek9IWXloQ0pGU3gwR0M5SjVuTUYwTXpCbDN0STdkX2VrTHEwQzhNN3ZWWDBNRGJNbExpeGlOaGlyNmlGNDg0VUNzQW92OHBMXzZSNFZhQy1fNWNNSUhyYzBTVjRFbjJrWkZyMnpMRVNIdmdyR1BLQnJpWkZyNy0xWlBSNWx3WkVZOG9qSWNhZ0lmUXNOUVRUYnJCd180Vy15QjJZaXNiTkg4cTVQaXVFbVp0dmZ5RGxDUHlyYS1NMms?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxQQkxzTzJINEp5QzJ5VEM1VnRRU3l4X1NWSnhiN0piSnI5NHdDY2tqWHh0YUJON2FxU1U0bTUySUpoaHp5cHQwVnEyT0JCa19qUmJpb3R6eDJrSEI1N3ptdEVOOWVmdG1xMnkzdHl0TDlmLXBha3RKVVJCXzByQ2I4SXhsblhJNTVKc0dqejFiT0VkWEktVkZoRjlNYjBYRzZrSVZfOVJnUzBlaG5jU0VsTHpoQmNVMEw0U0MyYXFHdWVhVjJOTEs3OXEyX0VvS2ZuUVMxdXUyRUlJRnJQZkVUT2hxSVNrYXoyRmJ6MHJWQ1dKWGE4OTZqUVFrVWJYVlEwTzNZ?oc=5",
           "source": "WyomingNews.com",
-          "publishedAt": "2026-09-12T07:00:00Z"
+          "publishedAt": "2026-09-10T07:00:00Z"
         }
       ]
     },
     "profile-duos-amarillo": {
       "label": "Duos Edge AI Amarillo",
-      "checkedAt": "2026-09-23T17:02:29Z",
+      "checkedAt": "2026-09-24T17:13:05Z",
       "items": []
     },
     "news-duos-hereford": {
       "label": "Duos Edge AI Hereford",
-      "checkedAt": "2026-09-23T17:02:29Z",
+      "checkedAt": "2026-09-24T17:13:05Z",
       "items": []
     },
     "news-duos-lubbock": {
       "label": "Duos Edge AI Lubbock",
-      "checkedAt": "2026-09-23T17:02:29Z",
+      "checkedAt": "2026-09-24T17:13:05Z",
       "items": []
     },
     "news-duos-dumas": {
       "label": "Duos Edge AI Dumas",
-      "checkedAt": "2026-09-23T17:02:29Z",
+      "checkedAt": "2026-09-24T17:13:05Z",
       "items": []
     },
     "profile-nebraska-sites": {
       "label": "Nebraska proposed data-center sites",
-      "checkedAt": "2026-09-23T17:02:29Z",
+      "checkedAt": "2026-09-24T17:13:05Z",
       "items": [
         {
-          "title": "Southeast Nebraska county extends data center moratorium - Omaha World-Herald",
-          "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPeXpKdWlSTUdQcEZIRWhrRGRsYXM5SFdVNVlsNUlxNVRINXpjQ1ZLYk1BR2NNcGdEXzlvU05nX3pJeVludVdLbGpjSTBkOUZWR19kQ0FnOTB5Y3gzUjAzcW4xVWdkblJxTVNWVUd0VW5hZWg1M0tMM0puRVc3d1MzZlVUa2VIdERYT0Rselp6WG4?oc=5",
-          "source": "Omaha World-Herald",
-          "publishedAt": "2026-09-18T08:16:12Z"
+          "title": "Free public forum in Omaha Thursday night examines Nebraska data center energy and water impacts - KMTV 3 News Now Omaha",
+          "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOZ2R4Z1lSRktaaEhMYjN3eE9ZbjdlTEpXTXl0aE9YRmhWX3YteU9LckVLNmJ3LU9SN2Q3S3hDN1RqWjZUeTVzVUU3MnlaQXJkOHItRlJmVXEwVVZWYUZtRTFNbmFuRHdIRExzWGtSUHlsR1dCcUdiRWxVNExwckNBdnlla2lnMmJIanVjNW11c09uRUxfVUlxVnE0bTd0b0R2NVpvYWJackVCLWRmdGJV?oc=5",
+          "source": "KMTV 3 News Now Omaha",
+          "publishedAt": "2026-09-24T15:32:34Z"
         },
         {
-          "title": "Lancaster County halts plans for data center moratorium - Nebraska Public Media",
-          "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPd2lXdXBTd3JZeURGdGVUTG5lR1Q4cXpRaVM4NFJFWDVYQ1lzd3M0bEtXZ3Y0VUM0bUItSXFHazF6M0p5M0JySzZzdUFhbS1Zb1NYMWRhZm9rVEd0dE9oQ0ViX05zdEVEX0pMRTRvVml5RllTb1l3QjA0WW1NNl8xQUEyTFc1bFowVlQ3eWd0S25ibEluRk9wSjRENDg2VUp5bXN2UzBqdDU1VWY5YXNN?oc=5",
+          "title": "Data center development, jail overcrowding highlighted at Lancaster County candidate forum - Nebraska Public Media",
+          "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxNWjdQOUZQM2piRlRzXzhKTmZoRkxkUXd6cWxyRXZDa0ZoclJsWVNNTXJCMGJUSTZJLW54Rl83VmRZdkNJOGhhcWg2ZUVSWUc1eUZmYTdOaDhPMGE5MmlYMExQdVJBT0RxSUZiX3IzOXdVd09OYzNsVDRGZnRWc19kRmVtazFIMHoxUTBrQ1MySk9keXlNQkJfZ0d0R1JoTlhVcnJjeDVBQktWZk94STVFenNjRjI3ZzR3TUNsZDJRZW5yZVFVYVBNaDgzZ3lXa09HTnFacFJjZDFjTTQy?oc=5",
           "source": "Nebraska Public Media",
-          "publishedAt": "2026-09-10T07:00:00Z"
+          "publishedAt": "2026-09-23T07:00:00Z"
         },
         {
-          "title": "Winnebago Tribe of Nebraska offers information on proposed data center project - KTIV",
-          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOT2tBZmxfbjJLbkdaUk05aXhBWjRCRGtqS2o1ZENzMjk5QmRKU1l6QVBKSjRIN0N0Z2dxbGhma24ycFg0aFlQVU9GT0I0MUhIb1RhZkh2X1BGaWh2MG9JTWF6aTg1V1p3ZlBaRzR3RWNyX1J5T29EbllBajNWLWZteUhiSzhRTmxTZFRFUXlSeHVNWERkSG9YdWZEX3FsZU5zNlJCZ1c1VHk1ZXdTaUhiRQ?oc=5",
-          "source": "KTIV",
-          "publishedAt": "2026-09-10T04:06:00Z"
+          "title": "Kearney poised to go all in on data centers even as many Nebraska towns throttle back - Hastings Tribune",
+          "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxORFRXU0dOV1NJZmhtZ3NiSkppcWpuV0J3X1RMY3RidVZGUmIwRTZtLTZuRUh0Q2ZsTl9Zb0JuR0ZQck5rYng1VHBWOEhXbUNfUjB5cU5nQ2dVQ09tcWdmNWtSTUtvWjcyX05vX2xKTHc1SEFrQzA1dEFISzg5dEs0LWFoazBTY1dfcjkxQVh6N2hYVDllT1NsSjZUQmQwZEhZdmVjT3h5Z2x0T3ZGVVFoRHpVY2VibDA5TVVTd3dsQlQ5Wll5YXhqZ00zT29INFBXYktueVlsOWhSME42QjZ6d3g5MmZHVjdCR3o4YVlYelNkeEZi?oc=5",
+          "source": "Hastings Tribune",
+          "publishedAt": "2026-09-18T04:16:00Z"
         }
       ]
     },
     "profile-matador": {
       "label": "Fermi America Project Matador",
-      "checkedAt": "2026-09-23T17:02:29Z",
+      "checkedAt": "2026-09-24T17:13:05Z",
       "items": [
         {
           "title": "Fermi announces $6.5B lease agreement at Project Matador AI campus - Amarillo Globe-News",
@@ -120,23 +120,17 @@
           "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxNbVFDYkhkUmJ0MlhjWGNtME9DNDZlQ29wRVhLY1c1N0VqdmN1cmlVbTU5Z3FGcTQ0UzhULUlHVWJtd3V1ZnZfRlZnVDlPR0FENmV3ZFZYVy1uUGJQNWdtRW1zTUhWVHN5OGFLOHlzdDBHbjl1WDdWNG1TTnJpUUFXSHB6a2xsY2FHRmJyTE1mRU8tZF9ab0lxZUNBM0JvakhNeWhYMEh5UERPWHB3TDRaZVNMTlBXR1Q1dHo5UDVPcXVjX2ttMFY1MlZMSEowcGUxTkVyZkg3M3ZGSTlSQ3c?oc=5",
           "source": "Data Center Dynamics",
           "publishedAt": "2026-08-11T07:00:00Z"
-        },
-        {
-          "title": "Fermi signs $6.5 billion lease for 'world's largest data center' after months of turmoil - KVII",
-          "url": "https://news.google.com/rss/articles/CBMixgJBVV95cUxQaUJxVTFWOWE0ZUZvS1JqQ0hvR0UzVUtwOHdzVXFMMXQyUmpqWjFrOV9xdVdfeXZlZWxjWDQwUmFkNHhVTVRnWDVxWmdLajQ3NWw4cTdJVjRnbTY4NFhKWGNhVDN2cUJVM21jY0xSZ0IzNk1nV2YyQzJFSnJVZVdJejhKV1dRdTZmbmxydWQxbUVFM3YyNzVNQUJDbXVKZXZPZnNCS2hLT3BZaFlEYkdwX0hzRmdBSzdORFNVa1A4WkwzcG85UGt2U2tQRGZXVHRnRXQ4enVvTUhucmZnSVUxUFFVRVZGYkZRcDFUQkljeUhIOUVGVE1XdXA3cFM3N1d3ak1YdGZQMUFGZzVkdXBZd2Vhc0dJc0l5aDBBNnZxQnNQdHhHYXBNT0NFVjh4aEpVMU5xZ3NEVG51LVhlUWtodUxSdm9rUQ?oc=5",
-          "source": "KVII",
-          "publishedAt": "2026-08-10T07:00:00Z"
         }
       ]
     },
     "profile-triple-oak": {
       "label": "Triple Oak Home Range",
-      "checkedAt": "2026-09-23T17:02:29Z",
+      "checkedAt": "2026-09-24T17:13:05Z",
       "items": []
     },
     "profile-unnamed-panhandle": {
       "label": "Texas Panhandle data-center proposals",
-      "checkedAt": "2026-09-23T17:02:29Z",
+      "checkedAt": "2026-09-24T17:13:05Z",
       "items": [
         {
           "title": "InfraTech Capital Advances $2.7 Billion Data Center Investment Initiative in Texas Panhandle - Business Wire",
@@ -154,22 +148,22 @@
     },
     "news-google-haskell": {
       "label": "Google Haskell County campuses",
-      "checkedAt": "2026-09-23T17:02:29Z",
+      "checkedAt": "2026-09-24T17:13:05Z",
       "items": []
     },
     "news-google-meitner": {
       "label": "Google–Intersect Meitner",
-      "checkedAt": "2026-09-23T17:02:29Z",
+      "checkedAt": "2026-09-24T17:13:05Z",
       "items": []
     },
     "news-caprock": {
       "label": "Aligned Project Caprock",
-      "checkedAt": "2026-09-23T17:02:29Z",
+      "checkedAt": "2026-09-24T17:13:05Z",
       "items": []
     },
     "news-meta-cheyenne": {
       "label": "Meta Cheyenne",
-      "checkedAt": "2026-09-23T17:02:29Z",
+      "checkedAt": "2026-09-24T17:13:05Z",
       "items": [
         {
           "title": "Meta Spills Wastewater in Wyoming. A Week Later, Senator Lummis Sells Land to Microsoft for Another Data Center - Yahoo",
@@ -181,27 +175,27 @@
     },
     "profile-vantage-frontier": {
       "label": "Vantage Frontier",
-      "checkedAt": "2026-09-23T17:02:29Z",
+      "checkedAt": "2026-09-24T17:13:05Z",
       "items": []
     },
     "profile-meta-sarpy": {
       "label": "Meta Sarpy County",
-      "checkedAt": "2026-09-23T17:02:29Z",
+      "checkedAt": "2026-09-24T17:13:05Z",
       "items": []
     },
     "profile-meta-los-lunas": {
       "label": "Meta Los Lunas",
-      "checkedAt": "2026-09-23T17:02:29Z",
+      "checkedAt": "2026-09-24T17:13:05Z",
       "items": []
     },
     "profile-powerhouse-grand-prairie": {
       "label": "PowerHouse Grand Prairie",
-      "checkedAt": "2026-09-23T17:02:29Z",
+      "checkedAt": "2026-09-24T17:13:05Z",
       "items": []
     },
     "profile-project-jupiter": {
       "label": "Project Jupiter Santa Teresa",
-      "checkedAt": "2026-09-23T17:02:29Z",
+      "checkedAt": "2026-09-24T17:13:05Z",
       "items": [
         {
           "title": "Doña Ana commissioners may name members to Project Jupiter oversight committee today - KFOX",
@@ -225,7 +219,7 @@
     },
     "profile-tesla-cortex": {
       "label": "Tesla Cortex / Giga Texas",
-      "checkedAt": "2026-09-23T17:02:29Z",
+      "checkedAt": "2026-09-24T17:13:05Z",
       "items": [
         {
           "title": "Tesla advances Austin chip facility as Musk's Texas Terafab takes shape - Austin American-Statesman",
@@ -243,22 +237,22 @@
     },
     "profile-meta-tulsa": {
       "label": "Meta Tulsa / Project Anthem",
-      "checkedAt": "2026-09-23T17:02:29Z",
+      "checkedAt": "2026-09-24T17:13:05Z",
       "items": []
     },
     "news-google-wilbarger": {
       "label": "Google Wilbarger County",
-      "checkedAt": "2026-09-23T17:02:29Z",
+      "checkedAt": "2026-09-24T17:13:05Z",
       "items": []
     },
     "news-black-pearl": {
       "label": "Black Pearl Cipher / AWS",
-      "checkedAt": "2026-09-23T17:02:29Z",
+      "checkedAt": "2026-09-24T17:13:05Z",
       "items": [
         {
-          "title": "Cipher Turns to Natural Gas for Data Center Power Expansion - Natural Gas Intelligence",
+          "title": "Cipher Turns to Natural Gas for Data Center Power Expansion - naturalgasintel.com",
           "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNbkxzQzNILUZnbndvbXBTRmF6SzFlbXRzQ3M5VEJweE1CY281T3B5QV9CUjZ6dFdHOEpwTGJBdHhYZWhNREIzdWN2ZGV0eVZFZVZHemtnMXVPZlk0cXlMcW53NU94VEU1ZWRzMDZOeFhiZTJ6NFNjdXM4N29WS0dXR1ktZnI4VHZCd1NfU05tY0dpNDV5V2FRYw?oc=5",
-          "source": "Natural Gas Intelligence",
+          "source": "naturalgasintel.com",
           "publishedAt": "2026-09-04T07:00:00Z"
         }
       ]
