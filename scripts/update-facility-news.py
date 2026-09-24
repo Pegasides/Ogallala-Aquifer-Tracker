@@ -95,6 +95,15 @@ def build() -> int:
     for index, profile in enumerate(config["profiles"]):
         try:
             candidates = fetch_profile(profile, config["lookbackDays"])
+            curated = profile.get("curatedItems", [])
+            curated_keys = {
+                re.sub(r"\W+", " ", item["title"].casefold()).strip()
+                for item in curated
+            }
+            candidates = list(curated) + [
+                item for item in candidates
+                if re.sub(r"\W+", " ", item["title"].casefold()).strip() not in curated_keys
+            ]
             unique: list[dict[str, str]] = []
             seen: set[str] = set()
             for item in sorted(candidates, key=lambda row: row.get("publishedAt", ""), reverse=True):
@@ -135,6 +144,11 @@ def self_test() -> int:
     assert len(ids) == 26
     assert len(ids) == len(set(ids))
     assert all(profile.get("query") and profile.get("requiredAny") for profile in config["profiles"])
+    assert all(
+        all(item.get("title") and item.get("url") and item.get("source") and item.get("publishedAt")
+            for item in profile.get("curatedItems", []))
+        for profile in config["profiles"]
+    )
     sample = """<?xml version='1.0'?><rss><channel>
       <item><title>Microsoft expands Cheyenne data center</title><link>https://example.com/1</link><pubDate>Wed, 09 Sep 2026 12:00:00 GMT</pubDate><source>Example News</source></item>
       <item><title>Microsoft opens an office in Seattle</title><link>https://example.com/2</link><pubDate>Wed, 09 Sep 2026 11:00:00 GMT</pubDate><source>Example News</source></item>
