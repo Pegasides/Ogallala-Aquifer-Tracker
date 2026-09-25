@@ -1,11 +1,17 @@
 {
-  "generatedAt": "2026-09-24T17:13:05Z",
+  "generatedAt": "2026-09-25T14:05:05.965Z",
   "policy": "Automated candidates must match facility-specific identity and location terms. Curated evidence remains visible if no current match is found.",
   "profiles": {
     "profile-armstrong": {
       "label": "Google–Crusoe Goodnight / Project Llano",
-      "checkedAt": "2026-09-24T17:13:05Z",
+      "checkedAt": "2026-09-25T14:05:05.965Z",
       "items": [
+        {
+          "title": "Construction underway on six-building Claude data center - KFDA",
+          "url": "https://www.newschannel10.com/2026/09/23/construction-underway-six-building-claude-data-center/",
+          "source": "KFDA",
+          "publishedAt": "2026-09-23T19:05:00Z"
+        },
         {
           "title": "Open house held as data center impact concerns grow in Armstrong County - KVII",
           "url": "https://abc7amarillo.com/news/local/open-house-held-as-data-center-impact-concerns-grow-in-armstrong-county-project-llano-google-crusoe",
@@ -195,8 +201,14 @@
     },
     "profile-project-jupiter": {
       "label": "Project Jupiter Santa Teresa",
-      "checkedAt": "2026-09-24T17:13:05Z",
+      "checkedAt": "2026-09-25T14:05:05.965Z",
       "items": [
+        {
+          "title": "Oracle invokes force majeure on New Mexico Stargate campus as gas pipeline slips - CNBC",
+          "url": "https://www.cnbc.com/2026/09/24/oracle-invokes-force-majeure-on-new-mexico-stargate-campus-as-gas-pipeline-slips.html",
+          "source": "CNBC",
+          "publishedAt": "2026-09-24T00:00:00Z"
+        },
         {
           "title": "Doña Ana commissioners may name members to Project Jupiter oversight committee today - KFOX",
           "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPeWpRQi0wQXM0elRYMWRNV0hnQlZhWVhVZ2tFdHpVUWFQUHhYV0YxTWg5TXNJU05KdnZ5ek1qUy1hakJSZXhQYUlzNGE3cl9kQjJyZXdpMkxabzhjdHpMZVI0bjR0ZDNYdW85clhUZktDd3RhbVNPVUV4SU13UFRna1lHTGdOc1ZZbWVpUTl3Sk5kU3RyNHZUY0hHLV9VbGNaSk5ENmNPcHdmVkxOTENwWVZ6TUg?oc=5",
@@ -208,12 +220,6 @@
           "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE9IOEFKRzM0ekNDdnVpVGVRSHJzT19OSW1ib21XenNyYjN5ZWdnNWJWREZCSUlkSGpoQndnTWFaMlV6MHhQdWlNNGNvMm51NEFBX0tjbzNTY2NuUDJRc0FnYm1CU0FuSHRFQklvRWJlaXNvLWZLeTZj?oc=5",
           "source": "Searchlight New Mexico",
           "publishedAt": "2026-09-18T14:35:28Z"
-        },
-        {
-          "title": "New Mexico Supreme Court allows Project Jupiter permit proceedings to advance - Santa Fe New Mexican",
-          "url": "https://news.google.com/rss/articles/CBMilwJBVV95cUxPMnBzN0VNWlJnVl9tOHJ1czJkXzR0dDdCNmdpWE93bzYtdnpJVHBnQ3h4YnQ2U0s5X1RzdE93cHpPZjhDWHMzSFBYZVRRNHlEQ0Y5UDVGU2F0VUlONFZUdU9TVXdsbHg2d2xXVk5FTm85QnlBVHpKTWlhVTJyX0dNYTFKUm5JTkxKSmdFMFBnYkF6NmQ4OG5zYUY1dHZSWm9QZ0lJWHR5MVRpUDhMTHd5UzJFOHZlb0kxZXg1dWp1S29vWXNpN0o0R3I0S0x5ZWRKOE9lMlNRelAxTF82NGh5T3RaMnJQejZOclRFY3F5dlptY2hpNGdjUXdsd0hka2RpLVpMUXhPbjNtNWVjakdlMklSRG9wQXc?oc=5",
-          "source": "Santa Fe New Mexican",
-          "publishedAt": "2026-09-18T05:30:00Z"
         }
       ]
     },
