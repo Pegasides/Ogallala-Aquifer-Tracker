@@ -170,6 +170,26 @@
           "data center",
           "datacenter"
         ]
+      ],
+      "curatedItems": [
+        {
+          "title": "Arevia-linked LLC options more than 560 acres northwest of Lincoln",
+          "url": "https://nebraskapublicmedia.org/en/news/news-articles/another-data-center-developer-is-eyeing-land-just-outside-of-lincoln/",
+          "source": "Nebraska Public Media",
+          "publishedAt": "2026-09-25T12:00:00Z"
+        },
+        {
+          "title": "Nebraska appoints a 17-member Data Center Task Force",
+          "url": "https://governor.nebraska.gov/gov-pillen-announces-appointments-newly-created-data-center-task-force",
+          "source": "Nebraska Governor's Office",
+          "publishedAt": "2026-08-19T12:00:00Z"
+        },
+        {
+          "title": "Executive order changes state review and incentive treatment",
+          "url": "https://governor.nebraska.gov/gov-pillen-signs-executive-order-data-centers",
+          "source": "Nebraska Governor's Office",
+          "publishedAt": "2026-07-21T12:00:00Z"
+        }
       ]
     },
     {
@@ -187,6 +207,26 @@
           "amarillo",
           "carson"
         ]
+      ],
+      "curatedItems": [
+        {
+          "title": "Fermi signs CBRE to operate and maintain Building One",
+          "url": "https://www.accessnewswire.com/newsroom/en/oil-gas-and-energy/fermi-selects-cbre-to-operate-and-maintain-its-first-data-center-1226802",
+          "source": "Fermi Inc.",
+          "publishedAt": "2026-09-24T20:01:00Z"
+        },
+        {
+          "title": "TensorWave lease closing is extended to October 31",
+          "url": "https://www.accessnewswire.com/newsroom/en/oil-gas-and-energy/fermi-and-tensorwave-agree-to-extend-closing-date-to-october-31-2026-1225550",
+          "source": "Fermi Inc.",
+          "publishedAt": "2026-09-22T20:01:00Z"
+        },
+        {
+          "title": "Three Siemens gas turbines reach the Project Matador site",
+          "url": "https://fermiamerica.com/first-power-generation-assets-arrive-at-project-matador/",
+          "source": "Fermi America",
+          "publishedAt": "2026-09-18T12:00:00Z"
+        }
       ]
     },
     {
