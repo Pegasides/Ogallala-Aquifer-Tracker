@@ -1,11 +1,17 @@
 {
-  "generatedAt": "2026-09-29T14:08:00Z",
+  "generatedAt": "2026-09-29T18:05:46Z",
   "policy": "Automated candidates must match facility-specific identity and location terms. Curated evidence remains visible if no current match is found.",
   "profiles": {
     "profile-armstrong": {
       "label": "Google–Crusoe Goodnight / Project Llano",
-      "checkedAt": "2026-09-29T14:08:00Z",
+      "checkedAt": "2026-09-29T18:05:46Z",
       "items": [
+        {
+          "title": "Crusoe Named Developer of Google AI Data Center Campus in Armstrong County, Texas - Construction Review",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQRVdYV0ZHV3AwQ0tpYkpxZllmbUxzNU9oRThoSVNPall0amsyN0VEai0wVmx0Yk5MX0Jhbi05Y09ka3pEQWZOWEk4SVFRRktfbzRZT2VRSFZFY3FFY1VyTUpwR2dLSE1CSDYyNzVuN0Y1ZXhIQWlBaTdYWE15WUotRlNnWllwSHZRakF5QTdNcWtCWjNjSEh3YldpTHlMREpDWjdDY0I5RmtCb21IaDVjZ1JqSG4xaHptdEE?oc=5",
+          "source": "Construction Review",
+          "publishedAt": "2026-09-29T10:46:12Z"
+        },
         {
           "title": "Crusoe confirms developer role and Armstrong County campus design",
           "url": "https://www.crusoe.ai/resources/newsroom/crusoe-developing-data-center-campus-in-armstrong-county-texas",
@@ -13,36 +19,36 @@
           "publishedAt": "2026-09-28T18:31:58Z"
         },
         {
-          "title": "Construction underway on six-building Claude data center - KFDA",
-          "url": "https://www.newschannel10.com/2026/09/23/construction-underway-six-building-claude-data-center/",
-          "source": "KFDA",
-          "publishedAt": "2026-09-23T19:05:00Z"
-        },
-        {
-          "title": "Open house held as data center impact concerns grow in Armstrong County - KVII",
-          "url": "https://abc7amarillo.com/news/local/open-house-held-as-data-center-impact-concerns-grow-in-armstrong-county-project-llano-google-crusoe",
-          "source": "KVII",
-          "publishedAt": "2026-09-23T03:57:00Z"
+          "title": "Crusoe Develops Google AI Data Center Campus in Armstrong County, TX - Crusoe",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQQzFOME0xVDF5X1Nua1Iyb2xVdzRqV2lXeWYzWVpJUkJuODNuVVFlSG9sbmdxdjdlT042VnlwWldEVU5ERnNrNVhpbUotQ09pSVZ1V2VWenFka2tic1AtZUhBazRBdXhFWmRsVjZ3VkZPNlB2TXdpWUJlNHIxdEJGOE9DbmNBRjQyZ1lxT19UclNmWjJWWmYwd3VOZVY1S19mTjlZZjN3?oc=5",
+          "source": "Crusoe",
+          "publishedAt": "2026-09-28T18:31:58Z"
         }
       ]
     },
     "profile-dove-creek": {
       "label": "Beacon Dove Creek",
-      "checkedAt": "2026-09-28T19:41:33Z",
+      "checkedAt": "2026-09-29T18:05:46Z",
       "items": []
     },
     "profile-beltline": {
       "label": "Beltline Energy",
-      "checkedAt": "2026-09-28T19:41:33Z",
+      "checkedAt": "2026-09-29T18:05:46Z",
       "items": []
     },
     "profile-cheyenne": {
       "label": "Microsoft Cheyenne",
-      "checkedAt": "2026-09-29T14:08:00Z",
+      "checkedAt": "2026-09-29T18:05:46Z",
       "items": [
         {
           "title": "Homeowner files two challenges to Microsoft expansion annexation",
           "url": "https://cowboystatedaily.com/2026/09/25/cheyenne-woman-asks-court-to-overturn-3-500-acre-microsoft-data-center-annexation/",
+          "source": "Cowboy State Daily",
+          "publishedAt": "2026-09-25T23:13:00Z"
+        },
+        {
+          "title": "Cheyenne Woman Asks Court To Overturn 3,500-Acre Microsoft Data Center Annexation - Cowboy State Daily",
+          "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNSTZhVS1UX3ktbG5PV3RtN01oUlZNV0ZWblNfQzFOSDUwLWl6TXl0ZFFOa2xnb0t5NHRTRjdjYTZhbWtiTm1KRHFibHpaRnUtSzhhQ1dma3BjQmNzYVpuWFAzNVRyd2ZINWYyYnJUN1VCMzcxNUF0d2Z1eGpqbXVrRTZJVUJCQkJnRzJwV2NqMDUxZnFZaUhLNTFTQzNYUzkybmhSMk9kY2lqSGMxNjlPRHdDV1IyR05kTUlrWU85MA?oc=5",
           "source": "Cowboy State Daily",
           "publishedAt": "2026-09-25T23:13:00Z"
         },
@@ -56,7 +62,7 @@
     },
     "profile-jade": {
       "label": "Project Jade / Project Tembo",
-      "checkedAt": "2026-09-28T19:41:33Z",
+      "checkedAt": "2026-09-29T18:05:46Z",
       "items": [
         {
           "title": "Google Project Tembo: Wyoming’s $50B AI Data Center - FourWeekMBA",
@@ -74,27 +80,27 @@
     },
     "profile-duos-amarillo": {
       "label": "Duos Edge AI Amarillo",
-      "checkedAt": "2026-09-28T19:41:33Z",
+      "checkedAt": "2026-09-29T18:05:46Z",
       "items": []
     },
     "news-duos-hereford": {
       "label": "Duos Edge AI Hereford",
-      "checkedAt": "2026-09-28T19:41:33Z",
+      "checkedAt": "2026-09-29T18:05:46Z",
       "items": []
     },
     "news-duos-lubbock": {
       "label": "Duos Edge AI Lubbock",
-      "checkedAt": "2026-09-28T19:41:33Z",
+      "checkedAt": "2026-09-29T18:05:46Z",
       "items": []
     },
     "news-duos-dumas": {
       "label": "Duos Edge AI Dumas",
-      "checkedAt": "2026-09-28T19:41:33Z",
+      "checkedAt": "2026-09-29T18:05:46Z",
       "items": []
     },
     "profile-nebraska-sites": {
       "label": "Nebraska proposed data-center sites",
-      "checkedAt": "2026-09-28T19:41:33Z",
+      "checkedAt": "2026-09-29T18:05:46Z",
       "items": [
         {
           "title": "American Edge Project Highlights Potential Economic Benefits of Data Centers in Nebraska - North Platte Post",
@@ -118,14 +124,8 @@
     },
     "profile-matador": {
       "label": "Fermi America Project Matador",
-      "checkedAt": "2026-09-28T19:41:33Z",
+      "checkedAt": "2026-09-29T18:05:46Z",
       "items": [
-        {
-          "title": "Fermi selects CBRE to operate Texas data center facility - Investing.com",
-          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQWFB6OHU2N1A2Z1BneEViZEh0LXZxMkEtQnBQS2JpTjZ6eWo2ek9rSng3NlJBNjdVeFVXTmEwQ3FlS2dCVEo2MlRtS2hUYThWSERJb19fZnVhQUx4aXdFV2pDN05RRlBvalNzLUhMajNaS015bXFhdmhiTEtUNkVQc3daUExWeFh4VFI2dFZKbUpMX1cwdHlFMXFLSUUwZXBkblJyOEZvWDdnNFJPbTVkOWwtRQ?oc=5",
-          "source": "Investing.com",
-          "publishedAt": "2026-09-25T06:31:12Z"
-        },
         {
           "title": "Fermi Selects CBRE to Operate and Maintain Its First Data Center - Democrat and Chronicle",
           "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNbnhhdDRRbWMzemZTOHgwalZHdGotR2t6QlNnNVBaemI0ZmpkYVAwZVJOdVY1QkQ4WWdDbFBaWWplaTVYLWxNTGtPS3BadjJvcE1QS2pER04wcVJnQUtRZ1VSanhrZ21sNVFzYWt5RFh6dHFaaEVXOU5PS2pYYnBvTWtRc3JkU25xN0o2eHJEeThPVzUxSi13M3pMT3NZZ252RUhmSWlDRkhIRmpuRFM1QTlxal9ZeXJnUmMwUTNMNURSal9iazF5Qw?oc=5",
@@ -137,17 +137,23 @@
           "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQenBEcE9lUnB1VktrRmRjbXI0VVl3Y2d4UGt4a1NCNXFSRWRpbkJ1eEtxai1DekNKSzlucnM4ZFRGMmZLMHhBckpRbnFDRDJWOGJzSGxua2YzUWh2R3JkODV4cXpuZDROeEFuN3gzNTN2R1lodjE2am5LWmFxYVNkMS1WWmk0Ym9YelRZVGYyVnp6SUJLX3RvOURyS1JVUjIzd3R3OWhkT00?oc=5",
           "source": "Seeking Alpha",
           "publishedAt": "2026-09-24T20:32:49Z"
+        },
+        {
+          "title": "Fermi signs CBRE to operate and maintain Building One",
+          "url": "https://www.accessnewswire.com/newsroom/en/oil-gas-and-energy/fermi-selects-cbre-to-operate-and-maintain-its-first-data-center-1226802",
+          "source": "Fermi Inc.",
+          "publishedAt": "2026-09-24T20:01:00Z"
         }
       ]
     },
     "profile-triple-oak": {
       "label": "Triple Oak Home Range",
-      "checkedAt": "2026-09-28T19:41:33Z",
+      "checkedAt": "2026-09-29T18:05:46Z",
       "items": []
     },
     "profile-unnamed-panhandle": {
       "label": "Texas Panhandle data-center proposals",
-      "checkedAt": "2026-09-28T19:41:33Z",
+      "checkedAt": "2026-09-29T18:05:46Z",
       "items": [
         {
           "title": "Potter, Randall County data centers among those investigated over water-use survey - KVII",
@@ -156,37 +162,37 @@
           "publishedAt": "2026-09-24T18:13:58Z"
         },
         {
-          "title": "InfraTech Capital Advances $2.7 Billion Data Center Investment Initiative in Texas Panhandle - businesswire.com",
+          "title": "InfraTech Capital Advances $2.7 Billion Data Center Investment Initiative in Texas Panhandle - Business Wire",
           "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOdG1xX3o0MEtFWGtrQmVXOWNfUVNNRTFIQ3lvRVdRY1doY1dEdGU4RFlHSXZOUndRQ1VHYUNkXy05Mzg2NldDelNyemd5U1o3VFhDeHQ2NE51cGRMYzBYeFZYanBzTVF4SFU1TDdYNzJaMmcxal80dG01OXVWbWlYUlh4a0E1YUVXdFZPc2NwdGFBODlVb3dWaFV2Qjc4eVBfcHgzYVVjaEdnSzRiUXVGelN5MjNfcGRzamY2bS0tNUdWZEc4T3BzYzI1SzBkam9OYUtQRlRkTWE5R1FYT3M2MmMtWnVkUQ?oc=5",
-          "source": "businesswire.com",
+          "source": "Business Wire",
           "publishedAt": "2026-08-18T07:00:00Z"
         },
         {
-          "title": "Proposed $2.7 billion data center announced for Carson County - newschannel10.com",
+          "title": "Proposed $2.7 billion data center announced for Carson County - NewsChannel 10",
           "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxORHJsSndZUjUweDVwb2RIczRxcE5hbTd6bDYtWlRxUTA5MU5haG5UUVNWNXNyN2xXTWFENE1iM1Q5cVAxcFIwQUtKeEVxTmZfSlB4UWx4TUR5TjBCZXFFSWx3bVE3bDE3czFrU005Q1Bpc1lsallERjZKNEw1bkhoVmpod0tQS2xCelpHc194UWFwXy1Fb1JvR3FiVTdlUdIBsgFBVV95cUxOQXVHVEhMX1BHa25jQTBtUVYySENsRG84ZE41YUxmVlhZTldLdC1PYkVvY3l3NjhsMTZieE90eEFCLW1DWENYdWgtYXhLZ3VNWHI3OGRBWWlJZDFwTnc3anhPNjBRZVFBVzFhdlNFUFYzZTUyT2dubFEtWDF3bThzanVzQk1BOU9wOTRiMHBxRG1DQWhlSHBOdFM3MWEtQkJtdmxza21LN3lrYjl1dU9zZ21B?oc=5",
-          "source": "newschannel10.com",
+          "source": "NewsChannel 10",
           "publishedAt": "2026-08-18T07:00:00Z"
         }
       ]
     },
     "news-google-haskell": {
       "label": "Google Haskell County campuses",
-      "checkedAt": "2026-09-28T19:41:33Z",
+      "checkedAt": "2026-09-29T18:05:46Z",
       "items": []
     },
     "news-google-meitner": {
       "label": "Google–Intersect Meitner",
-      "checkedAt": "2026-09-28T19:41:33Z",
+      "checkedAt": "2026-09-29T18:05:46Z",
       "items": []
     },
     "news-caprock": {
       "label": "Aligned Project Caprock",
-      "checkedAt": "2026-09-28T19:41:33Z",
+      "checkedAt": "2026-09-29T18:05:46Z",
       "items": []
     },
     "news-meta-cheyenne": {
       "label": "Meta Cheyenne",
-      "checkedAt": "2026-09-28T19:41:33Z",
+      "checkedAt": "2026-09-29T18:05:46Z",
       "items": [
         {
           "title": "Meta Spills Wastewater in Wyoming. A Week Later, Senator Lummis Sells Land to Microsoft for Another Data Center - Yahoo",
@@ -198,32 +204,32 @@
     },
     "profile-vantage-frontier": {
       "label": "Vantage Frontier",
-      "checkedAt": "2026-09-28T19:41:33Z",
+      "checkedAt": "2026-09-29T18:05:46Z",
       "items": []
     },
     "profile-meta-sarpy": {
       "label": "Meta Sarpy County",
-      "checkedAt": "2026-09-28T19:41:33Z",
+      "checkedAt": "2026-09-29T18:05:46Z",
       "items": []
     },
     "profile-meta-los-lunas": {
       "label": "Meta Los Lunas",
-      "checkedAt": "2026-09-28T19:41:33Z",
+      "checkedAt": "2026-09-29T18:05:46Z",
       "items": []
     },
     "profile-powerhouse-grand-prairie": {
       "label": "PowerHouse Grand Prairie",
-      "checkedAt": "2026-09-28T19:41:33Z",
+      "checkedAt": "2026-09-29T18:05:46Z",
       "items": []
     },
     "profile-project-jupiter": {
       "label": "Project Jupiter Santa Teresa",
-      "checkedAt": "2026-09-28T19:41:33Z",
+      "checkedAt": "2026-09-29T18:05:46Z",
       "items": [
         {
-          "title": "Oracle Invokes Force Majeure as New Mexico Project Jupiter Power Work Faces Hurdles - enr.com",
+          "title": "Oracle Invokes Force Majeure as New Mexico Project Jupiter Power Work Faces Hurdles - Engineering News-Record",
           "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPVnpWWXcyU2Q0WF9Hc0prRURZVzFBRHRSOW5GZEFqY2tGWEFxNW5UUEV3SzZFSzhjLU9iTk1haTVCOHJnQ053eGM1RXNlczdHWlVVcHo4d1ZqM1dVbTNLY2ZjNEpnR3lZZ2JqQ0pLMUhwcjkyYWNveE9qQ1Y2a0doNW12VTNDaGNNUzEwekFVUE13dURhN0xLOU8xcjRrTlJtRDBDM3ZXOG9UVDhrLWN0TWx6Tm4tWWtrcXc?oc=5",
-          "source": "enr.com",
+          "source": "Engineering News-Record",
           "publishedAt": "2026-09-28T15:49:34Z"
         },
         {
@@ -242,7 +248,7 @@
     },
     "profile-tesla-cortex": {
       "label": "Tesla Cortex / Giga Texas",
-      "checkedAt": "2026-09-28T19:41:33Z",
+      "checkedAt": "2026-09-29T18:05:46Z",
       "items": [
         {
           "title": "Tesla advances Austin chip facility as Musk's Texas Terafab takes shape - Austin American-Statesman",
@@ -260,17 +266,17 @@
     },
     "profile-meta-tulsa": {
       "label": "Meta Tulsa / Project Anthem",
-      "checkedAt": "2026-09-28T19:41:33Z",
+      "checkedAt": "2026-09-29T18:05:46Z",
       "items": []
     },
     "news-google-wilbarger": {
       "label": "Google Wilbarger County",
-      "checkedAt": "2026-09-28T19:41:33Z",
+      "checkedAt": "2026-09-29T18:05:46Z",
       "items": []
     },
     "news-black-pearl": {
       "label": "Black Pearl Cipher / AWS",
-      "checkedAt": "2026-09-28T19:41:33Z",
+      "checkedAt": "2026-09-29T18:05:46Z",
       "items": [
         {
           "title": "Cipher Turns to Natural Gas for Data Center Power Expansion - Natural Gas Intelligence",
