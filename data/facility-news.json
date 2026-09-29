@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-09-28T19:41:33Z",
+  "generatedAt": "2026-09-29T14:08:00Z",
   "policy": "Automated candidates must match facility-specific identity and location terms. Curated evidence remains visible if no current match is found.",
   "profiles": {
     "profile-armstrong": {
       "label": "Google–Crusoe Goodnight / Project Llano",
-      "checkedAt": "2026-09-28T19:41:33Z",
+      "checkedAt": "2026-09-29T14:08:00Z",
       "items": [
         {
-          "title": "Crusoe Develops Google AI Data Center Campus in Armstrong County, TX - Crusoe",
-          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQQzFOME0xVDF5X1Nua1Iyb2xVdzRqV2lXeWYzWVpJUkJuODNuVVFlSG9sbmdxdjdlT042VnlwWldEVU5ERnNrNVhpbUotQ09pSVZ1V2VWenFka2tic1AtZUhBazRBdXhFWmRsVjZ3VkZPNlB2TXdpWUJlNHIxdEJGOE9DbmNBRjQyZ1lxT19UclNmWjJWWmYwd3VOZVY1S19mTjlZZjN3?oc=5",
+          "title": "Crusoe confirms developer role and Armstrong County campus design",
+          "url": "https://www.crusoe.ai/resources/newsroom/crusoe-developing-data-center-campus-in-armstrong-county-texas",
           "source": "Crusoe",
           "publishedAt": "2026-09-28T18:31:58Z"
         },
@@ -38,11 +38,11 @@
     },
     "profile-cheyenne": {
       "label": "Microsoft Cheyenne",
-      "checkedAt": "2026-09-28T19:41:33Z",
+      "checkedAt": "2026-09-29T14:08:00Z",
       "items": [
         {
-          "title": "Cheyenne Woman Asks Court To Overturn 3,500-Acre Microsoft Data Center Annexation - Cowboy State Daily",
-          "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNSTZhVS1UX3ktbG5PV3RtN01oUlZNV0ZWblNfQzFOSDUwLWl6TXl0ZFFOa2xnb0t5NHRTRjdjYTZhbWtiTm1KRHFibHpaRnUtSzhhQ1dma3BjQmNzYVpuWFAzNVRyd2ZINWYyYnJUN1VCMzcxNUF0d2Z1eGpqbXVrRTZJVUJCQkJnRzJwV2NqMDUxZnFZaUhLNTFTQzNYUzkybmhSMk9kY2lqSGMxNjlPRHdDV1IyR05kTUlrWU85MA?oc=5",
+          "title": "Homeowner files two challenges to Microsoft expansion annexation",
+          "url": "https://cowboystatedaily.com/2026/09/25/cheyenne-woman-asks-court-to-overturn-3-500-acre-microsoft-data-center-annexation/",
           "source": "Cowboy State Daily",
           "publishedAt": "2026-09-25T23:13:00Z"
         },
