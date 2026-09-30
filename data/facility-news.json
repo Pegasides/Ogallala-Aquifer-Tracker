@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-29T18:05:46Z",
+  "generatedAt": "2026-09-30T14:07:19Z",
   "policy": "Automated candidates must match facility-specific identity and location terms. Curated evidence remains visible if no current match is found.",
   "profiles": {
     "profile-armstrong": {
@@ -124,25 +124,25 @@
     },
     "profile-matador": {
       "label": "Fermi America Project Matador",
-      "checkedAt": "2026-09-29T18:05:46Z",
+      "checkedAt": "2026-09-30T14:07:19Z",
       "items": [
         {
-          "title": "Fermi Selects CBRE to Operate and Maintain Its First Data Center - Democrat and Chronicle",
-          "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNbnhhdDRRbWMzemZTOHgwalZHdGotR2t6QlNnNVBaemI0ZmpkYVAwZVJOdVY1QkQ4WWdDbFBaWWplaTVYLWxNTGtPS3BadjJvcE1QS2pER04wcVJnQUtRZ1VSanhrZ21sNVFzYWt5RFh6dHFaaEVXOU5PS2pYYnBvTWtRc3JkU25xN0o2eHJEeThPVzUxSi13M3pMT3NZZ252RUhmSWlDRkhIRmpuRFM1QTlxal9ZeXJnUmMwUTNMNURSal9iazF5Qw?oc=5",
-          "source": "Democrat and Chronicle",
-          "publishedAt": "2026-09-24T22:18:05Z"
-        },
-        {
-          "title": "CBRE gets contract to operate and maintain Fermi's first data center (FRMI:NASDAQ) - Seeking Alpha",
-          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQenBEcE9lUnB1VktrRmRjbXI0VVl3Y2d4UGt4a1NCNXFSRWRpbkJ1eEtxai1DekNKSzlucnM4ZFRGMmZLMHhBckpRbnFDRDJWOGJzSGxua2YzUWh2R3JkODV4cXpuZDROeEFuN3gzNTN2R1lodjE2am5LWmFxYVNkMS1WWmk0Ym9YelRZVGYyVnp6SUJLX3RvOURyS1JVUjIzd3R3OWhkT00?oc=5",
-          "source": "Seeking Alpha",
-          "publishedAt": "2026-09-24T20:32:49Z"
+          "title": "Fermi names NAES to operate and maintain Project Matador’s gas fleet",
+          "url": "https://fermiamerica.com/fermi-selects-naes-to-operate-project-matadors-natural-gas-fleet/",
+          "source": "Fermi America",
+          "publishedAt": "2026-09-28T12:00:00Z"
         },
         {
           "title": "Fermi signs CBRE to operate and maintain Building One",
           "url": "https://www.accessnewswire.com/newsroom/en/oil-gas-and-energy/fermi-selects-cbre-to-operate-and-maintain-its-first-data-center-1226802",
           "source": "Fermi Inc.",
           "publishedAt": "2026-09-24T20:01:00Z"
+        },
+        {
+          "title": "TensorWave lease closing is extended to October 31",
+          "url": "https://www.accessnewswire.com/newsroom/en/oil-gas-and-energy/fermi-and-tensorwave-agree-to-extend-closing-date-to-october-31-2026-1225550",
+          "source": "Fermi Inc.",
+          "publishedAt": "2026-09-22T20:01:00Z"
         }
       ]
     },
