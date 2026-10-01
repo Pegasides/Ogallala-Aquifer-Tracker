@@ -187,6 +187,12 @@
       ],
       "curatedItems": [
         {
+          "title": "Custer County supervisors hear proposed data-center regulations; final action remains pending",
+          "url": "https://sandhillsexpress.com/local-news/public-hearings-held-for-road-closure-data-centers-battery-energy-storage/",
+          "source": "Sandhills Express",
+          "publishedAt": "2026-09-29T12:00:00Z"
+        },
+        {
           "title": "Arevia-linked LLC options more than 560 acres northwest of Lincoln",
           "url": "https://nebraskapublicmedia.org/en/news/news-articles/another-data-center-developer-is-eyeing-land-just-outside-of-lincoln/",
           "source": "Nebraska Public Media",
@@ -197,12 +203,6 @@
           "url": "https://governor.nebraska.gov/gov-pillen-announces-appointments-newly-created-data-center-task-force",
           "source": "Nebraska Governor's Office",
           "publishedAt": "2026-08-19T12:00:00Z"
-        },
-        {
-          "title": "Executive order changes state review and incentive treatment",
-          "url": "https://governor.nebraska.gov/gov-pillen-signs-executive-order-data-centers",
-          "source": "Nebraska Governor's Office",
-          "publishedAt": "2026-07-21T12:00:00Z"
         }
       ]
     },
@@ -435,6 +435,12 @@
         ]
       ],
       "curatedItems": [
+        {
+          "title": "Flooding reached Project Jupiter; companies report no critical-infrastructure damage",
+          "url": "https://www.oracle.com/news/announcement/project-jupiter-statement-on-southern-new-mexico-floods-2026-09-30/",
+          "source": "Oracle and STACK Infrastructure",
+          "publishedAt": "2026-09-30T12:00:00Z"
+        },
         {
           "title": "Oracle invokes force majeure on New Mexico Stargate campus as gas pipeline slips - CNBC",
           "url": "https://www.cnbc.com/2026/09/24/oracle-invokes-force-majeure-on-new-mexico-stargate-campus-as-gas-pipeline-slips.html",
