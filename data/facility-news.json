@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-10-01T14:03:28.676Z",
+  "generatedAt": "2026-10-01T18:26:15Z",
   "policy": "Automated candidates must match facility-specific identity and location terms. Curated evidence remains visible if no current match is found.",
   "profiles": {
     "profile-armstrong": {
       "label": "Google–Crusoe Goodnight / Project Llano",
-      "checkedAt": "2026-09-30T18:00:02Z",
+      "checkedAt": "2026-10-01T18:26:15Z",
       "items": [
         {
           "title": "Crusoe Named Developer of Google AI Data Center Campus in Armstrong County, Texas - Construction Review",
@@ -19,26 +19,26 @@
           "publishedAt": "2026-09-28T18:31:58Z"
         },
         {
-          "title": "Crusoe Develops Google AI Data Center Campus in Armstrong County, TX - Crusoe",
+          "title": "Crusoe Develops Google AI Data Center Campus in Armstrong County, TX - crusoe.ai",
           "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQQzFOME0xVDF5X1Nua1Iyb2xVdzRqV2lXeWYzWVpJUkJuODNuVVFlSG9sbmdxdjdlT042VnlwWldEVU5ERnNrNVhpbUotQ09pSVZ1V2VWenFka2tic1AtZUhBazRBdXhFWmRsVjZ3VkZPNlB2TXdpWUJlNHIxdEJGOE9DbmNBRjQyZ1lxT19UclNmWjJWWmYwd3VOZVY1S19mTjlZZjN3?oc=5",
-          "source": "Crusoe",
+          "source": "crusoe.ai",
           "publishedAt": "2026-09-28T18:31:58Z"
         }
       ]
     },
     "profile-dove-creek": {
       "label": "Beacon Dove Creek",
-      "checkedAt": "2026-09-30T18:00:02Z",
+      "checkedAt": "2026-10-01T18:26:15Z",
       "items": []
     },
     "profile-beltline": {
       "label": "Beltline Energy",
-      "checkedAt": "2026-09-30T18:00:02Z",
+      "checkedAt": "2026-10-01T18:26:15Z",
       "items": []
     },
     "profile-cheyenne": {
       "label": "Microsoft Cheyenne",
-      "checkedAt": "2026-09-30T18:00:02Z",
+      "checkedAt": "2026-10-01T18:26:15Z",
       "items": [
         {
           "title": "Homeowner files two challenges to Microsoft expansion annexation",
@@ -53,16 +53,16 @@
           "publishedAt": "2026-09-25T23:13:00Z"
         },
         {
-          "title": "Meta Spills Wastewater in Wyoming. A Week Later, Senator Lummis Sells Land to Microsoft for Another Data Center - Yahoo",
+          "title": "Meta Spills Wastewater in Wyoming. A Week Later, Senator Lummis Sells Land to Microsoft for Another Data Center - yahoo.com",
           "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOMVNJLURQa1NieXB6ZHJ5T0xPdHU3QVNrM19XazJCRU4tS2NsWndSdFdzdVMtZTZJMmtaU25UZlIwendkRkZmeURDSms3eDdqYmpjRmwyU1JfNUdwWDFSUjNnWnVpemt6cGxEZ3VheUNGN1JxanpkTlIxal83eE1MWTZ1Mnk2bGkwcEVQdFplXzZXdDA?oc=5",
-          "source": "Yahoo",
+          "source": "yahoo.com",
           "publishedAt": "2026-09-02T07:00:00Z"
         }
       ]
     },
     "profile-jade": {
       "label": "Project Jade / Project Tembo",
-      "checkedAt": "2026-09-30T18:00:02Z",
+      "checkedAt": "2026-10-01T18:26:15Z",
       "items": [
         {
           "title": "Google Project Tembo: Wyoming’s $50B AI Data Center - FourWeekMBA",
@@ -80,51 +80,51 @@
     },
     "profile-duos-amarillo": {
       "label": "Duos Edge AI Amarillo",
-      "checkedAt": "2026-09-30T18:00:02Z",
+      "checkedAt": "2026-10-01T18:26:15Z",
       "items": []
     },
     "news-duos-hereford": {
       "label": "Duos Edge AI Hereford",
-      "checkedAt": "2026-09-30T18:00:02Z",
+      "checkedAt": "2026-10-01T18:26:15Z",
       "items": []
     },
     "news-duos-lubbock": {
       "label": "Duos Edge AI Lubbock",
-      "checkedAt": "2026-09-30T18:00:02Z",
+      "checkedAt": "2026-10-01T18:26:15Z",
       "items": []
     },
     "news-duos-dumas": {
       "label": "Duos Edge AI Dumas",
-      "checkedAt": "2026-09-30T18:00:02Z",
+      "checkedAt": "2026-10-01T18:26:15Z",
       "items": []
     },
     "profile-nebraska-sites": {
       "label": "Nebraska proposed data-center sites",
-      "checkedAt": "2026-10-01T14:03:28.676Z",
+      "checkedAt": "2026-10-01T18:26:15Z",
       "items": [
         {
-          "title": "Custer County supervisors hear proposed data-center regulations; final action remains pending",
-          "url": "https://sandhillsexpress.com/local-news/public-hearings-held-for-road-closure-data-centers-battery-energy-storage/",
-          "source": "Sandhills Express",
-          "publishedAt": "2026-09-29T12:00:00Z"
+          "title": "Ricketts weighs in as data center ratepayer bill falls short - Panhandle News Channel Nebraska",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQMFp3LVBMYmpkcnFuWWE1TlNGc3VTYU81aG5XcDlQbzlldHFpWkJrSjczUnNRTmtUUmk4RGVCQ08wVWQyOFJqbnVrRDZyZ2VvLThIWHM1b3h5ZjVreFpyMHJLWkk3eGNrR1VVbEtpc25xQ1NHLUtDd1NsRzhUVk9haGtLbmFyRlZxUHBPZERZaHpDamkyLTJRUWZIak9QOWljME0tQko3SllDeFlHeE9EVEJqTWVSNVpsTmc?oc=5",
+          "source": "Panhandle News Channel Nebraska",
+          "publishedAt": "2026-10-01T01:12:45Z"
         },
         {
-          "title": "Arevia-linked LLC options more than 560 acres northwest of Lincoln",
-          "url": "https://nebraskapublicmedia.org/en/news/news-articles/another-data-center-developer-is-eyeing-land-just-outside-of-lincoln/",
-          "source": "Nebraska Public Media",
-          "publishedAt": "2026-09-25T12:00:00Z"
+          "title": "Ricketts weighs in as data center ratepayer bill falls short - Central News Channel Nebraska",
+          "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNTnpnWUxUeUJVc3JjNnM4ZWt3QXJmS05Zb1R0R2cxRS1YVVhjYm5ua1ZXSWxRWjJsMW40RTRyU1NTeS13YTRMTUtYQ2xSXzZFcXQ4ek5tRHlieUYzbGx2Q0xRekc1c1NKSlQ0d0RHVkVEUVlVclRKbGtRNmhQQmtvYlVNZVJSbkFLdXl1V3ZoYWpIRDA2LVZ3a2ZMLWUwYmViQmhOdDJYSE56aWVWcWRqRHlEOU1VdEE?oc=5",
+          "source": "Central News Channel Nebraska",
+          "publishedAt": "2026-10-01T00:44:17Z"
         },
         {
-          "title": "Nebraska appoints a 17-member Data Center Task Force",
-          "url": "https://governor.nebraska.gov/gov-pillen-announces-appointments-newly-created-data-center-task-force",
-          "source": "Nebraska Governor's Office",
-          "publishedAt": "2026-08-19T12:00:00Z"
+          "title": "Nebraska tribe: Proposed data center threatens water rights - Kiowa County Press",
+          "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQaVhLUEViekdtWllrVk9udHU5SGttYUNBakZSOVNFRWpzMFpvYkVWQmQ1YjR0R0hIN3EtR0NFMU84ckpYeW94b29uU2VxWUZRaDNVdEhxOFpIS1FnejV6QUNKYmpZOXRDQjgwQzlOaWJINVdWTWdJSjcwUzNZM0hZTWpJSnhuNXBidmhyam4zS3U3TlB1U0ZNZmtWYw?oc=5",
+          "source": "Kiowa County Press",
+          "publishedAt": "2026-09-30T11:06:57Z"
         }
       ]
     },
     "profile-matador": {
       "label": "Fermi America Project Matador",
-      "checkedAt": "2026-09-30T18:00:02Z",
+      "checkedAt": "2026-10-01T18:26:15Z",
       "items": [
         {
           "title": "Fermi names NAES to operate and maintain Project Matador’s gas fleet",
@@ -139,21 +139,21 @@
           "publishedAt": "2026-09-24T21:32:31Z"
         },
         {
-          "title": "CBRE gets contract to operate and maintain Fermi's first data center (FRMI:NASDAQ) - Seeking Alpha",
-          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQenBEcE9lUnB1VktrRmRjbXI0VVl3Y2d4UGt4a1NCNXFSRWRpbkJ1eEtxai1DekNKSzlucnM4ZFRGMmZLMHhBckpRbnFDRDJWOGJzSGxua2YzUWh2R3JkODV4cXpuZDROeEFuN3gzNTN2R1lodjE2am5LWmFxYVNkMS1WWmk0Ym9YelRZVGYyVnp6SUJLX3RvOURyS1JVUjIzd3R3OWhkT00?oc=5",
-          "source": "Seeking Alpha",
-          "publishedAt": "2026-09-24T20:32:49Z"
+          "title": "Fermi signs CBRE to operate and maintain Building One",
+          "url": "https://www.accessnewswire.com/newsroom/en/oil-gas-and-energy/fermi-selects-cbre-to-operate-and-maintain-its-first-data-center-1226802",
+          "source": "Fermi Inc.",
+          "publishedAt": "2026-09-24T20:01:00Z"
         }
       ]
     },
     "profile-triple-oak": {
       "label": "Triple Oak Home Range",
-      "checkedAt": "2026-09-30T18:00:02Z",
+      "checkedAt": "2026-10-01T18:26:15Z",
       "items": []
     },
     "profile-unnamed-panhandle": {
       "label": "Texas Panhandle data-center proposals",
-      "checkedAt": "2026-09-30T18:00:02Z",
+      "checkedAt": "2026-10-01T18:26:15Z",
       "items": [
         {
           "title": "Potter, Randall County data centers among those investigated over water-use survey - KVII",
@@ -177,55 +177,61 @@
     },
     "news-google-haskell": {
       "label": "Google Haskell County campuses",
-      "checkedAt": "2026-09-30T18:00:02Z",
+      "checkedAt": "2026-10-01T18:26:15Z",
       "items": []
     },
     "news-google-meitner": {
       "label": "Google–Intersect Meitner",
-      "checkedAt": "2026-09-30T18:00:02Z",
+      "checkedAt": "2026-10-01T18:26:15Z",
       "items": []
     },
     "news-caprock": {
       "label": "Aligned Project Caprock",
-      "checkedAt": "2026-09-30T18:00:02Z",
+      "checkedAt": "2026-10-01T18:26:15Z",
       "items": []
     },
     "news-meta-cheyenne": {
       "label": "Meta Cheyenne",
-      "checkedAt": "2026-09-30T18:00:02Z",
+      "checkedAt": "2026-10-01T18:26:15Z",
       "items": [
         {
-          "title": "Meta Spills Wastewater in Wyoming. A Week Later, Senator Lummis Sells Land to Microsoft for Another Data Center - Yahoo",
+          "title": "Meta Spills Wastewater in Wyoming. A Week Later, Senator Lummis Sells Land to Microsoft for Another Data Center - yahoo.com",
           "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOMVNJLURQa1NieXB6ZHJ5T0xPdHU3QVNrM19XazJCRU4tS2NsWndSdFdzdVMtZTZJMmtaU25UZlIwendkRkZmeURDSms3eDdqYmpjRmwyU1JfNUdwWDFSUjNnWnVpemt6cGxEZ3VheUNGN1JxanpkTlIxal83eE1MWTZ1Mnk2bGkwcEVQdFplXzZXdDA?oc=5",
-          "source": "Yahoo",
+          "source": "yahoo.com",
           "publishedAt": "2026-09-02T07:00:00Z"
         }
       ]
     },
     "profile-vantage-frontier": {
       "label": "Vantage Frontier",
-      "checkedAt": "2026-09-30T18:00:02Z",
+      "checkedAt": "2026-10-01T18:26:15Z",
       "items": []
     },
     "profile-meta-sarpy": {
       "label": "Meta Sarpy County",
-      "checkedAt": "2026-09-30T18:00:02Z",
+      "checkedAt": "2026-10-01T18:26:15Z",
       "items": []
     },
     "profile-meta-los-lunas": {
       "label": "Meta Los Lunas",
-      "checkedAt": "2026-09-30T18:00:02Z",
+      "checkedAt": "2026-10-01T18:26:15Z",
       "items": []
     },
     "profile-powerhouse-grand-prairie": {
       "label": "PowerHouse Grand Prairie",
-      "checkedAt": "2026-09-30T18:00:02Z",
+      "checkedAt": "2026-10-01T18:26:15Z",
       "items": []
     },
     "profile-project-jupiter": {
       "label": "Project Jupiter Santa Teresa",
-      "checkedAt": "2026-10-01T14:03:28.676Z",
+      "checkedAt": "2026-10-01T18:26:15Z",
       "items": [
+        {
+          "title": "Opinion: Project Jupiter can strengthen southern New Mexico while advancing U.S. AI - El Paso Matters",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPQWZsb0lWVElkQTR3NlJmcVdqQ3UxWXkxNXVHZ3Nnc0laQVBLM0c4ZTBlOHBPc1pFNEZvYU84V21KVkN1WmhpY0dNU1UxUEdnb0lpWWt6RDhxN21TR01zQkRqcEtLSnJlNzlWYzk5Z1MwN2otNVpzV2JuVmJJak9xSXJDZDdKVV9ZWVNlR1pyN0NtdjhaUG9sNUxhNjBTUQ?oc=5",
+          "source": "El Paso Matters",
+          "publishedAt": "2026-09-30T15:00:00Z"
+        },
         {
           "title": "Flooding reached Project Jupiter; companies report no critical-infrastructure damage",
           "url": "https://www.oracle.com/news/announcement/project-jupiter-statement-on-southern-new-mexico-floods-2026-09-30/",
@@ -233,22 +239,16 @@
           "publishedAt": "2026-09-30T12:00:00Z"
         },
         {
-          "title": "Oracle invokes force majeure on New Mexico Stargate campus as gas pipeline slips - CNBC",
-          "url": "https://www.cnbc.com/2026/09/24/oracle-invokes-force-majeure-on-new-mexico-stargate-campus-as-gas-pipeline-slips.html",
-          "source": "CNBC",
-          "publishedAt": "2026-09-24T12:00:00Z"
-        },
-        {
-          "title": "New Mexico Supreme Court allows Project Jupiter permit proceedings to advance",
-          "url": "https://searchlightnm.org/new-mexico-supreme-court-allows-project-jupiter-permit-proceedings-to-advance/",
-          "source": "Searchlight New Mexico",
-          "publishedAt": "2026-09-18T12:00:00Z"
+          "title": "Oracle Invokes Force Majeure as New Mexico Project Jupiter Power Work Faces Hurdles - Engineering News-Record",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPVnpWWXcyU2Q0WF9Hc0prRURZVzFBRHRSOW5GZEFqY2tGWEFxNW5UUEV3SzZFSzhjLU9iTk1haTVCOHJnQ053eGM1RXNlczdHWlVVcHo4d1ZqM1dVbTNLY2ZjNEpnR3lZZ2JqQ0pLMUhwcjkyYWNveE9qQ1Y2a0doNW12VTNDaGNNUzEwekFVUE13dURhN0xLOU8xcjRrTlJtRDBDM3ZXOG9UVDhrLWN0TWx6Tm4tWWtrcXc?oc=5",
+          "source": "Engineering News-Record",
+          "publishedAt": "2026-09-28T15:49:34Z"
         }
       ]
     },
     "profile-tesla-cortex": {
       "label": "Tesla Cortex / Giga Texas",
-      "checkedAt": "2026-09-30T18:00:02Z",
+      "checkedAt": "2026-10-01T18:26:15Z",
       "items": [
         {
           "title": "Environmental group sues city over Tesla data center water-use records - Austin American-Statesman",
@@ -261,28 +261,22 @@
           "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQZ2ZnNlUxZTNLRlZOX2JwZ19Ud2dMQmJlMHk2ZEVxUDhVRzVvZXFQTzJHUml5R1ZSbFpaYVZVS3J6dTVrT09TUHp2TWI5S01mT2VKajNaWFhhLThfU1FSS2hsOVFWZHVKamt2Y3RfSW9WOElaRGVtY3RVaGstaUh3OVR1dHRYdWVjT0lQdDlFZVhycGJSZDNleXVB?oc=5",
           "source": "Austin American-Statesman",
           "publishedAt": "2026-09-01T07:00:00Z"
-        },
-        {
-          "title": "Gigafactory from above: Tesla's Texas compound is more than meets the eye - Austin American-Statesman",
-          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1OdTRvamJkY1pBUkQ5d1dqWVgtUWdYSnRKSmF3NXlKOGJWZ1BMcjhuOXZzeTZHWUZIbVRneW1XX2RoMTduN2VmZzFTS29zT0JMYy1kam9FQngwN3ZIanNtcklWa3d6eXB3X2V0TVhka1lONzR0?oc=5",
-          "source": "Austin American-Statesman",
-          "publishedAt": "2026-08-17T07:00:00Z"
         }
       ]
     },
     "profile-meta-tulsa": {
       "label": "Meta Tulsa / Project Anthem",
-      "checkedAt": "2026-09-30T18:00:02Z",
+      "checkedAt": "2026-10-01T18:26:15Z",
       "items": []
     },
     "news-google-wilbarger": {
       "label": "Google Wilbarger County",
-      "checkedAt": "2026-09-30T18:00:02Z",
+      "checkedAt": "2026-10-01T18:26:15Z",
       "items": []
     },
     "news-black-pearl": {
       "label": "Black Pearl Cipher / AWS",
-      "checkedAt": "2026-09-30T18:00:02Z",
+      "checkedAt": "2026-10-01T18:26:15Z",
       "items": [
         {
           "title": "Cipher Turns to Natural Gas for Data Center Power Expansion - Natural Gas Intelligence",
