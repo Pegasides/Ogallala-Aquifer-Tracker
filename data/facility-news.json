@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-01T18:26:15Z",
+  "generatedAt": "2026-10-02T13:57:19Z",
   "policy": "Automated candidates must match facility-specific identity and location terms. Curated evidence remains visible if no current match is found.",
   "profiles": {
     "profile-armstrong": {
@@ -224,13 +224,13 @@
     },
     "profile-project-jupiter": {
       "label": "Project Jupiter Santa Teresa",
-      "checkedAt": "2026-10-01T18:26:15Z",
+      "checkedAt": "2026-10-02T13:57:19Z",
       "items": [
         {
-          "title": "Opinion: Project Jupiter can strengthen southern New Mexico while advancing U.S. AI - El Paso Matters",
-          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPQWZsb0lWVElkQTR3NlJmcVdqQ3UxWXkxNXVHZ3Nnc0laQVBLM0c4ZTBlOHBPc1pFNEZvYU84V21KVkN1WmhpY0dNU1UxUEdnb0lpWWt6RDhxN21TR01zQkRqcEtLSnJlNzlWYzk5Z1MwN2otNVpzV2JuVmJJak9xSXJDZDdKVV9ZWVNlR1pyN0NtdjhaUG9sNUxhNjBTUQ?oc=5",
-          "source": "El Paso Matters",
-          "publishedAt": "2026-09-30T15:00:00Z"
+          "title": "Governor's Office records response provides little detail on July Oracle meeting",
+          "url": "https://searchlightnm.org/request-for-records-on-governors-meeting-with-data-center-officials-yields-one-photo/",
+          "source": "Searchlight New Mexico",
+          "publishedAt": "2026-10-01T12:00:00Z"
         },
         {
           "title": "Flooding reached Project Jupiter; companies report no critical-infrastructure damage",
