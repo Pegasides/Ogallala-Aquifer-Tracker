@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Build the facility-specific daily news feed from Google News RSS.
+"""Publish reviewed facility evidence; RSS matches are research candidates only.
 
-The script applies explicit identity/location gates from the checked-in config.
-It never edits the curated evidence already embedded in the facility profiles.
+Identity gates cannot verify a claim, publication date or final government action.
+Only checked-in curated items and their actual review dates may reach the public feed.
 """
 
 from __future__ import annotations
@@ -85,51 +85,45 @@ def load_previous() -> dict:
         return {"profiles": {}}
 
 
-def build() -> int:
+def public_items(profile: dict, limit: int) -> list[dict]:
+    """Dedupe approved direct sources; never combine them with RSS candidates."""
+    unique = []
+    seen = set()
+    for item in sorted(profile.get("curatedItems", []), key=lambda row: row.get("publishedAt") or "", reverse=True):
+        url = item["url"]
+        parsed = urllib.parse.urlsplit(url)
+        if parsed.scheme != "https" or parsed.hostname in {"news.google.com", "news.yahoo.com"}:
+            raise ValueError(f"A reviewed direct source is required: {url}")
+        key = (parsed.hostname, parsed.path.rstrip('/'), parsed.query)
+        if key in seen:
+            continue
+        seen.add(key)
+        unique.append(item)
+    return unique[:limit]
+
+
+def build(collect_candidates: bool = False) -> int:
     config = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
-    previous = load_previous().get("profiles", {})
-    now = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
     profiles: dict[str, dict] = {}
     failures: list[str] = []
 
-    for index, profile in enumerate(config["profiles"]):
-        try:
-            candidates = fetch_profile(profile, config["lookbackDays"])
-            curated = profile.get("curatedItems", [])
-            curated_keys = {
-                re.sub(r"\W+", " ", item["title"].casefold()).strip()
-                for item in curated
-            }
-            candidates = list(curated) + [
-                item for item in candidates
-                if re.sub(r"\W+", " ", item["title"].casefold()).strip() not in curated_keys
-            ]
-            unique: list[dict[str, str]] = []
-            seen: set[str] = set()
-            for item in sorted(candidates, key=lambda row: row.get("publishedAt", ""), reverse=True):
-                key = re.sub(r"\W+", " ", item["title"].casefold()).strip()
-                if key in seen:
-                    continue
-                seen.add(key)
-                unique.append(item)
-            profiles[profile["id"]] = {
-                "label": profile["label"],
-                "checkedAt": now,
-                "items": unique[: config["maxItemsPerProfile"]],
-            }
-        except Exception as error:  # Preserve last known-good data on transient feed errors.
-            failures.append(f"{profile['id']}: {error}")
-            profiles[profile["id"]] = previous.get(profile["id"], {
-                "label": profile["label"],
-                "checkedAt": None,
-                "items": [],
-            })
-        if index + 1 < len(config["profiles"]):
-            time.sleep(0.35)
+    for profile in config["profiles"]:
+        profiles[profile["id"]] = {
+            "label": profile["label"],
+            "checkedAt": profile["verifiedAt"],
+            "items": public_items(profile, config["maxItemsPerProfile"]),
+        }
+        if collect_candidates:
+            try:
+                candidates = fetch_profile(profile, config["lookbackDays"])
+                # Research-only output; never written into the public JSON.
+                print(json.dumps({"profile": profile["id"], "unreviewedCandidates": candidates}, ensure_ascii=False))
+            except Exception as error:
+                failures.append(f"{profile['id']}: {error}")
 
     payload = {
-        "generatedAt": now,
-        "policy": "Automated candidates must match facility-specific identity and location terms. Curated evidence remains visible if no current match is found.",
+        "generatedAt": max(profile["verifiedAt"] for profile in config["profiles"]),
+        "policy": "Only reviewed direct sources are published. RSS matches are unreviewed research candidates and cannot replace curated evidence. Checked dates record editorial review, not an automated fetch.",
         "profiles": profiles,
     }
     OUTPUT_PATH.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
@@ -141,11 +135,14 @@ def build() -> int:
 def self_test() -> int:
     config = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
     ids = [profile["id"] for profile in config["profiles"]]
-    assert len(ids) == 26
     assert len(ids) == len(set(ids))
+    registry_text = (ROOT / "v3.4-facility-registry.js").read_text(encoding="utf-8")
+    registry = json.loads(re.search(r"const records = (\[.*?\]);", registry_text, re.S).group(1))
+    assert set(ids) == {record["id"] for record in registry}, "News coverage must match the canonical registry"
+    assert all(re.fullmatch(r"\d{4}-\d{2}-\d{2}", profile["verifiedAt"]) for profile in config["profiles"])
     assert all(profile.get("query") and profile.get("requiredAny") for profile in config["profiles"])
     assert all(
-        all(item.get("title") and item.get("url") and item.get("source") and item.get("publishedAt")
+        all(item.get("title") and item.get("url") and item.get("source") and item.get("note")
             for item in profile.get("curatedItems", []))
         for profile in config["profiles"]
     )
@@ -158,12 +155,18 @@ def self_test() -> int:
     assert len(rows) == 2
     assert matches(rows[0], gates)
     assert not matches(rows[1], gates)
-    print("All 17 full profiles and 9 additional map markers, the parser, and relevance gates passed.")
+    approved = {"title": "Reviewed fact", "url": "https://example.org/permit", "source": "Official record", "publishedAt": "2026-09-01", "note": "Permit issued."}
+    probe = {"curatedItems": [approved, dict(approved)], "unreviewedCandidates": [rows[0], rows[1]]}
+    assert public_items(probe, 3) == [approved], "Candidates and duplicate URLs must not reach the public feed"
+    for profile in config["profiles"]:
+        public_items(profile, config["maxItemsPerProfile"])
+    print(f"All {len(ids)} canonical records, actual review dates, reviewed-source publication and identity gates passed.")
     return 0
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--self-test", action="store_true")
+    parser.add_argument("--collect-candidates", action="store_true", help="Print research candidates without publishing them")
     args = parser.parse_args()
-    raise SystemExit(self_test() if args.self_test else build())
+    raise SystemExit(self_test() if args.self_test else build(args.collect_candidates))

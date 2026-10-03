@@ -38,7 +38,7 @@
 <h3>As a subscriber, your toolbox includes full access to:</h3>
 <ul class="subscriber-benefits">
 <li><strong>The Interactive Timeline:</strong> Watch the aquifer&rsquo;s progression from a stable 1950 baseline to a projected, critical 2050 status.</li>
-<li><strong>The Data Center Watch Log:</strong> Monitor 17 operational, under-construction, and proposed data center facilities across the High Plains region.</li>
+<li><strong>The Data Center Watch Log:</strong> Follow <span id="frontDoorFacilityCount">26</span> facility, campus-group and proposal records across the High Plains and surrounding region, plus <span id="frontDoorResearchCount">2</span> separately labeled watchlist / research records.</li>
 <li><strong>The Monitoring Well Library:</strong> Explore 28 distinct community profiles mapping real-world water table declines and drinking water quality.</li>
 <li><strong>Community Advocacy Guidelines:</strong> Access actionable frameworks and standards you can share with local, state, and federal representatives to demand accountability.</li>
 <li><strong>The Daily Dispatch:</strong> Review a single, curated feed of public filings, local policies, and news developments without any newsletter clutter.</li>
@@ -56,7 +56,7 @@
 <header class="gallery-intro"><h1>The Ogallala story, told visually.</h1><p>Five connected views move from the groundwater beneath us, to the aquifer overview, to emerging infrastructure pressure, a real-world example, and the trusted sources behind the Tracker.</p></header>
 <figure class="artwork"><img src="v33-gallery-images/01-groundwater-window.avif" alt="Groundwater Window showing the Ogallala Aquifer beneath Nebraska"></figure>
 <figure class="artwork"><img src="v33-gallery-images/02-aquifer-overview.avif" alt="Ogallala Aquifer Tracker overview showing the three basin health zones, communities, and four key timeframes"></figure>
-<section class="timeline-teaser" aria-labelledby="timeline-teaser-title"><div class="timeline-teaser-head"><div><h2 id="timeline-teaser-title">Explore the AI Data Centers on the Aquifer</h2><p>See operational, under-construction, and proposed facilities across the 2030–2050 timeline.</p></div></div><iframe src="v3.4-map.html?mode=teaser" title="Ogallala Aquifer Tracker Version 3.5 interactive timeline with AI data-center locations" loading="lazy"></iframe></section>
+<section class="timeline-teaser" aria-labelledby="timeline-teaser-title"><div class="timeline-teaser-head"><div><h2 id="timeline-teaser-title">Explore the AI Data Centers on the Aquifer</h2><p>Explore the aquifer scenarios alongside the latest reviewed facility statuses. Future timeline years do not forecast facility completion; city/county markers are reference locations.</p></div></div><iframe src="v3.4-map.html?mode=teaser" title="Ogallala Aquifer Tracker Version 3.5 interactive timeline with AI data-center locations" loading="lazy"></iframe></section>
 <figure class="artwork"><img src="v33-gallery-images/03-ai-data-center-impact.avif" alt="AI Data Center Impact on the Ogallala Aquifer educational cross-section"></figure>
 <figure class="artwork"><img src="v33-gallery-images/04-cheyenne-example.avif" alt="Real example of AI data center impact on the Ogallala Aquifer near Cheyenne, Wyoming"></figure>
 <figure class="artwork"><img src="v33-gallery-images/05-sources.avif" alt="Sources That Inform Our Story — sources poster for the Ogallala Aquifer Tracker"></figure>
@@ -133,6 +133,7 @@
   });
 })();
 </script>
+<script src="v3.4-facility-registry.js"></script><script>document.getElementById("frontDoorFacilityCount").textContent=window.OATFacilityRegistry.counts.countedRecords;document.getElementById("frontDoorResearchCount").textContent=window.OATFacilityRegistry.counts.researchRecords;</script>
 </body>
 </html>
 

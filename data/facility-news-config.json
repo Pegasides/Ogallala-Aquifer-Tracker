@@ -21,28 +21,35 @@
       ],
       "curatedItems": [
         {
-          "title": "Crusoe confirms developer role and Armstrong County campus design",
+          "title": "Crusoe confirms its developer role and details the campus energy design",
           "url": "https://www.crusoe.ai/resources/newsroom/crusoe-developing-data-center-campus-in-armstrong-county-texas",
           "source": "Crusoe",
-          "publishedAt": "2026-09-28T18:31:58Z"
+          "publishedAt": "2026-09-28",
+          "evidenceType": "Company announcement",
+          "note": "Crusoe says it is developing Google’s Armstrong County campus, which broke ground in June 2025, and directly connects to Serena’s Goodnight 1 and Goodnight 2 wind farms, each rated at 265.5 megawatts. The company says Goodnight 1 is operating, Goodnight 2 is under construction, surplus wind generation can flow to the grid, and the campus will use closed-loop, non-evaporative liquid cooling. Its statement reports more than 5,500 skilled laborers onsite daily; the basis is not reconciled with the more than 7,500 current workers reported at the September 23 open house. These are company statements—not independent operating measurements."
         },
         {
-          "title": "Construction underway on six-building Claude data center - KFDA",
+          "title": "Project Llano sponsors disclose construction and resource estimates",
           "url": "https://www.newschannel10.com/2026/09/23/construction-underway-six-building-claude-data-center/",
           "source": "KFDA",
-          "publishedAt": "2026-09-23T19:05:00Z"
+          "publishedAt": "2026-09-23",
+          "evidenceType": "Independent local reporting",
+          "note": "At the open house, Crusoe said the six-building campus should turn over its first buildings to Google in early 2027 and finish construction by year-end. It reported more than 7,500 current workers, 50 planned permanent jobs, construction water use averaging about 600,000 gallons per day during early work and declining toward 275,000 as buildings are enclosed, and about 2 million gallons per operating building each year through closed-loop cooling. Sponsors also described the Goodnight wind farms as the primary power source, ERCOT as backup, and more than $850 million in projected lifetime local tax revenue. These are company estimates—not permits, measured operating results, or government findings."
         },
         {
-          "title": "Open house held as data center impact concerns grow in Armstrong County - KVII",
+          "title": "Armstrong County open house draws community concerns",
           "url": "https://abc7amarillo.com/news/local/open-house-held-as-data-center-impact-concerns-grow-in-armstrong-county-project-llano-google-crusoe",
           "source": "KVII",
-          "publishedAt": "2026-09-23T03:57:00Z"
+          "publishedAt": "2026-09-22",
+          "evidenceType": "Independent local reporting",
+          "note": "KVII confirms the Google–Crusoe open house occurred at Claude High School. A resident described concern about protecting her ranch and legacy; Crusoe said it plans a long-term partnership with Google and aims to be a responsible neighbor. Those are attributed statements, not government findings or changes to the project’s specifications."
         }
-      ]
+      ],
+      "verifiedAt": "2026-10-03"
     },
     {
       "id": "profile-dove-creek",
-      "label": "Beacon Dove Creek",
+      "label": "Beacon — Dove Creek",
       "query": "Beacon Dove Creek data center San Angelo",
       "requiredAny": [
         [
@@ -55,11 +62,38 @@
           "san angelo",
           "tom green"
         ]
+      ],
+      "verifiedAt": "2026-10-03",
+      "curatedItems": [
+        {
+          "title": "Texas pauses new data-center permits and state approvals pending audits",
+          "url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits",
+          "source": "Office of the Texas Governor",
+          "publishedAt": "2026-09-21",
+          "evidenceType": "Official statewide directive",
+          "note": "TCEQ must halt permits and other state agencies must pause regulatory approvals until ERCOT and Texas Water Development Board audit information is obtained. The directive does not identify this facility’s pending permits, revoke existing permits, or establish that construction or operations have stopped."
+        },
+        {
+          "title": "Beacon applies for a large gas-fired power plant serving Dove Creek",
+          "url": "https://news.oilandgaswatch.org/template/brief/company-plans-massive-gas-power-plant-for-data-center-south-of-san-angelo-texas",
+          "source": "Oil & Gas Watch",
+          "publishedAt": "2026-06-25",
+          "evidenceType": "Permit reporting",
+          "note": "Reports a TCEQ air-permit application for a Tom Green County plant proposed to supply a co-located data center."
+        },
+        {
+          "title": "Rural residents seek answers about the Dove Creek proposal",
+          "url": "https://conchoobserver.com/rural-residents-want-data-center-answers/",
+          "source": "Concho Observer",
+          "publishedAt": "2026-05-15",
+          "evidenceType": "Local reporting",
+          "note": "Covers an April community meeting between Beacon representatives, local developers, and Tom Green County residents."
+        }
       ]
     },
     {
       "id": "profile-beltline",
-      "label": "Beltline Energy",
+      "label": "Beltline",
       "query": "Beltline data center Yukon Oklahoma",
       "requiredAny": [
         [
@@ -71,11 +105,38 @@
           "yukon",
           "oklahoma"
         ]
+      ],
+      "verifiedAt": "2026-10-03",
+      "curatedItems": [
+        {
+          "title": "Beltline proposal puts Oklahoma’s data-center water rules under scrutiny",
+          "url": "https://investigatemidwest.org/2026/07/14/oklahoma-data-centers-water-use-loophole/",
+          "source": "Investigate Midwest",
+          "publishedAt": "2026-07-14",
+          "evidenceType": "Independent reporting",
+          "note": "Reports a proposed 1,000-megawatt, 480-acre campus and ongoing negotiations over as much as 2.5 million gallons of treated wastewater per day."
+        },
+        {
+          "title": "City says the proposal remains under review",
+          "url": "https://cityofyukonok.gov/CivicAlerts.asp?AID=110&ARC=165",
+          "source": "City of Yukon",
+          "publishedAt": "2026-02-11",
+          "evidenceType": "Official update",
+          "note": "The city states that cooling would be limited to non-potable water and that the project could not proceed if adequate supply is unavailable."
+        },
+        {
+          "title": "Yukon officials and residents weigh reclaimed-water options",
+          "url": "https://www.kosu.org/energy-environment/2025-11-18/as-data-centers-eye-oklahoma-communities-residents-and-officials-weigh-in-on-water-concerns",
+          "source": "KOSU",
+          "publishedAt": "2025-11-18",
+          "evidenceType": "Public-media reporting",
+          "note": "Explains local water-supply concerns and the possible use of treated wastewater for a facility spanning the Yukon–Oklahoma City boundary."
+        }
       ]
     },
     {
       "id": "profile-cheyenne",
-      "label": "Microsoft Cheyenne",
+      "label": "Microsoft — Cheyenne existing campuses",
       "query": "Microsoft Cheyenne Wyoming data center",
       "requiredAny": [
         [
@@ -92,16 +153,56 @@
       ],
       "curatedItems": [
         {
+          "title": "Cheyenne’s local data-center development record",
+          "url": "https://cheyenneleads.org/why-cheyenne/data-centers/",
+          "source": "Cheyenne LEADS",
+          "publishedAt": null,
+          "evidenceType": "Local economic-development source",
+          "note": "Provides regional context for Microsoft’s 2026 expansion alongside Cheyenne’s broader data-center industry."
+        }
+      ],
+      "verifiedAt": "2026-10-03"
+    },
+    {
+      "id": "profile-cheyenne-expansion",
+      "query": "Microsoft — Cheyenne proposed expansion data center",
+      "requiredAny": [
+        [
+          "Microsoft"
+        ]
+      ],
+      "label": "Microsoft — Cheyenne proposed expansion",
+      "verifiedAt": "2026-10-03",
+      "curatedItems": [
+        {
           "title": "Homeowner files two challenges to Microsoft expansion annexation",
           "url": "https://cowboystatedaily.com/2026/09/25/cheyenne-woman-asks-court-to-overturn-3-500-acre-microsoft-data-center-annexation/",
           "source": "Cowboy State Daily",
-          "publishedAt": "2026-09-25T23:13:00Z"
+          "publishedAt": "2026-09-25",
+          "evidenceType": "Court-filing report",
+          "note": "Cowboy State Daily reports that Heather Madrid Donis filed two petitions in Laramie County District Court challenging Cheyenne’s roughly 3,460-acre July annexation for Microsoft’s proposed expansion. The petitions allege an incorrect landowner designation and an Open Meetings Act violation tied to an August 10 council action; the city declined to comment on pending litigation. These are unresolved allegations in filed petitions—not court findings, an invalidation of the annexation, or evidence that construction has stopped."
+        },
+        {
+          "title": "Cheyenne expansion prompts questions about Wyoming’s state-review process",
+          "url": "https://cowboystatedaily.com/2026/07/14/why-microsoft-can-skip-state-review-for-3-500-more-data-center-acres-in-cheyenne/",
+          "source": "Cowboy State Daily",
+          "publishedAt": "2026-07-14",
+          "evidenceType": "Local reporting",
+          "note": "Examines why Microsoft’s planned acreage can proceed through local approvals without review by the Wyoming Industrial Siting Council."
+        },
+        {
+          "title": "Microsoft announces intent to purchase about 3,200 acres in Cheyenne",
+          "url": "https://news.microsoft.com/source/2026/04/14/microsoft-announces-intent-to-expand-datacenter-operations-in-cheyenne-accelerating-innovation-and-economic-growth/",
+          "source": "Microsoft",
+          "publishedAt": "2026-04-14",
+          "evidenceType": "Company announcement",
+          "note": "The announcement outlines a multiyear expansion and commitments concerning infrastructure costs, electricity rates, water use, jobs, and community investment."
         }
       ]
     },
     {
       "id": "profile-jade",
-      "label": "Project Jade / Project Tembo",
+      "label": "Project Tembo — Google / Jupiter Star",
       "query": "(Project Jade OR Project Tembo) Cheyenne data center",
       "requiredAny": [
         [
@@ -115,11 +216,38 @@
           "laramie",
           "wyoming"
         ]
+      ],
+      "verifiedAt": "2026-10-03",
+      "curatedItems": [
+        {
+          "title": "Google presents its proposed $17 billion Project Tembo plan",
+          "url": "https://finance.yahoo.com/technology/articles/google-outlines-17b-project-tembo-171700686.html",
+          "source": "Wyoming Tribune Eagle via Yahoo",
+          "publishedAt": "2026-09-10",
+          "evidenceType": "Local reporting",
+          "note": "Reports Google’s proposal for four data centers and supporting facilities on roughly 700 acres. The investment, 2031 completion target, and projected construction and operating jobs are sponsor estimates—not completed investment or verified employment."
+        },
+        {
+          "title": "County identifies Project Jade’s successor as Project Tembo",
+          "url": "https://www.laramiecountywy.gov/files/sharedassets/public/v/1/county/public-notice/project-tembo-memo-07082026.pdf",
+          "source": "Laramie County Commissioners",
+          "publishedAt": "2026-07-08",
+          "evidenceType": "Official memorandum",
+          "note": "The memorandum says Crusoe withdrew, Google/Jupiter Star Holdings entered discussions, and the resubmitted campus was reduced from five buildings to four."
+        },
+        {
+          "title": "Crusoe exits while Tallgrass says the larger development continues",
+          "url": "https://cowboystatedaily.com/2026/06/11/partner-pulling-out-doesnt-slow-huge-2-7gw-cheyenne-project-jade-data-center/",
+          "source": "Cowboy State Daily",
+          "publishedAt": "2026-06-11",
+          "evidenceType": "Local reporting",
+          "note": "Reports that Crusoe left the project while Tallgrass and the data-center customer continued work on the associated development."
+        }
       ]
     },
     {
       "id": "profile-duos-amarillo",
-      "label": "Duos Edge AI Amarillo",
+      "label": "Duos Edge AI — Amarillo",
       "query": "Duos Edge AI Amarillo data center",
       "requiredAny": [
         [
@@ -129,11 +257,38 @@
           "amarillo",
           "potter county"
         ]
+      ],
+      "verifiedAt": "2026-10-03",
+      "curatedItems": [
+        {
+          "title": "Texas pauses new data-center permits and state approvals pending audits",
+          "url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits",
+          "source": "Office of the Texas Governor",
+          "publishedAt": "2026-09-21",
+          "evidenceType": "Official statewide directive",
+          "note": "TCEQ must halt permits and other state agencies must pause regulatory approvals until ERCOT and Texas Water Development Board audit information is obtained. The directive does not identify this facility’s pending permits, revoke existing permits, or establish that construction or operations have stopped."
+        },
+        {
+          "title": "Duos announces deployment of its second Amarillo edge data center",
+          "url": "https://ir.duostechnologies.com/news-events/press-releases/detail/832/duos-edge-ai-deploys-second-edge-data-center-in-amarillo",
+          "source": "Duos Technologies",
+          "publishedAt": "2026-03-19",
+          "evidenceType": "Company announcement",
+          "note": "The company identifies a carrier-neutral, SOC 2-compliant facility on Potter County land serving AI, healthcare, enterprise, carrier, and public-sector workloads."
+        },
+        {
+          "title": "Potter County lease supports another Amarillo edge deployment",
+          "url": "https://www.datacenterdynamics.com/en/news/duos-to-deploy-edge-data-center-in-amarillo-texas/",
+          "source": "Data Center Dynamics",
+          "publishedAt": "2026-02-16",
+          "evidenceType": "Industry reporting",
+          "note": "Reports the county-approved lease of roughly 12,600 square feet and the project’s anticipated operational schedule."
+        }
       ]
     },
     {
       "id": "news-duos-hereford",
-      "label": "Duos Edge AI Hereford",
+      "label": "Duos Edge AI — Hereford",
       "query": "Duos Edge AI Hereford Texas data center",
       "requiredAny": [
         [
@@ -143,11 +298,22 @@
           "hereford",
           "deaf smith"
         ]
+      ],
+      "verifiedAt": "2026-10-03",
+      "curatedItems": [
+        {
+          "title": "Duos: deployed local edge data-center infrastructure",
+          "url": "https://ir.duostechnologies.com/news-events/press-releases/detail/844/duos-edge-ai-to-host-hereford-edge-data-center-open-house",
+          "source": "Duos",
+          "publishedAt": "2026-06-09",
+          "evidenceType": "Primary source / sponsor record",
+          "note": "Company deployment/open-house records establish deployed local edge infrastructure. Total facility demand is not published in those records."
+        }
       ]
     },
     {
       "id": "news-duos-lubbock",
-      "label": "Duos Edge AI Lubbock",
+      "label": "Duos Edge AI — Lubbock",
       "query": "Duos Edge AI Lubbock data center",
       "requiredAny": [
         [
@@ -156,11 +322,22 @@
         [
           "lubbock"
         ]
+      ],
+      "verifiedAt": "2026-10-03",
+      "curatedItems": [
+        {
+          "title": "Duos: deployed local edge data-center infrastructure",
+          "url": "https://ir.duostechnologies.com/news-events/press-releases/detail/840/duos-edge-ai-to-host-lubbock-edge-data-center-open-house",
+          "source": "Duos",
+          "publishedAt": "2026-05-19",
+          "evidenceType": "Primary source / sponsor record",
+          "note": "Company deployment/open-house records establish deployed local edge infrastructure. Total facility demand is not published in those records."
+        }
       ]
     },
     {
       "id": "news-duos-dumas",
-      "label": "Duos Edge AI Dumas",
+      "label": "Duos Edge AI — Dumas",
       "query": "Duos Edge AI Dumas Texas data center",
       "requiredAny": [
         [
@@ -170,11 +347,22 @@
           "dumas",
           "moore county"
         ]
+      ],
+      "verifiedAt": "2026-10-03",
+      "curatedItems": [
+        {
+          "title": "Duos: deployed local edge data-center infrastructure",
+          "url": "https://ir.duostechnologies.com/news-events/press-releases/detail/843/duos-edge-ai-to-host-dumas-edge-data-center-open-house",
+          "source": "Duos",
+          "publishedAt": "2026-06-04",
+          "evidenceType": "Primary source / sponsor record",
+          "note": "Company deployment/open-house records establish deployed local edge infrastructure. Total facility demand is not published in those records."
+        }
       ]
     },
     {
       "id": "profile-nebraska-sites",
-      "label": "Nebraska proposed data-center sites",
+      "label": "Nebraska — proposal watchlist",
       "query": "Nebraska proposed data center",
       "requiredAny": [
         [
@@ -190,25 +378,32 @@
           "title": "Custer County supervisors hear proposed data-center regulations; final action remains pending",
           "url": "https://sandhillsexpress.com/local-news/public-hearings-held-for-road-closure-data-centers-battery-energy-storage/",
           "source": "Sandhills Express",
-          "publishedAt": "2026-09-29T12:00:00Z"
+          "publishedAt": "2026-09-29",
+          "evidenceType": "County-meeting reporting",
+          "note": "The Board of Supervisors held a public hearing on regulations unanimously recommended by the Planning Commission on September 23. The draft addresses water and cooling, noise, electrical demand, emergency response, setbacks, decommissioning, and community-benefit agreements. No one spoke during the supervisors’ hearing, and the board did not adopt the rules; a resolution is expected at a future meeting."
         },
         {
           "title": "Arevia-linked LLC options more than 560 acres northwest of Lincoln",
           "url": "https://nebraskapublicmedia.org/en/news/news-articles/another-data-center-developer-is-eyeing-land-just-outside-of-lincoln/",
           "source": "Nebraska Public Media",
-          "publishedAt": "2026-09-25T12:00:00Z"
+          "publishedAt": "2026-09-25",
+          "evidenceType": "Land-option records and developer statement",
+          "note": "Recorded four-year options identify Coffee Grounds Data LLC and Arevia Power development officer Ricardo Graf. Graf says the property is only undergoing early-stage site diligence and no development plan exists; the options create a right—not an obligation—to buy, and no rezoning, permit, construction, water, or power commitment is verified."
         },
         {
           "title": "Nebraska appoints a 17-member Data Center Task Force",
           "url": "https://governor.nebraska.gov/gov-pillen-announces-appointments-newly-created-data-center-task-force",
-          "source": "Nebraska Governor's Office",
-          "publishedAt": "2026-08-19T12:00:00Z"
+          "source": "Nebraska Governor’s Office",
+          "publishedAt": "2026-08-19",
+          "evidenceType": "Official announcement",
+          "note": "The DWEE-led group will evaluate effects on water resources, power grids, local infrastructure, zoning tools, and policy safeguards."
         }
-      ]
+      ],
+      "verifiedAt": "2026-10-03"
     },
     {
       "id": "profile-matador",
-      "label": "Fermi America Project Matador",
+      "label": "Project Matador — Fermi America",
       "query": "Fermi Project Matador data center Amarillo",
       "requiredAny": [
         [
@@ -224,30 +419,31 @@
       ],
       "curatedItems": [
         {
-          "title": "Fermi names NAES to operate and maintain Project Matador’s gas fleet",
+          "title": "Fermi names NAES to prepare and operate the natural-gas generation fleet",
           "url": "https://fermiamerica.com/fermi-selects-naes-to-operate-project-matadors-natural-gas-fleet/",
           "source": "Fermi America",
-          "publishedAt": "2026-09-28T12:00:00Z"
+          "publishedAt": "2026-09-28",
+          "evidenceType": "Company announcement",
+          "note": "Fermi says it will retain ownership and control of the generation assets while NAES establishes operating and maintenance procedures, work-management systems, training, risk reviews, and reliability programs, then supplies operating crews as units come online. This is pre-operational planning—not evidence that the delivered turbines are installed, commissioned, or generating electricity—and Fermi announced no new first-power date."
         },
         {
           "title": "Fermi signs CBRE to operate and maintain Building One",
           "url": "https://www.accessnewswire.com/newsroom/en/oil-gas-and-energy/fermi-selects-cbre-to-operate-and-maintain-its-first-data-center-1226802",
           "source": "Fermi Inc.",
-          "publishedAt": "2026-09-24T20:01:00Z"
+          "publishedAt": "2026-09-24",
+          "evidenceType": "Company announcement",
+          "note": "Fermi says the five-year agreement begins when Building One is ready for service; CBRE transition work starts only after Fermi issues a notice to proceed. The contract is pre-operational planning and does not establish that the building is complete or serving compute."
         },
         {
           "title": "TensorWave lease closing is extended to October 31",
           "url": "https://www.accessnewswire.com/newsroom/en/oil-gas-and-energy/fermi-and-tensorwave-agree-to-extend-closing-date-to-october-31-2026-1225550",
           "source": "Fermi Inc.",
-          "publishedAt": "2026-09-22T20:01:00Z"
-        },
-        {
-          "title": "Three Siemens gas turbines reach the Project Matador site",
-          "url": "https://fermiamerica.com/first-power-generation-assets-arrive-at-project-matador/",
-          "source": "Fermi America",
-          "publishedAt": "2026-09-18T12:00:00Z"
+          "publishedAt": "2026-09-22",
+          "evidenceType": "Company announcement",
+          "note": "Fermi and TensorWave moved the 222-megawatt lease closing from September 30 while guaranty, work letters, operating schedules, board approvals, and sufficient project financing remain closing conditions. Fermi says the other lease terms remain in effect; the extension is not a completed closing."
         }
-      ]
+      ],
+      "verifiedAt": "2026-10-03"
     },
     {
       "id": "profile-triple-oak",
@@ -263,11 +459,38 @@
           "finney",
           "kearny"
         ]
+      ],
+      "verifiedAt": "2026-10-03",
+      "curatedItems": [
+        {
+          "title": "Proposed data center could use less water than current irrigation",
+          "url": "https://www.hppr.org/hppr-news/2026-06-09/an-ai-data-center-project-for-western-kansas-might-use-less-water-than-irrigation-farming",
+          "source": "HPPR / Kansas News Service",
+          "publishedAt": "2026-06-09",
+          "evidenceType": "Public-media reporting",
+          "note": "Reports Triple Oak’s 600-million-gallon annual estimate, the site’s existing irrigation demand, direct evaporative cooling plans, local concerns, and Groundwater Management District 3’s analysis."
+        },
+        {
+          "title": "Finney County approves permits for Home Range solar and battery projects",
+          "url": "https://greatergardencity.org/2026/06/county-approves-triple-oak-renewable-projects-special-use-permits/",
+          "source": "Greater Garden City",
+          "publishedAt": "2026-06-03",
+          "evidenceType": "County and local-development reporting",
+          "note": "Reports county approval of special-use permits for a 400-megawatt solar project and a battery-energy-storage site within the larger proposed development."
+        },
+        {
+          "title": "Triple Oak describes the proposed mixed-energy project and customer discussions",
+          "url": "https://homerangecleanpower.com/",
+          "source": "Home Range Clean Power",
+          "publishedAt": null,
+          "evidenceType": "Official project source",
+          "note": "The project site outlines wind, solar, natural gas, and battery storage and states that a large energy customer is considering the area for a future data center."
+        }
       ]
     },
     {
       "id": "profile-unnamed-panhandle",
-      "label": "Texas Panhandle data-center proposals",
+      "label": "Unnamed Panhandle — unresolved research lead",
       "query": "Texas Panhandle data center Amarillo",
       "requiredAny": [
         [
@@ -280,11 +503,13 @@
           "data center",
           "datacenter"
         ]
-      ]
+      ],
+      "verifiedAt": "2026-10-03",
+      "curatedItems": []
     },
     {
       "id": "news-google-haskell",
-      "label": "Google Haskell County campuses",
+      "label": "Google — Haskell campuses (2)",
       "query": "Google Haskell County Texas data center",
       "requiredAny": [
         [
@@ -293,6 +518,25 @@
         [
           "haskell"
         ]
+      ],
+      "verifiedAt": "2026-10-03",
+      "curatedItems": [
+        {
+          "title": "Texas Tribune: construction and attributed resident impacts",
+          "url": "https://www.texastribune.org/2026/08/27/texas-agriculture-data-centers/",
+          "source": "Texas Tribune",
+          "publishedAt": "2026-08-27",
+          "evidenceType": "Primary source / sponsor record",
+          "note": "Google says construction began November 2025; two-campus group, counted once as a record."
+        },
+        {
+          "title": "Google: Haskell County construction update",
+          "url": "https://datacenters.google/haskell-county/",
+          "source": "Google",
+          "publishedAt": null,
+          "evidenceType": "Primary source / sponsor record",
+          "note": "Google says construction began November 2025; two-campus group, counted once as a record."
+        }
       ]
     },
     {
@@ -309,11 +553,22 @@
           "data center",
           "datacenter"
         ]
+      ],
+      "verifiedAt": "2026-10-03",
+      "curatedItems": [
+        {
+          "title": "Google: Meitner construction announcement",
+          "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/meitner-energy-center/",
+          "source": "Google",
+          "publishedAt": "2026-06-04",
+          "evidenceType": "Primary source / sponsor record",
+          "note": "Construction announced June 4, 2026; no verified operational date."
+        }
       ]
     },
     {
       "id": "news-caprock",
-      "label": "Aligned Project Caprock",
+      "label": "Project Caprock — Aligned",
       "query": "Aligned Project Caprock Abernathy data center",
       "requiredAny": [
         [
@@ -325,11 +580,22 @@
           "hale county",
           "texas"
         ]
+      ],
+      "verifiedAt": "2026-10-03",
+      "curatedItems": [
+        {
+          "title": "Aligned: Caprock groundbreaking and design",
+          "url": "https://aligneddc.com/press-release/aligned-breaks-ground-on-project-caprock/",
+          "source": "Aligned",
+          "publishedAt": "2026-04-09",
+          "evidenceType": "Primary source / sponsor record",
+          "note": "Groundbreaking announced April 9, 2026; planned campus capacity is not operating load."
+        }
       ]
     },
     {
       "id": "news-meta-cheyenne",
-      "label": "Meta Cheyenne",
+      "label": "Meta — Cheyenne",
       "query": "Meta Cheyenne Wyoming data center",
       "requiredAny": [
         [
@@ -343,6 +609,25 @@
           "data center",
           "datacenter"
         ]
+      ],
+      "verifiedAt": "2026-10-03",
+      "curatedItems": [
+        {
+          "title": "Meta: official location and planned-job record",
+          "url": "https://datacenters.atmeta.com/us-locations/",
+          "source": "Meta",
+          "publishedAt": null,
+          "evidenceType": "Primary source / sponsor record",
+          "note": "Construction category retained pending primary operational confirmation. Wastewater noncompliance notice was appealed; attribution is disputed."
+        },
+        {
+          "title": "Cheyenne BOPU: investigation and appeal timeline",
+          "url": "https://www.cheyennebopu.org/files/assets/bopu/v/1/user-resources-division-documents/administration/press-releases/2026/timeline.pdf",
+          "source": "Cheyenne BOPU",
+          "publishedAt": null,
+          "evidenceType": "Primary source / sponsor record",
+          "note": "Construction category retained pending primary operational confirmation. Wastewater noncompliance notice was appealed; attribution is disputed."
+        }
       ]
     },
     {
@@ -359,11 +644,38 @@
           "abilene",
           "texas"
         ]
+      ],
+      "verifiedAt": "2026-10-03",
+      "curatedItems": [
+        {
+          "title": "Texas pauses new data-center permits and state approvals pending audits",
+          "url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits",
+          "source": "Office of the Texas Governor",
+          "publishedAt": "2026-09-21",
+          "evidenceType": "Official statewide directive",
+          "note": "TCEQ must halt permits and other state agencies must pause regulatory approvals until ERCOT and Texas Water Development Board audit information is obtained. The directive does not identify this facility’s pending permits, revoke existing permits, or establish that construction or operations have stopped."
+        },
+        {
+          "title": "Local reporting tracks Frontier’s mobilization and underground work",
+          "url": "https://www.thealbanynews.net/news/data-center-progress-full-steam-ahead",
+          "source": "Albany News",
+          "publishedAt": "2025-12-18",
+          "evidenceType": "Local reporting",
+          "note": "Shackelford County reporting documents construction progress and the project’s transition from planning into active site development."
+        },
+        {
+          "title": "Vantage announces a $25-billion-plus, 1.4-gigawatt campus",
+          "url": "https://vantage-dc.com/news/vantage-data-centers-unveils-plans-for-frontier-a-25b-mega-campus-in-texas-to-meet-unprecedented-ai-demand/",
+          "source": "Vantage Data Centers",
+          "publishedAt": "2025-08-19",
+          "evidenceType": "Company announcement",
+          "note": "The company describes ten data-center buildings across 1,200 acres, more than 5,000 construction and operational jobs, and first-building delivery planned for the second half of 2026."
+        }
       ]
     },
     {
       "id": "profile-meta-sarpy",
-      "label": "Meta Sarpy County",
+      "label": "Meta — Sarpy Campus",
       "query": "Meta Sarpy County Nebraska data center",
       "requiredAny": [
         [
@@ -379,6 +691,33 @@
           "data center",
           "datacenter"
         ]
+      ],
+      "verifiedAt": "2026-10-03",
+      "curatedItems": [
+        {
+          "title": "Meta’s Sarpy water withdrawals become part of Nebraska’s disclosure debate",
+          "url": "https://nebraskaexaminer.com/2026/07/09/data-centers-can-guzzle-serious-water-as-some-nebraskans-worry-tech-giants-seek-solutions/",
+          "source": "Nebraska Examiner / Flatwater Free Press",
+          "publishedAt": "2026-07-09",
+          "evidenceType": "State reporting",
+          "note": "Reports 26.7–37.5 million gallons withdrawn annually from 2020 through 2024, a roughly 4-million-square-foot campus, and a combination of evaporative and closed-loop cooling."
+        },
+        {
+          "title": "Meta publishes Sarpy investment, employment, renewable-energy, and community information",
+          "url": "https://datacenters.atmeta.com/asset/sarpy-data-center-info-sheet/",
+          "source": "Meta Data Centers",
+          "publishedAt": null,
+          "evidenceType": "Company fact sheet",
+          "note": "The company’s fact sheet documents its Nebraska presence, water-positive goal, renewable-energy project support, and direct funding for schools and nonprofits."
+        },
+        {
+          "title": "Meta’s expansion formally joined the Springfield community",
+          "url": "https://datacenters.atmeta.com/2021/03/sarpy-expanding-by-nearly-1-million-square-feet/",
+          "source": "Meta Data Centers",
+          "publishedAt": null,
+          "evidenceType": "Company expansion record",
+          "note": "Meta announced nearly one million additional square feet, $400 million in added capital investment, and 100 new operational jobs, bringing its Nebraska investment at that time to nearly $1.5 billion."
+        }
       ]
     },
     {
@@ -398,6 +737,33 @@
           "data center",
           "datacenter"
         ]
+      ],
+      "verifiedAt": "2026-10-03",
+      "curatedItems": [
+        {
+          "title": "Village minutes document infrastructure planning beside Meta’s existing campus",
+          "url": "https://loslunasnm.gov/AgendaCenter/ViewFile/Minutes/_02272025-1228",
+          "source": "Village of Los Lunas",
+          "publishedAt": "2025-02-27",
+          "evidenceType": "Local-government record",
+          "note": "The official meeting record discusses proposed energy-storage development west of the Meta data center and local water and wastewater requirements for heavy industrial users."
+        },
+        {
+          "title": "Los Lunas approves another two-building Meta expansion",
+          "url": "https://www.datacenterdynamics.com/en/news/meta-planning-expansion-of-los-lunas-data-center-campus-in-new-mexico/",
+          "source": "Data Center Dynamics",
+          "publishedAt": "2025-01-17",
+          "evidenceType": "Industry reporting",
+          "note": "Reports an approximately $800 million expansion, a three-year construction period, seven existing buildings, and Village action authorizing industrial-revenue-bond financing."
+        },
+        {
+          "title": "Meta publishes verified investment, employment, energy, and water-stewardship information",
+          "url": "https://datacenters.atmeta.com/asset/los-lunas/",
+          "source": "Meta Data Centers",
+          "publishedAt": null,
+          "evidenceType": "Official facility fact sheet",
+          "note": "The company reports more than $2.5 billion invested, a 2016 groundbreaking, 400-plus operational jobs, 885 megawatts of supported renewable energy, and cooling that reuses water before discharge."
+        }
       ]
     },
     {
@@ -415,6 +781,33 @@
           "data center",
           "datacenter"
         ]
+      ],
+      "verifiedAt": "2026-10-03",
+      "curatedItems": [
+        {
+          "title": "Texas pauses new data-center permits and state approvals pending audits",
+          "url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits",
+          "source": "Office of the Texas Governor",
+          "publishedAt": "2026-09-21",
+          "evidenceType": "Official statewide directive",
+          "note": "TCEQ must halt permits and other state agencies must pause regulatory approvals until ERCOT and Texas Water Development Board audit information is obtained. The directive does not identify this facility’s pending permits, revoke existing permits, or establish that construction or operations have stopped."
+        },
+        {
+          "title": "Texas pauses new grid approvals while auditing data-center demand",
+          "url": "https://www.reuters.com/business/energy/texas-governor-orders-pause-new-data-center-approvals-pending-audit-2026-08-04/",
+          "source": "Reuters",
+          "publishedAt": "2026-08-04",
+          "evidenceType": "State regulatory reporting",
+          "note": "The statewide review requires closer disclosure of power, water, ownership, incentives, and local-impact mitigation; its application to already-approved Grand Prairie phases should be verified through ERCOT and developer updates."
+        },
+        {
+          "title": "City Council agenda provides the current public-hearing and data-center zoning context",
+          "url": "https://meetings.municode.com/adaHtmlDocument/index?cc=GPTX&ip=false&me=37d919ef3aeb4422a1838717aece7ae1",
+          "source": "City of Grand Prairie",
+          "publishedAt": "2026-02-17",
+          "evidenceType": "Local-government record",
+          "note": "The official meeting record includes data-center land-use items and directs residents to the city’s agenda packets and public-comment process for zoning decisions."
+        }
       ]
     },
     {
@@ -436,24 +829,31 @@
       ],
       "curatedItems": [
         {
-          "title": "Governor's Office records response provides little detail on July Oracle meeting",
+          "title": "Governor’s Office records response provides little detail on July Oracle meeting",
           "url": "https://searchlightnm.org/request-for-records-on-governors-meeting-with-data-center-officials-yields-one-photo/",
           "source": "Searchlight New Mexico",
-          "publishedAt": "2026-10-01T12:00:00Z"
+          "publishedAt": "2026-10-01",
+          "evidenceType": "Public-records and government-transparency reporting",
+          "note": "Searchlight New Mexico reports that the Governor’s Office completed a request for notes, agendas, emails, and correspondence about Governor Michelle Lujan Grisham’s July 27 meeting with Oracle by producing only a photo of an iMessage schedule. Oracle met with the governor the same day an air-permit hearing officer favored a later hearing; the hearing was advanced two days later. An environmental advocate alleged possible influence, while the governor’s spokesperson described the meeting as a general update and denied interference. The records response does not establish a connection or improper influence, and it changes no permit ruling."
         },
         {
-          "title": "Flooding reached Project Jupiter; companies report no critical-infrastructure damage",
+          "title": "Companies report flooding reached the campus without critical-infrastructure damage",
           "url": "https://www.oracle.com/news/announcement/project-jupiter-statement-on-southern-new-mexico-floods-2026-09-30/",
           "source": "Oracle and STACK Infrastructure",
-          "publishedAt": "2026-09-30T12:00:00Z"
+          "publishedAt": "2026-09-30",
+          "evidenceType": "Joint company statement",
+          "note": "Oracle and STACK say floodwater reached Project Jupiter during the Southern New Mexico emergency, that no critical infrastructure was damaged, and that they are working with partners and insurers on site impacts. Their statement says the project remains on its planned schedule; this is a company assessment, not an independent engineering or government damage finding."
         },
         {
-          "title": "Oracle invokes force majeure on New Mexico Stargate campus as gas pipeline slips - CNBC",
+          "title": "Oracle invokes protection against a possible 2028 delivery delay",
           "url": "https://www.cnbc.com/2026/09/24/oracle-invokes-force-majeure-on-new-mexico-stargate-campus-as-gas-pipeline-slips.html",
-          "source": "CNBC",
-          "publishedAt": "2026-09-24T12:00:00Z"
+          "source": "CNBC, citing Bloomberg",
+          "publishedAt": "2026-09-24",
+          "evidenceType": "Financial and contractual reporting",
+          "note": "CNBC reports that Oracle sent the Blue Owl unit developing Project Jupiter a force-majeure notice that could allow delayed payments if the campus misses its 2028 online target. Oracle said the project remains on its planned schedule and that it remains committed to New Mexico; Blue Owl said the notice does not change the project’s financial commitments. The notice is contractual risk mitigation—not a confirmed delay, default, cancellation, or construction halt."
         }
-      ]
+      ],
+      "verifiedAt": "2026-10-03"
     },
     {
       "id": "profile-tesla-cortex",
@@ -472,11 +872,38 @@
           "datacenter",
           "ai"
         ]
+      ],
+      "verifiedAt": "2026-10-03",
+      "curatedItems": [
+        {
+          "title": "Texas pauses new data-center permits and state approvals pending audits",
+          "url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits",
+          "source": "Office of the Texas Governor",
+          "publishedAt": "2026-09-21",
+          "evidenceType": "Official statewide directive",
+          "note": "TCEQ must halt permits and other state agencies must pause regulatory approvals until ERCOT and Texas Water Development Board audit information is obtained. The directive does not identify this facility’s pending permits, revoke existing permits, or establish that construction or operations have stopped."
+        },
+        {
+          "title": "Austin working group calls for closer review of rising industrial demand",
+          "url": "https://services.austintexas.gov/edims/document.cfm?id=475048",
+          "source": "Austin Water Forward Task Force",
+          "publishedAt": "2026-06-09",
+          "evidenceType": "City planning record",
+          "note": "The official memorandum recommends policies addressing changing commercial and industrial consumption that could affect the timing and cost of Austin’s future water-supply investments."
+        },
+        {
+          "title": "Giga Texas treated-water use reaches 556 million gallons in 2025",
+          "url": "https://austincurrent.org/2026/04/10/tesla-austin-water-drought-gigafactory-musk/",
+          "source": "Austin Current",
+          "publishedAt": "2026-04-10",
+          "evidenceType": "Local reporting using Austin Water data",
+          "note": "Reports an almost 60-percent increase since 2023 and identifies Tesla as Austin Water’s third-largest customer; the figure covers the full factory complex and cannot be assigned solely to Cortex."
+        }
       ]
     },
     {
       "id": "profile-meta-tulsa",
-      "label": "Meta Tulsa / Project Anthem",
+      "label": "Meta — Tulsa",
       "query": "Meta Project Anthem Tulsa data center",
       "requiredAny": [
         [
@@ -491,11 +918,38 @@
           "data center",
           "datacenter"
         ]
+      ],
+      "verifiedAt": "2026-10-03",
+      "curatedItems": [
+        {
+          "title": "Meta’s identity and community commitments become public amid regional concern",
+          "url": "https://www.publicradiotulsa.org/local-regional/2026-04-22/meta-confirms-its-behind-project-anthem-data-center-in-east-tulsa",
+          "source": "Public Radio Tulsa",
+          "publishedAt": "2026-04-22",
+          "evidenceType": "Local public-media reporting",
+          "note": "Reports Meta’s confirmation, promised jobs, clean-energy matching and water-efficiency claims, while noting broader public concern about northeast Oklahoma data-center development."
+        },
+        {
+          "title": "Reuters confirms construction has begun on the billion-dollar Tulsa campus",
+          "url": "https://www.reuters.com/technology/meta-breaks-ground-over-1-billion-data-center-oklahomas-tulsa-2026-04-21/",
+          "source": "Reuters",
+          "publishedAt": "2026-04-21",
+          "evidenceType": "Independent reporting",
+          "note": "Places the project in Meta’s broader AI-infrastructure expansion and distinguishes verified construction from future operational status."
+        },
+        {
+          "title": "Meta confirms Tulsa as its newest AI-optimized data center",
+          "url": "https://datacenters.atmeta.com/2026/04/hello-tulsa/",
+          "source": "Meta Data Centers",
+          "publishedAt": null,
+          "evidenceType": "Official announcement",
+          "note": "The company reports more than $1 billion in investment, more than 1,000 peak construction workers, approximately 100 jobs once operational, and over $25 million for roads and water infrastructure."
+        }
       ]
     },
     {
       "id": "news-google-wilbarger",
-      "label": "Google Wilbarger County",
+      "label": "Google — Wilbarger County campus",
       "query": "Google Wilbarger County Texas data center",
       "requiredAny": [
         [
@@ -504,11 +958,22 @@
         [
           "wilbarger"
         ]
+      ],
+      "verifiedAt": "2026-10-03",
+      "curatedItems": [
+        {
+          "title": "Google: Wilbarger campus under construction",
+          "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/data-center-wilbarger-county/",
+          "source": "Google",
+          "publishedAt": "2026-02-24",
+          "evidenceType": "Primary source / sponsor record",
+          "note": "Google explicitly identifies the campus as under construction on February 24, 2026."
+        }
       ]
     },
     {
       "id": "news-black-pearl",
-      "label": "Black Pearl Cipher / AWS",
+      "label": "Black Pearl — Cipher / AWS conversion",
       "query": "Black Pearl Cipher AWS Winkler County data center",
       "requiredAny": [
         [
@@ -522,7 +987,40 @@
           "data center",
           "datacenter"
         ]
+      ],
+      "verifiedAt": "2026-10-03",
+      "curatedItems": [
+        {
+          "title": "Cipher: initial HPC delivery and remaining construction",
+          "url": "https://investors.cipherdigital.com/news-releases/news-release-details/cipher-digital-provides-second-quarter-2026-business-update",
+          "source": "Cipher",
+          "publishedAt": "2026-08-04",
+          "evidenceType": "Primary source / sponsor record",
+          "note": "Cipher says first HPC capacity delivered and rent commenced August 2026; remaining Phase I and Phase II still under construction. This is not full-campus completion."
+        }
+      ]
+    },
+    {
+      "id": "profile-project-roman",
+      "query": "Project Roman — Google proposal data center",
+      "requiredAny": [
+        [
+          "Project Roman"
+        ]
+      ],
+      "label": "Project Roman — Google proposal",
+      "verifiedAt": "2026-10-03",
+      "curatedItems": [
+        {
+          "title": "Project Roman: chamber/Google proposal and water claims",
+          "url": "https://www.projectroman.com/",
+          "source": "Project Roman",
+          "publishedAt": null,
+          "evidenceType": "Primary source / sponsor record",
+          "note": "Four initial buildings proposed by the chamber/Google project site. Anticipated construction is a sponsor schedule, not proof of a permit or groundbreaking. Distinct from Duos Hereford."
+        }
       ]
     }
-  ]
+  ],
+  "policy": "RSS matches require editorial review before publication. Registry identity and explicit review dates are mandatory."
 }
