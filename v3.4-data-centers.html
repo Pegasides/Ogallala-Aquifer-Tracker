@@ -68,7 +68,7 @@
 <article class="status construction"><h3><span class="dot"></span>Initial delivery / construction</h3><p>Initial capacity delivered while later phases remain under construction. This does not mean the full campus is operating.</p></article></section>
 <section aria-labelledby="library-map-title" class="library-map">
 <div class="library-map-head"><div><h2 id="library-map-title">Explore the AI Data Centers on the Aquifer</h2><p>2050 aquifer scenario · Facility statuses reflect the latest reviewed evidence, not a completion forecast. Select a data-center marker to open its corresponding facility profile, current updates, and subscriber discussion.</p></div></div>
-<iframe id="facilityMap" src="v3.4-map.html?mode=library&amp;year=2050" title="Interactive 2050 Ogallala Aquifer data-center map"></iframe>
+<iframe id="facilityMap" src="v3.4-map.html?mode=library&amp;year=2050&amp;v=20261003-audit" title="Interactive 2050 Ogallala Aquifer data-center map"></iframe>
 </section>
 <section aria-labelledby="power-comparison-title" class="power-comparison" id="power-comparison">
 <div class="power-head"><h2 id="power-comparison-title">Power demand and supporting supply</h2><p>Facility load, supporting supply, historical figures and unknown demand are shown in separate groups. No facility-demand total is calculated from these unlike figures. “Small facilities visible” uses a logarithmic width so tens of megawatts can be seen beside gigawatt projects; “actual scale” restores direct proportional size.</p>
@@ -379,7 +379,7 @@
 </section>
 </main>
 <footer>Ogallala Aquifer Tracker · Version 3.5 · Data Centers hub</footer>
-<script src="v3.4-facility-registry.js"></script>
+<script src="v3.4-facility-registry.js?v=20261003-audit"></script>
 <script>
 const facilityRegistry=window.OATFacilityRegistry;
 const powerProfiles=facilityRegistry.powerProfiles;
@@ -520,7 +520,7 @@ function showPendingDailyNews(){
 async function loadDailyFacilityNews(){
   try{
     const day=new Date().toISOString().slice(0,10);
-    const response=await fetch('data/facility-news.json?day='+day,{cache:'no-store'});
+    const response=await fetch('data/facility-news.json?revision=20261003-audit&day='+day,{cache:'no-store'});
     if(!response.ok)throw new Error('Facility news feed unavailable');
     const feed=await response.json();
     dailyFacilityProfiles=feed.profiles||{};
